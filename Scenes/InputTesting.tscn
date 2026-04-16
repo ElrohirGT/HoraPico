@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dsg0red1nfohc"]
+
+[ext_resource type="PackedScene" uid="uid://c7qo4khddmtpb" path="res://Prefabs/Player.tscn" id="1_2sx3f"]
+[ext_resource type="Script" uid="uid://bu8qsfhfakjmg" path="res://Scripts/MainMenu.gd" id="1_6v51u"]
+
+[node name="InputTesting" type="Node2D" unique_id=1440780885]
+script = ExtResource("1_6v51u")
+player_scene = ExtResource("1_2sx3f")
