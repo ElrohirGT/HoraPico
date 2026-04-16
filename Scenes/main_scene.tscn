@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://cm6mln3ef5tiq"]
+
+[ext_resource type="Texture2D" uid="uid://bbat0p2bbxkoq" path="res://Sprites/Map.png" id="1_0f027"]
+[ext_resource type="PackedScene" uid="uid://csh1sujxofd0a" path="res://Prefabs/car.tscn" id="2_2c62f"]
+[ext_resource type="PackedScene" uid="uid://bsdve4d4cfu2v" path="res://Prefabs/semaforo.tscn" id="3_gyfs4"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_2c62f"]
+vertices = PackedVector2Array(1025, 300.6875, 357.46875, 478.29688, 341.85938, 470.4922, 356.04688, 465.03906, 943.1797, 301.03125, 1025, 282.7422, 723.21094, 338.77344, 1018.60156, 161.92188, 1022.77344, 194.47656, 870.59375, 289.59375, 307.10156, 527.6406, 313.10156, 508.1875, 301.95313, 516, 871.5625, 293.77344, 355.95313, 460.8203, 234.75, 506.85156, 2.8984375, 542.5078, 2.0703125, 513.4297, 234.84375, 465.6875, 249.95313, 486.5078, 364, 444.1328, 295.70313, 424.15625, 312, 446.15625, 296.28125, 439.8828, 281.75, 423.09375, 337.57813, 3.3203125, 348.64063, 4.6171875, 281.22656, 858.8281, 253.15625, 857.1797, 272.09375, 533.52344, 277.15625, 516, 257.6328, 504.0703, 252.10156, 460.71875, 265.45313, 446.2578, 255.02344, 434.39063)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 8, 9), PackedInt32Array(2, 1, 10, 11), PackedInt32Array(12, 11, 10), PackedInt32Array(13, 4, 3, 14, 6), PackedInt32Array(15, 16, 17, 18, 19), PackedInt32Array(6, 9, 13), PackedInt32Array(20, 6, 14), PackedInt32Array(21, 20, 14, 22, 23, 24), PackedInt32Array(25, 26, 21, 24), PackedInt32Array(12, 10, 27, 28, 29, 30), PackedInt32Array(30, 29, 15, 31), PackedInt32Array(19, 31, 15), PackedInt32Array(32, 19, 18), PackedInt32Array(33, 32, 18, 34, 24), PackedInt32Array(23, 33, 24)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(335, 0, 279, 421, 253, 432, 233, 463, -1, 511, 0, 546, 234, 510, 269, 535, 250, 860, 284, 862, 310, 529, 359, 481, 1028, 303, 1028, 279, 943, 298, 874, 291, 1026, 196, 1021, 157, 722, 336, 364, 441, 299, 422, 352, 2)])
+agent_radius = 3.0
+
+[node name="Node2D" type="Node2D" unique_id=1864069494]
+
+[node name="Map" type="Sprite2D" parent="." unique_id=101735350]
+position = Vector2(577, 430)
+texture = ExtResource("1_0f027")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=870985417]
+navigation_polygon = SubResource("NavigationPolygon_2c62f")
+
+[node name="Polygon2D" type="Polygon2D" parent="NavigationRegion2D" unique_id=1633315647]
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(353, 463, 311, 449, 296, 443, 267, 449, 255, 462, 253, 486, 260, 502, 278, 513, 301, 513, 311, 506, 340, 468)
+
+[node name="Target" type="Node2D" parent="." unique_id=1442740353]
+position = Vector2(334, 104)
+
+[node name="Car" parent="." unique_id=779552690 node_paths=PackedStringArray("target_transform") instance=ExtResource("2_2c62f")]
+position = Vector2(915, 319)
+target_transform = NodePath("../Target")
+
+[node name="Semaforo" parent="." unique_id=267032676 instance=ExtResource("3_gyfs4")]
+position = Vector2(305, 324)
+remainingSeconds = 10.0
