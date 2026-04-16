@@ -6,6 +6,7 @@
 size = Vector2(20, 10)
 
 [node name="Car" type="CharacterBody2D" unique_id=779552690]
+z_index = 10
 script = ExtResource("1_w4xi1")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=811508336]
@@ -32,3 +33,5 @@ offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.7, 0.1946, 0.168, 1)
+
+[connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_target_reached"]

@@ -1,9 +1,7 @@
 extends CharacterBody2D
 
 var movement_speed: float = 200.0
-
-@export var target_transform: Node2D
-@onready var movement_target_position: Vector2 = target_transform.global_position
+var movement_target_position: Vector2 = Vector2.ZERO
 
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var sprite: Node2D = $Node2D
@@ -11,6 +9,7 @@ var movement_speed: float = 200.0
 func _ready():
 	# These values need to be adjusted for the actor's speed
 	# and the navigation layout.
+	await  get_tree().physics_frame
 	navigation_agent.path_desired_distance = 4.0
 	navigation_agent.target_desired_distance = 4.0
 
@@ -37,3 +36,6 @@ func _physics_process(delta):
 	velocity = current_agent_position.direction_to(next_path_position) * movement_speed
 	sprite.rotation = velocity.angle()
 	move_and_slide()
+	
+func _on_navigation_agent_2d_target_reached() -> void:
+	queue_free()

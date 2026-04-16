@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dmpnwgrm2kecq"]
+
+[ext_resource type="Script" uid="uid://d1gqacm1ke3xw" path="res://Scripts/Spawn.gd" id="1_v0ur4"]
+
+[node name="Spawn" type="Marker2D" unique_id=449404926]
+script = ExtResource("1_v0ur4")
+
+[node name="Timer" type="Timer" parent="." unique_id=1281082262]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
