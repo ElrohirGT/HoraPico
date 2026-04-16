@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bsdve4d4cfu2v"]
 
-[ext_resource type="Script" uid="uid://bc7ymm2orpcby" path="res://Prefabs/semaforo.gd" id="1_4uaed"]
+[ext_resource type="Script" uid="uid://bc7ymm2orpcby" path="res://Scripts/TrafficLight.gd" id="1_6ugx3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5vnt8"]
 
@@ -9,7 +9,7 @@ font_size = 20
 font_color = Color(0.27058825, 0.8156863, 1, 1)
 
 [node name="Semaforo" type="StaticBody2D" unique_id=267032676]
-script = ExtResource("1_4uaed")
+script = ExtResource("1_6ugx3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1553247523]
 shape = SubResource("RectangleShape2D_5vnt8")
