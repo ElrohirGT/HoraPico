@@ -2,7 +2,7 @@ extends Marker2D
 
 class_name Spawn
 
-const CAR_SCENE = preload("res://Prefabs/Car.tscn")
+const CAR_SCENE = preload("res://Prefabs/car.tscn")
 
 @export var destiny: Node2D # Le ponés el target al spawner 
 
