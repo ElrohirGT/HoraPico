@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+class_name TrafficLight
+
 @export var remainingSeconds: float = 3.0
 @export var isGreen: bool = true # Para decidir si empieza en verde (true) o rojo (false)
 

@@ -2,30 +2,38 @@
 
 [ext_resource type="Script" uid="uid://2r8ixf8wrhv5" path="res://Scripts/Car.gd" id="1_w4xi1"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0f027"]
-size = Vector2(20, 10)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lmfi0"]
+radius = 5.0
+height = 20.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7bqh3"]
-radius = 8.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7bqh3"]
+radius = 16.0
+height = 44.0
 
 [node name="Car" type="CharacterBody2D" unique_id=779552690]
 z_index = 10
 script = ExtResource("1_w4xi1")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=811508336]
-path_desired_distance = 10.0
-path_max_distance = 10.0
-debug_enabled = true
+path_desired_distance = 25.0
+simplify_path = true
+simplify_epsilon = 3.0
+radius = 20.0
+neighbor_distance = 100.0
+debug_use_custom = true
+debug_path_custom_color = Color(0, 0.49019608, 0.49019608, 1)
 debug_path_custom_line_width = 5.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1023764630]
-shape = SubResource("RectangleShape2D_0f027")
+[node name="CarCollision" type="CollisionShape2D" parent="." unique_id=1023764630]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_lmfi0")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2013731624]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1128350633]
-position = Vector2(13, 0)
-shape = SubResource("CircleShape2D_7bqh3")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=67323197]
+position = Vector2(12, 0)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_7bqh3")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=195341337]
 
@@ -42,6 +50,14 @@ offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.7, 0.1946, 0.168, 1)
+
+[node name="Label" type="Label" parent="." unique_id=478651791]
+visible = false
+offset_left = -10.0
+offset_top = -13.0
+offset_right = 10.0
+offset_bottom = 10.0
+text = "12"
 
 [connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_target_reached"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

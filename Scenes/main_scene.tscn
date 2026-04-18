@@ -5,29 +5,34 @@
 [ext_resource type="PackedScene" uid="uid://dmpnwgrm2kecq" path="res://Prefabs/Spawn.tscn" id="3_jv6wh"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jv6wh"]
-vertices = PackedVector2Array(428.10156, 595.3125, 8.7109375, 655.3594, 12.453125, 593.2969, 121.21094, 584.9375, 428.85156, 533.8125)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(120, 575, 3, 584, -2, 667, 438, 604, 439, 522)])
+vertices = PackedVector2Array(407.02344, 593.9922, -91.74219, 671.78906, -79.14844, 607.8828, 122.140625, 578.9922, 392.28906, 538.96875, 431.96094, 562.34375, 464.39063, 597.8203, 486.8203, 608.53906, 481.34375, 629.53125, 449.64063, 613.2031, 439.5625, 600.09375, 420.1875, 526.0078, 435.89063, 526.9297)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5), PackedInt32Array(6, 7, 8, 9, 10), PackedInt32Array(5, 6, 10, 0), PackedInt32Array(5, 4, 11, 12)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(122, 578, -80, 607, -93, 673, 407, 595, 439, 601, 449, 614, 482, 631, 488, 608, 465, 597, 433, 562, 437, 526, 420, 525, 392, 538)])
+agent_radius = 1.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_x6ack"]
-vertices = PackedVector2Array(348.8828, 446.1797, 357.84375, 497.5078, 307.39063, 491.6328, 318.4375, 449.07813, 386.35938, -194, 437.52344, -194, 371.96094, 23.960938, 253.70313, 504.5625, 268.14063, 519)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 0, 6), PackedInt32Array(3, 6, 0), PackedInt32Array(7, 3, 2, 8)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(239, 504, 267, 532, 310, 502, 370, 509, 359, 446, 449, -204, 377, -204, 362, 23, 309, 444)])
+vertices = PackedVector2Array(319.96875, 441.2578, 373.9922, 21.148438, 410.8828, -229.10938, 438.84375, -232.82813, 351.03906, 446.60156, 336.20313, 466.75, 309.75, 465.79688, 329.0703, 480.9922, 254.22656, 515.3281, 238.46875, 542.89844, 221.38281, 540.2031, 233.82813, 508.60156, 271.46094, 478.89063, 293.60938, 485.03906, 372.27344, 491.78125, 358.71875, 469.96875, 375.8203, 477.5703)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 0, 5, 7), PackedInt32Array(8, 9, 10, 11, 12), PackedInt32Array(13, 8, 12, 6), PackedInt32Array(7, 13, 6), PackedInt32Array(14, 7, 5, 15, 16)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(233, 508, 220, 541, 239, 544, 255, 516, 294, 486, 329, 482, 373, 493, 377, 477, 359, 469, 338, 466, 352, 447, 440, -234, 410, -230, 373, 21, 319, 441, 309, 465, 271, 478)])
+agent_radius = 1.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_iacmt"]
-vertices = PackedVector2Array(574.21875, 504.21094, 609.3672, 505.85156, 526.3125, 581.28906, 545.6797, 535.52344, 520.28906, 553.65625, 450.46875, 883.89844, 467.40625, 543.0781, 488.71094, 1101.7578, 429.0703, 1100.2734, 449.02344, 909.7422, -10.7265625, 877.75, -8.21875, 858.22656, 185.79688, 863.2578, 220.67969, 863.1094, 188.78125, 713.71094, 225.67969, 716.2969)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 3, 2), PackedInt32Array(5, 6, 4, 2, 7), PackedInt32Array(7, 8, 9), PackedInt32Array(5, 7, 9), PackedInt32Array(9, 10, 11, 12, 5), PackedInt32Array(13, 5, 12), PackedInt32Array(12, 14, 15, 13)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(498, 1112, 536, 586, 634, 497, 570, 494, 539, 528, 518, 543, 458, 531, 441, 873, 231, 854, 236, 707, 179, 703, 176, 853, -17, 848, -22, 887, 438, 919, 418, 1110)])
+vertices = PackedVector2Array(570.2422, 504.17188, 602.2422, 517.35156, 535.1094, 585.47656, 548.6875, 525.71875, 519.4297, 552.96875, 437.2578, 896.0078, -19.8125, 875.0469, -18.171875, 866.02344, 198.02344, 872.03125, 520.0078, 636.8203, 485.0625, 1141.0313, 434.0703, 1142.9531, 450.03906, 902.39844, 451.92188, 884.0625, 195.00781, 708.03906, 215.03125, 708.9531, 221.03125, 868.9375, 471, 630.02344, 468.96875, 584.3672, 461.1875, 580.47656, 469.65625, 551.27344, 483.8828, 556.0078)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 3, 2), PackedInt32Array(5, 6, 7, 8), PackedInt32Array(9, 10, 11, 12, 13), PackedInt32Array(8, 14, 15, 16), PackedInt32Array(5, 8, 16, 13), PackedInt32Array(12, 5, 13), PackedInt32Array(9, 13, 17), PackedInt32Array(18, 19, 20, 21, 2), PackedInt32Array(2, 9, 17, 18), PackedInt32Array(4, 2, 21)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(486, 1142, 521, 637, 536, 586, 604, 517, 570, 503, 548, 525, 519, 552, 484, 555, 469, 550, 460, 581, 468, 585, 470, 630, 451, 883, 222, 868, 216, 708, 194, 707, 197, 871, -19, 865, -21, 876, 437, 897, 449, 903, 433, 1144)])
+agent_radius = 1.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_6ev3c"]
-vertices = PackedVector2Array(818.4922, -6.671875, 771.28125, 309.6328, 737.6406, 312.17188, 756.3906, -10.40625)
+vertices = PackedVector2Array(412.60156, 449.45313, 403.57813, 465.6875, -63.210938, 246.71875, -52.796875, 237.17969)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(747, -21, 727, 323, 780, 319, 830, -16)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-65, 247, 404, 467, 414, 449, -53, 236)])
+agent_radius = 1.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_maf8m"]
-vertices = PackedVector2Array(563.35156, 451.97656, 568.46094, 422.47656, 600.9219, 440.2578, 691.25, 490.6328, 733.9219, 426.85938, 1202.6484, 363.2578, 1171.6563, 298.96875)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4), PackedInt32Array(5, 3, 4, 6)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(561, 407, 603, 430, 732, 417, 1177, 287, 1217, 370, 691, 501, 552, 459)])
+vertices = PackedVector2Array(611.0703, 505.9375, 579.89844, 492.71875, 589.47656, 484.8828, 617.9531, 474.71875, 677.75, 489.03125, 1176.4219, 288.20313, 1204.6172, 354.3125, 732.25, 417.96875, 628, 441.02344, 619.0469, 458.2578, 558.78906, 425.20313, 556.1328, 440.28125)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(5, 6, 4, 7), PackedInt32Array(8, 7, 4, 3, 9), PackedInt32Array(10, 8, 9, 11)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(558, 424, 628, 440, 732, 417, 1177, 287, 1206, 355, 678, 490, 611, 507, 578, 493, 589, 484, 617, 474, 618, 459, 555, 441)])
+agent_radius = 1.0
 
 [node name="Node2D" type="Node2D" unique_id=1864069494]
 
@@ -36,97 +41,96 @@ position = Vector2(999.99994, 421.99997)
 scale = Vector2(1.734375, 1.5777262)
 texture = ExtResource("1_0f027")
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=870985417]
+[node name="Left" type="NavigationRegion2D" parent="." unique_id=870985417]
 position = Vector2(-17, -47)
 navigation_polygon = SubResource("NavigationPolygon_jv6wh")
 use_edge_connections = false
 
-[node name="Polygon2D" type="Polygon2D" parent="NavigationRegion2D" unique_id=1633315647]
+[node name="Polygon2D" type="Polygon2D" parent="Left" unique_id=1633315647]
 position = Vector2(169, -10)
 color = Color(1, 1, 1, 0)
 polygon = PackedVector2Array(460, 528, 394, 512, 372, 502, 340, 503, 311, 509, 292, 528, 286, 544, 286, 565, 290, 578, 304, 599, 332, 611, 367, 613, 384, 600, 438, 539)
 
-[node name="NavigationLink2D" type="NavigationLink2D" parent="NavigationRegion2D" unique_id=2025404118]
+[node name="NavigationLink2D" type="NavigationLink2D" parent="Left" unique_id=2025404118]
 position = Vector2(44, 35)
 bidirectional = false
-start_position = Vector2(373, 554)
-end_position = Vector2(450, 571)
+start_position = Vector2(425, 575)
+end_position = Vector2(446, 583)
 
-[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="." unique_id=409417725]
+[node name="Up" type="NavigationRegion2D" parent="." unique_id=409417725]
 position = Vector2(174, -56)
 navigation_polygon = SubResource("NavigationPolygon_x6ack")
 
-[node name="NavigationLink2D" type="NavigationLink2D" parent="NavigationRegion2D2" unique_id=1876916418]
+[node name="NavigationLink2D" type="NavigationLink2D" parent="Up" unique_id=1876916418]
+position = Vector2(-3, 18)
 bidirectional = false
-start_position = Vector2(267, 508)
-end_position = Vector2(223, 552)
+start_position = Vector2(239, 512)
+end_position = Vector2(234, 527)
 
-[node name="Spawn" parent="NavigationRegion2D2" unique_id=449404926 node_paths=PackedStringArray("destiny") instance=ExtResource("3_jv6wh")]
-position = Vector2(417, -185)
+[node name="NavigationLink2D2" type="NavigationLink2D" parent="Up" unique_id=822445304]
+bidirectional = false
+start_position = Vector2(237, 516)
+end_position = Vector2(221, 508)
+
+[node name="Spawn" parent="Up" unique_id=449404926 node_paths=PackedStringArray("destiny") instance=ExtResource("3_jv6wh")]
+position = Vector2(422, -225)
 destiny = NodePath("../../Target2")
 
-[node name="NavigationRegion2D3" type="NavigationRegion2D" parent="." unique_id=944789429]
+[node name="Down" type="NavigationRegion2D" parent="." unique_id=944789429]
 navigation_polygon = SubResource("NavigationPolygon_iacmt")
 
-[node name="NavigationLink2D2" type="NavigationLink2D" parent="NavigationRegion2D3" unique_id=1065121632]
+[node name="NavigationLink2D2" type="NavigationLink2D" parent="Down" unique_id=1065121632]
 bidirectional = false
 start_position = Vector2(209, 725)
 end_position = Vector2(204, 567)
 
-[node name="NavigationLink2D" type="NavigationLink2D" parent="NavigationRegion2D3" unique_id=1637263009]
+[node name="NavigationLink2D" type="NavigationLink2D" parent="Down" unique_id=1637263009]
 bidirectional = false
 start_position = Vector2(589, 518)
-end_position = Vector2(718, 465)
+end_position = Vector2(606, 495)
 
-[node name="NavigationRegion2D5" type="NavigationRegion2D" parent="." unique_id=848970026]
+[node name="LeftUp" type="NavigationRegion2D" parent="." unique_id=848970026]
 navigation_polygon = SubResource("NavigationPolygon_6ev3c")
 
-[node name="NavigationRegion2D4" type="NavigationRegion2D" parent="." unique_id=1567618406]
+[node name="Right" type="NavigationRegion2D" parent="." unique_id=1567618406]
 navigation_polygon = SubResource("NavigationPolygon_maf8m")
 
-[node name="NavigationLink2D" type="NavigationLink2D" parent="NavigationRegion2D4" unique_id=534365340]
+[node name="NavigationLink2D2" type="NavigationLink2D" parent="Right" unique_id=804039784]
 bidirectional = false
-start_position = Vector2(756, 417)
-end_position = Vector2(756, 299)
-
-[node name="NavigationLink2D2" type="NavigationLink2D" parent="NavigationRegion2D4" unique_id=804039784]
-bidirectional = false
-start_position = Vector2(571, 442)
-end_position = Vector2(521, 430)
+start_position = Vector2(571, 438)
+end_position = Vector2(543, 427)
 
 [node name="Target" type="Node2D" parent="." unique_id=1442740353]
-position = Vector2(789, 16)
+position = Vector2(-27, 257)
 
 [node name="Target2" type="Node2D" parent="." unique_id=1528667964]
-position = Vector2(1141, 359)
+position = Vector2(1201, 352)
 
 [node name="Target3" type="Node2D" parent="." unique_id=442592349]
-position = Vector2(14, 560)
+position = Vector2(-56, 559)
 
 [node name="Spawn" parent="." unique_id=1768310090 node_paths=PackedStringArray("destiny") instance=ExtResource("3_jv6wh")]
-visible = false
-position = Vector2(12, 599)
+position = Vector2(-57, 612)
 destiny = NodePath("../Target")
 
 [node name="Spawn2" parent="." unique_id=196091479 node_paths=PackedStringArray("destiny") instance=ExtResource("3_jv6wh")]
-visible = false
-position = Vector2(461, 1076)
+position = Vector2(456, 1132)
 destiny = NodePath("../Target2")
 
 [node name="Spawn3" parent="." unique_id=1360333283 node_paths=PackedStringArray("destiny") instance=ExtResource("3_jv6wh")]
-position = Vector2(1141, 314)
+position = Vector2(1176, 301)
 destiny = NodePath("../Target3")
 
 [node name="Semaforo" parent="." unique_id=267032676 instance=ExtResource("3_gyfs4")]
-position = Vector2(357, 545)
+position = Vector2(360, 557)
 remainingSeconds = 10.0
 
 [node name="Semaforo2" parent="." unique_id=550349181 instance=ExtResource("3_gyfs4")]
-position = Vector2(514, 607)
+position = Vector2(534, 604)
 
 [node name="Semaforo3" parent="." unique_id=1527069406 instance=ExtResource("3_gyfs4")]
 position = Vector2(497, 375)
 remainingSeconds = 5.0
 
 [node name="Semaforo4" parent="." unique_id=542248239 instance=ExtResource("3_gyfs4")]
-position = Vector2(799, 410)
+position = Vector2(819, 388)
