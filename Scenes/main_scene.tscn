@@ -104,10 +104,12 @@ position = Vector2(1141, 359)
 position = Vector2(14, 560)
 
 [node name="Spawn" parent="." unique_id=1768310090 node_paths=PackedStringArray("destiny") instance=ExtResource("3_jv6wh")]
+visible = false
 position = Vector2(12, 599)
 destiny = NodePath("../Target")
 
 [node name="Spawn2" parent="." unique_id=196091479 node_paths=PackedStringArray("destiny") instance=ExtResource("3_jv6wh")]
+visible = false
 position = Vector2(461, 1076)
 destiny = NodePath("../Target2")
 
@@ -118,15 +120,13 @@ destiny = NodePath("../Target3")
 [node name="Semaforo" parent="." unique_id=267032676 instance=ExtResource("3_gyfs4")]
 position = Vector2(357, 545)
 remainingSeconds = 10.0
-initialColor = false
 
 [node name="Semaforo2" parent="." unique_id=550349181 instance=ExtResource("3_gyfs4")]
 position = Vector2(514, 607)
 
 [node name="Semaforo3" parent="." unique_id=1527069406 instance=ExtResource("3_gyfs4")]
-position = Vector2(506, 398)
+position = Vector2(497, 375)
 remainingSeconds = 5.0
 
 [node name="Semaforo4" parent="." unique_id=542248239 instance=ExtResource("3_gyfs4")]
-position = Vector2(599, 445)
-initialColor = false
+position = Vector2(799, 410)

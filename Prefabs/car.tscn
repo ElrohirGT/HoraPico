@@ -5,18 +5,27 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0f027"]
 size = Vector2(20, 10)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_7bqh3"]
+radius = 8.0
+
 [node name="Car" type="CharacterBody2D" unique_id=779552690]
 z_index = 10
 script = ExtResource("1_w4xi1")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=811508336]
-path_desired_distance = 1.0
+path_desired_distance = 10.0
 path_max_distance = 10.0
 debug_enabled = true
 debug_path_custom_line_width = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1023764630]
 shape = SubResource("RectangleShape2D_0f027")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2013731624]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1128350633]
+position = Vector2(13, 0)
+shape = SubResource("CircleShape2D_7bqh3")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=195341337]
 
@@ -35,3 +44,5 @@ grow_vertical = 2
 color = Color(0.7, 0.1946, 0.168, 1)
 
 [connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_target_reached"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

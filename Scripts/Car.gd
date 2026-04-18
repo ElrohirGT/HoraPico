@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
-var movement_speed: float = 200.0
+class_name Car
+
+var movement_speed: float = 100.0
 var movement_target_position: Vector2 = Vector2.ZERO
 
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
@@ -34,8 +36,19 @@ func _physics_process(delta):
 	var next_path_position: Vector2 = navigation_agent.get_next_path_position()
 
 	velocity = current_agent_position.direction_to(next_path_position) * movement_speed
-	sprite.rotation = velocity.angle()
+	rotation = velocity.angle()
+	# sprite.rotation = velocity.angle()
 	move_and_slide()
 	
 func _on_navigation_agent_2d_target_reached() -> void:
 	queue_free()
+
+
+#func _on_area_2d_body_entered(body: Node2D) -> void:
+	#if body is Car:
+		#movement_speed = 0
+#
+#
+#func _on_area_2d_body_exited(body: Node2D) -> void:
+	#if body is Car:
+		#movement_speed = 100

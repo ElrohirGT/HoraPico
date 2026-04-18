@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 @export var remainingSeconds: float = 3.0
-@export var initialColor: bool = true # Para decidir si empieza en verde (true) o rojo (false)
+@export var isGreen: bool = true # Para decidir si empieza en verde (true) o rojo (false)
 
 @onready var _originalSeconds: float = remainingSeconds
 
@@ -11,7 +11,7 @@ extends StaticBody2D
 @onready var sprite: ColorRect = $Red
 
 func _ready() -> void:
-	if not initialColor:
+	if not isGreen:
 		flipCollision()
 
 func flipCollision():
