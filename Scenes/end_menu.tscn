@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bojirqjbqgde0"]
+
+[ext_resource type="Script" uid="uid://cl3sqbalfjg22" path="res://Scripts/end_menu.gd" id="1_bg38y"]
+
+[node name="EndMenu" type="Control" unique_id=152103652]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bg38y")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1855778176]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -46.5
+offset_right = 44.0
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=1694976301]
+layout_mode = 2
+text = "City Wins!"
+horizontal_alignment = 1
+
+[node name="PlayAgain" type="Button" parent="VBoxContainer" unique_id=998218127]
+layout_mode = 2
+text = "Play Again"
+
+[node name="Quit" type="Button" parent="VBoxContainer" unique_id=1969331962]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/PlayAgain" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
