@@ -1,12 +1,14 @@
 extends Node
 
+var next_player_id = 0
 var players_connected: Dictionary = {}
 
 @export var player_scene: PackedScene
 
 func _input(event):
 	if event is InputEventJoypadButton and event.is_pressed():
-		var id = event.device
+		var id = next_player_id
+		next_player_id+=1
 		
 		if not players_connected.has(id):
 			join_player(id)
