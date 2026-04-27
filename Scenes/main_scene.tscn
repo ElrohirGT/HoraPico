@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bbat0p2bbxkoq" path="res://Sprites/Map.png" id="1_0f027"]
 [ext_resource type="PackedScene" uid="uid://bsdve4d4cfu2v" path="res://Prefabs/TrafficLight.tscn" id="3_gyfs4"]
 [ext_resource type="PackedScene" uid="uid://dmpnwgrm2kecq" path="res://Prefabs/Spawn.tscn" id="3_jv6wh"]
+[ext_resource type="Script" uid="uid://c47tvi2dunbhm" path="res://Scenes/RateDisplay.gd" id="4_x6ack"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jv6wh"]
 vertices = PackedVector2Array(407.02344, 593.9922, -91.74219, 671.78906, -79.14844, 607.8828, 122.140625, 578.9922, 392.28906, 538.96875, 431.96094, 562.34375, 464.39063, 597.8203, 486.8203, 608.53906, 481.34375, 629.53125, 449.64063, 613.2031, 439.5625, 600.09375, 420.1875, 526.0078, 435.89063, 526.9297)
@@ -134,3 +135,46 @@ remainingSeconds = 5.0
 
 [node name="Semaforo4" parent="." unique_id=542248239 instance=ExtResource("3_gyfs4")]
 position = Vector2(819, 388)
+
+[node name="Control" type="Control" parent="." unique_id=314647052]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Panel" type="Panel" parent="Control" unique_id=144935838]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -126.0
+offset_top = -66.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Rate Display" type="Label" parent="Control/Panel" unique_id=1420840626]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -24.5
+offset_right = 22.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "RATE:
+15.67 cars/s"
+horizontal_alignment = 1
+vertical_alignment = 3
+script = ExtResource("4_x6ack")
+
+[node name="Timer" type="Timer" parent="Control/Panel/Rate Display" unique_id=417942411]
+wait_time = 3.0
+autostart = true
+
+[connection signal="timeout" from="Control/Panel/Rate Display/Timer" to="Control/Panel/Rate Display" method="_on_timer_timeout"]

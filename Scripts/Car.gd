@@ -48,6 +48,7 @@ func _physics_process(delta):
 	move_and_slide()
 	
 func _on_navigation_agent_2d_target_reached() -> void:
+	EventBus.car_despawned.emit()
 	queue_free()
 
 
