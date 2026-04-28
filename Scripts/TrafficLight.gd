@@ -23,6 +23,10 @@ func flipCollision():
 	else:
 		sprite.color = Color.GREEN
 
+func turnRed():
+	shape.disabled = false
+	sprite.color = Color.RED
+
 func _physics_process(delta: float) -> void:
 	remainingSeconds -= delta
 	label.text = "Remaining: %.2f" % remainingSeconds
@@ -31,7 +35,9 @@ func _physics_process(delta: float) -> void:
 		remainingSeconds = _originalSeconds
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	print("Click")
-	#if event is InputEventMouseButton:
-		#if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			#EventBus.on_trafficLight_clicked.emit(self)
+	if event is InputEventMouseButton:
+		print("CLICK!")
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			print("CLICK! (inside)")
+			remainingSeconds = _originalSeconds
+			turnRed()
