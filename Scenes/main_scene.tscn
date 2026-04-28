@@ -38,6 +38,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(558, 424, 628, 440, 732
 agent_radius = 1.0
 
 [node name="Node2D" type="Node2D" unique_id=1864069494]
+script = ExtResource("4_6ev3c")
 
 [node name="Map" type="Sprite2D" parent="." unique_id=101735350]
 position = Vector2(999.99994, 421.99997)
@@ -112,6 +113,10 @@ position = Vector2(1201, 352)
 [node name="Target3" type="Node2D" parent="." unique_id=442592349]
 position = Vector2(-56, 559)
 
+[node name="ManualTimer" type="Timer" parent="." unique_id=1166785429]
+wait_time = 5.0
+autostart = true
+
 [node name="Spawn" parent="." unique_id=1768310090 node_paths=PackedStringArray("destiny") instance=ExtResource("3_jv6wh")]
 position = Vector2(-57, 612)
 destiny = NodePath("../Target")
@@ -140,7 +145,6 @@ position = Vector2(819, 388)
 
 [node name="GameManager" type="Node2D" parent="." unique_id=319693962]
 position = Vector2(532.5, 8.5)
-script = ExtResource("4_6ev3c")
 
 [node name="Control" type="Control" parent="." unique_id=314647052]
 layout_mode = 3
@@ -148,6 +152,7 @@ anchors_preset = 0
 offset_top = 8.0
 offset_right = 1152.0
 offset_bottom = 648.0
+mouse_filter = 2
 
 [node name="Rate Container" type="Panel" parent="Control" unique_id=144935838]
 layout_mode = 1

@@ -8,4 +8,9 @@ script = ExtResource("1_v0ur4")
 [node name="Timer" type="Timer" parent="." unique_id=1281082262]
 autostart = true
 
+[node name="ManualTimer" type="Timer" parent="." unique_id=453554701]
+wait_time = 6.0
+one_shot = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ManualTimer" to="." method="_on_manual_timer_timeout"]

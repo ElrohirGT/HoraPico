@@ -29,3 +29,9 @@ func _physics_process(delta: float) -> void:
 	if remainingSeconds <= 0.0:
 		flipCollision()
 		remainingSeconds = _originalSeconds
+
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	print("Click")
+	#if event is InputEventMouseButton:
+		#if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			#EventBus.on_trafficLight_clicked.emit(self)

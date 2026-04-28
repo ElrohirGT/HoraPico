@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-class_name Car
+class_name Bus
 
-var movement_speed: float = 100.0
+var movement_speed: float = 75.0
 var movement_target_position: Vector2 = Vector2.ZERO
 var last_angle: float = 0
 var priority: int = 0
@@ -57,7 +57,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		movement_speed = 0
 		last_angle = rotation
 		
-		if body is Car:
+		if body is Car or body is Bus:
 			var otherCar = body as Car
 			if priority < otherCar.priority:
 				navigation_agent.process_mode = Node.PROCESS_MODE_ALWAYS

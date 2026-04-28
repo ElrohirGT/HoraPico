@@ -2,17 +2,18 @@
 
 [ext_resource type="Script" uid="uid://bc7ymm2orpcby" path="res://Scripts/TrafficLight.gd" id="1_6ugx3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vnt8"]
-
 [sub_resource type="LabelSettings" id="LabelSettings_xolf4"]
 font_size = 20
 font_color = Color(0.27058825, 0.8156863, 1, 1)
 
-[node name="Semaforo" type="StaticBody2D" unique_id=267032676]
-script = ExtResource("1_6ugx3")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vnt8"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1553247523]
-shape = SubResource("RectangleShape2D_5vnt8")
+[sub_resource type="CircleShape2D" id="CircleShape2D_6ugx3"]
+radius = 19.0
+
+[node name="Semaforo" type="StaticBody2D" unique_id=267032676]
+input_pickable = true
+script = ExtResource("1_6ugx3")
 
 [node name="Red" type="ColorRect" parent="." unique_id=578572876]
 anchors_preset = 8
@@ -35,3 +36,14 @@ offset_right = 103.0
 offset_bottom = 11.0
 text = "Remaining: "
 label_settings = SubResource("LabelSettings_xolf4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1553247523]
+shape = SubResource("RectangleShape2D_5vnt8")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=492752131]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1383221009]
+shape = SubResource("CircleShape2D_6ugx3")
+debug_color = Color(0.89377147, 0.25526974, 0.36086196, 0.41960785)
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

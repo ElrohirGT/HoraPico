@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://p44yvrdc88r3"]
 
+[ext_resource type="Script" uid="uid://c8h6252wd55bp" path="res://Scripts/Bus.gd" id="1_xh285"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0f027"]
 size = Vector2(38, 10)
 
 [node name="Car" type="CharacterBody2D" unique_id=779552690]
+script = ExtResource("1_xh285")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=811508336]
 path_desired_distance = 1.0
