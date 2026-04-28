@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://bsdve4d4cfu2v" path="res://Prefabs/TrafficLight.tscn" id="3_gyfs4"]
 [ext_resource type="PackedScene" uid="uid://dmpnwgrm2kecq" path="res://Prefabs/Spawn.tscn" id="3_jv6wh"]
 [ext_resource type="Script" uid="uid://c7g42ptbf14ku" path="res://Scripts/GameManager.gd" id="4_6ev3c"]
-[ext_resource type="Script" uid="uid://c47tvi2dunbhm" path="res://Scenes/RateDisplay.gd" id="4_x6ack"]
-[ext_resource type="Script" uid="uid://dw40xikw4my85" path="res://Scenes/match_timer.gd" id="5_iacmt"]
+[ext_resource type="Script" uid="uid://c47tvi2dunbhm" path="res://Scripts/RateDisplay.gd" id="4_x6ack"]
+[ext_resource type="Script" uid="uid://dw40xikw4my85" path="res://Scripts/match_timer.gd" id="5_iacmt"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jv6wh"]
 vertices = PackedVector2Array(407.02344, 593.9922, -91.74219, 671.78906, -79.14844, 607.8828, 122.140625, 578.9922, 392.28906, 538.96875, 431.96094, 562.34375, 464.39063, 597.8203, 486.8203, 608.53906, 481.34375, 629.53125, 449.64063, 613.2031, 439.5625, 600.09375, 420.1875, 526.0078, 435.89063, 526.9297)
