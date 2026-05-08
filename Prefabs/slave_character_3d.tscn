@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cb4oub3yblird"]
+
+[ext_resource type="Script" uid="uid://bsid8rxc31ciu" path="res://Scripts/character.gd" id="1_h3lwh"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kxfux"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lkgpu"]
+albedo_color = Color(1, 0.2627451, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_h3lwh"]
+material = SubResource("StandardMaterial3D_lkgpu")
+
+[node name="AuthorityCharacter3d" type="CharacterBody3D" unique_id=840908166]
+script = ExtResource("1_h3lwh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=616116969]
+shape = SubResource("CapsuleShape3D_kxfux")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=692904008]
+mesh = SubResource("CapsuleMesh_h3lwh")
+
+[node name="FusionServerReplicator" type="FusionServerReplicator" parent="." unique_id=2136544974]
+owner_mode = 5
+root_replication_mode = 1
+process_priority = -2147483647
+process_physics_priority = -2147483647

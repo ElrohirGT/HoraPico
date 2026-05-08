@@ -24,6 +24,11 @@ EventBus="*uid://jcxbex8kmrke"
 
 enabled=PackedStringArray()
 
+[fusion]
+
+connection/app_id="7b7fcb86-7804-43cb-af72-1574d4dfd17b"
+simulation/mode=1
+
 [input]
 
 p1_move_left={

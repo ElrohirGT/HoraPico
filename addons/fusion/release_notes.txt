@@ -1,0 +1,80 @@
+GodotFusion Release Notes
+=========================
+
+### 30/03/2026
+
+- Fixed: missing lobby properties for the join and join_or_create paths
+- Added: iOS binary libraries
+
+20/03/2026
+
+Fixed: crash on disconnect when replicated string properties are active (use-after-free in string handle cleanup)
+Fixed: crash when nodes are modified on despawn
+Fixed: disconnect on app close not being detected
+Fixed: join_room and join_or_create_room with empty name failing instead of using random matchmaking
+Changed: improved snapshot interpolation with asymmetric delay adaptation (faster recovery, slower spike reaction)
+Changed: exposed snapshot interpolation tuning parameters in inspector (max_snapshot_gap, adapt_speed_up, adapt_speed_down, max_delay)
+Changed: decoupled position and rotation teleport detection (each evaluated independently)
+Changed: RPC ID hash now includes script class path for uniqueness across scripts
+Added: teleport snap mode setting (Source vs Projected) for forecast handler
+Fixed: forecast teleports being applied for both rot/pos if only one triggered
+Fixed: large-scene hash clash on nodes with same name
+Fixed: broadcast RPCs not working due to a wrong early check for replicators (not needed)
+Fixed: rotation teleport threshold 0 and 360 now both disable rotation teleport detection
+Fixed: position teleport threshold 0 now disables position teleport detection
+
+18/02/2026
+
+Added: despawn_on_disconnect option on FusionSpawner
+Added: scene_unloaded signal on FusionClient (emitted during disconnect cleanup)
+Fixed: disconnect callbacks not being processed correctly
+
+17/02/2026
+
+Added: auto-sync of velocity property for CharacterBody2D/3D roots
+Fixed: Replication Editor panel selector not updating when switching nodes
+
+12/02/2026
+
+Changed: migrated editor plugin to Godot 4.6 EditorDock API
+Fixed: editor plugin crash on startup (deprecated add_control_to_bottom_panel)
+Fixed: infinite NOTIFICATION_THEME_CHANGED loop on EditorDock
+
+09/02/2026
+
+Added: sub-objects (dynamic sub-object spawning via FusionSpawner)
+Added: scene/map-objects with auto-loader setting
+Added: update interval setting
+Added: multi-scene support (load/unload by index, concurrent scenes)
+Added: explicit teleport API (teleport(), teleport_2d(), teleport_3d())
+Added: unified sub-object creation into FusionSpawner (removed FusionSubObjectHandler)
+Added: replicator self-registration at POSTINITIALIZE
+Added: multi-instance interest areas with configurable shapes (square, circle, cone) and decay modes
+Added: native Godot .rpc() routing through Fusion (FusionMultiplayerAPI)
+Added: inspector-configurable spawnable_scenes array on FusionSpawner
+Added: auto_spawn mode on FusionSpawner
+Changed: unified deserialize_spawn_data with sync_inbound (removed ~90 lines of duplicate code)
+Fixed: array tree editor support (capacity)
+Fixed: physics bodies sleeping on late join
+
+06/02/2026
+
+Fixed: duplicated shadow-copy test removed
+Fixed: minor concerns from code review
+
+05/02/2026
+
+Added: string serialization support (using string heap)
+Added: array support (fixed capacity at spawn time)
+
+04/02/2026
+
+Added: different ownership modes (Transaction, PlayerAttached, Dynamic, MasterClient)
+Added: physics and forecast replication modes
+Added: sleeping state replication for physics objects
+Changed: refactored replication mode architecture (transform/physics data auto-synced without .tres config)
+
+03/02/2026
+
+Added: main settings asset for Fusion config
+Changed: updated to Fusion core 3.0.0.625
