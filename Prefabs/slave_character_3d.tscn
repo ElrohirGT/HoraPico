@@ -20,7 +20,6 @@ shape = SubResource("CapsuleShape3D_kxfux")
 mesh = SubResource("CapsuleMesh_h3lwh")
 
 [node name="FusionServerReplicator" type="FusionServerReplicator" parent="." unique_id=2136544974]
-owner_mode = 5
 root_replication_mode = 1
 process_priority = -2147483647
 process_physics_priority = -2147483647

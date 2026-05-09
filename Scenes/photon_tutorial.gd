@@ -11,8 +11,10 @@ func _ready():
 	spawner.add_spawnable_scene(HostCharacter)
 	spawner.add_spawnable_scene(ClientCharacter)
 
-	Fusion.connect_to_photon("user_%d" % randi())
+	var user_id = "user_%d" % randi()
+	Fusion.connect_to_photon(user_id)
 	Fusion.connected_to_photon.connect(func():
+		print("trying to join/create room as user: ", user_id)
 		Fusion.join_or_create_room()
 	)
 
