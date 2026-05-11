@@ -50,14 +50,17 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     }
 
     private InputAction _move;
+    private InputAction _shoot;
     private void Awake()
     {
         _move = InputSystem.actions.FindAction("Move");
+        _shoot = InputSystem.actions.FindAction("Attack");
     }
 
     private void Start()
     {
         _move.Enable();
+        _shoot.Enable();
     }
 
     public void OnObjectExitAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player)
@@ -114,12 +117,22 @@ public class BasicSpawner : MonoBehaviour, INetworkRunnerCallbacks
     {
     }
 
+    private bool isShooting = false;
+
+    private void Update()
+    {
+        isShooting = _shoot.IsPressed();
+    }
+
     public void OnInput(NetworkRunner runner, NetworkInput input)
     {
         var moveValue = _move.ReadValue<Vector2>();
         var data = new NetworkInputData();
         data.Direction.x = moveValue.x;
         data.Direction.z = moveValue.y;
+
+        data.Buttons.Set(NetworkInputData.MouseButton0,isShooting);
+        isShooting = false;
         input.Set(data);
     }
 
