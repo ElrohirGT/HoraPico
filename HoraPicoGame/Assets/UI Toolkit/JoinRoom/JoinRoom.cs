@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -16,6 +15,23 @@ public class JoinRoom : MonoBehaviour
 
     private void OnEnable()
     {
-        // _joinRoom.clicked
+        _joinRoom.clicked += JoinRoomOnclicked;
+        _goBack.clicked += GoBackOnclicked;
+    }
+    
+    private void OnDisable()
+    {
+        _joinRoom.clicked -= JoinRoomOnclicked;
+        _goBack.clicked -= GoBackOnclicked;
+    }
+
+    private void GoBackOnclicked()
+    {
+        EventBus.OnMenuChange(Menus.MainMenu);
+    }
+
+    private void JoinRoomOnclicked()
+    {
+        EventBus.OnMenuChange(Menus.JoinMenu);
     }
 }
