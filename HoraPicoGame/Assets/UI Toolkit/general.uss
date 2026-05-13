@@ -10,3 +10,8 @@
     font-size: 64px;
     -unity-font-style: bold;
 }
+
+.subTitle {
+    font-size: 32px;
+    -unity-font-style: bold;
+}
