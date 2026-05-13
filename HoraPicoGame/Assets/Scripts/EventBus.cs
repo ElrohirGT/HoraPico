@@ -15,4 +15,11 @@ public static class EventBus
     {
         ThemeChange?.Invoke(obj);
     }
+
+    public static event Action<int> ElixirChanged;
+
+    public static void OnElixirChanged(int newElixirCount)
+    {
+        ElixirChanged?.Invoke(newElixirCount);
+    }
 }
