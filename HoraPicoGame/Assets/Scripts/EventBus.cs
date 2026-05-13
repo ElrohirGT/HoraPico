@@ -8,4 +8,11 @@ public static class EventBus
     {
         MenuChange?.Invoke(obj);
     }
+
+    public static event Action<Theme> ThemeChange;
+
+    public static void OnThemeChange(Theme obj)
+    {
+        ThemeChange?.Invoke(obj);
+    }
 }
