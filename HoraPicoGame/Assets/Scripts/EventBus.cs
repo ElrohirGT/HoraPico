@@ -8,4 +8,18 @@ public static class EventBus
     {
         MenuChange?.Invoke(obj);
     }
+
+    public static event Action<Theme> ThemeChange;
+
+    public static void OnThemeChange(Theme obj)
+    {
+        ThemeChange?.Invoke(obj);
+    }
+
+    public static event Action<int> ElixirChanged;
+
+    public static void OnElixirChanged(int newElixirCount)
+    {
+        ElixirChanged?.Invoke(newElixirCount);
+    }
 }
