@@ -1,16 +1,37 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PoliceHUD : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private ProgressBar _bar;
+    private Label _display;
+    
+    private void Awake()
     {
-        
+        var ui = GetComponent<UIDocument>().rootVisualElement;
+        _bar = ui.Q<ProgressBar>("elixirBar");
+        _display = ui.Q<Label>("elixirCount");
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        _bar.highValue = ElixirManager.Instance.MaxElixir;
+        _bar.value = 0;
+        _display.text = " 0";
+    }
+
+    private void OnEnable()
+    {
+        EventBus.ElixirChanged += EventBusOnElixirChanged;
+    }
+    private void OnDisable()
+    {
+        EventBus.ElixirChanged -= EventBusOnElixirChanged;
+    }
+
+    private void EventBusOnElixirChanged(int obj)
+    {
+        _bar.value = obj;
+        _display.text = $"{obj,2}";
     }
 }
