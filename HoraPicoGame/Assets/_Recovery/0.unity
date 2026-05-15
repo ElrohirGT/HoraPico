@@ -374,19 +374,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2423031244761080668, guid: 4d503ce6353a87b92adc1a3224915456, type: 3}
       propertyPath: m_Name
-      value: SpawnerEast
+      value: SpawnerE
       objectReference: {fileID: 0}
+    - target: {fileID: 4165787388603021168, guid: 4d503ce6353a87b92adc1a3224915456, type: 3}
+      propertyPath: VehicleObjective
+      value: 
+      objectReference: {fileID: 1311450456}
     - target: {fileID: 4644052400327483325, guid: 4d503ce6353a87b92adc1a3224915456, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 163.78
+      value: 162.49997
       objectReference: {fileID: 0}
     - target: {fileID: 4644052400327483325, guid: 4d503ce6353a87b92adc1a3224915456, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.23
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4644052400327483325, guid: 4d503ce6353a87b92adc1a3224915456, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15.33
+      value: -2.9414062
       objectReference: {fileID: 0}
     - target: {fileID: 4644052400327483325, guid: 4d503ce6353a87b92adc1a3224915456, type: 3}
       propertyPath: m_LocalRotation.w
@@ -717,19 +721,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2423031244761080668, guid: 4d503ce6353a87b92adc1a3224915456, type: 3}
       propertyPath: m_Name
-      value: SpawnerWest
+      value: SpawnerW
       objectReference: {fileID: 0}
+    - target: {fileID: 4165787388603021168, guid: 4d503ce6353a87b92adc1a3224915456, type: 3}
+      propertyPath: VehicleObjective
+      value: 
+      objectReference: {fileID: 981975575}
     - target: {fileID: 4644052400327483325, guid: 4d503ce6353a87b92adc1a3224915456, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -277.8
+      value: -286
       objectReference: {fileID: 0}
     - target: {fileID: 4644052400327483325, guid: 4d503ce6353a87b92adc1a3224915456, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.3
+      value: 15.0000105
       objectReference: {fileID: 0}
     - target: {fileID: 4644052400327483325, guid: 4d503ce6353a87b92adc1a3224915456, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 140.1
+      value: 135.3
       objectReference: {fileID: 0}
     - target: {fileID: 4644052400327483325, guid: 4d503ce6353a87b92adc1a3224915456, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2093,19 +2101,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2423031244761080668, guid: 4d503ce6353a87b92adc1a3224915456, type: 3}
       propertyPath: m_Name
-      value: SpawnerSouth
+      value: SpawnerS
       objectReference: {fileID: 0}
+    - target: {fileID: 4165787388603021168, guid: 4d503ce6353a87b92adc1a3224915456, type: 3}
+      propertyPath: VehicleObjective
+      value: 
+      objectReference: {fileID: 1330347259}
     - target: {fileID: 4644052400327483325, guid: 4d503ce6353a87b92adc1a3224915456, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.8
       objectReference: {fileID: 0}
     - target: {fileID: 4644052400327483325, guid: 4d503ce6353a87b92adc1a3224915456, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4644052400327483325, guid: 4d503ce6353a87b92adc1a3224915456, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -144.4
+      value: -149.57202
       objectReference: {fileID: 0}
     - target: {fileID: 4644052400327483325, guid: 4d503ce6353a87b92adc1a3224915456, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2315,15 +2327,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2423031244761080668, guid: 4d503ce6353a87b92adc1a3224915456, type: 3}
       propertyPath: m_Name
-      value: SpawnerNorth
+      value: SpawnerN
       objectReference: {fileID: 0}
+    - target: {fileID: 4165787388603021168, guid: 4d503ce6353a87b92adc1a3224915456, type: 3}
+      propertyPath: VehicleObjective
+      value: 
+      objectReference: {fileID: 1455140993}
     - target: {fileID: 4644052400327483325, guid: 4d503ce6353a87b92adc1a3224915456, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4644052400327483325, guid: 4d503ce6353a87b92adc1a3224915456, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4644052400327483325, guid: 4d503ce6353a87b92adc1a3224915456, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3519,7 +3535,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1815452233}
-  - component: {fileID: 1815452234}
   m_Layer: 0
   m_Name: Spawners
   m_TagString: Untagged
@@ -3546,22 +3561,6 @@ Transform:
   - {fileID: 363211747}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1815452234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1815452232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e33e918144a9811f8a7aa31fdd070766, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TrafficComboManager
-  objectives: {fileID: 968398016}
-  carPrefab: {fileID: 7834352092542497697, guid: 5c615b013a1409448866c85fcaac6e62, type: 3}
-  busPrefab: {fileID: 3528610262181939753, guid: 638c7e60bef90194d81070d09bbb00ae, type: 3}
-  comboTimeout: 0.5
 --- !u!1001 &1960839197
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3667,10 +3666,6 @@ PrefabInstance:
     - target: {fileID: 1907207906683800207, guid: c93c0afecd20691769116535b9115efb, type: 3}
       propertyPath: m_Name
       value: Objective
-      objectReference: {fileID: 0}
-    - target: {fileID: 1907207906683800207, guid: c93c0afecd20691769116535b9115efb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5152162554072340286, guid: c93c0afecd20691769116535b9115efb, type: 3}
       propertyPath: m_LocalPosition.x
