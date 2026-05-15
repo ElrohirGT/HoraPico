@@ -191,6 +191,8 @@ GameObject:
   - component: {fileID: 956141849828836110}
   - component: {fileID: 2361443049118607234}
   - component: {fileID: 4094429709685381942}
+  - component: {fileID: -515390518628017181}
+  - component: {fileID: 1731153034282428916}
   m_Layer: 0
   m_Name: Bus
   m_TagString: Untagged
@@ -221,7 +223,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3528610262181939753}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92d90de4f3de2be42b5357a62780cec6, type: 3}
   m_Name: 
@@ -251,6 +253,40 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.35146323, y: 0.4074415, z: 1.1193912}
   m_Center: {x: 0.0023673326, y: 0.002023667, z: -0.035773516}
+--- !u!195 &-515390518628017181
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3528610262181939753}
+  m_Enabled: 1
+  m_AgentTypeID: -1372625422
+  m_Radius: 8.84
+  m_Speed: 6
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2.02
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &1731153034282428916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3528610262181939753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40a9e79e5ca1092e4bdccc17b9fbfea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Navigate
 --- !u!1 &4026797773933029576
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,7 +403,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 10, y: 10, z: 15}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 907841634828782519}
