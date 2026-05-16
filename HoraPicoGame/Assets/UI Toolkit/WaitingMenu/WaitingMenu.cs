@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using Fusion;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
@@ -30,9 +31,8 @@ public class WaitingMenu : MonoBehaviour
         _startGame.clicked += StartGameOnclicked;
         _closeRoom.clicked += CloseRoomOnclicked;
         
-        EventBus.MenuChange += EventBusOnMenuChange;
+        EventBus.JoinOrHostGame += EventBusOnJoinOrHostGame;
     }
-
 
     private void OnDisable()
     {
@@ -41,46 +41,12 @@ public class WaitingMenu : MonoBehaviour
         _startGame.clicked -= StartGameOnclicked;
         _closeRoom.clicked -= CloseRoomOnclicked;
         
-        EventBus.MenuChange -= EventBusOnMenuChange;
+        EventBus.JoinOrHostGame -= EventBusOnJoinOrHostGame;
     }
 
-    private string RandomString(string alphabet, int length)
+    private void EventBusOnJoinOrHostGame(GameMode _, string roomId)
     {
-        var str = new StringBuilder(new string('?', length));
-        for (var i = 0; i < length; i++)
-        {
-            str[i] = alphabet[Random.Range(0, alphabet.Length)];
-        }
-        return str.ToString();
-    }
-
-    private string GenerateID()
-    {
-        const int charsPerSection = 4;
-        const int sections = 3;
-        const string alphabet = "abcdefghijklmnopqrstuvwxyz0123456789";
-
-        var roomId = new StringBuilder();
-
-        for (var i = 0; i < sections; i++)
-        {
-            var str = RandomString(alphabet, charsPerSection);
-            roomId.Append(str);
-
-            if (i + 1 < sections)
-            {
-                roomId.Append('-');
-            }
-        }
-
-        return roomId.ToString();
-    }
-    
-    private void EventBusOnMenuChange(Menus obj)
-    {
-        if (obj != Menus.WaitingMenu) return;
-        var id = GenerateID();
-        _gameId.text = id;
+        _gameId.text = roomId;
     }
 
     private void StartGameOnclicked()
