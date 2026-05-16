@@ -140,9 +140,13 @@ public class TrafficComboManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            if (hit.collider.CompareTag("Semaforo"))
+            if (hit.collider.CompareTag("TrafficLight"))
             {
-                Debug.Log($"Semaforo hackeado: {hit.collider.name}");
+                TrafficLight trafficLight = hit.collider.GetComponent<TrafficLight>();
+                if (trafficLight != null)
+                {
+                    trafficLight.Hack();
+                }
             }
         }
     }
