@@ -3,5 +3,4 @@
     MainMenu,
     JoinMenu,
     WaitingMenu,
-    Loading,
 }

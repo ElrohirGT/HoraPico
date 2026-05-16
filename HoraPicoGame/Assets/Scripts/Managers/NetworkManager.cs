@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Fusion;
@@ -32,16 +33,17 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
 
     private void EventBusOnJoinOrHostGame(GameMode mode, string roomId)
     {
-        JoinOrStartRoom(mode, roomId);
+        StartCoroutine(JoinOrStartRoom(mode, roomId));
     }
 
     private NetworkRunner _runner;
-    private async void JoinOrStartRoom(GameMode mode, string roomId)
+    private IEnumerator JoinOrStartRoom(GameMode mode, string roomId)
     {
         Debug.Log("Display Load screen!");
         EventBus.OnLoadingStart();
         _runner = gameObject.AddComponent<NetworkRunner>();
         _runner.ProvideInput = true;
+        yield return null;
 
         Debug.Log("Getting scene ref...");
         var scene = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex);
@@ -51,7 +53,6 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
             sceneInfo.AddSceneRef(scene, LoadSceneMode.Additive);
         }
 
-        IProgress<float> progress = new Progress<float>(EventBus.OnLoadingProgress);
         var startGameTask = _runner.StartGame(new StartGameArgs()
         {
             GameMode = mode,
@@ -59,22 +60,23 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
             Scene = scene,
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
         });
-        var loadingTask = new Task(async () =>
-        {
-            const int maxIters = 10;
-            for (var i = 0; i < maxIters; i++)
-            {
-                await Task.Delay(200);
-                progress.Report((float)i / maxIters);
-            }
-        });
+        StartCoroutine(LoadMenuProgress());
         
         Debug.Log("Waiting for connection to finish...");
-        await Task.WhenAll(startGameTask, loadingTask);
+        yield return Task.WhenAll(startGameTask);
         
-        Debug.Log("DONE!");
-        EventBus.OnLoadingEnd();
-        EventBus.OnMenuChange(Menus.WaitingMenu);
+        // EventBus.OnLoadingEnd();
+        // EventBus.OnMenuChange(Menus.WaitingMenu);
+    }
+
+    private IEnumerator LoadMenuProgress()
+    {
+        const int seconds = 5;
+        for (var i = 0; i <= seconds; i++)
+        {
+            yield return Task.Delay(1000);
+            EventBus.OnLoadingProgress((float)i / seconds);
+        }
     }
 
     public void OnObjectExitAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player)
@@ -89,7 +91,8 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
-        
+        EventBus.OnLoadingEnd();
+        EventBus.OnMenuChange(Menus.WaitingMenu);
     }
 
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)

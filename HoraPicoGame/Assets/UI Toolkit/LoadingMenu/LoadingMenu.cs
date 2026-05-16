@@ -17,6 +17,7 @@ public class LoadingMenu : MonoBehaviour
         _root = GetComponent<UIDocument>().rootVisualElement;
         _progressBar = _root.Q<ProgressBar>("progress");
         _tipLabel = _root.Q<Label>("tipLabel");
+        
     }
 
     private void OnEnable()
@@ -36,7 +37,7 @@ public class LoadingMenu : MonoBehaviour
     private void EventBusOnLoadingEnd()
     {
         Debug.Log("End loading screen...");
-        _root.style.display = DisplayStyle.None;
+        _root.style.visibility = Visibility.Hidden;
     }
 
     private void EventBusOnLoadingProgress(float obj)
@@ -49,7 +50,7 @@ public class LoadingMenu : MonoBehaviour
     private void EventBusOnLoadingStart()
     {
         Debug.Log("Starting Loading screen...");
-        _root.style.display = DisplayStyle.Flex;
+        _root.style.visibility = Visibility.Visible;
         _progressBar.value = 0;
         _tipLabel.text = RandomUtils.RandomFromList(tips);
     }
