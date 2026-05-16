@@ -59,16 +59,15 @@ public class TrafficLight : MonoBehaviour
         GetComponent<UnityEngine.AI.NavMeshObstacle>().enabled = true;
 
         SetVisuals(Color.cyan, "Red");
-        SetVisuals(Color.cyan, "Green");
 
         Debug.Log($"Semáforo [{gameObject.name}] ha sido hackeado.");
     }
 
     private void SetVisuals(Color color, string lightName)
     {
-        switch (color)
+        switch (lightName)
         {
-            case Color.red:
+            case "Red":
                 GameObject redLight = transform.Find("Red").gameObject;
                 redLight.GetComponent<Renderer>().material.color = color;
 
@@ -76,7 +75,7 @@ public class TrafficLight : MonoBehaviour
                 greenLight.GetComponent<Renderer>().material.color = Color.gray;
                 break;
 
-            case Color.green:
+            case "Green":
                 GameObject greenLight2 = transform.Find("Green").gameObject;
                 greenLight2.GetComponent<Renderer>().material.color = color;
 
@@ -84,7 +83,7 @@ public class TrafficLight : MonoBehaviour
                 redLight2.GetComponent<Renderer>().material.color = Color.gray;
                 break;
 
-            case Color.cyan:
+            case "Cyan":
                 GameObject redLight3 = transform.Find("Red").gameObject;
                 redLight3.GetComponent<Renderer>().material.color = color;
 
