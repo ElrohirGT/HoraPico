@@ -1,3 +1,7 @@
+using System.Collections;
+using Fusion;
+using Lib;
+using Unity.Android.Gradle;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -44,6 +48,8 @@ public class MainMenu : MonoBehaviour
 
     private void HostOnclicked()
     {
-        EventBus.OnMenuChange(Menus.WaitingMenu);
+        var roomId = RoomUtils.GenerateID();
+        Debug.Log($"Trying to host room: {roomId}");
+        EventBus.OnJoinOrHostGame(GameMode.Host, roomId);
     }
 }

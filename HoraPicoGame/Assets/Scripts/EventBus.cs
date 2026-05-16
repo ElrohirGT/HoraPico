@@ -1,4 +1,5 @@
 using System;
+using Fusion;
 
 public static class EventBus
 {
@@ -21,5 +22,38 @@ public static class EventBus
     public static void OnElixirChanged(int newElixirCount)
     {
         ElixirChanged?.Invoke(newElixirCount);
+    }
+
+
+    public static event Action LoadingStart;
+
+    public static void OnLoadingStart()
+    {
+        LoadingStart?.Invoke();
+    }
+    
+    public static event Action<float> LoadingProgress;
+
+    /// <summary>
+    /// Triggers the event LoadingProgress.
+    /// The progress is a float between 0-1.
+    /// </summary>
+    /// <param name="progress">The current loading progress. Between 0-1.</param>
+    public static void OnLoadingProgress(float progress)
+    {
+        LoadingProgress?.Invoke(progress);
+    }
+
+    public static event Action LoadingEnd;
+
+    public static void OnLoadingEnd()
+    {
+        LoadingEnd?.Invoke();
+    }
+
+    public static event Action<GameMode, string> JoinOrHostGame;
+    public static void OnJoinOrHostGame(GameMode mode, string roomId)
+    {
+        JoinOrHostGame?.Invoke(mode, roomId);
     }
 }
