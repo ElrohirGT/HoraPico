@@ -5,7 +5,7 @@
             <ui:Label text="Hora Pico&#10;" class="title"/>
         </ui:VisualElement>
         <ui:VisualElement style="flex-grow: 0; flex-direction: row; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px; background-color: rgba(0, 0, 0, 0.39);">
-            <ui:TextField label="" placeholder-text="ID Sala:" max-length="100" hide-placeholder-on-focus="false"/>
+            <ui:TextField label="" placeholder-text="ID Sala:" max-length="100" hide-placeholder-on-focus="false" name="roomIdTextField"/>
             <ui:Button text="Join&#10;" name="btnJoin" class="primaryButton"/>
             <ui:Button text="Go Back&#10;" name="btnBack" class="primaryButton"/>
         </ui:VisualElement>

@@ -1,8 +1,10 @@
+using Fusion;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class JoinRoom : MonoBehaviour
 {
+    private TextField _txField;
     private Button _joinRoom;
     private Button _goBack;
 
@@ -11,6 +13,7 @@ public class JoinRoom : MonoBehaviour
         var ui = GetComponent<UIDocument>().rootVisualElement;
         _joinRoom = ui.Q<Button>("btnJoin");
         _goBack = ui.Q<Button>("btnBack");
+        _txField = ui.Q<TextField>("roomIdTextField");
     }
 
     private void OnEnable()
@@ -32,6 +35,7 @@ public class JoinRoom : MonoBehaviour
 
     private void JoinRoomOnclicked()
     {
-        EventBus.OnMenuChange(Menus.JoinMenu);
+        var roomId = _txField.value;
+        EventBus.OnJoinOrHostGame(GameMode.Client, roomId);
     }
 }
