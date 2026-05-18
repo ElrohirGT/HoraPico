@@ -7,9 +7,23 @@ using Fusion.Sockets;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
+public enum PlayerRole
 {
-    public NetworkManager Instance { get; private set; }
+    None,
+    Police,
+    Traffic
+}
+
+public class PlayerInfo
+{
+    public string id;
+    public PlayerRole role;
+}
+
+public class GameNetworkManager : MonoBehaviour, INetworkRunnerCallbacks
+{
+    [Networked] public List<PlayerInfo> PlayersInfo { get; private set; } = new();
+    public static GameNetworkManager Instance { get; private set; }
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -36,13 +50,13 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         StartCoroutine(JoinOrStartRoom(mode, roomId));
     }
 
-    private NetworkRunner _runner;
+    public NetworkRunner Runner { get; private set; }
     private IEnumerator JoinOrStartRoom(GameMode mode, string roomId)
     {
         Debug.Log("Display Load screen!");
         EventBus.OnLoadingStart();
-        _runner = gameObject.AddComponent<NetworkRunner>();
-        _runner.ProvideInput = true;
+        Runner = gameObject.AddComponent<NetworkRunner>();
+        Runner.ProvideInput = true;
         yield return null;
 
         Debug.Log("Getting scene ref...");
@@ -53,7 +67,7 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
             sceneInfo.AddSceneRef(scene, LoadSceneMode.Additive);
         }
 
-        var startGameTask = _runner.StartGame(new StartGameArgs()
+        var startGameTask = Runner.StartGame(new StartGameArgs()
         {
             GameMode = mode,
             SessionName = roomId,
@@ -74,8 +88,8 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         const int seconds = 5;
         for (var i = 0; i <= seconds; i++)
         {
-            yield return Task.Delay(1000);
-            EventBus.OnLoadingProgress((float)i / seconds);
+            yield return new WaitForSecondsRealtime(1);
+            EventBus.OnLoadingProgress((float)(i+1) / seconds);
         }
     }
 
@@ -91,8 +105,15 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
+        PlayersInfo.Add(new PlayerInfo
+        {
+            id = player.ToString(),
+            role = PlayerRole.None,
+        });
+        
         EventBus.OnLoadingEnd();
-        EventBus.OnMenuChange(Menus.WaitingMenu);
+        EventBus.OnMenuChange(Menus.LobbyMenu);
+        EventBus.OnPlayerJoined();
     }
 
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
@@ -157,6 +178,7 @@ public class NetworkManager : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnCustomAuthenticationResponse(NetworkRunner runner, Dictionary<string, object> data)
     {
+        
         
     }
 

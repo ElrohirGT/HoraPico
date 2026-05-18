@@ -56,4 +56,17 @@ public static class EventBus
     {
         JoinOrHostGame?.Invoke(mode, roomId);
     }
+
+    public static event Action PlayerJoined;
+    public static void OnPlayerJoined()
+    {
+        PlayerJoined?.Invoke();
+    }
+
+    public static event Action<string, string, float> Notification;
+
+    public static void OnNotification(string title, string content, float secDuration)
+    {
+        Notification?.Invoke(title, content, secDuration);
+    }
 }

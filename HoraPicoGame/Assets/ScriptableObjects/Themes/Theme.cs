@@ -10,5 +10,7 @@ public class Theme : ScriptableObject
     public Color secondary;
     public Color accent;
 
+    public List<Color> playerColors;
+
     public List<Color> colorsWithoutNeutral;
 }

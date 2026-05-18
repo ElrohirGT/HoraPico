@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 820263143}
   - component: {fileID: 820263146}
   m_Layer: 0
-  m_Name: WaitingMenu
+  m_Name: LobbyMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -502,6 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b445b59235cf8da4ea3e8d4d47602fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaitingMenu
+  mouseImage: {fileID: 2800000, guid: dc4fa24a950605b42ad472c67541c165, type: 3}
 --- !u!114 &820263144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -601,6 +602,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1047742391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1047742394}
+  - component: {fileID: 1047742393}
+  - component: {fileID: 1047742392}
+  m_Layer: 5
+  m_Name: Notifications
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1047742392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047742391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 386f0cda2a5f3e44f8967fbd20ed5c09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Notifications
+  notificationTemplate: {fileID: 9197481963319205126, guid: e1aa31ac926462b4ab1a759f40ac6676, type: 3}
+--- !u!114 &1047742393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047742391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+  m_PanelSettings: {fileID: 11400000, guid: 39ac8c56d0e6ab74fb745bd40b0a76a9, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 3efd12264dbbb6448bcc4b70a8634333, type: 3}
+  m_SortingOrder: 0
+  m_Position: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
+--- !u!4 &1047742394
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047742391}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1299090152
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,7 +700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cd3504ab6a86724cacccade6d0d98f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  initialTheme: {fileID: 0}
+  initialTheme: {fileID: 11400000, guid: 59aa0300905e52f40aadf9b5155b5db9, type: 2}
 --- !u!4 &1299090154
 Transform:
   m_ObjectHideFlags: 0
@@ -900,6 +970,7 @@ SceneRoots:
   - {fileID: 330585546}
   - {fileID: 410087041}
   - {fileID: 832575519}
+  - {fileID: 1047742394}
   - {fileID: 1910465376}
   - {fileID: 1299090154}
   - {fileID: 1610411286}

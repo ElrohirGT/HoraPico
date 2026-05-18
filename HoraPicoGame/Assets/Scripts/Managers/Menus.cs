@@ -2,5 +2,5 @@
 {
     MainMenu,
     JoinMenu,
-    WaitingMenu,
+    LobbyMenu,
 }

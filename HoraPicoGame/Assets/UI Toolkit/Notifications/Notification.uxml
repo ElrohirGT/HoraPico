@@ -1,0 +1,6 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 0; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; transition-duration: 0.3s; background-color: rgba(0, 0, 0, 0.39); border-top-left-radius: 5px; border-top-right-radius: 0; border-bottom-right-radius: 0; border-bottom-left-radius: 5px; margin-bottom: 5px;">
+        <ui:Label text="Label" name="title" style="color: rgb(255, 255, 255); -unity-font-style: bold; font-size: 16px; white-space: pre;"/>
+        <ui:Label text="Label" name="content" style="color: rgb(255, 255, 255); white-space: pre;"/>
+    </ui:VisualElement>
+</ui:UXML>
