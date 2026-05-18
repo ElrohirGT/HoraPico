@@ -23,11 +23,17 @@ public class TrafficComboManager : MonoBehaviour
 
     [Header("Configuración de Rango")]
     [SerializeField] private Rank rank = Rank.F;
-    [SerializeField] private float lastActionTimeout = 5f;
+    [SerializeField] private float lastActionTimeout = 5f; // Tiempo máximo entre acciones
     [SerializeField] private float lastActionTime = 0f;
     [SerializeField] private TMP_Text rankText;
     enum Rank { F, E, D, C, B, A, S }
     private string[] lastAction = new string[2] { "", "" };
+
+    [Header("Configuración de Hora Pico (Ultimate)")]
+    [SerializeField] private Rank requiredRank = Rank.S;
+    [SerializeField] private float ultimateCooldown = 30f;
+    [SerializeField] private int ultimateVehicleCount = 1;
+    private float ultimateTimer = 0f;
 
     private void Start()
     {
@@ -38,6 +44,7 @@ public class TrafficComboManager : MonoBehaviour
         }
 
         rankText.text = rank.ToString();
+        ultimateTimer = ultimateCooldown;
     }
 
     private void Awake()
@@ -74,6 +81,16 @@ public class TrafficComboManager : MonoBehaviour
             Debug.Log("Rango reseteado por tiempo");
             rankText.text = rank.ToString();
         }
+
+        if (ultimateTimer > 0f)
+        {
+            ultimateTimer -= Time.deltaTime;
+        }
+
+        else
+        {
+            ultimateTimer = 0f;
+        }
     }
 
     private void RegisterInput(string inputName)
@@ -98,6 +115,15 @@ public class TrafficComboManager : MonoBehaviour
 
             case "DownDownUpRight":
                 vehicleType = "Bus";
+                break;
+
+            case "DownRightUpLeftDownRightDownRight":
+                if (ultimateTimer > 0f || rank != requiredRank) return;
+
+                OnUltimateClick(ultimateVehicleCount);
+                ultimateVehicleCount++;
+                ultimateTimer = ultimateCooldown;
+                lastActionTime = Time.time;
                 break;
         }
 
@@ -169,6 +195,24 @@ public class TrafficComboManager : MonoBehaviour
         if (navScript != null) {
             navScript.Initialize(objectivesList);
         }
+    }
+
+    private void OnUltimateClick(int ultimateVehicleCount)
+    {
+        List<string> vehicleTypes = new List<string>() {"Car", "Bus"};
+        List<string> spawnPoints = new List<string>() {"North", "South", "East", "West"};
+
+        int randomCarIndex;
+        int randomSpawnPointIndex;
+
+        for (int i = 0; i < ultimateVehicleCount; i++)
+        {
+            randomCarIndex = Random.Range(0, vehicleTypes.Count);
+            randomSpawnPointIndex = Random.Range(0, spawnPoints.Count);
+            SpawnVehicle(vehicleTypes[randomCarIndex], spawnPoints[randomSpawnPointIndex]);
+        }
+
+        Debug.Log($"Ultimate: {ultimateVehicleCount} vehículos spawneados");
     }
 
     private void OnHackClick()
