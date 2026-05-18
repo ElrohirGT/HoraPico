@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
@@ -20,6 +21,14 @@ public class TrafficComboManager : MonoBehaviour
     private List<string> currentSequence = new List<string>();
     private float lastInputTime;
 
+    [Header("Configuración de Rango")]
+    [SerializeField] private Rank rank = Rank.F;
+    [SerializeField] private float lastActionTimeout = 5f;
+    [SerializeField] private float lastActionTime = 0f;
+    [SerializeField] private TMP_Text rankText;
+    enum Rank { F, E, D, C, B, A, S }
+    private string[] lastAction = new string[2] { "", "" };
+
     private void Start()
     {
         foreach (Transform objective in objectives)
@@ -27,6 +36,8 @@ public class TrafficComboManager : MonoBehaviour
             objectivesList.Add(objective);
             Debug.Log("Objective añadido: " + objective.name);
         }
+
+        rankText.text = rank.ToString();
     }
 
     private void Awake()
@@ -53,6 +64,15 @@ public class TrafficComboManager : MonoBehaviour
             CheckCombos();
             currentSequence.Clear();
             Debug.Log("Combo reseteado por tiempo");
+        }
+
+        if (lastAction[0] != "" && Time.time - lastActionTime > lastActionTimeout)
+        {
+            lastAction[0] = "";
+            lastAction[1] = "";
+            rank = Rank.F;
+            Debug.Log("Rango reseteado por tiempo");
+            rankText.text = rank.ToString();
         }
     }
 
@@ -100,7 +120,23 @@ public class TrafficComboManager : MonoBehaviour
 
         if (vehicleType != "" && vehicleSpawnPoint != "") {
             SpawnVehicle(vehicleType, vehicleSpawnPoint);
+
+            if (lastAction[0] != vehicleType && lastAction[1] != vehicleSpawnPoint && rank < Rank.S) {
+                lastActionTime = Time.time;
+                lastAction[0] = vehicleType;
+                lastAction[1] = vehicleSpawnPoint;
+                rank = (Rank)((int)rank + 1);
+
+                rankText.text = rank.ToString();
+
+            } else if (lastAction[0] != vehicleType && lastAction[1] != vehicleSpawnPoint && rank == Rank.S) {
+                rankText.text = rank.ToString();
+                lastActionTime = Time.time;
+                lastAction[0] = vehicleType;
+                lastAction[1] = vehicleSpawnPoint;
+            }
         }
+        Debug.Log($"Rango: {rank}, Última acción: {lastAction}");
     }
 
     private void SpawnVehicle(string type, string spawnPoint)
