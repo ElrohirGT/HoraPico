@@ -1,10 +1,16 @@
-using System;
 using Fusion;
+using Lib;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class LobbyMenu : MonoBehaviour
+public class LobbyMenu : NetworkBehaviour
 {
+    [Networked]
+    [Capacity(3)]
+    [UnitySerializeField]
+    [OnChangedRender(nameof(RefreshMouses))]
+    public NetworkDictionary<PlayerRef, PlayerRole> PlayersInfo => default;
+    
     public Texture2D mouseImage;
     
     private Button _joinTraffic;
@@ -38,9 +44,12 @@ public class LobbyMenu : MonoBehaviour
         _startGame.SetEnabled(false);
     }
 
-    private void Start()
+    public override void Spawned()
     {
-        RefreshUI();
+        base.Spawned();
+        Debug.Log("Lobby menu was spawned!");
+        RefreshMouses();
+        RefreshRoomId();
     }
 
     private void OnEnable()
@@ -51,7 +60,6 @@ public class LobbyMenu : MonoBehaviour
         _closeRoom.clicked += CloseRoomOnclicked;
         _copyTxt.clicked += CopyTxtOnclicked;
         
-        EventBus.JoinOrHostGame += EventBusOnJoinOrHostGame;
         EventBus.PlayerJoined += EventBusOnPlayerJoined;
     }
 
@@ -65,9 +73,9 @@ public class LobbyMenu : MonoBehaviour
         _closeRoom.clicked -= CloseRoomOnclicked;
         _copyTxt.clicked -= CopyTxtOnclicked;
         
-        EventBus.JoinOrHostGame -= EventBusOnJoinOrHostGame;
         EventBus.PlayerJoined -= EventBusOnPlayerJoined;
     }
+    
     
     private void CopyTxtOnclicked()
     {
@@ -83,41 +91,42 @@ public class LobbyMenu : MonoBehaviour
         }
     }
 
-    void RefreshUI()
+    void RefreshMouses()
     {
         _trafficContainer.Clear();
         _policeContainer.Clear();
         _unassignedContainer.Clear();
-        
-        for (var i = 0; i < GameNetworkManager.Instance.PlayersInfo.Count; i++)
+
+        var idx = 0;
+        foreach (var playerInfo in PlayersInfo)
         {
-            var current = GameNetworkManager.Instance.PlayersInfo[i];
-            VisualElement container = current.role switch
+            var container = playerInfo.Value switch
             {
                 PlayerRole.None => _unassignedContainer,
                 PlayerRole.Police => _policeContainer,
                 PlayerRole.Traffic => _trafficContainer,
                 _ => null
             };
-
             var img = new Image
             {
                 image = mouseImage,
-                tintColor = ThemeManager.Instance.Current.playerColors[i]
+                tintColor = ThemeManager.Instance.Current.playerColors[idx]
             };
             img.AddToClassList("mouseImage");
             container?.Add(img);
+            idx++;
         }
     }
     
-    private void EventBusOnPlayerJoined()
+    private void EventBusOnPlayerJoined(PlayerRef _)
     {
-        RefreshUI();
+        PlayersInfo.Set(Runner.LocalPlayer, PlayerRole.None);
+        RefreshMouses();
     }
 
-    private void EventBusOnJoinOrHostGame(GameMode _, string roomId)
+    private void RefreshRoomId()
     {
-        _gameId.text = roomId;
+        _gameId.text = Runner.SessionInfo.Name;
     }
 
     private void StartGameOnclicked()
@@ -127,12 +136,16 @@ public class LobbyMenu : MonoBehaviour
 
     private void JoinPoliceOnclicked()
     {
-        Debug.Log("Joined police! (no hace nada)");
+        Debug.Log("Player joins police!");
+        PlayersInfo.Set(Runner.LocalPlayer, PlayerRole.Police);
+        RefreshMouses();
     }
 
     private void JoinTrafficOnclicked()
     {
-        Debug.Log("Joined traffic! (no hace nada)");
+        Debug.Log("Player joins traffic!");
+        PlayersInfo.Set(Runner.LocalPlayer, PlayerRole.Traffic);
+        RefreshMouses();
     }
     
     private void CloseRoomOnclicked()

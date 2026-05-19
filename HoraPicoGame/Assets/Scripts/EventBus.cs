@@ -57,10 +57,10 @@ public static class EventBus
         JoinOrHostGame?.Invoke(mode, roomId);
     }
 
-    public static event Action PlayerJoined;
-    public static void OnPlayerJoined()
+    public static event Action<PlayerRef> PlayerJoined;
+    public static void OnPlayerJoined(PlayerRef refr)
     {
-        PlayerJoined?.Invoke();
+        PlayerJoined?.Invoke(refr);
     }
 
     public static event Action<string, string, float> Notification;

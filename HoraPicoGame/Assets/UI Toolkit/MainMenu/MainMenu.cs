@@ -48,6 +48,6 @@ public class MainMenu : MonoBehaviour
     {
         var roomId = RoomUtils.GenerateID();
         Debug.Log($"Trying to host room: {roomId}");
-        EventBus.OnJoinOrHostGame(GameMode.Host, roomId);
+        EventBus.OnJoinOrHostGame(GameMode.AutoHostOrClient, roomId);
     }
 }

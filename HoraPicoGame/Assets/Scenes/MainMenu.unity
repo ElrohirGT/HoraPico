@@ -483,6 +483,7 @@ GameObject:
   - component: {fileID: 820263144}
   - component: {fileID: 820263143}
   - component: {fileID: 820263146}
+  - component: {fileID: 820263147}
   m_Layer: 0
   m_Name: LobbyMenu
   m_TagString: Untagged
@@ -503,6 +504,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaitingMenu
   mouseImage: {fileID: 2800000, guid: dc4fa24a950605b42ad472c67541c165, type: 3}
+  _PlayersInfo:
+    _items: []
 --- !u!114 &820263144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,6 +556,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 272f2c07242b6a143a3320a6d5eaa019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HideUIOnWake
+--- !u!114 &820263147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820263142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Fusion.Runtime.dll::Fusion.NetworkObject
+  SortKey: 435961290
+  ObjectInterest: 1
+  Flags: 262145
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 820263143}
+  ForceRemoteRenderTimeframe: 0
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@
         <ui:VisualElement style="flex-grow: 1; justify-content: flex-end; align-self: center;">
             <ui:VisualElement style="flex-grow: 0; justify-content: center; align-items: stretch; padding-top: 40px; padding-right: 40px; padding-bottom: 40px; padding-left: 40px; background-color: rgba(0, 0, 0, 0.39); border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px;">
                 <ui:Label text="Loading...&#10;" class="title" style="color: rgb(255, 255, 255);"/>
-                <ui:ProgressBar value="0.9" title="" high-value="1" name="progress" style="transition-duration: 0.2s;"/>
+                <ui:ProgressBar value="0.9" title="" high-value="1" name="progress"/>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement style="flex-grow: 1; justify-content: flex-end;">

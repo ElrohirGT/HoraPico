@@ -42,11 +42,14 @@ public class MenuManager : MonoBehaviour
     
     private void EventBusOnMenuChange(Menus obj)
     {
-        _active.rootVisualElement.style.visibility = Visibility.Hidden;
+        Debug.Log($"Current: {_active} - Next: {obj}");
+        if (_active?.rootVisualElement is { style: not null })
+            _active.rootVisualElement.style.visibility = Visibility.Hidden;
         if (_dict.TryGetValue(obj, out var item))
         {
             _active = item;
-            _active.rootVisualElement.style.visibility = Visibility.Visible;
+            if (_active?.rootVisualElement is { style: not null })
+                _active.rootVisualElement.style.visibility = Visibility.Visible;
         }
         else
         {
