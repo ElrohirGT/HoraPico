@@ -69,4 +69,11 @@ public static class EventBus
     {
         Notification?.Invoke(title, content, secDuration);
     }
+    
+    public static event Action QuitRoom;
+
+    public static void OnQuitRoom()
+    {
+        QuitRoom?.Invoke();
+    }
 }

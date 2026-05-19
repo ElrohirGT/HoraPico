@@ -33,14 +33,24 @@ public class GameNetworkManager : MonoBehaviour, INetworkRunnerCallbacks
     private void OnEnable()
     {
         EventBus.JoinOrHostGame += EventBusOnJoinOrHostGame;
+        EventBus.QuitRoom += EventBusOnQuitRoom;
     }
 
 
     private void OnDisable()
     {
         EventBus.JoinOrHostGame -= EventBusOnJoinOrHostGame;
+        EventBus.QuitRoom -= EventBusOnQuitRoom;
     }
-
+    
+    private void EventBusOnQuitRoom()
+    {
+        Runner.Shutdown( false);
+        EventBus.OnMenuChange(Menus.MainMenu);
+        Debug.Log("Destroying runner...");
+        Destroy(Runner);
+    }
+    
     private void EventBusOnJoinOrHostGame(GameMode mode, string roomId)
     {
         StartCoroutine(JoinOrStartRoom(mode, roomId));
@@ -104,12 +114,13 @@ public class GameNetworkManager : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
-        Debug.Log($"Player ({player}) joined!");
+        EventBus.OnNotification("Player Joined!", $"The player {player} has joined!", 3f);
         EventBus.OnPlayerJoined(player);
     }
 
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
     {
+        EventBus.OnNotification("Player Left!", $"The player {player} has left!", 3f);
     }
 
     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
@@ -118,6 +129,8 @@ public class GameNetworkManager : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason)
     {
+        EventBus.OnNotification("Disconnected!", $"Lost connection to the server: {reason}", 3f);
+        EventBus.OnMenuChange(Menus.MainMenu);
     }
 
     public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token)

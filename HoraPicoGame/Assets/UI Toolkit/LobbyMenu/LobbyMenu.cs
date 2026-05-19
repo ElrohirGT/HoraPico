@@ -1,5 +1,4 @@
 using Fusion;
-using Lib;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -8,8 +7,7 @@ public class LobbyMenu : NetworkBehaviour
     [Networked]
     [Capacity(3)]
     [UnitySerializeField]
-    [OnChangedRender(nameof(RefreshMouses))]
-    public NetworkDictionary<PlayerRef, PlayerRole> PlayersInfo => default;
+    public NetworkDictionary<int, PlayerRole> PlayersInfo => default;
     
     public Texture2D mouseImage;
     
@@ -21,7 +19,6 @@ public class LobbyMenu : NetworkBehaviour
     private Button _copyTxt;
 
     private Label _gameId;
-    private int _assignedPlayerCount;
 
     private VisualElement _unassignedContainer;
     private VisualElement _trafficContainer;
@@ -47,11 +44,9 @@ public class LobbyMenu : NetworkBehaviour
     public override void Spawned()
     {
         base.Spawned();
-        Debug.Log("Lobby menu was spawned!");
-        RefreshMouses();
-        RefreshRoomId();
+        Debug.Log($"Lobby menu was spawned! Players: {PlayersInfo.Count}");
     }
-
+    
     private void OnEnable()
     {
         _joinTraffic.clicked += JoinTrafficOnclicked;
@@ -83,12 +78,13 @@ public class LobbyMenu : NetworkBehaviour
         EventBus.OnNotification("Copied!", "Room ID copied to clipboard.", 3f);
     }
 
-    private void Update()
+    public override void FixedUpdateNetwork()
     {
-        if (GameNetworkManager.Instance.Runner?.IsServer ?? false)
-        {
-            _startGame.SetEnabled(_assignedPlayerCount == 3);  
-        }
+        base.FixedUpdateNetwork();
+        _startGame.SetEnabled(Runner.IsServer && PlayersInfo.Count == 3);
+        
+        RefreshMouses();
+        RefreshRoomId();
     }
 
     void RefreshMouses()
@@ -97,7 +93,6 @@ public class LobbyMenu : NetworkBehaviour
         _policeContainer.Clear();
         _unassignedContainer.Clear();
 
-        var idx = 0;
         foreach (var playerInfo in PlayersInfo)
         {
             var container = playerInfo.Value switch
@@ -110,17 +105,18 @@ public class LobbyMenu : NetworkBehaviour
             var img = new Image
             {
                 image = mouseImage,
-                tintColor = ThemeManager.Instance.Current.playerColors[idx]
+                tintColor = ThemeManager.Instance.Current.playerColors[playerInfo.Key]
             };
             img.AddToClassList("mouseImage");
             container?.Add(img);
-            idx++;
         }
     }
     
-    private void EventBusOnPlayerJoined(PlayerRef _)
+    private void EventBusOnPlayerJoined(PlayerRef pl)
     {
-        PlayersInfo.Set(Runner.LocalPlayer, PlayerRole.None);
+        if (!Runner.IsServer) return;
+        Debug.Log($"Setting player {pl}, with idx: {pl.AsIndex-1} as None!");
+        PlayersInfo.Set(pl.AsIndex-1, PlayerRole.None);
         RefreshMouses();
     }
 
@@ -137,19 +133,19 @@ public class LobbyMenu : NetworkBehaviour
     private void JoinPoliceOnclicked()
     {
         Debug.Log("Player joins police!");
-        PlayersInfo.Set(Runner.LocalPlayer, PlayerRole.Police);
+        PlayersInfo.Set(Runner.LocalPlayer.AsIndex-1, PlayerRole.Police);
         RefreshMouses();
     }
 
     private void JoinTrafficOnclicked()
     {
         Debug.Log("Player joins traffic!");
-        PlayersInfo.Set(Runner.LocalPlayer, PlayerRole.Traffic);
+        PlayersInfo.Set(Runner.LocalPlayer.AsIndex-1, PlayerRole.Traffic);
         RefreshMouses();
     }
     
     private void CloseRoomOnclicked()
     {
-        EventBus.OnMenuChange(Menus.MainMenu);
+        EventBus.OnQuitRoom();
     }
 }

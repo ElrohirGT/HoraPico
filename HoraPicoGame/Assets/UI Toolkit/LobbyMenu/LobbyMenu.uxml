@@ -27,7 +27,7 @@
             </ui:VisualElement>
             <ui:VisualElement style="flex-grow: 0; flex-direction: row; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; border-left-color: rgba(0, 0, 0, 0.39); border-right-color: rgba(0, 0, 0, 0.39); border-top-color: rgba(0, 0, 0, 0.39); border-bottom-color: rgba(0, 0, 0, 0.39); background-color: rgba(0, 0, 0, 0); justify-content: center; align-items: center;">
                 <ui:Button text="Start Game&#10;" name="btnStartGame" class="primaryButton"/>
-                <ui:Button text="Close Room&#10;" name="btnCloseRoom" class="primaryButton"/>
+                <ui:Button text="Quit Room&#10;" name="btnCloseRoom" class="primaryButton"/>
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
