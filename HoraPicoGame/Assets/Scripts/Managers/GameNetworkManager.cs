@@ -42,7 +42,7 @@ public class GameNetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         EventBus.JoinOrHostGame -= EventBusOnJoinOrHostGame;
         EventBus.QuitRoom -= EventBusOnQuitRoom;
     }
-    
+
     private void EventBusOnQuitRoom()
     {
         Runner.Shutdown( false);
@@ -50,7 +50,7 @@ public class GameNetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         Debug.Log("Destroying runner...");
         Destroy(Runner);
     }
-    
+
     private void EventBusOnJoinOrHostGame(GameMode mode, string roomId)
     {
         StartCoroutine(JoinOrStartRoom(mode, roomId));
@@ -67,7 +67,8 @@ public class GameNetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         yield return null;
 
         Debug.Log("Getting scene ref...");
-        var scene = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex);
+        Debug.Log($"Scene ref: {SceneManager.GetSceneByName("Scenes/LobbyScene").buildIndex}");
+        var scene = SceneRef.FromIndex(SceneManager.GetSceneByName("Scenes/LobbyScene").buildIndex);
         var sceneInfo = new NetworkSceneInfo();
         if (scene.IsValid)
         {
@@ -91,7 +92,7 @@ public class GameNetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         }
 
         EventBus.OnLoadingEnd();
-        EventBus.OnMenuChange(Menus.LobbyMenu);
+        // EventBus.OnMenuChange(Menus.LobbyMenu);
     }
 
     private IEnumerator LoadMenuProgress()

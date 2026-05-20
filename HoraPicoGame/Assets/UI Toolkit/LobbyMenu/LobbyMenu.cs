@@ -8,14 +8,14 @@ public class LobbyMenu : NetworkBehaviour
     [Capacity(3)]
     [UnitySerializeField]
     public NetworkDictionary<int, PlayerRole> PlayersInfo => default;
-    
+
     public Texture2D mouseImage;
-    
+
     private Button _joinTraffic;
     private Button _joinPolice;
     private Button _startGame;
     private Button _closeRoom;
-    
+
     private Button _copyTxt;
 
     private Label _gameId;
@@ -37,7 +37,7 @@ public class LobbyMenu : NetworkBehaviour
         _unassignedContainer = ui.Q<VisualElement>("unassignedContainer");
         _trafficContainer = ui.Q<VisualElement>("trafficContainer");
         _policeContainer = ui.Q<VisualElement>("policeContainer");
-        
+
         _startGame.SetEnabled(false);
     }
 
@@ -46,7 +46,7 @@ public class LobbyMenu : NetworkBehaviour
         base.Spawned();
         Debug.Log($"Lobby menu was spawned! Players: {PlayersInfo.Count}");
     }
-    
+
     private void OnEnable()
     {
         _joinTraffic.clicked += JoinTrafficOnclicked;
@@ -54,11 +54,11 @@ public class LobbyMenu : NetworkBehaviour
         _startGame.clicked += StartGameOnclicked;
         _closeRoom.clicked += CloseRoomOnclicked;
         _copyTxt.clicked += CopyTxtOnclicked;
-        
+
         EventBus.PlayerJoined += EventBusOnPlayerJoined;
     }
 
-    
+
 
     private void OnDisable()
     {
@@ -67,11 +67,10 @@ public class LobbyMenu : NetworkBehaviour
         _startGame.clicked -= StartGameOnclicked;
         _closeRoom.clicked -= CloseRoomOnclicked;
         _copyTxt.clicked -= CopyTxtOnclicked;
-        
+
         EventBus.PlayerJoined -= EventBusOnPlayerJoined;
     }
-    
-    
+
     private void CopyTxtOnclicked()
     {
         GUIUtility.systemCopyBuffer = _gameId.text;
@@ -82,7 +81,7 @@ public class LobbyMenu : NetworkBehaviour
     {
         base.FixedUpdateNetwork();
         _startGame.SetEnabled(Runner.IsServer && PlayersInfo.Count == 3);
-        
+
         RefreshMouses();
         RefreshRoomId();
     }
@@ -111,7 +110,7 @@ public class LobbyMenu : NetworkBehaviour
             container?.Add(img);
         }
     }
-    
+
     private void EventBusOnPlayerJoined(PlayerRef pl)
     {
         if (!Runner.IsServer) return;
@@ -143,7 +142,7 @@ public class LobbyMenu : NetworkBehaviour
         PlayersInfo.Set(Runner.LocalPlayer.AsIndex-1, PlayerRole.Traffic);
         RefreshMouses();
     }
-    
+
     private void CloseRoomOnclicked()
     {
         EventBus.OnQuitRoom();
