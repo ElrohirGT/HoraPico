@@ -45,6 +45,7 @@ public class LobbyMenu : NetworkBehaviour
     {
         base.Spawned();
         Debug.Log($"Lobby menu was spawned! Players: {PlayersInfo.Count}");
+        EventBus.PlayerJoined += EventBusOnPlayerJoined;
     }
 
     private void OnEnable()
@@ -54,8 +55,6 @@ public class LobbyMenu : NetworkBehaviour
         _startGame.clicked += StartGameOnclicked;
         _closeRoom.clicked += CloseRoomOnclicked;
         _copyTxt.clicked += CopyTxtOnclicked;
-
-        EventBus.PlayerJoined += EventBusOnPlayerJoined;
     }
 
 
@@ -73,13 +72,14 @@ public class LobbyMenu : NetworkBehaviour
 
     private void CopyTxtOnclicked()
     {
-        GUIUtility.systemCopyBuffer = _gameId.text;
-        EventBus.OnNotification("Copied!", "Room ID copied to clipboard.", 3f);
+        GUIUtility.systemCopyBuffer = GameNetworkManager.Instance.LobbyId;
+        EventBus.OnNotification("Copied!", $"Room ID `{GameNetworkManager.Instance.LobbyId}` copied to clipboard.", 3f);
     }
 
     public override void FixedUpdateNetwork()
     {
         base.FixedUpdateNetwork();
+        Debug.Log("Updating UI!...");
         _startGame.SetEnabled(Runner.IsServer && PlayersInfo.Count == 3);
 
         RefreshMouses();
@@ -113,7 +113,7 @@ public class LobbyMenu : NetworkBehaviour
 
     private void EventBusOnPlayerJoined(PlayerRef pl)
     {
-        if (!Runner.IsServer) return;
+        if (!HasStateAuthority) return;
         Debug.Log($"Setting player {pl}, with idx: {pl.AsIndex-1} as None!");
         PlayersInfo.Set(pl.AsIndex-1, PlayerRole.None);
         RefreshMouses();
@@ -121,7 +121,7 @@ public class LobbyMenu : NetworkBehaviour
 
     private void RefreshRoomId()
     {
-        _gameId.text = Runner.SessionInfo.Name;
+        _gameId.text = $"{GameNetworkManager.Instance.LobbyId}";
     }
 
     private void StartGameOnclicked()
@@ -132,17 +132,33 @@ public class LobbyMenu : NetworkBehaviour
     private void JoinPoliceOnclicked()
     {
         Debug.Log("Player joins police!");
-        PlayersInfo.Set(Runner.LocalPlayer.AsIndex-1, PlayerRole.Police);
-        RefreshMouses();
+        SetPlayerWithRPC(PlayerRole.Police);
     }
 
     private void JoinTrafficOnclicked()
     {
         Debug.Log("Player joins traffic!");
-        PlayersInfo.Set(Runner.LocalPlayer.AsIndex-1, PlayerRole.Traffic);
-        RefreshMouses();
+        SetPlayerWithRPC(PlayerRole.Traffic);
     }
 
+    private void SetPlayerWithRPC(PlayerRole role)
+    {
+        if (!HasStateAuthority)
+        {
+            RPC_SetPlayerWithRole(Runner.LocalPlayer.AsIndex-1, role);
+        }
+        else
+        {
+            PlayersInfo.Set(Runner.LocalPlayer.AsIndex -1, role);
+        }
+    }
+    
+    [Rpc(sources: RpcSources.InputAuthority, targets: RpcTargets.StateAuthority)]
+    private void RPC_SetPlayerWithRole(int idx, PlayerRole role)
+    {
+        Debug.Log($"Received RPC: Player {idx} joins {role}");
+        PlayersInfo.Set(idx, role);
+    }
     private void CloseRoomOnclicked()
     {
         EventBus.OnQuitRoom();

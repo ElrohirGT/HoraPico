@@ -180,6 +180,7 @@ MonoBehaviour:
   - '"No importa si la pesa es de 20, 30, 45 a todas les entra la misma barra"'
   - "\"Si el candado est\xE1 abierto, significa que tu llave no es la \xFAnica que
     lo abre\""
+  - '"Tremendo pete"'
 --- !u!4 &70108397
 Transform:
   m_ObjectHideFlags: 0

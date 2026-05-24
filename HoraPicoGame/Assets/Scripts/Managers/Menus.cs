@@ -2,5 +2,4 @@
 {
     MainMenu,
     JoinMenu,
-    LobbyMenu,
 }

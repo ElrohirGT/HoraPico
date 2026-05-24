@@ -30,6 +30,8 @@ public class GameNetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         DontDestroyOnLoad(this);
     }
 
+    public string LobbyId { get; private set; }
+
     private void OnEnable()
     {
         EventBus.JoinOrHostGame += EventBusOnJoinOrHostGame;
@@ -45,10 +47,7 @@ public class GameNetworkManager : MonoBehaviour, INetworkRunnerCallbacks
 
     private void EventBusOnQuitRoom()
     {
-        Runner.Shutdown( false);
-        EventBus.OnMenuChange(Menus.MainMenu);
-        Debug.Log("Destroying runner...");
-        Destroy(Runner);
+        Runner.Shutdown(false);
     }
 
     private void EventBusOnJoinOrHostGame(GameMode mode, string roomId)
@@ -60,6 +59,7 @@ public class GameNetworkManager : MonoBehaviour, INetworkRunnerCallbacks
 
     private IEnumerator JoinOrStartRoom(GameMode mode, string roomId)
     {
+        LobbyId = roomId;
         Debug.Log("Display Load screen!");
         EventBus.OnLoadingStart();
         Runner = gameObject.AddComponent<NetworkRunner>();
@@ -67,12 +67,11 @@ public class GameNetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         yield return null;
 
         Debug.Log("Getting scene ref...");
-        Debug.Log($"Scene ref: {SceneManager.GetSceneByName("Scenes/LobbyScene").buildIndex}");
-        var scene = SceneRef.FromIndex(SceneManager.GetSceneByName("Scenes/LobbyScene").buildIndex);
-        var sceneInfo = new NetworkSceneInfo();
+        var scene = SceneRef.FromIndex(1);
+        var networkSceneInfo = new NetworkSceneInfo();
         if (scene.IsValid)
         {
-            sceneInfo.AddSceneRef(scene, LoadSceneMode.Additive);
+            networkSceneInfo.AddSceneRef(scene, activeOnLoad: true);
         }
 
         Debug.Log("Waiting for connection to finish...");
@@ -83,6 +82,7 @@ public class GameNetworkManager : MonoBehaviour, INetworkRunnerCallbacks
             SessionName = roomId,
             Scene = scene,
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
+            IsOpen = true,
         });
         yield return task;
 
@@ -92,7 +92,6 @@ public class GameNetworkManager : MonoBehaviour, INetworkRunnerCallbacks
         }
 
         EventBus.OnLoadingEnd();
-        // EventBus.OnMenuChange(Menus.LobbyMenu);
     }
 
     private IEnumerator LoadMenuProgress()
@@ -126,12 +125,16 @@ public class GameNetworkManager : MonoBehaviour, INetworkRunnerCallbacks
 
     public void OnShutdown(NetworkRunner runner, ShutdownReason shutdownReason)
     {
+        SceneManager.LoadScene("MainMenu");
+        Debug.Log("Destroying runner...");
+        Destroy(Runner);
     }
 
     public void OnDisconnectedFromServer(NetworkRunner runner, NetDisconnectReason reason)
     {
+        SceneManager.LoadScene("MainMenu");
         EventBus.OnNotification("Disconnected!", $"Lost connection to the server: {reason}", 3f);
-        EventBus.OnMenuChange(Menus.MainMenu);
+        Destroy(Runner);
     }
 
     public void OnConnectRequest(NetworkRunner runner, NetworkRunnerCallbackArgs.ConnectRequest request, byte[] token)

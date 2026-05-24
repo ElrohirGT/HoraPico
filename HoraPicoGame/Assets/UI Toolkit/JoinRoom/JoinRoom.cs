@@ -36,6 +36,6 @@ public class JoinRoom : MonoBehaviour
     private void JoinRoomOnclicked()
     {
         var roomId = _txField.value;
-        EventBus.OnJoinOrHostGame(GameMode.AutoHostOrClient, roomId);
+        EventBus.OnJoinOrHostGame(GameMode.Client, roomId);
     }
 }
