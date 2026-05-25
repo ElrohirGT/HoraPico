@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bfp488y4t37xr"]
+
+[ext_resource type="Texture2D" uid="uid://bb4p6xjagd016" path="res://TestSprites/LIGHT_Green.png" id="1_7mua0"]
+[ext_resource type="Script" uid="uid://buaviegl5i25f" path="res://Prefabs/TrafficLight/traffic_light.gd" id="1_16qi8"]
+[ext_resource type="Texture2D" uid="uid://djw25qqek0uhq" path="res://TestSprites/LIGHT_Yellow.png" id="2_3axdo"]
+[ext_resource type="Texture2D" uid="uid://chyxab7ukynmd" path="res://TestSprites/LIGHT_Red.png" id="3_16qi8"]
+[ext_resource type="Texture2D" uid="uid://ckoagmeqotsq8" path="res://TestSprites/LIGHT_Hacked.png" id="5_hdwss"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_js5qc"]
+size = Vector2(30, 128)
+
+[node name="Traffic Light" type="StaticBody2D" unique_id=1400643141]
+script = ExtResource("1_16qi8")
+cycleDuration = 3.0
+yellowPercentage = 0.3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=865414064]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_js5qc")
+
+[node name="Red" type="Sprite2D" parent="." unique_id=489239734]
+texture = ExtResource("3_16qi8")
+
+[node name="Green" type="Sprite2D" parent="." unique_id=1393895493]
+texture = ExtResource("1_7mua0")
+
+[node name="Yellow" type="Sprite2D" parent="." unique_id=1565431684]
+texture = ExtResource("2_3axdo")
+
+[node name="Hacked" type="Sprite2D" parent="." unique_id=1704836589]
+texture = ExtResource("5_hdwss")

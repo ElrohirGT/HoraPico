@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://e55nafc2uqxf"]
+
+[ext_resource type="Texture2D" uid="uid://cqnv22nghhewf" path="res://TestSprites/BasicIntersection.png" id="1_mdu1y"]
+[ext_resource type="PackedScene" uid="uid://bfp488y4t37xr" path="res://Prefabs/TrafficLight/Traffic Light.tscn" id="2_37miv"]
+[ext_resource type="PackedScene" uid="uid://df0wdlpqojsmy" path="res://Prefabs/Car/Car.tscn" id="3_d65wf"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_d65wf"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_r5dmi"]
+vertices = PackedVector2Array(1139, 331, 12, 331.9922, 12, 270.96875, 1139, 268.02344)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(2, 261, 2, 342, 1149, 341, 1149, 258)])
+
+[node name="Node2D" type="Node2D" unique_id=912331532]
+
+[node name="BasicIntersection" type="Sprite2D" parent="." unique_id=1989456031]
+position = Vector2(574.5, 324)
+scale = Vector2(2.294, 1.288)
+texture = ExtResource("1_mdu1y")
+
+[node name="TopLane" type="NavigationRegion2D" parent="." unique_id=1093217428]
+navigation_polygon = SubResource("NavigationPolygon_d65wf")
+
+[node name="Traffic Light" parent="TopLane" unique_id=1400643141 instance=ExtResource("2_37miv")]
+position = Vector2(759, 290)
+
+[node name="Car" parent="." unique_id=1651818327 node_paths=PackedStringArray("target") instance=ExtResource("3_d65wf")]
+position = Vector2(1097, 394)
+target = NodePath("../Destination")
+
+[node name="Destination" type="Node2D" parent="." unique_id=314313278]
+position = Vector2(52, 392)
+
+[node name="BottomLane" type="NavigationRegion2D" parent="." unique_id=750590769]
+position = Vector2(-1, 93)
+navigation_polygon = SubResource("NavigationPolygon_r5dmi")
