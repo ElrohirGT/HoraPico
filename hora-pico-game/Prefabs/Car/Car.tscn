@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://d2aydeyxhi5nx" path="res://TestSprites/CAR_Pink.png" id="7_amwtc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_11k86"]
-size = Vector2(59, 41)
+size = Vector2(59, 13)
 
 [node name="Car" type="CharacterBody2D" unique_id=1651818327]
 script = ExtResource("1_756hr")
@@ -18,7 +18,6 @@ target_desired_distance = 0.0
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1199083602]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1320372791]
-position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_11k86")
 
 [node name="CarRed" type="Sprite2D" parent="." unique_id=1930025501]
