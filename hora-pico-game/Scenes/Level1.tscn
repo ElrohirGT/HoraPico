@@ -62,6 +62,151 @@ vertices = PackedVector2Array(1246.7422, 356.6797, 996.1719, 349.28906, 997.8281
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(1254, 243, 1257, 367, 986, 359, 988, 243)])
 
+[sub_resource type="GDScript" id="GDScript_2llne"]
+script/source = "extends Node2D
+
+class_name Spawn
+
+const CAR_SCENE = preload(\"res://Prefabs/Car/Car.tscn\")
+const BUS_SCENE = preload(\"res://Prefabs/Bus/Bus.tscn\")
+
+@export var destinies: Node2D # Le ponés el target al spawner 
+
+@onready var vehicle_timer: Timer = $\"../Car_Timer\"
+@onready var combo_timer: Timer = $\"../Combo_Timer\"
+@onready var velocity_timer: Timer = $\"../Velocity_Timer\"
+@onready var velocity_label: Label = $\"../ColorRect/Label\"
+
+@onready var spawners: Dictionary = {
+	\"N\": $SpawnerN,
+	\"S\": $SpawnerS,
+	\"E\": $SpawnerE,
+	\"W\": $SpawnerW
+}
+
+static var vehicle_next_priority = 0
+
+enum Velocity{ F, E, D, C, B, A, S }
+@export var currentVelocity = Velocity.F
+
+var combo: String = \"\"
+var direction: String = \"\"
+
+static var last_combo: String = \"\"
+static var last_direction: String = \"\"
+
+func _input(event: InputEvent) -> void:
+	var vehicleType = \"\"
+	
+	if not event.is_pressed() or event.is_echo():
+		return
+	
+	if event.is_action_pressed(\"up_traffic\"):
+		combo += \"U\"
+		combo_timer.start()
+		
+	elif event.is_action_pressed(\"down_traffic\"):
+		combo += \"D\"
+		combo_timer.start()
+		
+	elif event.is_action_pressed(\"right_traffic\"):
+		combo += \"R\"
+		combo_timer.start()
+		
+	elif event.is_action_pressed(\"left_traffic\"):
+		combo += \"L\"
+		combo_timer.start()
+	
+	if event.is_action_pressed(\"north_traffic\"):
+		direction = \"N\"
+		combo_timer.start()
+		
+	if event.is_action_pressed(\"south_traffic\"):
+		direction = \"S\"
+		combo_timer.start()
+		
+	if event.is_action_pressed(\"east_traffic\"):
+		direction = \"E\"
+		combo_timer.start()
+		
+	if event.is_action_pressed(\"west_traffic\"):
+		direction = \"W\"
+		combo_timer.start()
+		
+	if combo.ends_with(\"UDLL\"):
+		vehicleType = \"Car\"
+		
+	elif combo.ends_with(\"DDUR\"):
+		vehicleType = \"Bus\"
+		
+	if vehicleType == \"\":
+		return
+		
+	if direction == \"\":
+		return
+		
+	print(\"Combo: \", combo, \" | Dirección: \", direction, \" | Tipo: \", vehicleType )
+	call_deferred(\"vehicle_spawn\", vehicleType, direction)
+	
+	combo = \"\"
+	direction = \"\"
+
+func vehicle_spawn(vehicleType: String, spawnPosition: String):
+	var new_vehicle
+	
+	if vehicleType == \"Car\":
+		new_vehicle = CAR_SCENE.instantiate()
+	
+	elif vehicleType == \"Bus\":
+		new_vehicle = BUS_SCENE.instantiate()
+		
+	if new_vehicle != null:
+		new_vehicle.global_position = spawners[spawnPosition].global_position
+		new_vehicle.priority = vehicle_next_priority
+		vehicle_next_priority += 1
+		
+		if destinies != null:
+			var random_objective: Marker2D = destinies.get_children().pick_random()
+			new_vehicle.movement_target_position = random_objective.global_position
+		
+		else:
+			print(\"No destino.\")
+			return
+		
+		get_tree().current_scene.add_child(new_vehicle)
+		print(\"%s to: \" % vehicleType, new_vehicle.movement_target_position, \"with ID: \", new_vehicle.priority) # Está curioso el format string aquí xd
+		
+		speeding_up(vehicleType, spawnPosition)
+		
+		last_combo = vehicleType
+		last_direction = spawnPosition
+		
+		vehicle_timer.wait_time = 3 # randf_range(0, 5)
+		vehicle_timer.start()
+
+func speeding_up(combo: String, direction: String):
+	print(combo, last_combo, direction, last_direction)
+	if combo != last_combo and direction != last_direction:
+		if currentVelocity < 6:
+			currentVelocity = (currentVelocity + 1)
+			
+		else:
+			currentVelocity = Velocity.S
+		
+		velocity_label.text = Velocity.keys()[currentVelocity]
+		velocity_timer.start()
+		
+func _on_combo_timer_timeout() -> void:
+	combo = \"\"
+	direction = \"\"
+	print(\"Combo reseteado por timeout.\")
+
+func _on_velocity_timer_timeout() -> void:
+	currentVelocity = Velocity.F
+	velocity_label.text = Velocity.keys()[currentVelocity]
+	print(\"Velocidad (Rango) reseteada por timeout.\")
+"
+
 [node name="Level1" type="Node2D" unique_id=944242678]
 
 [node name="20260525171245" type="Sprite2D" parent="." unique_id=1504462470]
@@ -210,3 +355,68 @@ end_position = Vector2(250.8286, 43.66887)
 bidirectional = false
 start_position = Vector2(12.879486, -87.09096)
 end_position = Vector2(166.17735, -58.048584)
+
+[node name="Spawners" type="Node2D" parent="." unique_id=590460041 node_paths=PackedStringArray("destinies")]
+position = Vector2(458, 777)
+script = SubResource("GDScript_2llne")
+destinies = NodePath("../Objectives")
+
+[node name="SpawnerS" type="Marker2D" parent="Spawners" unique_id=1927779047]
+
+[node name="SpawnerW" type="Marker2D" parent="Spawners" unique_id=1042148606]
+position = Vector2(-588, -449)
+
+[node name="SpawnerE" type="Marker2D" parent="Spawners" unique_id=732001323]
+position = Vector2(744, -464)
+
+[node name="SpawnerN" type="Marker2D" parent="Spawners" unique_id=528289012]
+position = Vector2(470, -797)
+
+[node name="Objectives" type="Node2D" parent="." unique_id=1832137146]
+position = Vector2(458, 777)
+
+[node name="ObjectiveN" type="Marker2D" parent="Objectives" unique_id=1625786939]
+position = Vector2(18, -800)
+
+[node name="ObjectiveS" type="Marker2D" parent="Objectives" unique_id=1840739839]
+position = Vector2(303, 0)
+
+[node name="ObjectiveE" type="Marker2D" parent="Objectives" unique_id=21070087]
+position = Vector2(-520, -639)
+
+[node name="ObjectiveW" type="Marker2D" parent="Objectives" unique_id=1445590315]
+position = Vector2(-581, -264)
+
+[node name="Car_Timer" type="Timer" parent="." unique_id=566632789]
+wait_time = 3.0
+one_shot = true
+
+[node name="Combo_Timer" type="Timer" parent="." unique_id=449575805]
+wait_time = 0.5
+one_shot = true
+
+[node name="Velocity_Timer" type="Timer" parent="." unique_id=1657294742]
+wait_time = 3.0
+one_shot = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=351001556]
+z_index = 10
+offset_left = 1036.0
+offset_top = 14.0
+offset_right = 1140.0
+offset_bottom = 120.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="ColorRect" unique_id=164889044]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 6.0
+offset_right = 100.0
+offset_bottom = 101.0
+theme_override_font_sizes/font_size = 84
+text = "F"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="Combo_Timer" to="Spawners" method="_on_combo_timer_timeout"]
+[connection signal="timeout" from="Velocity_Timer" to="Spawners" method="_on_velocity_timer_timeout"]

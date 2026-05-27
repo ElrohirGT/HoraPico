@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="HoraPicoGame"
-run/main_scene="uid://e55nafc2uqxf"
+run/main_scene="uid://tyy2rc6t5msh"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[gui]
+
+theme/custom_font="uid://dkkjsf8ooiyp1"
 
 [input]
 
