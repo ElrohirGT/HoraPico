@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://d0washrtqkk2r"]
+
+[ext_resource type="Texture2D" uid="uid://cqnv22nghhewf" path="res://TestSprites/BasicIntersection.png" id="1_25xj5"]
+[ext_resource type="PackedScene" uid="uid://cqcnrpfy4ruk5" path="res://Prefabs/HUD/HUD.tscn" id="2_s3r27"]
+[ext_resource type="PackedScene" uid="uid://b414gvgep8n1r" path="res://Prefabs/Alert/Alert.tscn" id="3_upjjv"]
+[ext_resource type="PackedScene" uid="uid://dpqxobk6bgho3" path="res://Prefabs/PlayerPointer/PlayerPointer.tscn" id="4_rddux"]
+
+[node name="PoliceDemo" type="Node2D" unique_id=573129927]
+
+[node name="BasicIntersection" type="Sprite2D" parent="." unique_id=1016534501]
+position = Vector2(575.5, 324)
+scale = Vector2(2.298, 1.288)
+texture = ExtResource("1_25xj5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1007908474]
+
+[node name="Alert" parent="CanvasLayer" unique_id=859817358 instance=ExtResource("3_upjjv")]
+position = Vector2(765, 172)
+
+[node name="PlayerPointer" parent="CanvasLayer" unique_id=2133919227 instance=ExtResource("4_rddux")]
+offset_left = 169.0
+offset_top = -289.0
+offset_right = 415.0
+offset_bottom = -69.0
+
+[node name="HUD" parent="CanvasLayer" unique_id=2055424362 instance=ExtResource("2_s3r27")]
