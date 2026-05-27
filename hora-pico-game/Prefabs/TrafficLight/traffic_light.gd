@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+class_name TrafficLight
+
 enum TrafficLightState{RED, YELLOW, GREEN, HACKED}
 
 @onready var Red: Sprite2D = $Red

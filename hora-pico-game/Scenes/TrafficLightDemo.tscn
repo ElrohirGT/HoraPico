@@ -2,14 +2,19 @@
 
 [ext_resource type="Texture2D" uid="uid://cqnv22nghhewf" path="res://TestSprites/BasicIntersection.png" id="1_mdu1y"]
 [ext_resource type="PackedScene" uid="uid://bfp488y4t37xr" path="res://Prefabs/TrafficLight/Traffic Light.tscn" id="2_37miv"]
-[ext_resource type="PackedScene" uid="uid://df0wdlpqojsmy" path="res://Prefabs/Car/Car.tscn" id="3_d65wf"]
+[ext_resource type="PackedScene" uid="uid://bebdcrw8yxpr0" path="res://Prefabs/Spawner/Spawner.tscn" id="3_d65wf"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_d65wf"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_r5dmi"]
-vertices = PackedVector2Array(1139, 331, 12, 331.9922, 12, 270.96875, 1139, 268.02344)
+vertices = PackedVector2Array(1139, 330.96094, 593, 329.03125, 593, 272.90625, 1139, 268.07813)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(2, 261, 2, 342, 1149, 341, 1149, 258)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(583, 263, 583, 339, 1149, 341, 1149, 258)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_8igt4"]
+vertices = PackedVector2Array(333.8672, 329.04688, 8.1171875, 330.9375, 8.8671875, 270.9375, 333.1172, 269.04688)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(343, 259, 344, 339, -2, 341, -1, 261)])
 
 [node name="Node2D" type="Node2D" unique_id=912331532]
 
@@ -24,13 +29,23 @@ navigation_polygon = SubResource("NavigationPolygon_d65wf")
 [node name="Traffic Light" parent="TopLane" unique_id=1400643141 instance=ExtResource("2_37miv")]
 position = Vector2(759, 290)
 
-[node name="Car" parent="." unique_id=1651818327 node_paths=PackedStringArray("target") instance=ExtResource("3_d65wf")]
-position = Vector2(1097, 394)
-target = NodePath("../Destination")
-
-[node name="Destination" type="Node2D" parent="." unique_id=314313278]
+[node name="Destination" type="Marker2D" parent="." unique_id=814555735]
 position = Vector2(52, 392)
 
 [node name="BottomLane" type="NavigationRegion2D" parent="." unique_id=750590769]
 position = Vector2(-1, 93)
 navigation_polygon = SubResource("NavigationPolygon_r5dmi")
+
+[node name="NavigationLink2D" type="NavigationLink2D" parent="." unique_id=1317938577]
+position = Vector2(-1, 93)
+bidirectional = false
+start_position = Vector2(775, 306)
+end_position = Vector2(238, 300)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1778593953]
+position = Vector2(-1, 93)
+navigation_polygon = SubResource("NavigationPolygon_8igt4")
+
+[node name="Spawner" parent="." unique_id=324461209 node_paths=PackedStringArray("destiny") instance=ExtResource("3_d65wf")]
+position = Vector2(1103, 395)
+destiny = NodePath("../Destination")

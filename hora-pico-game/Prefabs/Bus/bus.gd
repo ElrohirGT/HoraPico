@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-class_name Car
+class_name Bus
 
-var movement_speed: float = 100.0
+var movement_speed: float = 60.0
 var movement_target_position: Vector2 = Vector2.ZERO
 var last_angle: float = 0
 var priority: int = 0
@@ -53,7 +53,7 @@ func _on_navigation_agent_2d_navigation_finished() -> void:
 	queue_free()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if (body is Car || body is TrafficLight || body is Bus) && body != self:
+	if (body is Car || body is TrafficLight) && body != self:
 		navigation_agent.process_mode = Node.PROCESS_MODE_DISABLED
 		movement_speed = 0
 		last_angle = rotation
@@ -65,6 +65,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 				movement_speed = 100
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if (body is Car || body is TrafficLight || body is Bus) && body != self:
+	if (body is Car || body is TrafficLight) && body != self:
 		navigation_agent.process_mode = Node.PROCESS_MODE_ALWAYS
 		movement_speed = 100
