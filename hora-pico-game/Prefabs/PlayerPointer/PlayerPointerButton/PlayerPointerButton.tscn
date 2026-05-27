@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://d1wb0cucy1ahu"]
+
+[ext_resource type="Script" uid="uid://clumkpdxk8wal" path="res://Prefabs/PlayerPointer/PlayerPointerButton/player_pointer_button.gd" id="1_q6xwc"]
+[ext_resource type="Texture2D" uid="uid://bnwj31ja0dvw0" path="res://TestSprites/ELIXIR_Symbol.png" id="2_5fuyd"]
+[ext_resource type="Texture2D" uid="uid://dgcspri4fvk2f" path="res://TestSprites/POLICE_Cap.png" id="2_hhspi"]
+[ext_resource type="Texture2D" uid="uid://dpuhyav3f2wyf" path="res://TestSprites/SUMMON_MENU_BackgroundActive.png" id="3_skjtw"]
+[ext_resource type="Texture2D" uid="uid://bmhqi5pk5v0ge" path="res://TestSprites/SUMMON_MENU_BackgroundInactive.png" id="4_irxy6"]
+
+[node name="PlayerPointerButton" type="NinePatchRect" unique_id=300668207]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("3_skjtw")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+script = ExtResource("1_q6xwc")
+availableBackground = ExtResource("3_skjtw")
+unavailableBackground = ExtResource("4_irxy6")
+
+[node name="MainTexture" type="TextureRect" parent="." unique_id=1892836187]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -32.0
+offset_right = 48.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_hhspi")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1003274414]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -19.5
+offset_top = 10.0
+offset_right = 19.5
+offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=1658413584]
+layout_mode = 2
+texture = ExtResource("2_5fuyd")
+
+[node name="Cost" type="Label" parent="HBoxContainer" unique_id=1473612503]
+layout_mode = 2
+text = "10"

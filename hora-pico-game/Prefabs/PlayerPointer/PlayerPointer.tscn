@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://dpqxobk6bgho3"]
+
+[ext_resource type="Script" uid="uid://pj45ofkpukvk" path="res://Prefabs/PlayerPointer/player_pointer.gd" id="1_otvol"]
+[ext_resource type="PackedScene" uid="uid://d1wb0cucy1ahu" path="res://Prefabs/PlayerPointer/PlayerPointerButton/PlayerPointerButton.tscn" id="3_lo0a1"]
+[ext_resource type="Texture2D" uid="uid://bpah4lo7q0ce1" path="res://TestSprites/PLAYER_P3.png" id="3_pmt1u"]
+[ext_resource type="Texture2D" uid="uid://dgcspri4fvk2f" path="res://TestSprites/POLICE_Cap.png" id="4_lo0a1"]
+[ext_resource type="Texture2D" uid="uid://ddovh220mo17s" path="res://TestSprites/HACK_TrafficLight.png" id="7_ew5li"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b6qr5"]
+size = Vector2(32, 32)
+
+[node name="PlayerPointer" type="Control" unique_id=2133919227]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.0
+offset_top = -110.0
+offset_right = 123.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_otvol")
+moveMagnitude = 3.0
+texture = ExtResource("3_pmt1u")
+
+[node name="Pointer" type="TextureRect" parent="." unique_id=256892620]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_pmt1u")
+
+[node name="Area2D" type="Area2D" parent="Pointer" unique_id=977410506]
+position = Vector2(-91, -78)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pointer/Area2D" unique_id=1141820556]
+position = Vector2(123, 110)
+shape = SubResource("RectangleShape2D_b6qr5")
+
+[node name="SummonMenu" type="GridContainer" parent="." unique_id=2038125408]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="Control" type="Control" parent="SummonMenu" unique_id=1212594835]
+layout_mode = 2
+
+[node name="PlayerPointerButton" parent="SummonMenu" unique_id=2017830648 instance=ExtResource("3_lo0a1")]
+layout_mode = 2
+cost = 2.0
+actionTexture = ExtResource("4_lo0a1")
+
+[node name="Control2" type="Control" parent="SummonMenu" unique_id=628165406]
+layout_mode = 2
+
+[node name="PlayerPointerButton2" parent="SummonMenu" unique_id=646082498 instance=ExtResource("3_lo0a1")]
+layout_mode = 2
+cost = 4.0
+actionTexture = ExtResource("7_ew5li")
+
+[node name="Control3" type="Control" parent="SummonMenu" unique_id=1250062109]
+layout_mode = 2
+
+[node name="PlayerPointerButton3" parent="SummonMenu" unique_id=159107384 instance=ExtResource("3_lo0a1")]
+layout_mode = 2
+
+[node name="Control4" type="Control" parent="SummonMenu" unique_id=1236995429]
+layout_mode = 2
+
+[node name="PlayerPointerButton4" parent="SummonMenu" unique_id=1619145492 instance=ExtResource("3_lo0a1")]
+layout_mode = 2
+
+[connection signal="body_entered" from="Pointer/Area2D" to="." method="_on_area_2d_body_entered"]

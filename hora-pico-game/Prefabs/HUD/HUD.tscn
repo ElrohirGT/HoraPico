@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cqcnrpfy4ruk5"]
+
+[ext_resource type="Script" uid="uid://27k8ptic051g" path="res://Prefabs/HUD/hud.gd" id="1_0qdy1"]
+[ext_resource type="Texture2D" uid="uid://blnkux5p8cfni" path="res://TestSprites/ELIXIR_Progress.png" id="1_aydyg"]
+[ext_resource type="Texture2D" uid="uid://bhlg4p5y0g7w8" path="res://TestSprites/ELIXIR_Over.png" id="1_kg4qw"]
+[ext_resource type="Texture2D" uid="uid://bnwj31ja0dvw0" path="res://TestSprites/ELIXIR_Symbol.png" id="2_jr6l7"]
+
+[node name="HUD" type="Control" unique_id=2055424362]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0qdy1")
+secondsPerElixir = 1.0
+maxElixir = 10.0
+
+[node name="ElixirContainer" type="HBoxContainer" parent="." unique_id=1401223326]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="ElixirContainer" unique_id=11147908]
+layout_mode = 2
+texture = ExtResource("2_jr6l7")
+stretch_mode = 3
+
+[node name="ElixirLabel" type="Label" parent="ElixirContainer" unique_id=201922295]
+layout_mode = 2
+text = "10"
+
+[node name="ElixirBar" type="TextureProgressBar" parent="ElixirContainer" unique_id=406102156]
+clip_contents = true
+layout_mode = 2
+max_value = 10.0
+step = 0.01
+value = 10.0
+texture_over = ExtResource("1_kg4qw")
+texture_progress = ExtResource("1_aydyg")
+texture_progress_offset = Vector2(6, 6)
