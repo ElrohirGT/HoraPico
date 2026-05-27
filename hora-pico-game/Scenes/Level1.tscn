@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://tyy2rc6t5msh"]
 
 [ext_resource type="Texture2D" uid="uid://b24mfrjbjetan" path="res://Assets/20260525_171245.png" id="1_q12u6"]
-[ext_resource type="PackedScene" uid="uid://df0wdlpqojsmy" path="res://Prefabs/Car/Car.tscn" id="2_joc8x"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jghel"]
 vertices = PackedVector2Array(483.1797, 808.1406, 438.17188, 808.84375, 444.84375, 407, 490.8125, 407)
@@ -66,6 +65,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(1254, 243, 1257, 367, 9
 [node name="Level1" type="Node2D" unique_id=944242678]
 
 [node name="20260525171245" type="Sprite2D" parent="." unique_id=1504462470]
+visible = false
 position = Vector2(487, 302)
 rotation = -0.16580628
 scale = Vector2(1.795, 1.795)
@@ -86,12 +86,15 @@ navigation_polygon = SubResource("NavigationPolygon_t3or0")
 navigation_polygon = SubResource("NavigationPolygon_ysn8j")
 
 [node name="NavigationRegion2D5" type="NavigationRegion2D" parent="NavigationRegions" unique_id=513706048]
+position = Vector2(77, 2)
 navigation_polygon = SubResource("NavigationPolygon_6ll4n")
 
 [node name="NavigationRegion2D6" type="NavigationRegion2D" parent="NavigationRegions" unique_id=397544066]
+position = Vector2(-3, 2)
 navigation_polygon = SubResource("NavigationPolygon_kylad")
 
 [node name="NavigationRegion2D7" type="NavigationRegion2D" parent="NavigationRegions" unique_id=983294600]
+position = Vector2(-11, -42)
 navigation_polygon = SubResource("NavigationPolygon_bdlbp")
 
 [node name="NavigationRegion2D8" type="NavigationRegion2D" parent="NavigationRegions" unique_id=990892540]
@@ -115,30 +118,32 @@ rotation = -0.16580628
 scale = Vector2(1.795, 1.795)
 
 [node name="NavigationLink2D" type="NavigationLink2D" parent="UniLinks" unique_id=718961838]
+position = Vector2(-36.117943, 188.82904)
 bidirectional = false
-start_position = Vector2(166.58806, 13.7560425)
-end_position = Vector2(183.61696, 23.38388)
+start_position = Vector2(161.82458, 15.218292)
+end_position = Vector2(237.10098, 27.815247)
 
 [node name="NavigationLink2D2" type="NavigationLink2D" parent="UniLinks" unique_id=1474576395]
+position = Vector2(3.4020953, -20.330122)
 bidirectional = false
-start_position = Vector2(184.61723, 34.283447)
+start_position = Vector2(229.30318, 47.40979)
 end_position = Vector2(159.42946, 36.281784)
 
 [node name="NavigationLink2D3" type="NavigationLink2D" parent="UniLinks" unique_id=1135209537]
 bidirectional = false
-start_position = Vector2(165.49638, 141.79425)
+start_position = Vector2(209.36592, 142.92212)
 end_position = Vector2(142.14534, 136.19205)
 
 [node name="NavigationLink2D4" type="NavigationLink2D" parent="UniLinks" unique_id=481559430]
 position = Vector2(75.99192, 38.69977)
 bidirectional = false
 start_position = Vector2(71.62076, 0.6882019)
-end_position = Vector2(36.268982, -0.70884705)
+end_position = Vector2(34.54425, -24.156296)
 
 [node name="NavigationLink2D5" type="NavigationLink2D" parent="UniLinks" unique_id=2129811068]
 position = Vector2(-2.3884332, 10.897306)
 bidirectional = false
-start_position = Vector2(111.98062, 46.41678)
+start_position = Vector2(115.00159, 48.61685)
 end_position = Vector2(142.75053, 51.565887)
 
 [node name="NavigationLink2D6" type="NavigationLink2D" parent="UniLinks" unique_id=139744869]
@@ -153,7 +158,7 @@ end_position = Vector2(-159.24496, 101.00757)
 
 [node name="NavigationLink2D8" type="NavigationLink2D" parent="UniLinks" unique_id=104638676]
 bidirectional = false
-start_position = Vector2(43.214737, 21.917755)
+start_position = Vector2(41.673904, -2.6286316)
 end_position = Vector2(3.32576, -43.50174)
 
 [node name="NavigationLink2D9" type="NavigationLink2D" parent="UniLinks" unique_id=459993269]
@@ -198,13 +203,10 @@ end_position = Vector2(-212.17506, 89.89072)
 
 [node name="NavigationLink2D17" type="NavigationLink2D" parent="UniLinks" unique_id=1947856324]
 bidirectional = false
-start_position = Vector2(298.17438, 51.026978)
-end_position = Vector2(207.33134, 33.565674)
+start_position = Vector2(284.6217, 47.629333)
+end_position = Vector2(250.8286, 43.66887)
 
-[node name="Marker2D" type="Marker2D" parent="." unique_id=1752869039]
-position = Vector2(-121, 520)
-
-[node name="Car" parent="." unique_id=1651818327 node_paths=PackedStringArray("target") instance=ExtResource("2_joc8x")]
-position = Vector2(1204, 296)
-scale = Vector2(0.46, 0.46)
-target = NodePath("../Marker2D")
+[node name="NavigationLink2D18" type="NavigationLink2D" parent="UniLinks" unique_id=420891830]
+bidirectional = false
+start_position = Vector2(12.879486, -87.09096)
+end_position = Vector2(166.17735, -58.048584)
