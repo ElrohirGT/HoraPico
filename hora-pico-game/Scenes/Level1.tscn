@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://tyy2rc6t5msh"]
 
 [ext_resource type="Texture2D" uid="uid://b24mfrjbjetan" path="res://Assets/20260525_171245.png" id="1_q12u6"]
+[ext_resource type="PackedScene" uid="uid://cqcnrpfy4ruk5" path="res://Prefabs/HUD/HUD.tscn" id="2_q12u6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jghel"]
 vertices = PackedVector2Array(483.1797, 808.1406, 438.17188, 808.84375, 444.84375, 407, 490.8125, 407)
@@ -18,9 +19,9 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(180, 813, 196, -52, 260, -52, 251, 813)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ysn8j"]
-vertices = PackedVector2Array(796.78906, -53.320313, 779.1875, 796.1719, 745.10156, 796.7969, 753.8906, -54.679688)
+vertices = PackedVector2Array(805.1094, 793.46875, 745.10156, 796.46875, 753.89844, -55, 815.8672, -55)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(735, 807, 744, -65, 807, -63, 789, 806)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(735, 807, 744, -65, 826, -65, 815, 803)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_6ll4n"]
 vertices = PackedVector2Array(874.96875, 783.64844, 807.1719, 781.34375, 821.8281, -53, 873.02344, -53)
@@ -71,11 +72,13 @@ const CAR_SCENE = preload(\"res://Prefabs/Car/Car.tscn\")
 const BUS_SCENE = preload(\"res://Prefabs/Bus/Bus.tscn\")
 
 @export var destinies: Node2D # Le ponés el target al spawner 
+@export var ultimate_charges: int = 1
 
 @onready var vehicle_timer: Timer = $\"../Car_Timer\"
 @onready var combo_timer: Timer = $\"../Combo_Timer\"
 @onready var velocity_timer: Timer = $\"../Velocity_Timer\"
-@onready var velocity_label: Label = $\"../ColorRect/Label\"
+@onready var velocity_label: Label = $\"../CanvasLayer/HUD/TrafficContainer/Label\"
+@onready var ultimate_container: HBoxContainer = $\"../CanvasLayer/HUD/TrafficContainer/UltiCombo\"
 
 @onready var spawners: Dictionary = {
 	\"N\": $SpawnerN,
@@ -94,6 +97,9 @@ var direction: String = \"\"
 
 static var last_combo: String = \"\"
 static var last_direction: String = \"\"
+
+func _ready() -> void:
+	EventBus.SpeedChanged.connect(_on_speed_changed)
 
 func _input(event: InputEvent) -> void:
 	var vehicleType = \"\"
@@ -139,6 +145,14 @@ func _input(event: InputEvent) -> void:
 	elif combo.ends_with(\"DDUR\"):
 		vehicleType = \"Bus\"
 		
+	elif combo.ends_with(\"DRURDLU\"):
+		if currentVelocity == Velocity.S:
+			cast_ultimate(ultimate_charges)
+			ultimate_charges += 1
+			currentVelocity = Velocity.F
+			velocity_label.text = Velocity.keys()[currentVelocity]
+			EventBus.SpeedChanged.emit(false)
+		
 	if vehicleType == \"\":
 		return
 		
@@ -150,8 +164,19 @@ func _input(event: InputEvent) -> void:
 	
 	combo = \"\"
 	direction = \"\"
+	
+func cast_ultimate(ultimate_charges: int) -> void:
+	var vehicleTypes: Array = [\"Car\", \"Bus\"]
+	var spawnersKeys: Array = spawners.keys()
+	var index = 0
+	
+	while index < ultimate_charges:
+		vehicle_spawn(vehicleTypes.pick_random(), spawnersKeys.pick_random())
+		index += 1
 
-func vehicle_spawn(vehicleType: String, spawnPosition: String):
+func vehicle_spawn(vehicleType: String, spawnPosition: String) -> void:
+	print(vehicleType, spawnPosition)
+	
 	var new_vehicle
 	
 	if vehicleType == \"Car\":
@@ -186,15 +211,24 @@ func vehicle_spawn(vehicleType: String, spawnPosition: String):
 
 func speeding_up(combo: String, direction: String):
 	print(combo, last_combo, direction, last_direction)
+	
 	if combo != last_combo and direction != last_direction:
-		if currentVelocity < 6:
+		if currentVelocity < 5:
 			currentVelocity = (currentVelocity + 1)
 			
 		else:
 			currentVelocity = Velocity.S
+			EventBus.SpeedChanged.emit(true)
 		
 		velocity_label.text = Velocity.keys()[currentVelocity]
 		velocity_timer.start()
+		
+func _on_speed_changed(isMax: bool):
+	if not isMax:
+		ultimate_container.modulate.a = 0.4
+		
+	else:
+		ultimate_container.modulate.a = 1.0
 		
 func _on_combo_timer_timeout() -> void:
 	combo = \"\"
@@ -204,6 +238,7 @@ func _on_combo_timer_timeout() -> void:
 func _on_velocity_timer_timeout() -> void:
 	currentVelocity = Velocity.F
 	velocity_label.text = Velocity.keys()[currentVelocity]
+	EventBus.SpeedChanged.emit(false)
 	print(\"Velocidad (Rango) reseteada por timeout.\")
 "
 
@@ -255,6 +290,7 @@ navigation_polygon = SubResource("NavigationPolygon_6jj8j")
 navigation_polygon = SubResource("NavigationPolygon_06um6")
 
 [node name="NavigationRegion2D12" type="NavigationRegion2D" parent="NavigationRegions" unique_id=412580115]
+position = Vector2(3, -61)
 navigation_polygon = SubResource("NavigationPolygon_ubfni")
 
 [node name="UniLinks" type="Node2D" parent="." unique_id=1015325278]
@@ -265,24 +301,24 @@ scale = Vector2(1.795, 1.795)
 [node name="NavigationLink2D" type="NavigationLink2D" parent="UniLinks" unique_id=718961838]
 position = Vector2(-36.117943, 188.82904)
 bidirectional = false
-start_position = Vector2(161.82458, 15.218292)
+start_position = Vector2(173.17938, 18.248169)
 end_position = Vector2(237.10098, 27.815247)
 
 [node name="NavigationLink2D2" type="NavigationLink2D" parent="UniLinks" unique_id=1474576395]
 position = Vector2(3.4020953, -20.330122)
 bidirectional = false
 start_position = Vector2(229.30318, 47.40979)
-end_position = Vector2(159.42946, 36.281784)
+end_position = Vector2(169.13815, 35.647064)
 
 [node name="NavigationLink2D3" type="NavigationLink2D" parent="UniLinks" unique_id=1135209537]
 bidirectional = false
 start_position = Vector2(209.36592, 142.92212)
-end_position = Vector2(142.14534, 136.19205)
+end_position = Vector2(148.46529, 135.55511)
 
 [node name="NavigationLink2D4" type="NavigationLink2D" parent="UniLinks" unique_id=481559430]
 position = Vector2(75.99192, 38.69977)
 bidirectional = false
-start_position = Vector2(71.62076, 0.6882019)
+start_position = Vector2(73.46417, -17.078491)
 end_position = Vector2(34.54425, -24.156296)
 
 [node name="NavigationLink2D5" type="NavigationLink2D" parent="UniLinks" unique_id=2129811068]
@@ -347,6 +383,7 @@ start_position = Vector2(-177.00946, 95.77542)
 end_position = Vector2(-212.17506, 89.89072)
 
 [node name="NavigationLink2D17" type="NavigationLink2D" parent="UniLinks" unique_id=1947856324]
+position = Vector2(5.703037, -37.455414)
 bidirectional = false
 start_position = Vector2(284.6217, 47.629333)
 end_position = Vector2(250.8286, 43.66887)
@@ -399,24 +436,11 @@ one_shot = true
 wait_time = 3.0
 one_shot = true
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=351001556]
-z_index = 10
-offset_left = 1036.0
-offset_top = 14.0
-offset_right = 1140.0
-offset_bottom = 120.0
-color = Color(0, 0, 0, 1)
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=391911840]
 
-[node name="Label" type="Label" parent="ColorRect" unique_id=164889044]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 6.0
-offset_right = 100.0
-offset_bottom = 101.0
-theme_override_font_sizes/font_size = 84
-text = "F"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="HUD" parent="CanvasLayer" unique_id=2055424362 instance=ExtResource("2_q12u6")]
 
 [connection signal="timeout" from="Combo_Timer" to="Spawners" method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="Velocity_Timer" to="Spawners" method="_on_velocity_timer_timeout"]
+
+[editable path="CanvasLayer/HUD"]

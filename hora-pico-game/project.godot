@@ -15,6 +15,10 @@ run/main_scene="uid://tyy2rc6t5msh"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+EventBus="*uid://2sqnkycjqfjn"
+
 [gui]
 
 theme/custom_font="uid://dkkjsf8ooiyp1"
@@ -61,10 +65,6 @@ west_traffic={
 "events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":2,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
-
-[autoload]
-
-EventBus="*uid://2sqnkycjqfjn"
 
 [physics]
 
