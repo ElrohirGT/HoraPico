@@ -1,13 +1,11 @@
 [gd_scene format=3 uid="uid://b414gvgep8n1r"]
 
 [ext_resource type="Texture2D" uid="uid://cmscw5rru0jx1" path="res://TestSprites/ALERT_normal.png" id="1_o3idy"]
-[ext_resource type="Script" uid="uid://bgjcu0r3s6hjr" path="res://Prefabs/Alert/alert.gd" id="2_1qt2d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1qt2d"]
 size = Vector2(64, 64)
 
 [node name="Alert" type="Area2D" unique_id=986188726]
-script = ExtResource("2_1qt2d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=39676675]
 position = Vector2(32, 32)
@@ -17,5 +15,3 @@ shape = SubResource("RectangleShape2D_1qt2d")
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_o3idy")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

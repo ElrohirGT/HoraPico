@@ -396,7 +396,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Velocity_Timer" type="Timer" parent="." unique_id=1657294742]
-wait_time = 3.0
+wait_time = 15.0
 one_shot = true
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=351001556]

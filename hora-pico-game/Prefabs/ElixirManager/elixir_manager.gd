@@ -1,6 +1,6 @@
 extends Control
 
-class_name HUD
+class_name ElixirManager
 
 @export var secondsPerElixir: float
 @export var maxElixir: float
@@ -19,6 +19,8 @@ func _ready() -> void:
 	add_child(elixirTimer)
 	
 	elixirBar.max_value = maxElixir
+	
+	EventBus.InvokeAbility.connect(_on_invoke_ability)
 
 func generateElixir():
 	elixirQuantity = clampf(elixirQuantity+1, 0, maxElixir)
@@ -30,12 +32,18 @@ func _process(delta: float) -> void:
 
 func updateElixir(quantity: float):
 	elixirBar.value = quantity
-	elixirLabel.text = "%.0f" % quantity
+	elixirLabel.text = "%d" % quantity
 
-static func ConsumeElixir(quantity: float) -> bool:
+func ConsumeElixir(quantity: float) -> bool:
 	if elixirQuantity-quantity < 0:
 		return false
 	
 	elixirQuantity -= quantity
 	EventBus.ElixirChanged.emit(elixirQuantity)
 	return true
+
+func _on_invoke_ability(ability: Enums.Ability, cost: float):
+	if not ConsumeElixir(cost):
+		print("Failed to consume ability: %s" % ability)
+		return
+	print("Ability %s consumed!" % ability)
