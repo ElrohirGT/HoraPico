@@ -68,7 +68,7 @@ columns = 3
 [node name="Control" type="Control" parent="SummonMenu" unique_id=1212594835]
 layout_mode = 2
 
-[node name="PlayerPointerButton" parent="SummonMenu" unique_id=2017830648 instance=ExtResource("3_lo0a1")]
+[node name="Top" parent="SummonMenu" unique_id=2017830648 instance=ExtResource("3_lo0a1")]
 layout_mode = 2
 cost = 2.0
 actionTexture = ExtResource("4_lo0a1")
@@ -76,7 +76,7 @@ actionTexture = ExtResource("4_lo0a1")
 [node name="Control2" type="Control" parent="SummonMenu" unique_id=628165406]
 layout_mode = 2
 
-[node name="PlayerPointerButton2" parent="SummonMenu" unique_id=646082498 instance=ExtResource("3_lo0a1")]
+[node name="Left" parent="SummonMenu" unique_id=646082498 instance=ExtResource("3_lo0a1")]
 layout_mode = 2
 cost = 4.0
 actionTexture = ExtResource("7_ew5li")
@@ -84,13 +84,11 @@ actionTexture = ExtResource("7_ew5li")
 [node name="Control3" type="Control" parent="SummonMenu" unique_id=1250062109]
 layout_mode = 2
 
-[node name="PlayerPointerButton3" parent="SummonMenu" unique_id=159107384 instance=ExtResource("3_lo0a1")]
+[node name="Right" parent="SummonMenu" unique_id=159107384 instance=ExtResource("3_lo0a1")]
 layout_mode = 2
 
 [node name="Control4" type="Control" parent="SummonMenu" unique_id=1236995429]
 layout_mode = 2
 
-[node name="PlayerPointerButton4" parent="SummonMenu" unique_id=1619145492 instance=ExtResource("3_lo0a1")]
+[node name="Bottom" parent="SummonMenu" unique_id=1619145492 instance=ExtResource("3_lo0a1")]
 layout_mode = 2
-
-[connection signal="body_entered" from="Pointer/Area2D" to="." method="_on_area_2d_body_entered"]

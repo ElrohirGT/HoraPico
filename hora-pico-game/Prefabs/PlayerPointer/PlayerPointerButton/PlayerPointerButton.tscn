@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dgcspri4fvk2f" path="res://TestSprites/POLICE_Cap.png" id="2_hhspi"]
 [ext_resource type="Texture2D" uid="uid://dpuhyav3f2wyf" path="res://TestSprites/SUMMON_MENU_BackgroundActive.png" id="3_skjtw"]
 [ext_resource type="Texture2D" uid="uid://bmhqi5pk5v0ge" path="res://TestSprites/SUMMON_MENU_BackgroundInactive.png" id="4_irxy6"]
+[ext_resource type="Texture2D" uid="uid://dvsh2dkh3cs72" path="res://TestSprites/SUMMON_MENU_BackgroundSelected.png" id="4_skjtw"]
 
 [node name="PlayerPointerButton" type="NinePatchRect" unique_id=300668207]
 custom_minimum_size = Vector2(64, 64)
@@ -18,6 +19,7 @@ patch_margin_bottom = 6
 script = ExtResource("1_q6xwc")
 availableBackground = ExtResource("3_skjtw")
 unavailableBackground = ExtResource("4_irxy6")
+selectedBackground = ExtResource("4_skjtw")
 
 [node name="MainTexture" type="TextureRect" parent="." unique_id=1892836187]
 layout_mode = 1
