@@ -1,6 +1,6 @@
 extends Control
 
-class_name HUD
+class_name ElixirManager
 
 @export var secondsPerElixir: float
 @export var maxElixir: float
@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 
 func updateElixir(quantity: float):
 	elixirBar.value = quantity
-	elixirLabel.text = "%.0f" % quantity
+	elixirLabel.text = "%d" % quantity
 
 func ConsumeElixir(quantity: float) -> bool:
 	if elixirQuantity-quantity < 0:

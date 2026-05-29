@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dkqpgnifqiqih"]
+
+[ext_resource type="Script" uid="uid://d3v6sey2bkbjy" path="res://Prefabs/PlayerJoiner/player_joiner.gd" id="1_c8deg"]
+[ext_resource type="PackedScene" uid="uid://dpqxobk6bgho3" path="res://Prefabs/PlayerPointer/PlayerPointer.tscn" id="2_wy8ec"]
+[ext_resource type="Texture2D" uid="uid://c3g460ifs0f05" path="res://TestSprites/PLAYER_P1.png" id="3_ot55c"]
+[ext_resource type="Texture2D" uid="uid://cers3b4ai6fo2" path="res://TestSprites/PLAYER_P2.png" id="4_ocwvc"]
+[ext_resource type="Texture2D" uid="uid://bpah4lo7q0ce1" path="res://TestSprites/PLAYER_P3.png" id="5_vrc80"]
+
+[node name="PlayerJoiner" type="Node2D" unique_id=1218929265]
+script = ExtResource("1_c8deg")
+player_prefab = ExtResource("2_wy8ec")
+pointer_textures = Array[Texture2D]([ExtResource("3_ot55c"), ExtResource("4_ocwvc"), ExtResource("5_vrc80")])

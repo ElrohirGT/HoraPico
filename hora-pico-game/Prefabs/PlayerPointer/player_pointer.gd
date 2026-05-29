@@ -1,5 +1,7 @@
 extends Control
 
+class_name PlayerPointer
+
 @export var moveMagnitude: float
 @export var texture: Texture2D
 
@@ -12,20 +14,33 @@ extends Control
 @onready var bottom: PlayerPointerButton = $SummonMenu/Bottom
 
 var selected: PlayerPointerButton = null
+var device_id: int
 
 func _ready() -> void:
 	pointer.texture = texture
 	menu.hide()
 	
-func _input(event: InputEvent) -> void:
-	pass
+func _input(event: InputEvent):
+	if event.device != device_id:
+		return
+	
+	if selected != null && event.is_action_pressed("spend_elixir"):
+		EventBus.InvokeAbility.emit(selected.ability, selected.cost)
+	
 
 func _process(delta: float) -> void:
-	var velocity = Input.get_vector("left_traffic", "right_traffic", "up_traffic", "down_traffic") * moveMagnitude
-	set_position(position + velocity)
+	var velocity := Vector2(
+		Input.get_joy_axis(device_id, JOY_AXIS_LEFT_X),
+		Input.get_joy_axis(device_id, JOY_AXIS_LEFT_Y),
+	).limit_length(1.0)
+	if velocity.length() > 0.2:
+		set_position(position + velocity * moveMagnitude)
 	
-	var selection_vel = Input.get_vector("rightJ_left", "rightJ_right", "rightJ_up", "rightJ_down")
-	if is_equal_approx(0, selection_vel.length()):
+	var selection_vel := Vector2(
+		Input.get_joy_axis(device_id, JOY_AXIS_RIGHT_X),
+		Input.get_joy_axis(device_id, JOY_AXIS_RIGHT_Y),
+	).limit_length(1.0)
+	if selection_vel.length() < 0.2:
 		menu.hide()
 	else:
 		selected = null
@@ -44,12 +59,7 @@ func _process(delta: float) -> void:
 		else:
 			selected = left
 		selected.selected = true
-			
 		menu.show()
-		
-	# TODO: Handle transition from InRange to Pointing
-	if selected != null && Input.is_action_just_pressed("spend_elixir"):
-		EventBus.InvokeAbility.emit(selected.ability, selected.cost)
 
 func is_between(val: float, min_val: float, max_val: float) -> bool:
 	return val >= min_val and val <= max_val

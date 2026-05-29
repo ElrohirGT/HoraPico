@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cqcnrpfy4ruk5"]
 
-[ext_resource type="Script" uid="uid://27k8ptic051g" path="res://Prefabs/HUD/hud.gd" id="1_0qdy1"]
+[ext_resource type="Script" uid="uid://27k8ptic051g" path="res://Prefabs/ElixirManager/elixir_manager.gd" id="1_0qdy1"]
 [ext_resource type="Texture2D" uid="uid://blnkux5p8cfni" path="res://TestSprites/ELIXIR_Progress.png" id="1_aydyg"]
 [ext_resource type="Texture2D" uid="uid://bhlg4p5y0g7w8" path="res://TestSprites/ELIXIR_Over.png" id="1_kg4qw"]
 [ext_resource type="Texture2D" uid="uid://bnwj31ja0dvw0" path="res://TestSprites/ELIXIR_Symbol.png" id="2_jr6l7"]
