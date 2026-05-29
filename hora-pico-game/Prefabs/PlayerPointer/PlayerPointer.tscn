@@ -80,6 +80,7 @@ layout_mode = 2
 layout_mode = 2
 cost = 4.0
 actionTexture = ExtResource("7_ew5li")
+ability = 1
 
 [node name="Control3" type="Control" parent="SummonMenu" unique_id=1250062109]
 layout_mode = 2
