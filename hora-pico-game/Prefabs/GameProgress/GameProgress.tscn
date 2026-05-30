@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://ccef61slgitn8"]
+
+[ext_resource type="Texture2D" uid="uid://bckexiugqn0yr" path="res://TestSprites/GAMEBAR_Border.png" id="1_fkfl0"]
+[ext_resource type="Script" uid="uid://ckecqrcri8yu0" path="res://Prefabs/GameProgress/game_progress.gd" id="1_gegrn"]
+[ext_resource type="Texture2D" uid="uid://d3sq6kne5rm7a" path="res://TestSprites/GAMEBAR_Progress.png" id="2_gegrn"]
+
+[node name="GameProgress" type="Control" unique_id=1484597724]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gegrn")
+filling_speed = 2.0
+drain_speed = 3.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=694472343]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 55.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="ProgressBar" type="TextureProgressBar" parent="VBoxContainer" unique_id=138871451]
+clip_contents = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+step = 0.0
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_over = ExtResource("1_fkfl0")
+texture_progress = ExtResource("2_gegrn")
+texture_progress_offset = Vector2(4, 4)
+
+[node name="RemainingTime" type="Label" parent="VBoxContainer" unique_id=165656378]
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "2:30"
+horizontal_alignment = 1
+
+[node name="ProgressBarRefresh" type="Timer" parent="." unique_id=807527481]
+autostart = true
+
+[node name="MatchTimer" type="Timer" parent="." unique_id=1399421359]
+wait_time = 150.0
+autostart = true

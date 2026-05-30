@@ -183,6 +183,7 @@ func vehicle_spawn(vehicleType: String, spawnPosition: String):
 		
 		vehicle_timer.wait_time = 3 # randf_range(0, 5)
 		vehicle_timer.start()
+		EventBus.VehicleSpawned.emit()
 
 func speeding_up(combo: String, direction: String):
 	print(combo, last_combo, direction, last_direction)

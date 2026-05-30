@@ -50,6 +50,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_navigation_agent_2d_navigation_finished() -> void:
+	EventBus.VehicleDespawned.emit()
 	queue_free()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
