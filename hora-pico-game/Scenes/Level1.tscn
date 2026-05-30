@@ -1,36 +1,38 @@
 [gd_scene format=3 uid="uid://tyy2rc6t5msh"]
 
+[ext_resource type="Texture2D" uid="uid://b2i84hgcb3fcx" path="res://Assets/Background.png" id="1_joc8x"]
 [ext_resource type="Texture2D" uid="uid://b24mfrjbjetan" path="res://Assets/20260525_171245.png" id="1_q12u6"]
+[ext_resource type="PackedScene" uid="uid://cqcnrpfy4ruk5" path="res://Prefabs/HUD/HUD.tscn" id="2_q12u6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jghel"]
-vertices = PackedVector2Array(483.1797, 808.1406, 438.17188, 808.84375, 444.84375, 407, 490.8125, 407)
+vertices = PackedVector2Array(502.0703, 425.8125, 504.90625, 803.4297, 469.95313, 801.52344, 468.04688, 425.1797)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(428, 819, 435, 397, 501, 397, 493, 818)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(460, 811, 458, 415, 512, 416, 515, 814)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_slnnj"]
-vertices = PackedVector2Array(489.39063, 230.82031, 442.5078, 235.00781, 455.54688, -48.140625, 501.53906, -48.828125)
+vertices = PackedVector2Array(507.03125, -46.171875, 507.96094, 231.64063, 471.03125, 230.34375, 471.96094, -46.8125)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(432, 246, 446, -58, 512, -59, 499, 240)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(461, 240, 462, -57, 517, -56, 518, 242)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_t3or0"]
-vertices = PackedVector2Array(238.14844, 781.72656, 192.14844, 776.14844, 205.84375, -42, 249.85938, -42)
+vertices = PackedVector2Array(218.02344, -46.15625, 219.97656, 806, 182.92969, 806, 177.07031, -46.828125)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(180, 813, 196, -52, 260, -52, 251, 813)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(173, 816, 167, -57, 228, -56, 230, 816)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ysn8j"]
-vertices = PackedVector2Array(796.78906, -53.320313, 779.1875, 796.1719, 745.10156, 796.7969, 753.8906, -54.679688)
+vertices = PackedVector2Array(834.03906, -52.148438, 837.9531, 789.85156, 789.97656, 789.1406, 789.0078, -52.84375)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(735, 807, 744, -65, 807, -63, 789, 806)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(780, 799, 779, -63, 844, -62, 848, 800)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_6ll4n"]
-vertices = PackedVector2Array(874.96875, 783.64844, 807.1719, 781.34375, 821.8281, -53, 873.02344, -53)
+vertices = PackedVector2Array(855.10156, -52.179688, 863.8906, 783.8281, 822.97656, 783.15625, 822.0078, -52.796875)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(797, 791, 885, 794, 883, -63, 812, -63)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(813, 793, 874, 794, 865, -62, 812, -63)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kylad"]
-vertices = PackedVector2Array(711.5078, 360.8203, 710.46875, 382.84375, 546.22656, 380.17188, 548.8594, 358.14063)
+vertices = PackedVector2Array(743.59375, 369.9297, 742.40625, 399.59375, 595.9531, 393.52344, 602.6172, 369.03906)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(720, 393, 722, 351, 540, 348, 535, 390)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(752, 410, 754, 360, 595, 359, 583, 403)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bdlbp"]
 vertices = PackedVector2Array(710.3281, 321.6328, 708.6406, 346.8828, 557.60156, 345.10938, 556.4219, 316.35156)
@@ -38,29 +40,29 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(721, 312, 718, 357, 548, 355, 546, 306)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_2h8qs"]
-vertices = PackedVector2Array(391, 361.6328, 299.54688, 358.34375, 297.46875, 313.89844, 391, 313.07813)
+vertices = PackedVector2Array(391, 361.64063, 267.10938, 357.3125, 263.92188, 324.14844, 391, 313.84375)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(401, 303, 401, 372, 290, 368, 287, 304)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(401, 303, 401, 372, 258, 367, 253, 315)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rpty4"]
-vertices = PackedVector2Array(141.84375, 350.89844, -155.99219, 348.10156, -151.92188, 306, 141.14844, 306)
+vertices = PackedVector2Array(130.92969, 313.85156, 133.95313, 344, -153, 344, -153, 309.15625)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-161, 296, -167, 358, 152, 361, 151, 296)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-163, 299, -163, 354, 145, 354, 140, 304)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_6jj8j"]
-vertices = PackedVector2Array(148.64063, 123.78906, 147.35938, 158.82813, -76.5, 155.14844, -78.42969, 119.21094)
+vertices = PackedVector2Array(144.74219, 148.90625, -91.78906, 147.07031, -91.203125, 118, 141.10938, 118)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(159, 114, 157, 169, -86, 165, -89, 109)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(150, 108, 156, 159, -102, 157, -101, 108)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_06um6"]
-vertices = PackedVector2Array(156, 544.8125, -147.10938, 539.1797, -147.88281, 477, 156, 477)
+vertices = PackedVector2Array(91.203125, 524, -144.32813, 524, -142.61719, 497.92188, 91.78125, 496.07813)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(166, 467, 166, 555, -157, 549, -158, 467)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(102, 486, 101, 534, -155, 534, -152, 488)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ubfni"]
-vertices = PackedVector2Array(1246.7422, 356.6797, 996.1719, 349.28906, 997.8281, 253, 1244.2422, 253)
+vertices = PackedVector2Array(1223.4922, 324.90625, 988.8281, 323.0703, 988.1719, 284.92188, 1221.4688, 283.0703)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(1254, 243, 1257, 367, 986, 359, 988, 243)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1231, 273, 1234, 335, 979, 333, 978, 275)])
 
 [sub_resource type="GDScript" id="GDScript_2llne"]
 script/source = "extends Node2D
@@ -71,11 +73,13 @@ const CAR_SCENE = preload(\"res://Prefabs/Car/Car.tscn\")
 const BUS_SCENE = preload(\"res://Prefabs/Bus/Bus.tscn\")
 
 @export var destinies: Node2D # Le ponés el target al spawner 
+@export var ultimate_charges: int = 1
 
 @onready var vehicle_timer: Timer = $\"../Car_Timer\"
 @onready var combo_timer: Timer = $\"../Combo_Timer\"
 @onready var velocity_timer: Timer = $\"../Velocity_Timer\"
-@onready var velocity_label: Label = $\"../ColorRect/Label\"
+@onready var velocity_label: Label = $\"../CanvasLayer/HUD/TrafficContainer/Label\"
+@onready var ultimate_container: HBoxContainer = $\"../CanvasLayer/HUD/TrafficContainer/UltiCombo\"
 
 @onready var spawners: Dictionary = {
 	\"N\": $SpawnerN,
@@ -94,6 +98,9 @@ var direction: String = \"\"
 
 static var last_combo: String = \"\"
 static var last_direction: String = \"\"
+
+func _ready() -> void:
+	EventBus.SpeedChanged.connect(_on_speed_changed)
 
 func _input(event: InputEvent) -> void:
 	var vehicleType = \"\"
@@ -139,6 +146,14 @@ func _input(event: InputEvent) -> void:
 	elif combo.ends_with(\"DDUR\"):
 		vehicleType = \"Bus\"
 		
+	elif combo.ends_with(\"DRURDLU\"):
+		if currentVelocity == Velocity.S:
+			cast_ultimate(ultimate_charges)
+			ultimate_charges += 1
+			currentVelocity = Velocity.F
+			velocity_label.text = Velocity.keys()[currentVelocity]
+			EventBus.SpeedChanged.emit(false)
+		
 	if vehicleType == \"\":
 		return
 		
@@ -150,8 +165,19 @@ func _input(event: InputEvent) -> void:
 	
 	combo = \"\"
 	direction = \"\"
+	
+func cast_ultimate(ultimate_charges: int) -> void:
+	var vehicleTypes: Array = [\"Car\", \"Bus\"]
+	var spawnersKeys: Array = spawners.keys()
+	var index = 0
+	
+	while index < ultimate_charges:
+		vehicle_spawn(vehicleTypes.pick_random(), spawnersKeys.pick_random())
+		index += 1
 
-func vehicle_spawn(vehicleType: String, spawnPosition: String):
+func vehicle_spawn(vehicleType: String, spawnPosition: String) -> void:
+	print(vehicleType, spawnPosition)
+	
 	var new_vehicle
 	
 	if vehicleType == \"Car\":
@@ -186,15 +212,24 @@ func vehicle_spawn(vehicleType: String, spawnPosition: String):
 
 func speeding_up(combo: String, direction: String):
 	print(combo, last_combo, direction, last_direction)
+	
 	if combo != last_combo and direction != last_direction:
-		if currentVelocity < 6:
+		if currentVelocity < 5:
 			currentVelocity = (currentVelocity + 1)
 			
 		else:
 			currentVelocity = Velocity.S
+			EventBus.SpeedChanged.emit(true)
 		
 		velocity_label.text = Velocity.keys()[currentVelocity]
 		velocity_timer.start()
+		
+func _on_speed_changed(isMax: bool):
+	if not isMax:
+		ultimate_container.modulate.a = 0.4
+		
+	else:
+		ultimate_container.modulate.a = 1.0
 		
 func _on_combo_timer_timeout() -> void:
 	combo = \"\"
@@ -204,10 +239,18 @@ func _on_combo_timer_timeout() -> void:
 func _on_velocity_timer_timeout() -> void:
 	currentVelocity = Velocity.F
 	velocity_label.text = Velocity.keys()[currentVelocity]
+	EventBus.SpeedChanged.emit(false)
 	print(\"Velocidad (Rango) reseteada por timeout.\")
 "
 
 [node name="Level1" type="Node2D" unique_id=944242678]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=91177656]
+z_index = -5
+offset_top = 3.0
+offset_right = 1154.0
+offset_bottom = 647.0
+texture = ExtResource("1_joc8x")
 
 [node name="20260525171245" type="Sprite2D" parent="." unique_id=1504462470]
 visible = false
@@ -252,9 +295,11 @@ navigation_polygon = SubResource("NavigationPolygon_rpty4")
 navigation_polygon = SubResource("NavigationPolygon_6jj8j")
 
 [node name="NavigationRegion2D11" type="NavigationRegion2D" parent="NavigationRegions" unique_id=2061976872]
+position = Vector2(4, 25)
 navigation_polygon = SubResource("NavigationPolygon_06um6")
 
 [node name="NavigationRegion2D12" type="NavigationRegion2D" parent="NavigationRegions" unique_id=412580115]
+position = Vector2(3, -61)
 navigation_polygon = SubResource("NavigationPolygon_ubfni")
 
 [node name="UniLinks" type="Node2D" parent="." unique_id=1015325278]
@@ -263,98 +308,102 @@ rotation = -0.16580628
 scale = Vector2(1.795, 1.795)
 
 [node name="NavigationLink2D" type="NavigationLink2D" parent="UniLinks" unique_id=718961838]
-position = Vector2(-36.117943, 188.82904)
+position = Vector2(-18.044195, 141.58194)
 bidirectional = false
-start_position = Vector2(161.82458, 15.218292)
+start_position = Vector2(180.23047, 19.99292)
 end_position = Vector2(237.10098, 27.815247)
 
 [node name="NavigationLink2D2" type="NavigationLink2D" parent="UniLinks" unique_id=1474576395]
-position = Vector2(3.4020953, -20.330122)
+position = Vector2(20.112215, -83.056366)
 bidirectional = false
 start_position = Vector2(229.30318, 47.40979)
-end_position = Vector2(159.42946, 36.281784)
+end_position = Vector2(169.13815, 35.647064)
 
 [node name="NavigationLink2D3" type="NavigationLink2D" parent="UniLinks" unique_id=1135209537]
+position = Vector2(23.117546, -57.135212)
 bidirectional = false
-start_position = Vector2(209.36592, 142.92212)
-end_position = Vector2(142.14534, 136.19205)
+start_position = Vector2(201.39761, 143.28322)
+end_position = Vector2(155.33472, 135.01009)
 
 [node name="NavigationLink2D4" type="NavigationLink2D" parent="UniLinks" unique_id=481559430]
 position = Vector2(75.99192, 38.69977)
 bidirectional = false
-start_position = Vector2(71.62076, 0.6882019)
+start_position = Vector2(96.45187, -16.055908)
 end_position = Vector2(34.54425, -24.156296)
 
 [node name="NavigationLink2D5" type="NavigationLink2D" parent="UniLinks" unique_id=2129811068]
 position = Vector2(-2.3884332, 10.897306)
 bidirectional = false
-start_position = Vector2(115.00159, 48.61685)
-end_position = Vector2(142.75053, 51.565887)
+start_position = Vector2(127.0853, 57.417145)
+end_position = Vector2(168.0214, 62.572968)
 
 [node name="NavigationLink2D6" type="NavigationLink2D" parent="UniLinks" unique_id=139744869]
 bidirectional = false
-start_position = Vector2(127.209, 147.81381)
-end_position = Vector2(-24.169113, 124.17636)
+start_position = Vector2(153.6707, 158.45532)
+end_position = Vector2(-15.839661, 131.78357)
 
 [node name="NavigationLink2D7" type="NavigationLink2D" parent="UniLinks" unique_id=96309272]
 bidirectional = false
-start_position = Vector2(-40.01155, 120.96039)
-end_position = Vector2(-159.24496, 101.00757)
+start_position = Vector2(-26.003601, 128.38815)
+end_position = Vector2(-173.62518, 102.555084)
 
 [node name="NavigationLink2D8" type="NavigationLink2D" parent="UniLinks" unique_id=104638676]
 bidirectional = false
 start_position = Vector2(41.673904, -2.6286316)
-end_position = Vector2(3.32576, -43.50174)
+end_position = Vector2(15.503647, -38.639603)
 
 [node name="NavigationLink2D9" type="NavigationLink2D" parent="UniLinks" unique_id=459993269]
 bidirectional = false
-start_position = Vector2(-14.882309, 68.6806)
-end_position = Vector2(30.561478, 43.524017)
+start_position = Vector2(-7.6495667, 72.71521)
+end_position = Vector2(56.74736, 55.813904)
 
 [node name="NavigationLink2D10" type="NavigationLink2D" parent="UniLinks" unique_id=879675234]
 bidirectional = false
 start_position = Vector2(-59.90036, 3.5325012)
-end_position = Vector2(-11.052231, -45.342926)
+end_position = Vector2(1.0359344, -43.32007)
 
 [node name="NavigationLink2D11" type="NavigationLink2D" parent="UniLinks" unique_id=1123717814]
 bidirectional = false
-start_position = Vector2(-27.427994, 66.01633)
+start_position = Vector2(-18.638794, 70.87622)
 end_position = Vector2(-63.66356, 15.894318)
 
 [node name="NavigationLink2D12" type="NavigationLink2D" parent="UniLinks" unique_id=177388989]
 bidirectional = false
 start_position = Vector2(-203.68015, -14.879486)
-end_position = Vector2(-155.87689, -6.879959)
+end_position = Vector2(-166.7742, -9.268387)
 
 [node name="NavigationLink2D13" type="NavigationLink2D" parent="UniLinks" unique_id=1137544816]
 bidirectional = false
-start_position = Vector2(-142.68979, -4.6731873)
-end_position = Vector2(-98.82471, 3.2321625)
+start_position = Vector2(-152.67206, -5.7787933)
+end_position = Vector2(-116.499466, 0.8392639)
 
 [node name="NavigationLink2D14" type="NavigationLink2D" parent="UniLinks" unique_id=840849687]
+position = Vector2(3.7810314, -39.4716)
 bidirectional = false
-start_position = Vector2(-1.6801605, -91.221954)
-end_position = Vector2(-121.3711, -111.81619)
+start_position = Vector2(13.247284, -89.28882)
+end_position = Vector2(-136.75604, -114.39076)
 
 [node name="NavigationLink2D15" type="NavigationLink2D" parent="UniLinks" unique_id=1894308461]
 bidirectional = false
-start_position = Vector2(-138.4964, -114.11714)
+start_position = Vector2(-151.40765, -117.97229)
 end_position = Vector2(-176.68294, -122.20192)
 
 [node name="NavigationLink2D16" type="NavigationLink2D" parent="UniLinks" unique_id=1137693131]
 bidirectional = false
-start_position = Vector2(-177.00946, 95.77542)
-end_position = Vector2(-212.17506, 89.89072)
+start_position = Vector2(-185.62141, 99.98273)
+end_position = Vector2(-242.39998, 91.61096)
 
 [node name="NavigationLink2D17" type="NavigationLink2D" parent="UniLinks" unique_id=1947856324]
+position = Vector2(5.703037, -37.455414)
 bidirectional = false
-start_position = Vector2(284.6217, 47.629333)
-end_position = Vector2(250.8286, 43.66887)
+start_position = Vector2(281.50436, 52.756165)
+end_position = Vector2(240.93607, 45.40251)
 
 [node name="NavigationLink2D18" type="NavigationLink2D" parent="UniLinks" unique_id=420891830]
+position = Vector2(12.848281, -39.64881)
 bidirectional = false
 start_position = Vector2(12.879486, -87.09096)
-end_position = Vector2(166.17735, -58.048584)
+end_position = Vector2(177.81024, -60.055862)
 
 [node name="Spawners" type="Node2D" parent="." unique_id=590460041 node_paths=PackedStringArray("destinies")]
 position = Vector2(458, 777)
@@ -367,7 +416,7 @@ destinies = NodePath("../Objectives")
 position = Vector2(-588, -449)
 
 [node name="SpawnerE" type="Marker2D" parent="Spawners" unique_id=732001323]
-position = Vector2(744, -464)
+position = Vector2(755, -532)
 
 [node name="SpawnerN" type="Marker2D" parent="Spawners" unique_id=528289012]
 position = Vector2(470, -797)
@@ -385,7 +434,7 @@ position = Vector2(303, 0)
 position = Vector2(-520, -639)
 
 [node name="ObjectiveW" type="Marker2D" parent="Objectives" unique_id=1445590315]
-position = Vector2(-581, -264)
+position = Vector2(-583, -244)
 
 [node name="Car_Timer" type="Timer" parent="." unique_id=566632789]
 wait_time = 3.0
@@ -399,24 +448,18 @@ one_shot = true
 wait_time = 15.0
 one_shot = true
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=351001556]
-z_index = 10
-offset_left = 1036.0
-offset_top = 14.0
-offset_right = 1140.0
-offset_bottom = 120.0
-color = Color(0, 0, 0, 1)
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=391911840]
 
-[node name="Label" type="Label" parent="ColorRect" unique_id=164889044]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 6.0
-offset_right = 100.0
-offset_bottom = 101.0
-theme_override_font_sizes/font_size = 84
-text = "F"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="HUD" parent="CanvasLayer" unique_id=2055424362 instance=ExtResource("2_q12u6")]
+visible = false
+
+[node name="TrafficContainer" parent="CanvasLayer/HUD" index="1" unique_id=849580536]
+offset_left = 12.839966
+offset_top = 10.152
+offset_right = 13.279907
+offset_bottom = -142.88803
 
 [connection signal="timeout" from="Combo_Timer" to="Spawners" method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="Velocity_Timer" to="Spawners" method="_on_velocity_timer_timeout"]
+
+[editable path="CanvasLayer/HUD"]
