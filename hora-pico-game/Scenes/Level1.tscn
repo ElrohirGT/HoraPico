@@ -2,7 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://b2i84hgcb3fcx" path="res://Assets/Background.png" id="1_joc8x"]
 [ext_resource type="Texture2D" uid="uid://b24mfrjbjetan" path="res://Assets/20260525_171245.png" id="1_q12u6"]
-[ext_resource type="PackedScene" uid="uid://cqcnrpfy4ruk5" path="res://Prefabs/HUD/HUD.tscn" id="2_q12u6"]
+[ext_resource type="PackedScene" uid="uid://cqcnrpfy4ruk5" path="res://Prefabs/ElixirManager/ElixirManager.tscn" id="2_q12u6"]
+[ext_resource type="PackedScene" uid="uid://ccef61slgitn8" path="res://Prefabs/GameProgress/GameProgress.tscn" id="4_jghel"]
+[ext_resource type="PackedScene" uid="uid://dkqpgnifqiqih" path="res://Prefabs/PlayerJoiner/PlayerJoiner.tscn" id="5_slnnj"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jghel"]
 vertices = PackedVector2Array(502.0703, 425.8125, 504.90625, 803.4297, 469.95313, 801.52344, 468.04688, 425.1797)
@@ -459,6 +461,11 @@ offset_left = 12.839966
 offset_top = 10.152
 offset_right = 13.279907
 offset_bottom = -142.88803
+
+[node name="GameProgress" parent="CanvasLayer" unique_id=1484597724 instance=ExtResource("4_jghel")]
+
+[node name="PlayerJoiner" parent="." unique_id=1218929265 instance=ExtResource("5_slnnj")]
+position = Vector2(493, 348)
 
 [connection signal="timeout" from="Combo_Timer" to="Spawners" method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="Velocity_Timer" to="Spawners" method="_on_velocity_timer_timeout"]
