@@ -24,7 +24,7 @@ func _input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	remaining_label.text = ""
-	progress_bar.value -= drain_speed * (despawned_vehicles / 2.0) * delta
+	progress_bar.value -= (drain_speed + (despawned_vehicles / 2.0)) * delta
 	if spawned_vehicles > 0:
 		progress_bar.value += filling_speed * delta
 	

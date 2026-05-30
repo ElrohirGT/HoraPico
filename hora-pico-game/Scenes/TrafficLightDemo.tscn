@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://cqnv22nghhewf" path="res://TestSprites/BasicIntersection.png" id="1_mdu1y"]
 [ext_resource type="PackedScene" uid="uid://bfp488y4t37xr" path="res://Prefabs/TrafficLight/Traffic Light.tscn" id="2_37miv"]
-[ext_resource type="PackedScene" uid="uid://bebdcrw8yxpr0" path="res://Prefabs/Spawner/Spawner.tscn" id="3_d65wf"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_d65wf"]
 
@@ -45,7 +44,3 @@ end_position = Vector2(238, 300)
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1778593953]
 position = Vector2(-1, 93)
 navigation_polygon = SubResource("NavigationPolygon_8igt4")
-
-[node name="Spawner" parent="." unique_id=324461209 node_paths=PackedStringArray("destiny") instance=ExtResource("3_d65wf")]
-position = Vector2(1103, 395)
-destiny = NodePath("../Destination")
