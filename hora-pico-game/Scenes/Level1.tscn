@@ -319,8 +319,8 @@ end_position = Vector2(237.10098, 27.815247)
 [node name="NavigationLink2D2" type="NavigationLink2D" parent="UniLinks" unique_id=1474576395]
 position = Vector2(20.112215, -83.056366)
 bidirectional = false
-start_position = Vector2(229.30318, 47.40979)
-end_position = Vector2(169.13815, 35.647064)
+start_position = Vector2(179.39398, 38.49301)
+end_position = Vector2(233.24133, 47.503967)
 
 [node name="NavigationLink2D3" type="NavigationLink2D" parent="UniLinks" unique_id=1135209537]
 position = Vector2(23.117546, -57.135212)
@@ -453,8 +453,9 @@ one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=391911840]
 
+[node name="GameProgress" parent="CanvasLayer" unique_id=1484597724 instance=ExtResource("4_jghel")]
+
 [node name="HUD" parent="CanvasLayer" unique_id=2055424362 instance=ExtResource("2_q12u6")]
-visible = false
 
 [node name="TrafficContainer" parent="CanvasLayer/HUD" index="1" unique_id=849580536]
 offset_left = 12.839966
@@ -462,12 +463,11 @@ offset_top = 10.152
 offset_right = 13.279907
 offset_bottom = -142.88803
 
-[node name="GameProgress" parent="CanvasLayer" unique_id=1484597724 instance=ExtResource("4_jghel")]
-
 [node name="PlayerJoiner" parent="." unique_id=1218929265 instance=ExtResource("5_slnnj")]
 position = Vector2(493, 348)
 
 [connection signal="timeout" from="Combo_Timer" to="Spawners" method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="Velocity_Timer" to="Spawners" method="_on_velocity_timer_timeout"]
 
+[editable path="CanvasLayer/GameProgress"]
 [editable path="CanvasLayer/HUD"]

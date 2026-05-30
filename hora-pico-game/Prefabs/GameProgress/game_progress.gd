@@ -4,7 +4,7 @@ extends Control
 @export var drain_speed: float
 
 @onready var progress_bar: TextureProgressBar = $VBoxContainer/ProgressBar
-@onready var remaining_label: Label = $VBoxContainer/RemainingTime
+@onready var remaining_label: Label = $RemainingTime
 
 @onready var refresh_progress_bar_timer: Timer = $ProgressBarRefresh
 @onready var match_timer: Timer = $MatchTimer
