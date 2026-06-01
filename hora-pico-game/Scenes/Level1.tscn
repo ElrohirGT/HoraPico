@@ -247,6 +247,10 @@ func _on_velocity_timer_timeout() -> void:
 
 [node name="Level1" type="Node2D" unique_id=944242678]
 
+[node name="PlayerJoiner" parent="." unique_id=1218929265 instance=ExtResource("5_slnnj")]
+z_index = 15
+position = Vector2(493, 348)
+
 [node name="TextureRect" type="TextureRect" parent="." unique_id=91177656]
 z_index = -5
 offset_top = 3.0
@@ -459,9 +463,6 @@ offset_left = 12.839966
 offset_top = 10.152
 offset_right = 13.279907
 offset_bottom = -142.88803
-
-[node name="PlayerJoiner" parent="." unique_id=1218929265 instance=ExtResource("5_slnnj")]
-position = Vector2(493, 348)
 
 [connection signal="timeout" from="Combo_Timer" to="Spawners" method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="Velocity_Timer" to="Spawners" method="_on_velocity_timer_timeout"]
