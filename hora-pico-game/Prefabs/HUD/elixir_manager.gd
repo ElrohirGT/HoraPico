@@ -1,12 +1,12 @@
-extends Control
+extends HBoxContainer
 
 class_name ElixirManager
 
 @export var secondsPerElixir: float
 @export var maxElixir: float
 
-@onready var elixirBar: TextureProgressBar = $ElixirContainer/ElixirBar
-@onready var elixirLabel: Label = $ElixirContainer/ElixirLabel
+@onready var elixirBar: TextureProgressBar = $ElixirBar
+@onready var elixirLabel: Label = $ElixirLabel
 
 static var elixirQuantity: float
 var elixirTimer: Timer
