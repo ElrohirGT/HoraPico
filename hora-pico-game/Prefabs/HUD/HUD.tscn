@@ -1,0 +1,196 @@
+[gd_scene format=3 uid="uid://cqcnrpfy4ruk5"]
+
+[ext_resource type="Script" uid="uid://27k8ptic051g" path="res://Prefabs/HUD/elixir_manager.gd" id="1_0qdy1"]
+[ext_resource type="Texture2D" uid="uid://blnkux5p8cfni" path="res://TestSprites/ELIXIR_Progress.png" id="1_aydyg"]
+[ext_resource type="Texture2D" uid="uid://bhlg4p5y0g7w8" path="res://TestSprites/ELIXIR_Over.png" id="1_kg4qw"]
+[ext_resource type="Texture2D" uid="uid://bnwj31ja0dvw0" path="res://TestSprites/ELIXIR_Symbol.png" id="2_jr6l7"]
+[ext_resource type="Texture2D" uid="uid://bl87v80rvrnak" path="res://TestSprites/CAR_Red.png" id="5_smjiq"]
+[ext_resource type="Texture2D" uid="uid://c1hgqihjds4k0" path="res://TestSprites/BUS_Red.png" id="6_ri8ef"]
+[ext_resource type="Texture2D" uid="uid://cmscw5rru0jx1" path="res://TestSprites/ALERT_normal.png" id="7_r4eod"]
+[ext_resource type="Texture2D" uid="uid://bckexiugqn0yr" path="res://TestSprites/GAMEBAR_Border.png" id="8_r4eod"]
+[ext_resource type="Texture2D" uid="uid://d3sq6kne5rm7a" path="res://TestSprites/GAMEBAR_Progress.png" id="9_jdyly"]
+[ext_resource type="Script" uid="uid://crcl78v4mlq7m" path="res://Prefabs/HUD/progress_bar.gd" id="10_jdyly"]
+[ext_resource type="Script" uid="uid://kaf3kt8y7o0" path="res://Prefabs/HUD/match_timer.gd" id="11_45pxb"]
+
+[node name="HUD" type="Control" unique_id=2055424362]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TrafficBackground" type="ColorRect" parent="." unique_id=1237301669]
+z_index = -2
+custom_minimum_size = Vector2(150, 350)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.048095703
+offset_top = -0.24798584
+offset_right = -30.0
+offset_bottom = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+color = Color(0.13333334, 0.1254902, 0.20392157, 0.39215687)
+
+[node name="TrafficContainer" type="VBoxContainer" parent="TrafficBackground" unique_id=849580536]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="Label" type="Label" parent="TrafficBackground/TrafficContainer" unique_id=1123354540]
+clip_contents = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 84
+text = "F"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CarCombo" type="HBoxContainer" parent="TrafficBackground/TrafficContainer" unique_id=1583742461]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="TrafficBackground/TrafficContainer/CarCombo" unique_id=1668763979]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("5_smjiq")
+region_rect = Rect2(2.6368866, 15.671325, 59.551228, 41.745213)
+
+[node name="Label" type="Label" parent="TrafficBackground/TrafficContainer/CarCombo" unique_id=2061933779]
+layout_mode = 2
+text = "U D L L"
+
+[node name="BusCombo" type="HBoxContainer" parent="TrafficBackground/TrafficContainer" unique_id=953029810]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="TrafficBackground/TrafficContainer/BusCombo" unique_id=1074182175]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("6_ri8ef")
+region_rect = Rect2(2.6368866, 2.0269585, 123.68419, 61.727512)
+
+[node name="Label" type="Label" parent="TrafficBackground/TrafficContainer/BusCombo" unique_id=1359159523]
+layout_mode = 2
+text = "D D U R"
+
+[node name="UltiCombo" type="HBoxContainer" parent="TrafficBackground/TrafficContainer" unique_id=953080805]
+modulate = Color(1, 1, 1, 0.22352941)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="NinePatchRect" type="NinePatchRect" parent="TrafficBackground/TrafficContainer/UltiCombo" unique_id=2090901581]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("7_r4eod")
+
+[node name="Label" type="Label" parent="TrafficBackground/TrafficContainer/UltiCombo" unique_id=787498383]
+layout_mode = 2
+text = "D R U R D L U"
+
+[node name="TopBar" type="HBoxContainer" parent="." unique_id=1314657570]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 15.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="ElixirBackground" type="ColorRect" parent="TopBar" unique_id=1853942627]
+custom_minimum_size = Vector2(130, 45)
+layout_mode = 2
+color = Color(0.13333334, 0.1254902, 0.20392157, 0.39215687)
+
+[node name="ElixirContainer" type="HBoxContainer" parent="TopBar/ElixirBackground" unique_id=1401223326]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+script = ExtResource("1_0qdy1")
+secondsPerElixir = 2.0
+maxElixir = 10.0
+
+[node name="TextureRect" type="TextureRect" parent="TopBar/ElixirBackground/ElixirContainer" unique_id=11147908]
+layout_mode = 2
+texture = ExtResource("2_jr6l7")
+stretch_mode = 3
+
+[node name="ElixirLabel" type="Label" parent="TopBar/ElixirBackground/ElixirContainer" unique_id=201922295]
+layout_mode = 2
+text = "10"
+
+[node name="ElixirBar" type="TextureProgressBar" parent="TopBar/ElixirBackground/ElixirContainer" unique_id=406102156]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 10.0
+step = 0.0
+value = 10.0
+nine_patch_stretch = true
+stretch_margin_left = 20
+stretch_margin_top = 20
+stretch_margin_right = 20
+stretch_margin_bottom = 20
+texture_over = ExtResource("1_kg4qw")
+texture_progress = ExtResource("1_aydyg")
+
+[node name="ProgressBar" type="TextureProgressBar" parent="TopBar" unique_id=2014670878]
+layout_mode = 2
+size_flags_horizontal = 3
+step = 0.0
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_over = ExtResource("8_r4eod")
+texture_progress = ExtResource("9_jdyly")
+script = ExtResource("10_jdyly")
+filling_speed = 1.0
+drain_speed = 2.0
+max_bonus = 5.0
+
+[node name="ProgressBarRefresh" type="Timer" parent="TopBar/ProgressBar" unique_id=1194165795]
+wait_time = 30.0
+
+[node name="TimerBackground" type="ColorRect" parent="TopBar" unique_id=695490963]
+custom_minimum_size = Vector2(100, 45)
+layout_mode = 2
+color = Color(0.13333334, 0.1254902, 0.20392157, 0.39215687)
+
+[node name="Label" type="Label" parent="TopBar/TimerBackground" unique_id=11784013]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 38
+text = "2:30
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("11_45pxb")
+
+[node name="MatchTimer" type="Timer" parent="TopBar/TimerBackground/Label" unique_id=2145071276]
+wait_time = 180.0
+autostart = true

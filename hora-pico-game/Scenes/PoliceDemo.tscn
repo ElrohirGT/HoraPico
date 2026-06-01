@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d0washrtqkk2r"]
 
 [ext_resource type="Texture2D" uid="uid://cqnv22nghhewf" path="res://TestSprites/BasicIntersection.png" id="1_25xj5"]
-[ext_resource type="PackedScene" uid="uid://cqcnrpfy4ruk5" path="res://Prefabs/ElixirManager/ElixirManager.tscn" id="2_s3r27"]
+[ext_resource type="PackedScene" uid="uid://cqcnrpfy4ruk5" path="res://Prefabs/HUD/HUD.tscn" id="2_s3r27"]
 [ext_resource type="PackedScene" uid="uid://b414gvgep8n1r" path="res://Prefabs/Alert/Alert.tscn" id="3_upjjv"]
 [ext_resource type="PackedScene" uid="uid://dkqpgnifqiqih" path="res://Prefabs/PlayerJoiner/PlayerJoiner.tscn" id="4_rddux"]
 
