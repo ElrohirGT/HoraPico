@@ -13,10 +13,13 @@ class_name PlayerPointer
 @onready var right: PlayerPointerButton = $SummonMenu/Right
 @onready var bottom: PlayerPointerButton = $SummonMenu/Bottom
 
+@onready var police_radius: TextureRect = $PoliceRadius
+
 var selected: PlayerPointerButton = null
 var device_id: int
 
 func _ready() -> void:
+	police_radius.hide()
 	pointer.texture = texture
 	menu.hide()
 	
@@ -29,6 +32,7 @@ func _input(event: InputEvent):
 	
 
 func _process(delta: float) -> void:
+	police_radius.hide()
 	var velocity := Vector2(
 		Input.get_joy_axis(device_id, JOY_AXIS_LEFT_X),
 		Input.get_joy_axis(device_id, JOY_AXIS_LEFT_Y),
@@ -54,6 +58,7 @@ func _process(delta: float) -> void:
 			selected = right
 		elif is_between(angle, -3*PI/4, -PI/4):
 			selected = top
+			police_radius.show()
 		elif is_between(angle, PI/4, 3*PI/4):
 			selected = bottom
 		else:

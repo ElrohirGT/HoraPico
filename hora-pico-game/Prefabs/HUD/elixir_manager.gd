@@ -47,3 +47,4 @@ func _on_invoke_ability(ability: Enums.Ability, cost: float):
 		print("Failed to consume ability: %s" % ability)
 		return
 	print("Ability %s consumed!" % ability)
+	EventBus.AbilityInvoked.emit(ability)

@@ -5,6 +5,7 @@ extends TextureProgressBar
 @export var max_bonus: float
 
 @onready var refresh_progress_bar_timer: Timer = $ProgressBarRefresh
+@onready var bar_label: Label = $Label
 
 var despawned_vehicles: int = 0
 var spawned_vehicles: int = 0
@@ -19,12 +20,15 @@ func _input(event: InputEvent) -> void:
 		EventBus.VehicleDespawned.emit()
 
 func _process(delta: float) -> void:
-	self.value -= (drain_speed + (despawned_vehicles / 2.0)) * delta
+	var bar_delta = - (drain_speed + (despawned_vehicles / 2.0)) * delta
 	if spawned_vehicles > 0:
 		var denominator = despawned_vehicles
 		if denominator == 0:
 			denominator = 1
-		self.value += (filling_speed + denominator) * delta
+		bar_delta += (filling_speed + denominator) * delta
+	
+	bar_label.text = "S: %d - D: %d - T: %.2f" % [spawned_vehicles, despawned_vehicles, bar_delta]
+	self.value += bar_delta
 
 func _on_vehicle_despawned():
 	despawned_vehicles += 1
