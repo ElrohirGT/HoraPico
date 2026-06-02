@@ -19,7 +19,7 @@ func _ready():
 	EventBus.AbilityInvoked.connect(_on_ability_invoked)
 	EventBus.SpeedEnded.connect(_on_speed_ended)
 	
-	var sp = find_children("Car*", "Sprite2D").map(func(el): return (el as Sprite2D))
+  var sp = find_children("Bus*", "Sprite2D").map(func(el): return (el as Sprite2D))
 	sprites.assign(sp)
 	
 	for variant in sprites:

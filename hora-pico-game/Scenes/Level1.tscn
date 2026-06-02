@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://tyy2rc6t5msh"]
 
-[ext_resource type="Texture2D" uid="uid://b2i84hgcb3fcx" path="res://Assets/Background.png" id="1_joc8x"]
 [ext_resource type="Texture2D" uid="uid://b24mfrjbjetan" path="res://Assets/20260525_171245.png" id="1_q12u6"]
 [ext_resource type="PackedScene" uid="uid://cqcnrpfy4ruk5" path="res://Prefabs/HUD/HUD.tscn" id="2_q12u6"]
+[ext_resource type="Texture2D" uid="uid://krvf5mo54mae" path="res://Assets/BackgroundCity.png" id="3_t3or0"]
 [ext_resource type="PackedScene" uid="uid://dkqpgnifqiqih" path="res://Prefabs/PlayerJoiner/PlayerJoiner.tscn" id="5_slnnj"]
 [ext_resource type="PackedScene" uid="uid://bfp488y4t37xr" path="res://Prefabs/TrafficLight/Traffic Light.tscn" id="5_t3or0"]
 [ext_resource type="PackedScene" uid="uid://6tlt2pqn7seh" path="res://Prefabs/PlayerPointer/TrafficPlayerPointer.tscn" id="6_t3or0"]
@@ -259,7 +259,7 @@ z_index = -5
 offset_top = 3.0
 offset_right = 1154.0
 offset_bottom = 647.0
-texture = ExtResource("1_joc8x")
+texture = ExtResource("3_t3or0")
 
 [node name="20260525171245" type="Sprite2D" parent="." unique_id=1504462470]
 visible = false
