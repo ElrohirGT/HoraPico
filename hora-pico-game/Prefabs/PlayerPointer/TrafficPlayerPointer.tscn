@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://6tlt2pqn7seh"]
+
+[ext_resource type="Script" uid="uid://pa8ksfol420y" path="res://Prefabs/PlayerPointer/traffic_player_pointer.gd" id="1_xqbf6"]
+[ext_resource type="Texture2D" uid="uid://bpah4lo7q0ce1" path="res://TestSprites/PLAYER_P3.png" id="2_5tt65"]
+[ext_resource type="Texture2D" uid="uid://cers3b4ai6fo2" path="res://TestSprites/PLAYER_P2.png" id="2_bhlgs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b6qr5"]
+size = Vector2(32, 32)
+
+[node name="TrafficPlayerPointer" type="Control" unique_id=2133919227]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -123.0
+offset_top = -110.0
+offset_right = 123.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_xqbf6")
+moveMagnitude = 3.0
+texture = ExtResource("2_bhlgs")
+
+[node name="Pointer" type="TextureRect" parent="." unique_id=256892620]
+modulate = Color(1, 0, 1, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_5tt65")
+
+[node name="Area2D" type="Area2D" parent="Pointer" unique_id=977410506]
+position = Vector2(-91, -78)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pointer/Area2D" unique_id=1141820556]
+position = Vector2(123, 110)
+shape = SubResource("RectangleShape2D_b6qr5")
+
+[connection signal="area_entered" from="Pointer/Area2D" to="." method="_on_area_2d_area_entered"]
