@@ -2,6 +2,17 @@
 
 [ext_resource type="Script" uid="uid://dghoilh20l4i2" path="res://Scenes/Menus/MainMenu/main_menu.gd" id="1_853f1"]
 [ext_resource type="Texture2D" uid="uid://g3f6fq4n5b0m" path="res://TestSprites/TITLE_CARD.png" id="1_tt5f1"]
+[ext_resource type="Texture2D" uid="uid://krvf5mo54mae" path="res://Assets/BackgroundCity.png" id="2_c3p6v"]
+[ext_resource type="Script" uid="uid://d20umrt22cy4p" path="res://Scenes/Menus/MainMenu/menu_spawner.gd" id="3_445kf"]
+[ext_resource type="PackedScene" uid="uid://dxtx0mstvmlkq" path="res://Prefabs/Bus/Bus.tscn" id="4_bq65x"]
+[ext_resource type="PackedScene" uid="uid://df0wdlpqojsmy" path="res://Prefabs/Car/Car.tscn" id="5_dpe20"]
+[ext_resource type="PackedScene" uid="uid://bfp488y4t37xr" path="res://Prefabs/TrafficLight/Traffic Light.tscn" id="6_dpe20"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_c3p6v"]
+vertices = PackedVector2Array(214.53125, 23.828125, 233.03906, 3.4609375, 233.53906, 39.242188, 213.96875, 74.85156, 155.57031, 105.859375, 159.82813, 94.40625, 173.02344, 84.8125, 172.21094, 98.28125, 164.79688, 111.71875, 160.72656, 117.21094, 166.07813, 74.64844, 156.07031, 82.703125, 157.25781, 65.671875, 144.82813, 24.007813, 145.00781, 62.289063, 136.42969, 73.24219, 126.52344, 60.296875, 126.13281, 23.15625, 148.35156, 112.703125, 146.39844, 123.328125, 136.96875, 115.72656, 123.24219, 123, 127.42969, 114.02344, 99.1875, 102.14844, 45.179688, 102.47656, 45.53125, 96.99219, 66.64844, 88.4375, 98.1875, 87.4375, 113.90625, 89.09375, 113.10156, 97.99219, 249.13281, 39.773438, 248.46875, 24, 263.65625, 24, 263.65625, 54.132813, 214.39844, 13.2109375, 214.21094, 3.203125, 233.8125, 54.203125, 234.46094, 110.96094, 214.3125, 110.6875, 214.14063, 85.1875, 3.34375, 41.9375, 3.34375, 29.898438, 44.890625, 30.71875, 46.601563, 41.101563, 316.7578, 54.632813, 316.22656, 75.90625, 248.84375, 77.578125, 247.47656, 52.453125, 147.34375, 75.89844, 120.140625, 77.96094, 105.28125, 73.75781, 71.671875, 11.84375, 147.95313, 12.15625, 147.95313, 12.1484375, 66.85156, 23.15625, 45.546875, 12.1171875, 45.25, 83.78125, 3.1328125, 97.140625, 3.0234375, 84.60156, 110.74219, 118.171875, 117.46875, 108.078125)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8, 9), PackedInt32Array(10, 6, 5, 11, 12), PackedInt32Array(13, 14, 15, 16, 17), PackedInt32Array(18, 4, 9, 19), PackedInt32Array(20, 18, 19, 21), PackedInt32Array(22, 20, 21), PackedInt32Array(23, 24, 25, 26, 27, 28, 29), PackedInt32Array(30, 31, 32, 33), PackedInt32Array(34, 35, 1), PackedInt32Array(34, 1, 0), PackedInt32Array(36, 37, 38, 39), PackedInt32Array(40, 41, 42, 43), PackedInt32Array(33, 44, 45, 46), PackedInt32Array(33, 46, 47, 30), PackedInt32Array(2, 30, 47, 36), PackedInt32Array(3, 2, 36, 39), PackedInt32Array(3, 39, 6, 10), PackedInt32Array(12, 11, 48, 14), PackedInt32Array(14, 48, 15), PackedInt32Array(16, 15, 49, 50), PackedInt32Array(50, 49, 28, 27), PackedInt32Array(51, 52, 34, 0, 13, 17), PackedInt32Array(51, 53, 52), PackedInt32Array(51, 17, 54, 55), PackedInt32Array(42, 55, 54, 26, 43), PackedInt32Array(56, 43, 26, 25), PackedInt32Array(25, 57, 58, 56), PackedInt32Array(59, 23, 29, 60, 21), PackedInt32Array(21, 60, 22)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, 81.66667, 0.16666412, 100.16667, 42.333332, 100, 42, 105.5, 97.66667, 105.16667, 108.833336, 120.66667, 122.66667, 126, 147, 126.333336, 162.66667, 119.66667, 167.33334, 113.333336, 175.16667, 99.16667, 175.83334, 87.833336, 211.16667, 88.16667, 211.33334, 113.66667, 237.5, 114, 236.83334, 56.833336, 244.66667, 55.833336, 246, 80.66667, 319.1667, 78.833336, 319.83334, 51.666668, 266.6667, 51.166668, 266.6667, 21, 245.33334, 21, 246, 36.666668, 236.5, 36.333336, 236, 0.5, 211.16667, 0.16666667, 211.33334, 10.166667, 148, 9.166667, 71.66667, 8.833334, 42.666668, 9.166667, 42, 27.666668, 0.33333206, 26.833334, 0.33333206, 45, 43.5, 44.166668, 42.333332, 80.833336)])
+agent_radius = 3.0
 
 [node name="MainMenu" type="Control" unique_id=399083296]
 layout_mode = 3
@@ -12,12 +23,62 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_853f1")
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1711435044]
+layout_mode = 1
+anchors_preset = -1
+offset_left = -300.0
+offset_right = 20.0
+offset_bottom = 180.0
+scale = Vector2(6, 6)
+texture = ExtResource("2_c3p6v")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="TextureRect" unique_id=445855782]
+navigation_polygon = SubResource("NavigationPolygon_c3p6v")
+
+[node name="Polygon2D" type="Polygon2D" parent="TextureRect/NavigationRegion2D" unique_id=1328464786]
+color = Color(0, 0, 0, 0)
+polygon = PackedVector2Array(69.833336, 26.166668, 123.16667, 26.166668, 123.5, 58.666668, 103, 71.66667, 96.333336, 84.5, 69.66667, 85.333336)
+
+[node name="Polygon2D2" type="Polygon2D" parent="TextureRect/NavigationRegion2D" unique_id=458426059]
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(147.83334, 27, 211.5, 26.833334, 211, 71.833336, 167.33334, 71.66667, 158.83334, 63, 148, 60)
+
+[node name="Polygon2D3" type="Polygon2D" parent="TextureRect/NavigationRegion2D" unique_id=1444725229]
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(136.5, 76.333336, 122.16667, 80.5, 116.833336, 90, 116.16667, 97.5, 119.833336, 106, 128.5, 111.16667, 136.83334, 112.66667, 146.83334, 110, 153, 104.16667, 156.66667, 94.333336, 153.5, 84.5, 146, 78.66667)
+
+[node name="Spawner1" type="Marker2D" parent="TextureRect" unique_id=1666968768 node_paths=PackedStringArray("target")]
+position = Vector2(4, 90.833336)
+script = ExtResource("3_445kf")
+objs = Array[PackedScene]([ExtResource("4_bq65x"), ExtResource("5_dpe20")])
+target = NodePath("../End")
+min_seconds = 5.0
+max_seconds = 15.0
+
+[node name="Spawner2" type="Marker2D" parent="TextureRect" unique_id=587654112 node_paths=PackedStringArray("target")]
+position = Vector2(3.6666667, 36)
+script = ExtResource("3_445kf")
+objs = Array[PackedScene]([ExtResource("5_dpe20"), ExtResource("4_bq65x")])
+target = NodePath("../End")
+min_seconds = 5.0
+max_seconds = 15.0
+
+[node name="End" type="Marker2D" parent="TextureRect" unique_id=786556486]
+position = Vector2(316, 67)
+
+[node name="Traffic Light" parent="TextureRect" unique_id=414423625 instance=ExtResource("6_dpe20")]
+position = Vector2(205.5, 18.666668)
+scale = Vector2(0.3, 0.3)
+cycleDuration = 8.0
+
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1480329568]
+z_index = 5
 custom_minimum_size = Vector2(400, 200)
 layout_mode = 1
 anchors_preset = -1
-offset_bottom = 120.0
-color = Color(0, 0, 0, 0.39215687)
+offset_right = 400.0
+offset_bottom = 200.0
+color = Color(0, 0, 0, 0)
 
 [node name="ColorRect" type="ColorRect" parent="ColorRect" unique_id=473976922]
 layout_mode = 1
@@ -43,12 +104,14 @@ texture = ExtResource("1_tt5f1")
 stretch_mode = 5
 
 [node name="ColorRect2" type="ColorRect" parent="." unique_id=594522145]
+z_index = 5
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -70.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0, 0, 0, 0.39215687)

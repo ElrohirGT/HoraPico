@@ -19,6 +19,7 @@ position = Vector2(95.5, 3.5)
 shape = SubResource("RectangleShape2D_oicv7")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1199083602]
+path_desired_distance = 5.0
 avoidance_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1320372791]
