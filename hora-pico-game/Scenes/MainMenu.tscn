@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://cwkveb2a4y2e0"]
+
+[ext_resource type="Script" uid="uid://dghoilh20l4i2" path="res://Scenes/main_menu.gd" id="1_853f1"]
+[ext_resource type="Texture2D" uid="uid://g3f6fq4n5b0m" path="res://TestSprites/TITLE_CARD.png" id="1_tt5f1"]
+
+[node name="MainMenu" type="Control" unique_id=399083296]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_853f1")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1480329568]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 1
+anchors_preset = -1
+offset_bottom = 120.0
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect" unique_id=473976922]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/ColorRect" unique_id=234848251]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_tt5f1")
+stretch_mode = 5
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=594522145]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect2" unique_id=512967309]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -22.5
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Play" type="Button" parent="ColorRect2/HBoxContainer" unique_id=1451027850]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Play"
+
+[node name="Quit" type="Button" parent="ColorRect2/HBoxContainer" unique_id=1518697416]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Quit"
+
+[connection signal="pressed" from="ColorRect2/HBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="ColorRect2/HBoxContainer/Quit" to="." method="_on_quit_pressed"]
