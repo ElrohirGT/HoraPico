@@ -1,6 +1,7 @@
 extends TextureProgressBar
 
 @onready var timer = $SpeedAbilityTimer
+@onready var speed_sounds_player: RandomAudioPlayer = $SpeedSounds
 
 func _ready() -> void:
 	EventBus.AbilityInvoked.connect(_on_ability_invoked)
@@ -13,6 +14,7 @@ func _on_ability_invoked(ability: Enums.Ability):
 	if ability != Enums.Ability.SPEED:
 		return
 	
+	speed_sounds_player.play()
 	timer.start()
 	self.show()
 

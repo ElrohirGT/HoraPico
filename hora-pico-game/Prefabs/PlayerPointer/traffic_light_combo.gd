@@ -8,6 +8,10 @@ extends Panel
 @onready var container: HBoxContainer = $HBoxContainer
 @onready var mistake_timer: Timer = $MistakeDisplayTimer
 
+@onready var display_audio_player: RandomAudioPlayer = $DisplayAudios
+@onready var failure_audio_player: RandomAudioPlayer = $FailureAudios
+@onready var success_audio_player: RandomAudioPlayer = $SuccessAudios
+
 enum Directions{UP, DOWN, LEFT, RIGHT}
 var done: Array[Directions]
 var pattern: Array[Directions]
@@ -40,20 +44,21 @@ func _input(event: InputEvent) -> void:
 		return
 	
 	if dir != expected:
-		mistake_timer.start()
+		if mistake_timer.is_stopped():
+			failure_audio_player.play()
+			mistake_timer.start()
 	
-	if dir == expected and idx+1 == len(pattern):
+	if dir == expected and idx+1 == len(pattern) and mistake_timer.is_stopped():
+		success_audio_player.play()
 		call_deferred("_on_pattern_complete")
 	
 	done.append(dir)
 	
 func _on_pattern_mistake():
-	# TODO: Add sound effect!
 	self.hide()
 	done = []
 
 func _on_pattern_complete():
-	# TODO: Add sound effect!
 	self.hide()
 	done = []
 	if selected_traffic_light != null:
@@ -63,6 +68,7 @@ func _on_ability_invoked(ability: Enums.Ability):
 	if ability != Enums.Ability.FIX_TRAFFIC_LIGHT:
 		return
 	
+	display_audio_player.play()
 	pattern = generate_random_pattern()
 	self.show()
 

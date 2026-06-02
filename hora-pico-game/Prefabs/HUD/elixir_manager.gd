@@ -8,6 +8,8 @@ class_name ElixirManager
 @onready var elixirBar: TextureProgressBar = $ElixirBar
 @onready var elixirLabel: Label = $ElixirLabel
 
+@onready var elixir_plus_player: RandomAudioPlayer = $ElixirPlusAudios
+
 static var elixirQuantity: float
 var elixirTimer: Timer
 
@@ -55,5 +57,6 @@ func _on_ability_invoked(ability: Enums.Ability):
 	if ability != Enums.Ability.ELIXIR:
 		return
 	
+	elixir_plus_player.play()
 	maxElixir += 1
 	elixirBar.max_value = maxElixir

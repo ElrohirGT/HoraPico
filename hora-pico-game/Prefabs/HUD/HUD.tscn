@@ -7,10 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://bl87v80rvrnak" path="res://TestSprites/CAR_Red.png" id="5_smjiq"]
 [ext_resource type="Texture2D" uid="uid://c1hgqihjds4k0" path="res://TestSprites/BUS_Red.png" id="6_ri8ef"]
 [ext_resource type="Texture2D" uid="uid://cmscw5rru0jx1" path="res://TestSprites/ALERT_normal.png" id="7_r4eod"]
+[ext_resource type="PackedScene" uid="uid://c0f0fih2ds64h" path="res://Prefabs/RandomAudioPlayer/RandomAudioPlayer.tscn" id="8_5q26g"]
 [ext_resource type="Texture2D" uid="uid://bckexiugqn0yr" path="res://TestSprites/GAMEBAR_Border.png" id="8_r4eod"]
 [ext_resource type="Texture2D" uid="uid://d3sq6kne5rm7a" path="res://TestSprites/GAMEBAR_Progress.png" id="9_jdyly"]
 [ext_resource type="Script" uid="uid://crcl78v4mlq7m" path="res://Prefabs/HUD/progress_bar.gd" id="10_jdyly"]
 [ext_resource type="Script" uid="uid://kaf3kt8y7o0" path="res://Prefabs/HUD/match_timer.gd" id="11_45pxb"]
+[ext_resource type="AudioStream" uid="uid://beyiw87isjus6" path="res://Audio/Effects/Police/bubbles_3.mp3" id="11_k2a72"]
 [ext_resource type="Script" uid="uid://cgxkolwc2s6mj" path="res://Prefabs/HUD/pause_menu.gd" id="12_mk6xb"]
 [ext_resource type="Script" uid="uid://ce7ktmq0upisv" path="res://Prefabs/HUD/end_menu.gd" id="13_fd360"]
 
@@ -161,6 +163,12 @@ stretch_margin_right = 20
 stretch_margin_bottom = 20
 texture_over = ExtResource("1_kg4qw")
 texture_progress = ExtResource("1_aydyg")
+
+[node name="ElixirPlusAudios" parent="TopBar/ElixirBackground/ElixirContainer" unique_id=1360919332 instance=ExtResource("8_5q26g")]
+
+[node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="TopBar/ElixirBackground/ElixirContainer/ElixirPlusAudios" unique_id=1526493193]
+stream = ExtResource("11_k2a72")
+bus = &"Secondary Effects"
 
 [node name="ProgressBar" type="TextureProgressBar" parent="TopBar" unique_id=2014670878]
 layout_mode = 2

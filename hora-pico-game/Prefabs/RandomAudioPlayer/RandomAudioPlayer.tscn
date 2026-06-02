@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c0f0fih2ds64h"]
+
+[ext_resource type="Script" uid="uid://d2jiyp4v25x4h" path="res://Prefabs/RandomAudioPlayer/random_audio_player.gd" id="1_q4lej"]
+
+[node name="RandomAudioPlayer" type="Node2D" unique_id=1360919332]
+script = ExtResource("1_q4lej")
