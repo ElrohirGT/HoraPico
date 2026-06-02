@@ -175,7 +175,6 @@ stretch_margin_bottom = 4
 texture_over = ExtResource("8_r4eod")
 texture_progress = ExtResource("9_jdyly")
 script = ExtResource("10_jdyly")
-filling_speed = 1.0
 drain_speed = 2.0
 max_bonus = 5.0
 
@@ -216,6 +215,7 @@ script = ExtResource("11_45pxb")
 
 [node name="MatchTimer" type="Timer" parent="TopBar/TimerBackground/Label" unique_id=2145071276]
 wait_time = 180.0
+one_shot = true
 autostart = true
 
 [node name="PauseMenu" type="PanelContainer" parent="." unique_id=13101002]
@@ -274,6 +274,7 @@ text = "Play Again"
 layout_mode = 2
 text = "Main Menu"
 
+[connection signal="timeout" from="TopBar/TimerBackground/Label/MatchTimer" to="TopBar/TimerBackground/Label" method="_on_match_timer_timeout"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/Continue" to="PauseMenu" method="_on_continue_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/Quit" to="PauseMenu" method="_on_quit_pressed"]
 [connection signal="pressed" from="EndMenu/VBoxContainer/PlayAgain" to="EndMenu" method="_on_play_again_pressed"]

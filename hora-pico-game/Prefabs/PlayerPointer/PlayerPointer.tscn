@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dgcspri4fvk2f" path="res://TestSprites/POLICE_Cap.png" id="4_lo0a1"]
 [ext_resource type="Texture2D" uid="uid://c1duugq2duywa" path="res://TestSprites/SPEED_Symbol.png" id="6_cmcpv"]
 [ext_resource type="Texture2D" uid="uid://beawlp4xeuwjl" path="res://TestSprites/POLICE_Radius.png" id="6_iv0pp"]
+[ext_resource type="Texture2D" uid="uid://cchu7tgx70p61" path="res://TestSprites/ELIXIR_Plus.png" id="6_s3nbk"]
 [ext_resource type="Script" uid="uid://c3gj61sah6b7j" path="res://Prefabs/PlayerPointer/police_radius.gd" id="7_dn4us"]
 [ext_resource type="Texture2D" uid="uid://ddovh220mo17s" path="res://TestSprites/HACK_TrafficLight.png" id="7_ew5li"]
 [ext_resource type="Texture2D" uid="uid://ogr5v8il7gcq" path="res://TestSprites/RADIAL_PBAR_Over.png" id="7_pt5xh"]
@@ -100,6 +101,8 @@ layout_mode = 2
 
 [node name="Right" parent="SummonMenu" unique_id=159107384 instance=ExtResource("3_lo0a1")]
 layout_mode = 2
+cost = 6.0
+actionTexture = ExtResource("6_s3nbk")
 
 [node name="Control4" type="Control" parent="SummonMenu" unique_id=1236995429]
 layout_mode = 2
