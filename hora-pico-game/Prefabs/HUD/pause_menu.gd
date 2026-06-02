@@ -6,18 +6,8 @@ extends PanelContainer
 func _ready() -> void:
 	self.hide()
 	
-	continue_btn.text = "[%s] Continue" % get_key_or_button_for_action("pause_game")
-	quit_btn.text = "[%s] Quit" % get_key_or_button_for_action("ui_accept")
-
-func get_key_or_button_for_action(action: String) -> String:
-	var events = InputMap.action_get_events(action)
-	for event in events:
-		if event is InputEventKey:
-			return event.as_text_keycode()
-		if event is InputEventJoypadButton:
-			return event.as_text()
-	
-	return "?"
+	continue_btn.text = "[%s] Continue" % Utils.get_key_or_button_for_action("pause_game")
+	quit_btn.text = "[%s] Quit" % Utils.get_key_or_button_for_action("ui_accept")
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause_game"):

@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://crcl78v4mlq7m" path="res://Prefabs/HUD/progress_bar.gd" id="10_jdyly"]
 [ext_resource type="Script" uid="uid://kaf3kt8y7o0" path="res://Prefabs/HUD/match_timer.gd" id="11_45pxb"]
 [ext_resource type="Script" uid="uid://cgxkolwc2s6mj" path="res://Prefabs/HUD/pause_menu.gd" id="12_mk6xb"]
+[ext_resource type="Script" uid="uid://ce7ktmq0upisv" path="res://Prefabs/HUD/end_menu.gd" id="13_fd360"]
 
 [node name="HUD" type="Control" unique_id=2055424362]
 layout_mode = 3
@@ -217,8 +218,9 @@ script = ExtResource("11_45pxb")
 wait_time = 180.0
 autostart = true
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=13101002]
+[node name="PauseMenu" type="PanelContainer" parent="." unique_id=13101002]
 process_mode = 3
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -227,24 +229,52 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("12_mk6xb")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1865673992]
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu" unique_id=1865673992]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer" unique_id=2014878056]
+[node name="Label" type="Label" parent="PauseMenu/VBoxContainer" unique_id=2014878056]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Pause"
 horizontal_alignment = 1
 
-[node name="Continue" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1632475990]
+[node name="Continue" type="Button" parent="PauseMenu/VBoxContainer" unique_id=1632475990]
 layout_mode = 2
 text = "Continue"
 
-[node name="Quit" type="Button" parent="PanelContainer/VBoxContainer" unique_id=2080858058]
+[node name="Quit" type="Button" parent="PauseMenu/VBoxContainer" unique_id=2080858058]
 layout_mode = 2
 text = "Quit"
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Continue" to="PanelContainer" method="_on_continue_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="PanelContainer" method="_on_quit_pressed"]
+[node name="EndMenu" type="PanelContainer" parent="." unique_id=607257382]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("13_fd360")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndMenu" unique_id=1190732272]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="EndMenu/VBoxContainer" unique_id=1257598747]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+
+[node name="PlayAgain" type="Button" parent="EndMenu/VBoxContainer" unique_id=669155173]
+layout_mode = 2
+text = "Play Again"
+
+[node name="MainMenu" type="Button" parent="EndMenu/VBoxContainer" unique_id=114109091]
+layout_mode = 2
+text = "Main Menu"
+
+[connection signal="pressed" from="PauseMenu/VBoxContainer/Continue" to="PauseMenu" method="_on_continue_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/Quit" to="PauseMenu" method="_on_quit_pressed"]
+[connection signal="pressed" from="EndMenu/VBoxContainer/PlayAgain" to="EndMenu" method="_on_play_again_pressed"]
+[connection signal="pressed" from="EndMenu/VBoxContainer/MainMenu" to="EndMenu" method="_on_main_menu_pressed"]
