@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://b24mfrjbjetan" path="res://Assets/20260525_171245.png" id="1_q12u6"]
 [ext_resource type="PackedScene" uid="uid://cqcnrpfy4ruk5" path="res://Prefabs/HUD/HUD.tscn" id="2_q12u6"]
 [ext_resource type="PackedScene" uid="uid://dkqpgnifqiqih" path="res://Prefabs/PlayerJoiner/PlayerJoiner.tscn" id="5_slnnj"]
+[ext_resource type="PackedScene" uid="uid://bfp488y4t37xr" path="res://Prefabs/TrafficLight/Traffic Light.tscn" id="5_t3or0"]
+[ext_resource type="PackedScene" uid="uid://6tlt2pqn7seh" path="res://Prefabs/PlayerPointer/TrafficPlayerPointer.tscn" id="6_t3or0"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jghel"]
 vertices = PackedVector2Array(502.0703, 425.8125, 504.90625, 803.4297, 469.95313, 801.52344, 468.04688, 425.1797)
@@ -250,6 +252,7 @@ func _on_velocity_timer_timeout() -> void:
 [node name="PlayerJoiner" parent="." unique_id=1218929265 instance=ExtResource("5_slnnj")]
 z_index = 15
 position = Vector2(493, 348)
+traffic_player_prefab = ExtResource("6_t3or0")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=91177656]
 z_index = -5
@@ -458,11 +461,28 @@ one_shot = true
 
 [node name="HUD" parent="CanvasLayer" unique_id=2055424362 instance=ExtResource("2_q12u6")]
 
-[node name="TrafficContainer" parent="CanvasLayer/HUD/TrafficBackground" parent_id_path=PackedInt32Array(2055424362, 1237301669) index="0" unique_id=849580536]
+[node name="TrafficBackground" parent="CanvasLayer/HUD" index="0" unique_id=1237301669]
+offset_left = -170.0
+offset_top = -308.0
+offset_right = -20.0
+offset_bottom = 42.0
+
+[node name="TrafficContainer" parent="CanvasLayer/HUD/TrafficBackground" index="0" unique_id=849580536]
 offset_left = 12.839966
 offset_top = 10.152
 offset_right = 13.279907
 offset_bottom = -142.88803
+
+[node name="Traffic Light" parent="." unique_id=1400643141 instance=ExtResource("5_t3or0")]
+position = Vector2(1031, 238)
+
+[node name="Traffic Light2" parent="." unique_id=316218899 instance=ExtResource("5_t3or0")]
+position = Vector2(93, 328)
+
+[node name="Traffic Light3" parent="." unique_id=929433336 instance=ExtResource("5_t3or0")]
+position = Vector2(485, 474)
+rotation = 1.5707964
+disable_mode = 1
 
 [connection signal="timeout" from="Combo_Timer" to="Spawners" method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="Velocity_Timer" to="Spawners" method="_on_velocity_timer_timeout"]

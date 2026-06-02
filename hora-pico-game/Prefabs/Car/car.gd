@@ -58,6 +58,11 @@ func despawn() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if (body is Car || body is TrafficLight || body is Bus) && body != self:
+		
+		if body is TrafficLight:
+			if body.state == TrafficLight.TrafficLightState.GREEN or body.state == TrafficLight.TrafficLightState.YELLOW:
+				return
+				
 		navigation_agent.process_mode = Node.PROCESS_MODE_DISABLED
 		movement_speed = 0
 		last_angle = rotation

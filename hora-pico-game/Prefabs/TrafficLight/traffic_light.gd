@@ -15,6 +15,7 @@ enum TrafficLightState{RED, YELLOW, GREEN, HACKED}
 @export var state: TrafficLightState
 
 var timer: Timer
+var is_cursor_hovering: bool = false
 
 func updateVisually():
 	Red.hide()
@@ -24,16 +25,16 @@ func updateVisually():
 	
 	if state == TrafficLightState.RED:
 		Red.show()
-		Collider.show()
+		Collider.set_deferred("disabled", false)
 	elif state == TrafficLightState.YELLOW:
 		Yellow.show()
-		Collider.hide()
+		Collider.set_deferred("disabled", true)
 	elif state == TrafficLightState.GREEN:
 		Green.show()
-		Collider.hide()
+		Collider.set_deferred("disabled", true)
 	elif state == TrafficLightState.HACKED:
 		Hacked.show()
-		Collider.show()
+		Collider.set_deferred("disabled", false)
 
 func _ready() -> void:
 	timer = Timer.new()
@@ -57,3 +58,20 @@ func _process(delta: float) -> void:
 		if timer.time_left <= timer.wait_time * yellowPercentage:
 			state = TrafficLightState.YELLOW
 	updateVisually()
+
+func _on_interact_area_area_entered(area: Area2D) -> void:
+	if area.owner is TrafficPlayerPointer:
+		is_cursor_hovering = true
+
+func _on_interact_area_area_exited(area: Area2D) -> void:
+	if area.owner is TrafficPlayerPointer:
+		is_cursor_hovering = false
+		
+func _unhandled_input(event: InputEvent) -> void:
+	if is_cursor_hovering and event.is_action_pressed("hack_traffic"):
+		hack_traffic_light()
+		
+func hack_traffic_light() -> void:
+	if state != TrafficLightState.HACKED:
+		state = TrafficLightState.HACKED
+		timer.stop()

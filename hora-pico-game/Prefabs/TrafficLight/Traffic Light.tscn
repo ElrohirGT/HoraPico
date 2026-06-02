@@ -7,16 +7,17 @@
 [ext_resource type="Texture2D" uid="uid://ckoagmeqotsq8" path="res://TestSprites/LIGHT_Hacked.png" id="5_hdwss"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_js5qc"]
-size = Vector2(30, 128)
+size = Vector2(31, 79)
 
-[node name="Traffic Light" type="StaticBody2D" unique_id=1400643141]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4had"]
+size = Vector2(31.75, 58)
+
+[node name="Traffic Light" type="StaticBody2D" unique_id=414423625]
+z_index = 10
+input_pickable = true
 script = ExtResource("1_16qi8")
-cycleDuration = 3.0
+cycleDuration = 10.0
 yellowPercentage = 0.3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=865414064]
-position = Vector2(-1, 1)
-shape = SubResource("RectangleShape2D_js5qc")
 
 [node name="Red" type="Sprite2D" parent="." unique_id=489239734]
 texture = ExtResource("3_16qi8")
@@ -29,3 +30,14 @@ texture = ExtResource("2_3axdo")
 
 [node name="Hacked" type="Sprite2D" parent="." unique_id=1704836589]
 texture = ExtResource("5_hdwss")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=865414064]
+shape = SubResource("RectangleShape2D_js5qc")
+
+[node name="InteractArea" type="Area2D" parent="." unique_id=1784426429]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea" unique_id=117690559]
+shape = SubResource("RectangleShape2D_b4had")
+
+[connection signal="area_entered" from="InteractArea" to="." method="_on_interact_area_area_entered"]
+[connection signal="area_exited" from="InteractArea" to="." method="_on_interact_area_area_exited"]
