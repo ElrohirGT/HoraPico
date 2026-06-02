@@ -3,6 +3,8 @@ extends TextureRect
 @onready var area_2d: Area2D = $Area2D
 @onready var ability_timer: Timer = $AbilityOnTimer
 
+@onready var audio_player: RandomAudioPlayer = $RandomAudioPlayer
+
 func _ready() -> void:
 	EventBus.AbilityInvoked.connect(_on_ability_invoked)
 	area_2d.monitoring = false
@@ -10,7 +12,8 @@ func _ready() -> void:
 func _on_ability_invoked(ability: Enums.Ability):
 	if ability != Enums.Ability.POLICE:
 		return
-	
+
+	audio_player.play()
 	area_2d.monitoring = true
 	ability_timer.start()
 
