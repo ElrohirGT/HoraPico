@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://beawlp4xeuwjl" path="res://TestSprites/POLICE_Radius.png" id="6_iv0pp"]
 [ext_resource type="Script" uid="uid://c3gj61sah6b7j" path="res://Prefabs/PlayerPointer/police_radius.gd" id="7_dn4us"]
 [ext_resource type="Texture2D" uid="uid://ddovh220mo17s" path="res://TestSprites/HACK_TrafficLight.png" id="7_ew5li"]
+[ext_resource type="Script" uid="uid://05mc3d1bfeq1" path="res://Prefabs/PlayerPointer/traffic_light_combo.gd" id="8_yscrs"]
+[ext_resource type="Texture2D" uid="uid://cndf2vyalj7g2" path="res://TestSprites/COMBO_ARROW_Neutral.png" id="9_ew5li"]
+[ext_resource type="Texture2D" uid="uid://cng57pj14kto" path="res://TestSprites/COMBO_ARROW_Ok.png" id="10_cn7im"]
+[ext_resource type="Texture2D" uid="uid://eeyqpdtf31da" path="res://TestSprites/COMBO_ARROW_Failed.png" id="11_cmcpv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b6qr5"]
 size = Vector2(32, 32)
@@ -100,6 +104,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="PoliceRadius" type="TextureRect" parent="." unique_id=790336966]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -126,5 +131,78 @@ shape = SubResource("CircleShape2D_iv0pp")
 wait_time = 0.1
 one_shot = true
 
+[node name="TrafficLightCombo" type="Panel" parent="." unique_id=427411115]
+custom_minimum_size = Vector2(160, 20)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_yscrs")
+neutral_arrow = ExtResource("9_ew5li")
+correct_arrow = ExtResource("10_cn7im")
+wrong_arrow = ExtResource("11_cmcpv")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TrafficLightCombo" unique_id=408625123]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Control" type="Control" parent="TrafficLightCombo/HBoxContainer" unique_id=555125133]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TrafficLightCombo/HBoxContainer/Control" unique_id=878700991]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("9_ew5li")
+
+[node name="Control2" type="Control" parent="TrafficLightCombo/HBoxContainer" unique_id=1286699465]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TrafficLightCombo/HBoxContainer/Control2" unique_id=233443295]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_ew5li")
+
+[node name="MistakeDisplayTimer" type="Timer" parent="TrafficLightCombo" unique_id=474772660]
+one_shot = true
+
+[connection signal="body_entered" from="Pointer/Area2D" to="TrafficLightCombo" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="PoliceRadius/Area2D" to="PoliceRadius" method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="PoliceRadius/AbilityOnTimer" to="PoliceRadius" method="_on_ability_on_timer_timeout"]
+[connection signal="timeout" from="TrafficLightCombo/MistakeDisplayTimer" to="TrafficLightCombo" method="_on_mistake_display_timer_timeout"]
