@@ -4,18 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://cgxeblmouqji1" path="res://Assets/Car.png" id="8_jt2so"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pke32"]
-size = Vector2(74, 33)
+size = Vector2(38.394997, 33)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_11k86"]
 size = Vector2(85, 40)
 
-[node name="Car" type="CharacterBody2D" unique_id=1651818327]
+[node name="Car2" type="CharacterBody2D" unique_id=1651818327]
 script = ExtResource("1_756hr")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=43982859]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2065775384]
-position = Vector2(67.605, 0)
+position = Vector2(49.8025, 0)
 shape = SubResource("RectangleShape2D_pke32")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1199083602]

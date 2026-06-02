@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://cqcnrpfy4ruk5"]
 
 [ext_resource type="Script" uid="uid://27k8ptic051g" path="res://Prefabs/HUD/elixir_manager.gd" id="1_0qdy1"]
+[ext_resource type="Texture2D" uid="uid://cgxeblmouqji1" path="res://Assets/Car.png" id="1_5jdsq"]
 [ext_resource type="Texture2D" uid="uid://blnkux5p8cfni" path="res://TestSprites/ELIXIR_Progress.png" id="1_aydyg"]
 [ext_resource type="Texture2D" uid="uid://bhlg4p5y0g7w8" path="res://TestSprites/ELIXIR_Over.png" id="1_kg4qw"]
 [ext_resource type="Texture2D" uid="uid://bnwj31ja0dvw0" path="res://TestSprites/ELIXIR_Symbol.png" id="2_jr6l7"]
-[ext_resource type="Texture2D" uid="uid://bl87v80rvrnak" path="res://TestSprites/CAR_Red.png" id="5_smjiq"]
-[ext_resource type="Texture2D" uid="uid://c1hgqihjds4k0" path="res://TestSprites/BUS_Red.png" id="6_ri8ef"]
-[ext_resource type="Texture2D" uid="uid://cmscw5rru0jx1" path="res://TestSprites/ALERT_normal.png" id="7_r4eod"]
+[ext_resource type="Texture2D" uid="uid://depn4611ie7st" path="res://Assets/Bus.png" id="2_kbwmx"]
+[ext_resource type="Texture2D" uid="uid://g3f6fq4n5b0m" path="res://TestSprites/TITLE_CARD.png" id="3_5jdsq"]
 [ext_resource type="PackedScene" uid="uid://c0f0fih2ds64h" path="res://Prefabs/RandomAudioPlayer/RandomAudioPlayer.tscn" id="8_5q26g"]
 [ext_resource type="Texture2D" uid="uid://bckexiugqn0yr" path="res://TestSprites/GAMEBAR_Border.png" id="8_r4eod"]
 [ext_resource type="Texture2D" uid="uid://d3sq6kne5rm7a" path="res://TestSprites/GAMEBAR_Progress.png" id="9_jdyly"]
@@ -29,14 +29,14 @@ z_index = -2
 custom_minimum_size = Vector2(150, 350)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -0.048095703
-offset_top = -0.24798584
-offset_right = -30.0
-offset_bottom = -40.0
+anchor_left = 0.84400004
+anchor_top = 0.39800003
+anchor_right = 0.97400004
+anchor_bottom = 0.938
+offset_left = -0.2880249
+offset_top = 0.09597778
+offset_right = -0.048095703
+offset_bottom = 0.17596436
 grow_horizontal = 0
 grow_vertical = 0
 color = Color(0.13333334, 0.1254902, 0.20392157, 0.39215687)
@@ -44,15 +44,9 @@ color = Color(0.13333334, 0.1254902, 0.20392157, 0.39215687)
 [node name="TrafficContainer" type="VBoxContainer" parent="TrafficBackground" unique_id=849580536]
 clip_contents = true
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -78.0
-offset_top = -170.0
-offset_right = 78.0
-offset_bottom = 170.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 25
@@ -70,13 +64,17 @@ vertical_alignment = 1
 [node name="CarCombo" type="HBoxContainer" parent="TrafficBackground/TrafficContainer" unique_id=1583742461]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/separation = 25
 alignment = 1
 
-[node name="NinePatchRect" type="NinePatchRect" parent="TrafficBackground/TrafficContainer/CarCombo" unique_id=1668763979]
-custom_minimum_size = Vector2(50, 50)
+[node name="Car" type="Sprite2D" parent="TrafficBackground/TrafficContainer/CarCombo" unique_id=1558548141]
+position = Vector2(0, 10)
+texture = ExtResource("1_5jdsq")
+region_enabled = true
+region_rect = Rect2(5, 16, 33, 18)
+
+[node name="Control" type="Control" parent="TrafficBackground/TrafficContainer/CarCombo" unique_id=1115283071]
 layout_mode = 2
-texture = ExtResource("5_smjiq")
-region_rect = Rect2(2.6368866, 15.671325, 59.551228, 41.745213)
 
 [node name="Label" type="Label" parent="TrafficBackground/TrafficContainer/CarCombo" unique_id=2061933779]
 layout_mode = 2
@@ -85,13 +83,17 @@ text = "U D L L"
 [node name="BusCombo" type="HBoxContainer" parent="TrafficBackground/TrafficContainer" unique_id=953029810]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/separation = 25
 alignment = 1
 
-[node name="NinePatchRect" type="NinePatchRect" parent="TrafficBackground/TrafficContainer/BusCombo" unique_id=1074182175]
-custom_minimum_size = Vector2(50, 50)
+[node name="Bus" type="Sprite2D" parent="TrafficBackground/TrafficContainer/BusCombo" unique_id=54944912]
+position = Vector2(-7, 9)
+texture = ExtResource("2_kbwmx")
+region_enabled = true
+region_rect = Rect2(57, 22, 49, 18)
+
+[node name="Control" type="Control" parent="TrafficBackground/TrafficContainer/BusCombo" unique_id=308222850]
 layout_mode = 2
-texture = ExtResource("6_ri8ef")
-region_rect = Rect2(2.6368866, 2.0269585, 123.68419, 61.727512)
 
 [node name="Label" type="Label" parent="TrafficBackground/TrafficContainer/BusCombo" unique_id=1359159523]
 layout_mode = 2
@@ -104,9 +106,10 @@ size_flags_horizontal = 4
 alignment = 1
 
 [node name="NinePatchRect" type="NinePatchRect" parent="TrafficBackground/TrafficContainer/UltiCombo" unique_id=2090901581]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(75, 40)
 layout_mode = 2
-texture = ExtResource("7_r4eod")
+texture = ExtResource("3_5jdsq")
+region_rect = Rect2(1, 2, 112, 62)
 
 [node name="Label" type="Label" parent="TrafficBackground/TrafficContainer/UltiCombo" unique_id=787498383]
 layout_mode = 2
@@ -168,7 +171,6 @@ texture_progress = ExtResource("1_aydyg")
 
 [node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="TopBar/ElixirBackground/ElixirContainer/ElixirPlusAudios" unique_id=1526493193]
 stream = ExtResource("11_k2a72")
-bus = &"Secondary Effects"
 
 [node name="ProgressBar" type="TextureProgressBar" parent="TopBar" unique_id=2014670878]
 layout_mode = 2
@@ -273,6 +275,7 @@ layout_mode = 2
 text = "Quit"
 
 [node name="EndMenu" type="PanelContainer" parent="." unique_id=607257382]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

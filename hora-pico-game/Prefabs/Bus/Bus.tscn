@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://b32g8n8oykt8j" path="res://Prefabs/Bus/bus.gd" id="1_tvseh"]
 [ext_resource type="Texture2D" uid="uid://depn4611ie7st" path="res://Assets/Bus.png" id="2_oicv7"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_pke32"]
-radius = 40.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oicv7"]
+size = Vector2(47, 43)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_11k86"]
 size = Vector2(147, 50)
@@ -15,8 +15,8 @@ script = ExtResource("1_tvseh")
 [node name="Area2D" type="Area2D" parent="." unique_id=43982859]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2065775384]
-position = Vector2(106, 2)
-shape = SubResource("CircleShape2D_pke32")
+position = Vector2(95.5, 3.5)
+shape = SubResource("RectangleShape2D_oicv7")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1199083602]
 avoidance_enabled = true
