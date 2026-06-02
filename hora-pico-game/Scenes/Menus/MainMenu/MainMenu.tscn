@@ -13,7 +13,6 @@ vertices = PackedVector2Array(214.53125, 23.828125, 233.03906, 3.4609375, 233.53
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8, 9), PackedInt32Array(10, 6, 5, 11, 12), PackedInt32Array(13, 14, 15, 16, 17), PackedInt32Array(18, 4, 9, 19), PackedInt32Array(20, 18, 19, 21), PackedInt32Array(22, 20, 21), PackedInt32Array(23, 24, 25, 26, 27, 28, 29), PackedInt32Array(30, 31, 32, 33), PackedInt32Array(34, 35, 1), PackedInt32Array(34, 1, 0), PackedInt32Array(36, 37, 38, 39), PackedInt32Array(40, 41, 42, 43), PackedInt32Array(33, 44, 45, 46), PackedInt32Array(33, 46, 47, 30), PackedInt32Array(2, 30, 47, 36), PackedInt32Array(3, 2, 36, 39), PackedInt32Array(3, 39, 6, 10), PackedInt32Array(12, 11, 48, 14), PackedInt32Array(14, 48, 15), PackedInt32Array(16, 15, 49, 50), PackedInt32Array(50, 49, 28, 27), PackedInt32Array(51, 52, 34, 0, 13, 17), PackedInt32Array(51, 53, 52), PackedInt32Array(51, 17, 54, 55), PackedInt32Array(42, 55, 54, 26, 43), PackedInt32Array(56, 43, 26, 25), PackedInt32Array(25, 57, 58, 56), PackedInt32Array(59, 23, 29, 60, 21), PackedInt32Array(21, 60, 22)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(0, 81.66667, 0.16666412, 100.16667, 42.333332, 100, 42, 105.5, 97.66667, 105.16667, 108.833336, 120.66667, 122.66667, 126, 147, 126.333336, 162.66667, 119.66667, 167.33334, 113.333336, 175.16667, 99.16667, 175.83334, 87.833336, 211.16667, 88.16667, 211.33334, 113.66667, 237.5, 114, 236.83334, 56.833336, 244.66667, 55.833336, 246, 80.66667, 319.1667, 78.833336, 319.83334, 51.666668, 266.6667, 51.166668, 266.6667, 21, 245.33334, 21, 246, 36.666668, 236.5, 36.333336, 236, 0.5, 211.16667, 0.16666667, 211.33334, 10.166667, 148, 9.166667, 71.66667, 8.833334, 42.666668, 9.166667, 42, 27.666668, 0.33333206, 26.833334, 0.33333206, 45, 43.5, 44.166668, 42.333332, 80.833336)])
 agent_radius = 3.0
-[ext_resource type="AudioStream" uid="uid://jydt8cp48d1b" path="res://Audio/HoraPicoTheme.ogg" id="3_c3p6v"]
 
 [node name="MainMenu" type="Control" unique_id=399083296]
 layout_mode = 3
@@ -138,11 +137,6 @@ text = "Play"
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Quit"
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2068604482]
-stream = ExtResource("3_c3p6v")
-autoplay = true
-parameters/looping = true
 
 [connection signal="pressed" from="ColorRect2/HBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="ColorRect2/HBoxContainer/Quit" to="." method="_on_quit_pressed"]
