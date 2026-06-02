@@ -4,11 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://d1wb0cucy1ahu" path="res://Prefabs/PlayerPointer/PlayerPointerButton/PlayerPointerButton.tscn" id="3_lo0a1"]
 [ext_resource type="Texture2D" uid="uid://bpah4lo7q0ce1" path="res://TestSprites/PLAYER_P3.png" id="3_pmt1u"]
 [ext_resource type="Texture2D" uid="uid://dgcspri4fvk2f" path="res://TestSprites/POLICE_Cap.png" id="4_lo0a1"]
+[ext_resource type="Texture2D" uid="uid://c1duugq2duywa" path="res://TestSprites/SPEED_Symbol.png" id="6_cmcpv"]
 [ext_resource type="Texture2D" uid="uid://beawlp4xeuwjl" path="res://TestSprites/POLICE_Radius.png" id="6_iv0pp"]
 [ext_resource type="Script" uid="uid://c3gj61sah6b7j" path="res://Prefabs/PlayerPointer/police_radius.gd" id="7_dn4us"]
 [ext_resource type="Texture2D" uid="uid://ddovh220mo17s" path="res://TestSprites/HACK_TrafficLight.png" id="7_ew5li"]
+[ext_resource type="Texture2D" uid="uid://ogr5v8il7gcq" path="res://TestSprites/RADIAL_PBAR_Over.png" id="7_pt5xh"]
+[ext_resource type="Texture2D" uid="uid://dwdieynpvsky5" path="res://TestSprites/RADIAL_PBAR_Progress.png" id="8_qhxg1"]
 [ext_resource type="Script" uid="uid://05mc3d1bfeq1" path="res://Prefabs/PlayerPointer/traffic_light_combo.gd" id="8_yscrs"]
 [ext_resource type="Texture2D" uid="uid://cndf2vyalj7g2" path="res://TestSprites/COMBO_ARROW_Neutral.png" id="9_ew5li"]
+[ext_resource type="Script" uid="uid://beboeud1rjkrq" path="res://Prefabs/PlayerPointer/speed_ability_progress_bar.gd" id="9_qhxg1"]
 [ext_resource type="Texture2D" uid="uid://cng57pj14kto" path="res://TestSprites/COMBO_ARROW_Ok.png" id="10_cn7im"]
 [ext_resource type="Texture2D" uid="uid://eeyqpdtf31da" path="res://TestSprites/COMBO_ARROW_Failed.png" id="11_cmcpv"]
 
@@ -89,7 +93,7 @@ layout_mode = 2
 layout_mode = 2
 cost = 4.0
 actionTexture = ExtResource("7_ew5li")
-ability = 1
+ability = 2
 
 [node name="Control3" type="Control" parent="SummonMenu" unique_id=1250062109]
 layout_mode = 2
@@ -102,6 +106,29 @@ layout_mode = 2
 
 [node name="Bottom" parent="SummonMenu" unique_id=1619145492 instance=ExtResource("3_lo0a1")]
 layout_mode = 2
+cost = 8.0
+actionTexture = ExtResource("6_cmcpv")
+ability = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="SummonMenu/Bottom" unique_id=214540069]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.0
+value = 1.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_over = ExtResource("7_pt5xh")
+texture_progress = ExtResource("8_qhxg1")
+script = ExtResource("9_qhxg1")
+
+[node name="SpeedAbilityTimer" type="Timer" parent="SummonMenu/Bottom/TextureProgressBar" unique_id=1622641898]
+wait_time = 5.0
+one_shot = true
 
 [node name="PoliceRadius" type="TextureRect" parent="." unique_id=790336966]
 visible = false
@@ -203,6 +230,7 @@ texture = ExtResource("9_ew5li")
 one_shot = true
 
 [connection signal="body_entered" from="Pointer/Area2D" to="TrafficLightCombo" method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="SummonMenu/Bottom/TextureProgressBar/SpeedAbilityTimer" to="SummonMenu/Bottom/TextureProgressBar" method="_on_speed_ability_timer_timeout"]
 [connection signal="body_entered" from="PoliceRadius/Area2D" to="PoliceRadius" method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="PoliceRadius/AbilityOnTimer" to="PoliceRadius" method="_on_ability_on_timer_timeout"]
 [connection signal="timeout" from="TrafficLightCombo/MistakeDisplayTimer" to="TrafficLightCombo" method="_on_mistake_display_timer_timeout"]

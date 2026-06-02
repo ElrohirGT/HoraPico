@@ -1,3 +1,3 @@
 extends Node
 
-enum Ability{POLICE, FIX_TRAFFIC_LIGHT}
+enum Ability{POLICE, SPEED, FIX_TRAFFIC_LIGHT}
