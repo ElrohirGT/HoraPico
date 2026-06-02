@@ -12,6 +12,8 @@ static var elixirQuantity: float
 var elixirTimer: Timer
 
 func _ready() -> void:
+	EventBus.AbilityInvoked.connect(_on_ability_invoked)
+	
 	elixirTimer = Timer.new()
 	elixirTimer.wait_time = secondsPerElixir
 	elixirTimer.autostart = true
@@ -48,3 +50,10 @@ func _on_invoke_ability(ability: Enums.Ability, cost: float):
 		return
 	print("Ability %s consumed!" % ability)
 	EventBus.AbilityInvoked.emit(ability)
+	
+func _on_ability_invoked(ability: Enums.Ability):
+	if ability != Enums.Ability.ELIXIR:
+		return
+	
+	maxElixir += 1
+	elixirBar.max_value = maxElixir

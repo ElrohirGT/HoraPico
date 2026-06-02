@@ -8,6 +8,7 @@ var controllers: Dictionary = {}
 
 func _ready() -> void:
 	Input.joy_connection_changed.connect(_on_joy_connection_changed)
+	# NOTE: Update based on status from previous window!
 	for idx in InputManager.player_index+1:
 		var node = null
 		if idx == 0:
