@@ -4,9 +4,32 @@
 [ext_resource type="PackedScene" uid="uid://d1wb0cucy1ahu" path="res://Prefabs/PlayerPointer/PlayerPointerButton/PlayerPointerButton.tscn" id="3_lo0a1"]
 [ext_resource type="Texture2D" uid="uid://bpah4lo7q0ce1" path="res://TestSprites/PLAYER_P3.png" id="3_pmt1u"]
 [ext_resource type="Texture2D" uid="uid://dgcspri4fvk2f" path="res://TestSprites/POLICE_Cap.png" id="4_lo0a1"]
+[ext_resource type="AudioStream" uid="uid://14k8y0xvrty6" path="res://Audio/Effects/Police/metal_whistle_1.mp3" id="5_5kpil"]
+[ext_resource type="Texture2D" uid="uid://c1duugq2duywa" path="res://TestSprites/SPEED_Symbol.png" id="6_cmcpv"]
 [ext_resource type="Texture2D" uid="uid://beawlp4xeuwjl" path="res://TestSprites/POLICE_Radius.png" id="6_iv0pp"]
+[ext_resource type="AudioStream" uid="uid://dvdjoac4a4g24" path="res://Audio/Effects/Police/metal_whistle_2.mp3" id="6_r08ld"]
+[ext_resource type="Texture2D" uid="uid://cchu7tgx70p61" path="res://TestSprites/ELIXIR_Plus.png" id="6_s3nbk"]
 [ext_resource type="Script" uid="uid://c3gj61sah6b7j" path="res://Prefabs/PlayerPointer/police_radius.gd" id="7_dn4us"]
 [ext_resource type="Texture2D" uid="uid://ddovh220mo17s" path="res://TestSprites/HACK_TrafficLight.png" id="7_ew5li"]
+[ext_resource type="Texture2D" uid="uid://ogr5v8il7gcq" path="res://TestSprites/RADIAL_PBAR_Over.png" id="7_pt5xh"]
+[ext_resource type="Texture2D" uid="uid://dwdieynpvsky5" path="res://TestSprites/RADIAL_PBAR_Progress.png" id="8_qhxg1"]
+[ext_resource type="Script" uid="uid://05mc3d1bfeq1" path="res://Prefabs/PlayerPointer/traffic_light_combo.gd" id="8_yscrs"]
+[ext_resource type="Texture2D" uid="uid://cndf2vyalj7g2" path="res://TestSprites/COMBO_ARROW_Neutral.png" id="9_ew5li"]
+[ext_resource type="Script" uid="uid://beboeud1rjkrq" path="res://Prefabs/PlayerPointer/speed_ability_progress_bar.gd" id="9_qhxg1"]
+[ext_resource type="Texture2D" uid="uid://cng57pj14kto" path="res://TestSprites/COMBO_ARROW_Ok.png" id="10_cn7im"]
+[ext_resource type="Texture2D" uid="uid://eeyqpdtf31da" path="res://TestSprites/COMBO_ARROW_Failed.png" id="11_cmcpv"]
+[ext_resource type="Script" uid="uid://d2jiyp4v25x4h" path="res://Prefabs/RandomAudioPlayer/random_audio_player.gd" id="11_fwe23"]
+[ext_resource type="AudioStream" uid="uid://c4jwvrr2ch4nd" path="res://Audio/Effects/Police/speed_1.mp3" id="12_4bm7m"]
+[ext_resource type="AudioStream" uid="uid://bqqpdo5sgauun" path="res://Audio/Effects/Police/speed_2.mp3" id="13_lh2g1"]
+[ext_resource type="PackedScene" uid="uid://c0f0fih2ds64h" path="res://Prefabs/RandomAudioPlayer/RandomAudioPlayer.tscn" id="13_uar5s"]
+[ext_resource type="AudioStream" uid="uid://3wkpyl6swk1y" path="res://Audio/Effects/Police/police_siren_1.mp3" id="14_ohk7v"]
+[ext_resource type="AudioStream" uid="uid://bwrpg2km1e424" path="res://Audio/Effects/Police/sonar_1.mp3" id="21_gpeea"]
+[ext_resource type="AudioStream" uid="uid://r8uqso5nma55" path="res://Audio/Effects/Police/sonar_2.mp3" id="22_dqpty"]
+[ext_resource type="AudioStream" uid="uid://i7ea05w83ufn" path="res://Audio/Effects/Police/sucess_1.mp3" id="23_dqpty"]
+[ext_resource type="AudioStream" uid="uid://80nb3tiv0xbe" path="res://Audio/Effects/Police/success_2.mp3" id="24_jxrhp"]
+[ext_resource type="AudioStream" uid="uid://dpxpj6dql3w2c" path="res://Audio/Effects/Police/error_1.mp3" id="24_vi4ni"]
+[ext_resource type="AudioStream" uid="uid://dnoahc1axfepn" path="res://Audio/Effects/Police/error_2.mp3" id="25_jxrhp"]
+[ext_resource type="AudioStream" uid="uid://dxqdnbriw5pb7" path="res://Audio/Effects/Police/error_3.mp3" id="26_8mo82"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b6qr5"]
 size = Vector2(32, 32)
@@ -85,21 +108,60 @@ layout_mode = 2
 layout_mode = 2
 cost = 4.0
 actionTexture = ExtResource("7_ew5li")
-ability = 1
+ability = 2
 
 [node name="Control3" type="Control" parent="SummonMenu" unique_id=1250062109]
 layout_mode = 2
 
 [node name="Right" parent="SummonMenu" unique_id=159107384 instance=ExtResource("3_lo0a1")]
 layout_mode = 2
+cost = 6.0
+actionTexture = ExtResource("6_s3nbk")
+ability = 3
 
 [node name="Control4" type="Control" parent="SummonMenu" unique_id=1236995429]
 layout_mode = 2
 
 [node name="Bottom" parent="SummonMenu" unique_id=1619145492 instance=ExtResource("3_lo0a1")]
 layout_mode = 2
+cost = 8.0
+actionTexture = ExtResource("6_cmcpv")
+ability = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="SummonMenu/Bottom" unique_id=214540069]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.0
+value = 1.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_over = ExtResource("7_pt5xh")
+texture_progress = ExtResource("8_qhxg1")
+script = ExtResource("9_qhxg1")
+
+[node name="SpeedAbilityTimer" type="Timer" parent="SummonMenu/Bottom/TextureProgressBar" unique_id=1622641898]
+wait_time = 5.0
+one_shot = true
+
+[node name="SpeedSounds" type="Node2D" parent="SummonMenu/Bottom/TextureProgressBar" unique_id=900113594]
+script = ExtResource("11_fwe23")
+metadata/_custom_type_script = "uid://d2jiyp4v25x4h"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="SummonMenu/Bottom/TextureProgressBar/SpeedSounds" unique_id=707725497]
+stream = ExtResource("12_4bm7m")
+bus = &"Secondary Effects"
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="SummonMenu/Bottom/TextureProgressBar/SpeedSounds" unique_id=742679766]
+stream = ExtResource("13_lh2g1")
+bus = &"Secondary Effects"
 
 [node name="PoliceRadius" type="TextureRect" parent="." unique_id=790336966]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -126,5 +188,127 @@ shape = SubResource("CircleShape2D_iv0pp")
 wait_time = 0.1
 one_shot = true
 
+[node name="RandomAudioPlayer" parent="PoliceRadius" unique_id=1360919332 instance=ExtResource("13_uar5s")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="PoliceRadius/RandomAudioPlayer" unique_id=247686131]
+stream = ExtResource("14_ohk7v")
+bus = &"Secondary Effects"
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="PoliceRadius/RandomAudioPlayer" unique_id=1221409574]
+stream = ExtResource("6_r08ld")
+bus = &"Secondary Effects"
+
+[node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="PoliceRadius/RandomAudioPlayer" unique_id=2144536632]
+stream = ExtResource("5_5kpil")
+bus = &"Secondary Effects"
+
+[node name="TrafficLightCombo" type="Panel" parent="." unique_id=427411115]
+custom_minimum_size = Vector2(160, 20)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_yscrs")
+neutral_arrow = ExtResource("9_ew5li")
+correct_arrow = ExtResource("10_cn7im")
+wrong_arrow = ExtResource("11_cmcpv")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TrafficLightCombo" unique_id=408625123]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Control" type="Control" parent="TrafficLightCombo/HBoxContainer" unique_id=555125133]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TrafficLightCombo/HBoxContainer/Control" unique_id=878700991]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5707964
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("9_ew5li")
+
+[node name="Control2" type="Control" parent="TrafficLightCombo/HBoxContainer" unique_id=1286699465]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TrafficLightCombo/HBoxContainer/Control2" unique_id=233443295]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_ew5li")
+
+[node name="MistakeDisplayTimer" type="Timer" parent="TrafficLightCombo" unique_id=474772660]
+one_shot = true
+
+[node name="DisplayAudios" parent="TrafficLightCombo" unique_id=1660214352 instance=ExtResource("13_uar5s")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="TrafficLightCombo/DisplayAudios" unique_id=2111230213]
+stream = ExtResource("21_gpeea")
+bus = &"Secondary Effects"
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="TrafficLightCombo/DisplayAudios" unique_id=452499045]
+stream = ExtResource("22_dqpty")
+bus = &"Secondary Effects"
+
+[node name="SuccessAudios" parent="TrafficLightCombo" unique_id=1207376850 instance=ExtResource("13_uar5s")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="TrafficLightCombo/SuccessAudios" unique_id=230649848]
+stream = ExtResource("23_dqpty")
+bus = &"Secondary Effects"
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="TrafficLightCombo/SuccessAudios" unique_id=1682080535]
+stream = ExtResource("24_jxrhp")
+bus = &"Secondary Effects"
+
+[node name="FailureAudios" parent="TrafficLightCombo" unique_id=1135765661 instance=ExtResource("13_uar5s")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="TrafficLightCombo/FailureAudios" unique_id=2014315522]
+stream = ExtResource("24_vi4ni")
+bus = &"Secondary Effects"
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="TrafficLightCombo/FailureAudios" unique_id=885291770]
+stream = ExtResource("25_jxrhp")
+bus = &"Secondary Effects"
+
+[node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="TrafficLightCombo/FailureAudios" unique_id=1610497207]
+stream = ExtResource("26_8mo82")
+bus = &"Secondary Effects"
+
+[connection signal="body_entered" from="Pointer/Area2D" to="TrafficLightCombo" method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="SummonMenu/Bottom/TextureProgressBar/SpeedAbilityTimer" to="SummonMenu/Bottom/TextureProgressBar" method="_on_speed_ability_timer_timeout"]
 [connection signal="body_entered" from="PoliceRadius/Area2D" to="PoliceRadius" method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="PoliceRadius/AbilityOnTimer" to="PoliceRadius" method="_on_ability_on_timer_timeout"]
+[connection signal="timeout" from="TrafficLightCombo/MistakeDisplayTimer" to="TrafficLightCombo" method="_on_mistake_display_timer_timeout"]

@@ -2,7 +2,11 @@ extends CharacterBody2D
 
 class_name Car
 
-var movement_speed: float = 100.0
+@export var original_movement_speed: float = 100.0
+@export var turbo_speed: float = 170.0
+
+var default_movement_speed: float = original_movement_speed
+var movement_speed: float = original_movement_speed
 var movement_target_position: Vector2 = Vector2.ZERO
 var last_angle: float = 0
 var priority: int = 0
@@ -12,6 +16,9 @@ var priority: int = 0
 var sprites: Array[Sprite2D]
 
 func _ready():
+	EventBus.AbilityInvoked.connect(_on_ability_invoked)
+	EventBus.SpeedEnded.connect(_on_speed_ended)
+	
 	var sp = find_children("Car*", "Sprite2D").map(func(el): return (el as Sprite2D))
 	sprites.assign(sp)
 	
@@ -71,9 +78,18 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			var otherCar = body as Car
 			if priority < otherCar.priority:
 				navigation_agent.process_mode = Node.PROCESS_MODE_ALWAYS
-				movement_speed = 100
+				movement_speed = default_movement_speed
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if (body is Car || body is TrafficLight || body is Bus) && body != self:
 		navigation_agent.process_mode = Node.PROCESS_MODE_ALWAYS
-		movement_speed = 100
+		movement_speed = default_movement_speed
+
+func _on_ability_invoked(ability: Enums.Ability):
+	if ability == Enums.Ability.SPEED:
+		default_movement_speed = turbo_speed
+		movement_speed = turbo_speed
+	
+func _on_speed_ended():
+	default_movement_speed = original_movement_speed
+	movement_speed = original_movement_speed

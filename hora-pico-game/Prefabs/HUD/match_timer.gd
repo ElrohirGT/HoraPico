@@ -13,3 +13,7 @@ func _process(delta: float) -> void:
 		self.text = "%dm %ds" % [minutes, seconds]
 	else:
 		self.text = "%ds" % seconds
+
+
+func _on_match_timer_timeout() -> void:
+	EventBus.GameEnded.emit("City")

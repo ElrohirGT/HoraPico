@@ -75,3 +75,7 @@ func hack_traffic_light() -> void:
 	if state != TrafficLightState.HACKED:
 		state = TrafficLightState.HACKED
 		timer.stop()
+
+func unhack_traffic_light() ->void:
+	state = TrafficLightState.GREEN
+	timer.start()

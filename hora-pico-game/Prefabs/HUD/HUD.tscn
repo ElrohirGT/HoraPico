@@ -7,11 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://bl87v80rvrnak" path="res://TestSprites/CAR_Red.png" id="5_smjiq"]
 [ext_resource type="Texture2D" uid="uid://c1hgqihjds4k0" path="res://TestSprites/BUS_Red.png" id="6_ri8ef"]
 [ext_resource type="Texture2D" uid="uid://cmscw5rru0jx1" path="res://TestSprites/ALERT_normal.png" id="7_r4eod"]
+[ext_resource type="PackedScene" uid="uid://c0f0fih2ds64h" path="res://Prefabs/RandomAudioPlayer/RandomAudioPlayer.tscn" id="8_5q26g"]
 [ext_resource type="Texture2D" uid="uid://bckexiugqn0yr" path="res://TestSprites/GAMEBAR_Border.png" id="8_r4eod"]
 [ext_resource type="Texture2D" uid="uid://d3sq6kne5rm7a" path="res://TestSprites/GAMEBAR_Progress.png" id="9_jdyly"]
 [ext_resource type="Script" uid="uid://crcl78v4mlq7m" path="res://Prefabs/HUD/progress_bar.gd" id="10_jdyly"]
 [ext_resource type="Script" uid="uid://kaf3kt8y7o0" path="res://Prefabs/HUD/match_timer.gd" id="11_45pxb"]
+[ext_resource type="AudioStream" uid="uid://beyiw87isjus6" path="res://Audio/Effects/Police/bubbles_3.mp3" id="11_k2a72"]
 [ext_resource type="Script" uid="uid://cgxkolwc2s6mj" path="res://Prefabs/HUD/pause_menu.gd" id="12_mk6xb"]
+[ext_resource type="Script" uid="uid://ce7ktmq0upisv" path="res://Prefabs/HUD/end_menu.gd" id="13_fd360"]
 
 [node name="HUD" type="Control" unique_id=2055424362]
 layout_mode = 3
@@ -161,6 +164,12 @@ stretch_margin_bottom = 20
 texture_over = ExtResource("1_kg4qw")
 texture_progress = ExtResource("1_aydyg")
 
+[node name="ElixirPlusAudios" parent="TopBar/ElixirBackground/ElixirContainer" unique_id=1360919332 instance=ExtResource("8_5q26g")]
+
+[node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="TopBar/ElixirBackground/ElixirContainer/ElixirPlusAudios" unique_id=1526493193]
+stream = ExtResource("11_k2a72")
+bus = &"Secondary Effects"
+
 [node name="ProgressBar" type="TextureProgressBar" parent="TopBar" unique_id=2014670878]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -174,14 +183,13 @@ stretch_margin_bottom = 4
 texture_over = ExtResource("8_r4eod")
 texture_progress = ExtResource("9_jdyly")
 script = ExtResource("10_jdyly")
-filling_speed = 1.0
 drain_speed = 2.0
 max_bonus = 5.0
 
 [node name="ProgressBarRefresh" type="Timer" parent="TopBar/ProgressBar" unique_id=1194165795]
 wait_time = 30.0
 
-[node name="Label" type="Label" parent="TopBar/ProgressBar" unique_id=1265566949]
+[node name="Info" type="Label" parent="TopBar/ProgressBar" unique_id=1265566949]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -193,6 +201,22 @@ offset_bottom = 9.5
 grow_vertical = 2
 text = "S: 15 - D: 8 - T: 23.4"
 vertical_alignment = 1
+
+[node name="ChaosTimer" type="Timer" parent="TopBar/ProgressBar" unique_id=481169502]
+wait_time = 10.0
+
+[node name="ChaosDisplay" type="Label" parent="TopBar/ProgressBar" unique_id=1064778147]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_right = -10.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "2.23s"
+horizontal_alignment = 1
 
 [node name="TimerBackground" type="ColorRect" parent="TopBar" unique_id=695490963]
 custom_minimum_size = Vector2(100, 45)
@@ -215,10 +239,12 @@ script = ExtResource("11_45pxb")
 
 [node name="MatchTimer" type="Timer" parent="TopBar/TimerBackground/Label" unique_id=2145071276]
 wait_time = 180.0
+one_shot = true
 autostart = true
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=13101002]
+[node name="PauseMenu" type="PanelContainer" parent="." unique_id=13101002]
 process_mode = 3
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -227,24 +253,54 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("12_mk6xb")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1865673992]
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu" unique_id=1865673992]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer" unique_id=2014878056]
+[node name="Label" type="Label" parent="PauseMenu/VBoxContainer" unique_id=2014878056]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Pause"
 horizontal_alignment = 1
 
-[node name="Continue" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1632475990]
+[node name="Continue" type="Button" parent="PauseMenu/VBoxContainer" unique_id=1632475990]
 layout_mode = 2
 text = "Continue"
 
-[node name="Quit" type="Button" parent="PanelContainer/VBoxContainer" unique_id=2080858058]
+[node name="Quit" type="Button" parent="PauseMenu/VBoxContainer" unique_id=2080858058]
 layout_mode = 2
 text = "Quit"
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Continue" to="PanelContainer" method="_on_continue_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="PanelContainer" method="_on_quit_pressed"]
+[node name="EndMenu" type="PanelContainer" parent="." unique_id=607257382]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("13_fd360")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndMenu" unique_id=1190732272]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="EndMenu/VBoxContainer" unique_id=1257598747]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+
+[node name="PlayAgain" type="Button" parent="EndMenu/VBoxContainer" unique_id=669155173]
+layout_mode = 2
+text = "Play Again"
+
+[node name="MainMenu" type="Button" parent="EndMenu/VBoxContainer" unique_id=114109091]
+layout_mode = 2
+text = "Main Menu"
+
+[connection signal="timeout" from="TopBar/ProgressBar/ChaosTimer" to="TopBar/ProgressBar" method="_on_chaos_timer_timeout"]
+[connection signal="timeout" from="TopBar/TimerBackground/Label/MatchTimer" to="TopBar/TimerBackground/Label" method="_on_match_timer_timeout"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/Continue" to="PauseMenu" method="_on_continue_pressed"]
+[connection signal="pressed" from="PauseMenu/VBoxContainer/Quit" to="PauseMenu" method="_on_quit_pressed"]
+[connection signal="pressed" from="EndMenu/VBoxContainer/PlayAgain" to="EndMenu" method="_on_play_again_pressed"]
+[connection signal="pressed" from="EndMenu/VBoxContainer/MainMenu" to="EndMenu" method="_on_main_menu_pressed"]

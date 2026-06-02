@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cqcnrpfy4ruk5" path="res://Prefabs/HUD/HUD.tscn" id="2_s3r27"]
 [ext_resource type="PackedScene" uid="uid://b414gvgep8n1r" path="res://Prefabs/Alert/Alert.tscn" id="3_upjjv"]
 [ext_resource type="PackedScene" uid="uid://dkqpgnifqiqih" path="res://Prefabs/PlayerJoiner/PlayerJoiner.tscn" id="4_rddux"]
+[ext_resource type="PackedScene" uid="uid://6tlt2pqn7seh" path="res://Prefabs/PlayerPointer/TrafficPlayerPointer.tscn" id="5_1tb5g"]
 
 [node name="PoliceDemo" type="Node2D" unique_id=573129927]
 
@@ -21,3 +22,4 @@ position = Vector2(765, 172)
 
 [node name="PlayerJoiner" parent="." unique_id=1218929265 instance=ExtResource("4_rddux")]
 position = Vector2(579, 360)
+traffic_player_prefab = ExtResource("5_1tb5g")
