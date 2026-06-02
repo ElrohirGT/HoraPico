@@ -16,7 +16,6 @@ func _on_joy_connection_changed(device: int, connected: bool):
 	
 	if player_index == 0:
 		node = traffic_player_prefab.instantiate()
-	
 	else:
 		node = player_prefab.instantiate()
 	
