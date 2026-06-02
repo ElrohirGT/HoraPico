@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 EventBus="*uid://2sqnkycjqfjn"
 Enums="*uid://d0aj1ljfac1hn"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
 [gui]
 
 theme/custom_font="uid://dkkjsf8ooiyp1"
