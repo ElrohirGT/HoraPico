@@ -1,18 +1,13 @@
 [gd_scene format=3 uid="uid://df0wdlpqojsmy"]
 
 [ext_resource type="Script" uid="uid://cr0i3ttu1p2du" path="res://Prefabs/Car/car.gd" id="1_756hr"]
-[ext_resource type="Texture2D" uid="uid://bl87v80rvrnak" path="res://TestSprites/CAR_Red.png" id="2_5oga4"]
-[ext_resource type="Texture2D" uid="uid://does2jng0e1s8" path="res://TestSprites/CAR_Brown.png" id="3_pke32"]
-[ext_resource type="Texture2D" uid="uid://b4ck1cb61binu" path="res://TestSprites/CAR_Gray.png" id="4_jt2so"]
-[ext_resource type="Texture2D" uid="uid://blef5yvt78qof" path="res://TestSprites/CAR_Green.png" id="5_qdxa5"]
-[ext_resource type="Texture2D" uid="uid://dtd7andrjn4xc" path="res://TestSprites/CAR_Orange.png" id="6_1vjde"]
-[ext_resource type="Texture2D" uid="uid://d2aydeyxhi5nx" path="res://TestSprites/CAR_Pink.png" id="7_amwtc"]
+[ext_resource type="Texture2D" uid="uid://cgxeblmouqji1" path="res://Assets/Car.png" id="8_jt2so"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pke32"]
 size = Vector2(74, 33)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_11k86"]
-size = Vector2(59, 41)
+size = Vector2(85, 40)
 
 [node name="Car" type="CharacterBody2D" unique_id=1651818327]
 script = ExtResource("1_756hr")
@@ -27,32 +22,32 @@ shape = SubResource("RectangleShape2D_pke32")
 avoidance_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1320372791]
-position = Vector2(0, 4.5)
+position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_11k86")
 
 [node name="CarRed" type="Sprite2D" parent="." unique_id=1930025501]
-rotation = 3.1415927
-texture = ExtResource("2_5oga4")
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("8_jt2so")
+region_enabled = true
+region_rect = Rect2(4.5334644, 15.62473, 33.964096, 18.752338)
 
-[node name="CarBrown" type="Sprite2D" parent="." unique_id=1097100046]
-rotation = 3.1415927
-texture = ExtResource("3_pke32")
+[node name="CargGreen" type="Sprite2D" parent="." unique_id=1097100046]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("8_jt2so")
+region_enabled = true
+region_rect = Rect2(139.12933, 13.119939, 41.547363, 25.539944)
 
-[node name="CarGray" type="Sprite2D" parent="." unique_id=901709179]
-rotation = 3.1415927
-texture = ExtResource("4_jt2so")
+[node name="CarBlue" type="Sprite2D" parent="." unique_id=346501496]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("8_jt2so")
+region_enabled = true
+region_rect = Rect2(141.01727, 53.528183, 39.96463, 25.719803)
 
-[node name="CarGreen" type="Sprite2D" parent="." unique_id=346501496]
-rotation = 3.1415927
-texture = ExtResource("5_qdxa5")
-
-[node name="CarOrange" type="Sprite2D" parent="." unique_id=1606863533]
-rotation = 3.1415927
-texture = ExtResource("6_1vjde")
-
-[node name="CarPink" type="Sprite2D" parent="." unique_id=2084379242]
-rotation = 3.1415927
-texture = ExtResource("7_amwtc")
+[node name="CarOrange" type="Sprite2D" parent="." unique_id=901709179]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("8_jt2so")
+region_enabled = true
+region_rect = Rect2(2.7922554, 56.88517, 36.331474, 23.741356)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

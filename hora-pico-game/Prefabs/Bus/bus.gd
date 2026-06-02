@@ -12,7 +12,7 @@ var priority: int = 0
 var sprites: Array[Sprite2D]
 
 func _ready():
-	var sp = find_children("Car*", "Sprite2D").map(func(el): return (el as Sprite2D))
+	var sp = find_children("Bus*", "Sprite2D").map(func(el): return (el as Sprite2D))
 	sprites.assign(sp)
 	
 	for variant in sprites:

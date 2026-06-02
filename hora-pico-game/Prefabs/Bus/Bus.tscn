@@ -1,12 +1,7 @@
 [gd_scene format=3 uid="uid://dxtx0mstvmlkq"]
 
 [ext_resource type="Script" uid="uid://b32g8n8oykt8j" path="res://Prefabs/Bus/bus.gd" id="1_tvseh"]
-[ext_resource type="Texture2D" uid="uid://bl87v80rvrnak" path="res://TestSprites/CAR_Red.png" id="2_gbt5y"]
-[ext_resource type="Texture2D" uid="uid://does2jng0e1s8" path="res://TestSprites/CAR_Brown.png" id="3_mgcrw"]
-[ext_resource type="Texture2D" uid="uid://b4ck1cb61binu" path="res://TestSprites/CAR_Gray.png" id="4_t8fos"]
-[ext_resource type="Texture2D" uid="uid://blef5yvt78qof" path="res://TestSprites/CAR_Green.png" id="5_m54mg"]
-[ext_resource type="Texture2D" uid="uid://dtd7andrjn4xc" path="res://TestSprites/CAR_Orange.png" id="6_78rvq"]
-[ext_resource type="Texture2D" uid="uid://d2aydeyxhi5nx" path="res://TestSprites/CAR_Pink.png" id="7_de4cx"]
+[ext_resource type="Texture2D" uid="uid://depn4611ie7st" path="res://Assets/Bus.png" id="2_oicv7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pke32"]
 radius = 40.0
@@ -20,45 +15,32 @@ script = ExtResource("1_tvseh")
 [node name="Area2D" type="Area2D" parent="." unique_id=43982859]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2065775384]
-position = Vector2(113, 0)
+position = Vector2(106, 2)
 shape = SubResource("CircleShape2D_pke32")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1199083602]
 avoidance_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1320372791]
-position = Vector2(-1.5, 0)
 shape = SubResource("RectangleShape2D_11k86")
 
-[node name="CarRed" type="Sprite2D" parent="." unique_id=1930025501]
-rotation = 3.1415927
-scale = Vector2(2.5, 1.5)
-texture = ExtResource("2_gbt5y")
+[node name="BusGreen" type="Sprite2D" parent="." unique_id=1930025501]
+scale = Vector2(3.36, 3.2608697)
+texture = ExtResource("2_oicv7")
+region_enabled = true
+region_rect = Rect2(54.15536, 19.471903, 54.20943, 23.147825)
 
-[node name="CarBrown" type="Sprite2D" parent="." unique_id=1097100046]
-rotation = 3.1415927
-scale = Vector2(2.5, 1.5)
-texture = ExtResource("3_mgcrw")
+[node name="BusYellow" type="Sprite2D" parent="." unique_id=1097100046]
+scale = Vector2(3.36, 3.148148)
+texture = ExtResource("2_oicv7")
+region_enabled = true
+region_rect = Rect2(207.4845, 16.495815, 56.385742, 27.104717)
 
-[node name="CarGray" type="Sprite2D" parent="." unique_id=901709179]
-rotation = 3.1415927
-scale = Vector2(2.5, 1.5)
-texture = ExtResource("4_t8fos")
-
-[node name="CarGreen" type="Sprite2D" parent="." unique_id=346501496]
-rotation = 3.1415927
-scale = Vector2(2.5, 1.5)
-texture = ExtResource("5_m54mg")
-
-[node name="CarOrange" type="Sprite2D" parent="." unique_id=1606863533]
-rotation = 3.1415927
-scale = Vector2(2.5, 1.5)
-texture = ExtResource("6_78rvq")
-
-[node name="CarPink" type="Sprite2D" parent="." unique_id=2084379242]
-rotation = 3.1415927
-scale = Vector2(2.5, 1.5)
-texture = ExtResource("7_de4cx")
+[node name="BusBlue" type="Sprite2D" parent="." unique_id=901709179]
+scale = Vector2(3.0357144, 3.0769231)
+texture = ExtResource("2_oicv7")
+region_enabled = true
+region_rect = Rect2(53.165653, 81.98786, 56.385715, 26.906868)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
