@@ -473,9 +473,6 @@ offset_top = 10.152
 offset_right = 13.279907
 offset_bottom = -142.88803
 
-[node name="AudioStreamPlayer2D3" parent="CanvasLayer/HUD/TopBar/ElixirBackground/ElixirContainer/ElixirPlusAudios" parent_id_path=PackedInt32Array(2055424362, 1360919332) index="0" unique_id=1526493193]
-bus = &"Master"
-
 [node name="Traffic Light" parent="." unique_id=1400643141 instance=ExtResource("5_t3or0")]
 position = Vector2(1003, 238)
 
