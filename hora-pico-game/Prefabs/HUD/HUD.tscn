@@ -181,7 +181,7 @@ max_bonus = 5.0
 [node name="ProgressBarRefresh" type="Timer" parent="TopBar/ProgressBar" unique_id=1194165795]
 wait_time = 30.0
 
-[node name="Label" type="Label" parent="TopBar/ProgressBar" unique_id=1265566949]
+[node name="Info" type="Label" parent="TopBar/ProgressBar" unique_id=1265566949]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -193,6 +193,22 @@ offset_bottom = 9.5
 grow_vertical = 2
 text = "S: 15 - D: 8 - T: 23.4"
 vertical_alignment = 1
+
+[node name="ChaosTimer" type="Timer" parent="TopBar/ProgressBar" unique_id=481169502]
+wait_time = 10.0
+
+[node name="ChaosDisplay" type="Label" parent="TopBar/ProgressBar" unique_id=1064778147]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_right = -10.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "2.23s"
+horizontal_alignment = 1
 
 [node name="TimerBackground" type="ColorRect" parent="TopBar" unique_id=695490963]
 custom_minimum_size = Vector2(100, 45)
@@ -274,6 +290,7 @@ text = "Play Again"
 layout_mode = 2
 text = "Main Menu"
 
+[connection signal="timeout" from="TopBar/ProgressBar/ChaosTimer" to="TopBar/ProgressBar" method="_on_chaos_timer_timeout"]
 [connection signal="timeout" from="TopBar/TimerBackground/Label/MatchTimer" to="TopBar/TimerBackground/Label" method="_on_match_timer_timeout"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/Continue" to="PauseMenu" method="_on_continue_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/Quit" to="PauseMenu" method="_on_quit_pressed"]
