@@ -22,15 +22,15 @@ func _ready() -> void:
 	self.hide()
 
 func _input(event: InputEvent) -> void:
-	if not event.is_pressed() or event.is_echo():
+	if not event.is_pressed() or event.is_echo() or event.device != device_id:
 		return
-	
+
 	var idx = len(done)
 	if idx >= len(pattern):
 		return
-	
+
 	var expected = pattern[idx]
-	
+
 	var dir: Directions
 	if event.is_action_pressed("light_up"):
 		dir = Directions.UP
@@ -42,18 +42,18 @@ func _input(event: InputEvent) -> void:
 		dir = Directions.RIGHT
 	else:
 		return
-	
+
 	if dir != expected:
 		if mistake_timer.is_stopped():
 			failure_audio_player.play()
 			mistake_timer.start()
-	
+
 	if dir == expected and idx+1 == len(pattern) and mistake_timer.is_stopped():
 		success_audio_player.play()
 		call_deferred("_on_pattern_complete")
-	
+
 	done.append(dir)
-	
+
 func _on_pattern_mistake():
 	self.hide()
 	done = []
@@ -64,10 +64,11 @@ func _on_pattern_complete():
 	if selected_traffic_light != null:
 		selected_traffic_light.unhack_traffic_light()
 
-func _on_ability_invoked(ability: Enums.Ability):
-	if ability != Enums.Ability.FIX_TRAFFIC_LIGHT:
+func _on_ability_invoked(source_device_id: int, ability: Enums.Ability):
+	if ability != Enums.Ability.FIX_TRAFFIC_LIGHT or source_device_id != device_id:
+		print("Ignoring ability: %d - src: %d - own: %d" % [ability, source_device_id, device_id])
 		return
-	
+
 	display_audio_player.play()
 	pattern = generate_random_pattern()
 	self.show()
@@ -75,7 +76,7 @@ func _on_ability_invoked(ability: Enums.Ability):
 func _process(delta: float) -> void:
 	for child in container.get_children():
 		child.queue_free()
-	
+
 	for idx in pattern.size():
 		var p = pattern[idx]
 		var texture_container = Control.new()
@@ -90,14 +91,14 @@ func _process(delta: float) -> void:
 			texture.rotation_degrees = 90
 		if p == Directions.LEFT:
 			texture.rotation_degrees = -90
-			
+
 		if idx < done.size():
 			var selected = done[idx]
 			if selected != p:
 				texture.texture = wrong_arrow
 			else:
 				texture.texture = correct_arrow
-			
+
 		texture_container.add_child(texture)
 		container.add_child(texture_container)
 
@@ -105,7 +106,7 @@ func generate_random_pattern() -> Array[Directions]:
 	var directions = [Directions.UP, Directions.DOWN, Directions.LEFT, Directions.RIGHT]
 	var new_pattern: Array[Directions]
 	var length = randi_range(3, 5)
-	
+
 	for i in length:
 		new_pattern.append(directions.pick_random())
 	return new_pattern

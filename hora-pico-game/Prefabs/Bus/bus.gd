@@ -18,10 +18,10 @@ var sprites: Array[Sprite2D]
 func _ready():
 	EventBus.AbilityInvoked.connect(_on_ability_invoked)
 	EventBus.SpeedEnded.connect(_on_speed_ended)
-	
+
 	var sp = find_children("Bus*", "Sprite2D").map(func(el): return (el as Sprite2D))
 	sprites.assign(sp)
-	
+
 	for variant in sprites:
 		variant.hide()
 	sprites.pick_random().show()
@@ -68,7 +68,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		navigation_agent.process_mode = Node.PROCESS_MODE_DISABLED
 		movement_speed = 0
 		last_angle = rotation
-		
+
 		if body is Car:
 			var otherCar = body as Car
 			if priority < otherCar.priority:
@@ -80,11 +80,11 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		navigation_agent.process_mode = Node.PROCESS_MODE_ALWAYS
 		movement_speed = default_movement_speed
 
-func _on_ability_invoked(ability: Enums.Ability):
+func _on_ability_invoked(source_device_id: int, ability: Enums.Ability):
 	if ability == Enums.Ability.SPEED:
 		default_movement_speed = turbo_speed
 		movement_speed = turbo_speed
-	
+
 func _on_speed_ended():
 	default_movement_speed = original_movement_speed
 	movement_speed = original_movement_speed

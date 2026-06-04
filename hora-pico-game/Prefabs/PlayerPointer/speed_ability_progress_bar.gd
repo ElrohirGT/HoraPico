@@ -10,10 +10,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	self.value = timer.time_left / timer.wait_time
 
-func _on_ability_invoked(ability: Enums.Ability):
+func _on_ability_invoked(source_device_id: int, ability: Enums.Ability):
 	if ability != Enums.Ability.SPEED:
 		return
-	
+
 	speed_sounds_player.play()
 	timer.start()
 	self.show()

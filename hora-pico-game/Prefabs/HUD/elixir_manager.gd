@@ -15,15 +15,15 @@ var elixirTimer: Timer
 
 func _ready() -> void:
 	EventBus.AbilityInvoked.connect(_on_ability_invoked)
-	
+
 	elixirTimer = Timer.new()
 	elixirTimer.wait_time = secondsPerElixir
 	elixirTimer.autostart = true
 	elixirTimer.timeout.connect(generateElixir)
 	add_child(elixirTimer)
-	
+
 	elixirBar.max_value = maxElixir
-	
+
 	EventBus.InvokeAbility.connect(_on_invoke_ability)
 
 func generateElixir():
@@ -41,22 +41,22 @@ func updateElixir(quantity: float):
 func ConsumeElixir(quantity: float) -> bool:
 	if elixirQuantity-quantity < 0:
 		return false
-	
+
 	elixirQuantity -= quantity
 	EventBus.ElixirChanged.emit(elixirQuantity)
 	return true
 
-func _on_invoke_ability(ability: Enums.Ability, cost: float):
+func _on_invoke_ability(source_device_id: int, ability: Enums.Ability, cost: float):
 	if not ConsumeElixir(cost):
 		print("Failed to consume ability: %s" % ability)
 		return
-	print("Ability %s consumed!" % ability)
-	EventBus.AbilityInvoked.emit(ability)
-	
-func _on_ability_invoked(ability: Enums.Ability):
+	print("Ability %s consumed by %d!" % [ability, source_device_id])
+	EventBus.AbilityInvoked.emit(source_device_id, ability)
+
+func _on_ability_invoked(source_device_id: int, ability: Enums.Ability):
 	if ability != Enums.Ability.ELIXIR:
 		return
-	
+
 	elixir_plus_player.play()
 	maxElixir += 1
 	elixirBar.max_value = maxElixir

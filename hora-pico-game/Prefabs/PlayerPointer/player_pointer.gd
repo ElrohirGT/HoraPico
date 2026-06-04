@@ -23,12 +23,15 @@ func _ready() -> void:
 	pointer.texture = texture
 	menu.hide()
 	
+	print("Creating pointer with id: %d" % device_id)
+	
 func _input(event: InputEvent):
 	if event.device != device_id:
 		return
 	
 	if selected != null && event.is_action_pressed("spend_elixir"):
-		EventBus.InvokeAbility.emit(selected.ability, selected.cost)
+		print("Emitting ability %d - src %d" % [selected.ability, device_id])
+		EventBus.InvokeAbility.emit(device_id, selected.ability, selected.cost)
 	
 
 func _process(delta: float) -> void:
@@ -68,3 +71,8 @@ func _process(delta: float) -> void:
 
 func is_between(val: float, min_val: float, max_val: float) -> bool:
 	return val >= min_val and val <= max_val
+
+func set_device_id(id: int):
+	device_id = id
+	$TrafficLightCombo.device_id = id
+	$PoliceRadius.device_id = id

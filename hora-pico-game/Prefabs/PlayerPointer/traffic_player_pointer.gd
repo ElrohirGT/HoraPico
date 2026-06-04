@@ -24,3 +24,6 @@ func _process(delta: float) -> void:
 	).limit_length(1.0)
 	if velocity.length() > 0.2:
 		set_position(position + velocity * moveMagnitude)
+
+func set_device_id(id: int):
+	device_id = id

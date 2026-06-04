@@ -17,7 +17,7 @@ func _ready() -> void:
 			node = player_prefab.instantiate()
 		
 		if node != null:
-			node.device_id = idx
+			node.set_device_id(idx)
 			node.texture = pointer_textures[idx % len(pointer_textures)]
 			add_child(node)
 			controllers.set(idx, node)

@@ -5,12 +5,15 @@ extends TextureRect
 
 @onready var audio_player: RandomAudioPlayer = $RandomAudioPlayer
 
+var device_id: int
+
 func _ready() -> void:
 	EventBus.AbilityInvoked.connect(_on_ability_invoked)
 	area_2d.monitoring = false
+	
 
-func _on_ability_invoked(ability: Enums.Ability):
-	if ability != Enums.Ability.POLICE:
+func _on_ability_invoked(source_device_id: int, ability: Enums.Ability):
+	if ability != Enums.Ability.POLICE or source_device_id != device_id:
 		return
 
 	audio_player.play()

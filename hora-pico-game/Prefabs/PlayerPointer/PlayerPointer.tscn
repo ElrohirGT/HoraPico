@@ -161,7 +161,6 @@ stream = ExtResource("13_lh2g1")
 bus = &"Secondary Effects"
 
 [node name="PoliceRadius" type="TextureRect" parent="." unique_id=790336966]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
