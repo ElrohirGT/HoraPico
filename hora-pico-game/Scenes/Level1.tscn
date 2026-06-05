@@ -3,9 +3,15 @@
 [ext_resource type="Texture2D" uid="uid://b24mfrjbjetan" path="res://Assets/20260525_171245.png" id="1_q12u6"]
 [ext_resource type="PackedScene" uid="uid://cqcnrpfy4ruk5" path="res://Prefabs/HUD/HUD.tscn" id="2_q12u6"]
 [ext_resource type="Texture2D" uid="uid://krvf5mo54mae" path="res://Assets/BackgroundCity.png" id="3_t3or0"]
+[ext_resource type="Texture2D" uid="uid://cndf2vyalj7g2" path="res://TestSprites/COMBO_ARROW_Neutral.png" id="5_rpty4"]
 [ext_resource type="PackedScene" uid="uid://dkqpgnifqiqih" path="res://Prefabs/PlayerJoiner/PlayerJoiner.tscn" id="5_slnnj"]
 [ext_resource type="PackedScene" uid="uid://bfp488y4t37xr" path="res://Prefabs/TrafficLight/Traffic Light.tscn" id="5_t3or0"]
+[ext_resource type="Texture2D" uid="uid://cng57pj14kto" path="res://TestSprites/COMBO_ARROW_Ok.png" id="6_6jj8j"]
 [ext_resource type="PackedScene" uid="uid://6tlt2pqn7seh" path="res://Prefabs/PlayerPointer/TrafficPlayerPointer.tscn" id="6_t3or0"]
+[ext_resource type="Texture2D" uid="uid://eeyqpdtf31da" path="res://TestSprites/COMBO_ARROW_Failed.png" id="7_06um6"]
+[ext_resource type="Texture2D" uid="uid://dga7rck3xr3sr" path="res://Assets/CarCut.png" id="8_rpty4"]
+[ext_resource type="Texture2D" uid="uid://dxpg6ynwd7tik" path="res://Assets/BusCut.png" id="9_6jj8j"]
+[ext_resource type="Texture2D" uid="uid://c1duugq2duywa" path="res://TestSprites/SPEED_Symbol.png" id="10_0wsr5"]
 [ext_resource type="PackedScene" uid="uid://b414gvgep8n1r" path="res://Prefabs/Alert/Alert.tscn" id="7_ysn8j"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jghel"]
@@ -79,11 +85,39 @@ const BUS_SCENE = preload(\"res://Prefabs/Bus/Bus.tscn\")
 @export var destinies: Node2D # Le ponés el target al spawner 
 @export var ultimate_charges: int = 1
 
+@export var neutral_arrow: Texture2D
+@export var correct_arrow: Texture2D
+@export var wrong_arrow: Texture2D
+
+@export var car_texture: Texture2D
+@export var bus_texture: Texture2D
+@export var ulti_texture: Texture2D
+
+#@onready var display_audio_player: RandomAudioPlayer = $DisplayAudios
+#@onready var failure_audio_player: RandomAudioPlayer = $FailureAudios
+#@onready var success_audio_player: RandomAudioPlayer = $SuccessAudios
+
+enum Directions{UP, DOWN, LEFT, RIGHT}
+var done: Array[Directions]
+var car_pattern: Array[Directions]
+var bus_pattern: Array[Directions]
+
+var selected_pattern: int = 0
+
+var vehicleType: String
+
+enum Velocity{ F, E, D, C, B, A, S }
+@export var currentVelocity = Velocity.F
+
 @onready var vehicle_timer: Timer = $\"../Car_Timer\"
 @onready var combo_timer: Timer = $\"../Combo_Timer\"
 @onready var velocity_timer: Timer = $\"../Velocity_Timer\"
-@onready var velocity_label: Label = $\"../CanvasLayer/HUD/TrafficBackground/TrafficContainer/Label\"
-@onready var ultimate_container: HBoxContainer = $\"../CanvasLayer/HUD/TrafficBackground/TrafficContainer/UltiCombo\"
+
+@onready var velocity_label: Label = $\"../CanvasLayer/HUD/ColorRect/VelocityLabel\"
+@onready var ultimate_label: Label = $\"../CanvasLayer/HUD/ColorRect/UltimateCharges\"
+
+@onready var car_combo_container: HBoxContainer = $\"../CanvasLayer/HUD/TrafficBackground/CarComboQueue\"
+@onready var bus_combo_container: HBoxContainer = $\"../CanvasLayer/HUD/TrafficBackground2/BusComboQueue\"
 
 @onready var spawners: Dictionary = {
 	\"N\": $SpawnerN,
@@ -100,90 +134,248 @@ const BUS_SCENE = preload(\"res://Prefabs/Bus/Bus.tscn\")
 
 static var vehicle_next_priority = 0
 
-enum Velocity{ F, E, D, C, B, A, S }
-@export var currentVelocity = Velocity.F
-
-var combo: String = \"\"
+var combo: Directions
 var direction: String = \"\"
+var waiting_for_direction: bool = false
 
 static var last_combo: String = \"\"
 static var last_direction: String = \"\"
 
 func _ready() -> void:
-	EventBus.SpeedChanged.connect(_on_speed_changed)
+	EventBus.VehicleChanged.connect(_on_vehicle_changed)
+	EventBus.VehicleChanged.emit(0)
+	random_gen()
 
 func _input(event: InputEvent) -> void:
-	var vehicleType = \"\"
-	
 	if not event.is_pressed() or event.is_echo():
 		return
+		
+	if waiting_for_direction:
+		if event.is_action_pressed(\"north_traffic\"):
+			direction = \"N\"
+		elif event.is_action_pressed(\"south_traffic\"):
+			direction = \"S\"
+		elif event.is_action_pressed(\"east_traffic\"):
+			direction = \"E\"
+		elif event.is_action_pressed(\"west_traffic\"):
+			direction = \"W\"
+		else:
+			return
+
+		if direction != \"\":
+			waiting_for_direction = false
+			call_deferred(\"_on_pattern_complete\")
+			
+		else:
+			waiting_for_direction = false
+			call_deferred(\"_on_pattern_mistake\")
+		
+	if event.is_action_pressed(\"toggle_vehicle\"):
+		selected_pattern = (selected_pattern + 1) % 2
+		EventBus.VehicleChanged.emit(selected_pattern)
+	
+	var idx = len(done)
+	var expected
+	var pattern
+	
+	if selected_pattern == 0:
+		if idx >= len(car_pattern):
+			call_deferred(\"_on_pattern_mistake\")
+			return
+
+		expected = car_pattern[idx]
+		pattern = car_pattern
+		
+	else:
+		if idx >= len(bus_pattern):
+			call_deferred(\"_on_pattern_mistake\")
+			return
+		
+		expected = bus_pattern[idx]
+		pattern = bus_pattern
 	
 	if event.is_action_pressed(\"up_traffic\"):
-		combo += \"U\"
-		combo_timer.start()
+		combo = Directions.UP
 		
 	elif event.is_action_pressed(\"down_traffic\"):
-		combo += \"D\"
-		combo_timer.start()
+		combo = Directions.DOWN
 		
 	elif event.is_action_pressed(\"right_traffic\"):
-		combo += \"R\"
-		combo_timer.start()
+		combo = Directions.RIGHT
 		
 	elif event.is_action_pressed(\"left_traffic\"):
-		combo += \"L\"
-		combo_timer.start()
-	
-	if event.is_action_pressed(\"north_traffic\"):
+		combo = Directions.LEFT
+		
+	elif event.is_action_pressed(\"north_traffic\"):
 		direction = \"N\"
-		combo_timer.start()
 		
-	if event.is_action_pressed(\"south_traffic\"):
+	elif event.is_action_pressed(\"south_traffic\"):
 		direction = \"S\"
-		combo_timer.start()
 		
-	if event.is_action_pressed(\"east_traffic\"):
+	elif event.is_action_pressed(\"east_traffic\"):
 		direction = \"E\"
-		combo_timer.start()
 		
-	if event.is_action_pressed(\"west_traffic\"):
+	elif event.is_action_pressed(\"west_traffic\"):
 		direction = \"W\"
+		
+	else:
+		return
+		
+	print(combo, expected)
+	
+	if combo != expected:
+		#failure_audio_player.play()
+		call_deferred(\"_on_pattern_mistake\")
 		combo_timer.start()
+
+	if combo == expected :
+		done.append(combo)
 		
-	if combo.ends_with(\"UDLL\"):
+		if done.size() == pattern.size():
+			if currentVelocity == Velocity.S:
+				call_deferred(\"_on_pattern_complete\")
+				
+			else:
+				waiting_for_direction = true
+		
+		return
+	
+	return
+
+func _on_vehicle_changed(new_vehicle: int):
+	if new_vehicle == 0:
 		vehicleType = \"Car\"
+		car_combo_container.modulate.a = 1
+		bus_combo_container.modulate.a = 0.2
 		
-	elif combo.ends_with(\"DDUR\"):
+	else:
 		vehicleType = \"Bus\"
+		car_combo_container.modulate.a = 0.2
+		bus_combo_container.modulate.a = 1
 		
-	elif combo.ends_with(\"DRURDLU\"):
-		if currentVelocity == Velocity.S:
-			cast_ultimate(ultimate_charges)
-			ultimate_charges += 1
-			currentVelocity = Velocity.F
-			velocity_label.text = Velocity.keys()[currentVelocity]
-			EventBus.SpeedChanged.emit(false)
-		
-	if vehicleType == \"\":
-		return
-		
-	if direction == \"\":
-		return
-		
-	print(\"Combo: \", combo, \" | Dirección: \", direction, \" | Tipo: \", vehicleType )
-	call_deferred(\"vehicle_spawn\", vehicleType, direction)
+	print(vehicleType)
+
+func _on_pattern_mistake():
+	self.hide()
+	done = []
 	
-	combo = \"\"
+	var containers: Array = [car_combo_container, bus_combo_container]
+	
+	for container in containers:
+		for child in container.get_children():
+			child.queue_free()
+	
+	random_gen()
+
+func _on_pattern_complete():
+	var containers: Array = [car_combo_container, bus_combo_container]
+	self.hide()
+	done = []
+	
+	combo_timer.start()
+	
+	if currentVelocity == Velocity.S:
+		cast_ultimate()
+		
+	else:
+		call_deferred(\"vehicle_spawn\", vehicleType, direction)
+		speeding_up(vehicleType)
+	
+	for container in containers:
+		for child in container.get_children():
+			child.queue_free()
+	
 	direction = \"\"
+	random_gen()
+
+func generate_random_pattern() -> Array[Directions]:
+	var directions = [Directions.UP, Directions.DOWN, Directions.LEFT, Directions.RIGHT]
+	var new_pattern: Array[Directions]
+	var length: int
 	
-func cast_ultimate(ultimate_charges: int) -> void:
-	var vehicleTypes: Array = [\"Car\", \"Bus\"]
+	if currentVelocity != Velocity.S:
+		length = randi_range(5, 8)
+		
+	else:
+		length = 10
+
+	for i in length:
+		new_pattern.append(directions.pick_random())
+	
+	return new_pattern
+	
+func generate_random_spawner() -> String:
+	var spawners: Array[String] = [\"N\", \"S\", \"E\", \"W\"]
+	
+	return spawners.pick_random()
+
+func generate_combo():
+	var patterns: Array = [car_pattern, bus_pattern]
+	var containers: Array = [car_combo_container, bus_combo_container]
+	
+	for pattern in patterns:
+		var combo: HBoxContainer = HBoxContainer.new()
+		combo.add_theme_constant_override(\"separation\", 20)
+	
+		for idx in pattern.size():
+			
+			var p = pattern[idx]
+			
+			var texture_container: Control = Control.new()
+			texture_container.custom_minimum_size = Vector2(32, 32)
+			
+			var texture: TextureRect = TextureRect.new()
+			texture.set_anchors_preset(Control.PRESET_CENTER)
+			texture.size = Vector2(32, 32)
+			texture.pivot_offset_ratio = Vector2(0.5, 0.5)
+			texture.texture = neutral_arrow
+			
+			if p == Directions.DOWN:
+				texture.rotation_degrees = 180
+			if p == Directions.RIGHT:
+				texture.rotation_degrees = 90
+			if p == Directions.LEFT:
+				texture.rotation_degrees = -90
+				
+			if idx < done.size():
+				var selected = done[idx]
+				if selected != p:
+					texture.texture = wrong_arrow
+				else:
+					texture.texture = correct_arrow
+			
+			texture_container.add_child(texture)
+			combo.add_child(texture_container)
+	
+		containers[patterns.find(pattern)].add_child(combo)
+
+func random_gen() -> void:
+	car_pattern = generate_random_pattern()
+	bus_pattern = generate_random_pattern()
+	
+	if selected_pattern == 0:
+		vehicleType = \"Car\"
+	
+	else:
+		vehicleType = \"Bus\"
+	
+	generate_combo()
+
+func cast_ultimate() -> void:
+	var vehicles: Array = [\"Car\", \"Bus\"]
+	var random_vehicle: String = vehicles.pick_random()
 	var spawnersKeys: Array = spawners.keys()
 	var index = 0
 	
 	while index < ultimate_charges:
-		vehicle_spawn(vehicleTypes.pick_random(), spawnersKeys.pick_random())
+		vehicle_spawn(random_vehicle, spawnersKeys.pick_random())
 		index += 1
+		
+	ultimate_charges += 1
+	ultimate_label.text = \"Charges: \" + str(ultimate_charges)
+	
+	velocity_timer.stop()
+	velocity_timer.timeout.emit()
 
 func vehicle_spawn(vehicleType: String, spawnPosition: String) -> void:
 	print(vehicleType, spawnPosition)
@@ -213,46 +405,35 @@ func vehicle_spawn(vehicleType: String, spawnPosition: String) -> void:
 		get_tree().current_scene.add_child(new_vehicle)
 		print(\"%s to: \" % vehicleType, new_vehicle.movement_target_position, \"with ID: \", new_vehicle.priority) # Está curioso el format string aquí xd
 		
-		speeding_up(vehicleType, spawnPosition)
-		
 		last_combo = vehicleType
 		last_direction = spawnPosition
 		
 		vehicle_timer.wait_time = 3 # randf_range(0, 5)
 		vehicle_timer.start()
-		EventBus.VehicleSpawned.emit()
 
-func speeding_up(combo: String, direction: String):
-	print(combo, last_combo, direction, last_direction)
-	
-	if combo != last_combo and direction != last_direction:
-		if currentVelocity < 5:
-			currentVelocity = (currentVelocity + 1)
-			
-		else:
-			currentVelocity = Velocity.S
-			EventBus.SpeedChanged.emit(true)
-		
-		velocity_label.text = Velocity.keys()[currentVelocity]
-		velocity_timer.start()
-		
-func _on_speed_changed(isMax: bool):
-	if not isMax:
-		ultimate_container.modulate.a = 0.4
+func speeding_up(combo: String):
+	if currentVelocity < 5:
+		currentVelocity = (currentVelocity + 1)
 		
 	else:
-		ultimate_container.modulate.a = 1.0
+		currentVelocity = Velocity.S
+	
+	velocity_label.text = Velocity.keys()[currentVelocity]
+	velocity_timer.start()
 		
 func _on_combo_timer_timeout() -> void:
-	combo = \"\"
+	call_deferred(\"_on_pattern_mistake\")
 	direction = \"\"
+	waiting_for_direction = false
 	print(\"Combo reseteado por timeout.\")
 
 func _on_velocity_timer_timeout() -> void:
 	currentVelocity = Velocity.F
 	velocity_label.text = Velocity.keys()[currentVelocity]
-	EventBus.SpeedChanged.emit(false)
 	print(\"Velocidad (Rango) reseteada por timeout.\")
+
+func _on_mistake_display_timer_timeout() -> void:
+	call_deferred(\"_on_pattern_mistake\")
 "
 
 [node name="Level1" type="Node2D" unique_id=944242678]
@@ -422,6 +603,28 @@ bidirectional = false
 start_position = Vector2(12.879486, -87.09096)
 end_position = Vector2(177.81024, -60.055862)
 
+[node name="Spawners" type="Node2D" parent="." unique_id=590460041 node_paths=PackedStringArray("destinies")]
+position = Vector2(458, 777)
+script = SubResource("GDScript_2llne")
+destinies = NodePath("../Objectives")
+neutral_arrow = ExtResource("5_rpty4")
+correct_arrow = ExtResource("6_6jj8j")
+wrong_arrow = ExtResource("7_06um6")
+car_texture = ExtResource("8_rpty4")
+bus_texture = ExtResource("9_6jj8j")
+ulti_texture = ExtResource("10_0wsr5")
+
+[node name="SpawnerS" type="Marker2D" parent="Spawners" unique_id=1927779047]
+
+[node name="SpawnerW" type="Marker2D" parent="Spawners" unique_id=1042148606]
+position = Vector2(-588, -449)
+
+[node name="SpawnerE" type="Marker2D" parent="Spawners" unique_id=732001323]
+position = Vector2(755, -532)
+
+[node name="SpawnerN" type="Marker2D" parent="Spawners" unique_id=528289012]
+position = Vector2(470, -797)
+
 [node name="Objectives" type="Node2D" parent="." unique_id=1832137146]
 position = Vector2(458, 777)
 
@@ -442,8 +645,8 @@ wait_time = 3.0
 one_shot = true
 
 [node name="Combo_Timer" type="Timer" parent="." unique_id=449575805]
-wait_time = 0.5
-one_shot = true
+wait_time = 5.0
+autostart = true
 
 [node name="Velocity_Timer" type="Timer" parent="." unique_id=1657294742]
 wait_time = 15.0
@@ -454,16 +657,26 @@ one_shot = true
 [node name="HUD" parent="CanvasLayer" unique_id=2055424362 instance=ExtResource("2_q12u6")]
 
 [node name="TrafficBackground" parent="CanvasLayer/HUD" index="0" unique_id=1237301669]
-offset_left = -170.0
-offset_top = -308.0
-offset_right = -20.0
-offset_bottom = 42.0
+offset_right = 570.0
+color = Color(0.13333334, 0.1254902, 0.20392157, 0.84705883)
 
-[node name="TrafficContainer" parent="CanvasLayer/HUD/TrafficBackground" index="0" unique_id=849580536]
-offset_left = 12.839966
-offset_top = 10.152
-offset_right = 13.279907
-offset_bottom = -142.88803
+[node name="CarComboQueue" parent="CanvasLayer/HUD/TrafficBackground" index="0" unique_id=992683722]
+theme_override_constants/separation = 50
+
+[node name="TrafficBackground2" parent="CanvasLayer/HUD" index="1" unique_id=1881621810]
+offset_left = -568.105
+offset_top = -76.0
+offset_right = 1.895752
+offset_bottom = -1.0
+color = Color(0.13333334, 0.1254902, 0.20392157, 0.80784315)
+
+[node name="ColorRect" parent="CanvasLayer/HUD" index="5" unique_id=1963125324]
+offset_left = -100.0
+offset_top = -22.334991
+offset_bottom = 77.66501
+
+[node name="VelocityLabel" parent="CanvasLayer/HUD/ColorRect" index="0" unique_id=1123354540]
+custom_minimum_size = Vector2(0, 0)
 
 [node name="Traffic Light" parent="." unique_id=1400643141 instance=ExtResource("5_t3or0")]
 position = Vector2(656, 290)
