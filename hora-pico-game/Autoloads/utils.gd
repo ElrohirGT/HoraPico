@@ -4,8 +4,6 @@ func get_key_or_button_for_action(action: String) -> String:
 	var events = InputMap.action_get_events(action)
 	var txt = "?"
 	for event in events:
-		if event is InputEventKey:
-			txt = event.as_text_keycode()
 		if event is InputEventJoypadButton:
 			txt = event.as_text()
 	

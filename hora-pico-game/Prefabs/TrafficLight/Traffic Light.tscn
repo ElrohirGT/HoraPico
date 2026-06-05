@@ -4,7 +4,64 @@
 [ext_resource type="Script" uid="uid://buaviegl5i25f" path="res://Prefabs/TrafficLight/traffic_light.gd" id="1_16qi8"]
 [ext_resource type="Texture2D" uid="uid://djw25qqek0uhq" path="res://TestSprites/LIGHT_Yellow.png" id="2_3axdo"]
 [ext_resource type="Texture2D" uid="uid://chyxab7ukynmd" path="res://TestSprites/LIGHT_Red.png" id="3_16qi8"]
-[ext_resource type="Texture2D" uid="uid://ckoagmeqotsq8" path="res://TestSprites/LIGHT_Hacked.png" id="5_hdwss"]
+[ext_resource type="Texture2D" uid="uid://y2vk1cloep7e" path="res://TestSprites/LIGHT_Hacked-sheet.png" id="5_b4had"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4had"]
+atlas = ExtResource("5_b4had")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjsxa"]
+atlas = ExtResource("5_b4had")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vmfj"]
+atlas = ExtResource("5_b4had")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nne7n"]
+atlas = ExtResource("5_b4had")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8ro2"]
+atlas = ExtResource("5_b4had")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s87rm"]
+atlas = ExtResource("5_b4had")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igdak"]
+atlas = ExtResource("5_b4had")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aa4xd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4had")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjsxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vmfj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nne7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8ro2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s87rm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igdak")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_js5qc"]
 size = Vector2(31, 79)
@@ -28,8 +85,9 @@ texture = ExtResource("1_7mua0")
 [node name="Yellow" type="Sprite2D" parent="." unique_id=1565431684]
 texture = ExtResource("2_3axdo")
 
-[node name="Hacked" type="Sprite2D" parent="." unique_id=1704836589]
-texture = ExtResource("5_hdwss")
+[node name="Hacked" type="AnimatedSprite2D" parent="." unique_id=427790521]
+sprite_frames = SubResource("SpriteFrames_aa4xd")
+frame_progress = 0.8627701
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=865414064]
 shape = SubResource("RectangleShape2D_js5qc")

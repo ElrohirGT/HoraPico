@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dga7rck3xr3sr" path="res://Assets/CarCut.png" id="8_rpty4"]
 [ext_resource type="Texture2D" uid="uid://dxpg6ynwd7tik" path="res://Assets/BusCut.png" id="9_6jj8j"]
 [ext_resource type="Texture2D" uid="uid://c1duugq2duywa" path="res://TestSprites/SPEED_Symbol.png" id="10_0wsr5"]
+[ext_resource type="PackedScene" uid="uid://b414gvgep8n1r" path="res://Prefabs/Alert/Alert.tscn" id="7_ysn8j"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jghel"]
 vertices = PackedVector2Array(502.0703, 425.8125, 504.90625, 803.4297, 469.95313, 801.52344, 468.04688, 425.1797)
@@ -34,9 +35,9 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(780, 799, 779, -63, 844, -62, 848, 800)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_6ll4n"]
-vertices = PackedVector2Array(855.10156, -52.179688, 863.8906, 783.8281, 822.97656, 783.15625, 822.0078, -52.796875)
+vertices = PackedVector2Array(864, -130.14063, 864, 783.8281, 822.9297, 783.15625, 817.0625, -130.84375)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(813, 793, 874, 794, 865, -62, 812, -63)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(813, 793, 874, 794, 874, -140, 807, -141)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kylad"]
 vertices = PackedVector2Array(743.59375, 369.9297, 742.40625, 399.59375, 595.9531, 393.52344, 602.6172, 369.03906)
@@ -123,6 +124,12 @@ enum Velocity{ F, E, D, C, B, A, S }
 	\"S\": $SpawnerS,
 	\"E\": $SpawnerE,
 	\"W\": $SpawnerW
+}
+@onready var spawners_indicators: Dictionary = {
+	\"N\": $SpawnerN/Alert,
+	\"S\": $SpawnerS/Alert,
+	\"E\": $SpawnerE/Alert,
+	\"W\": $SpawnerW/Alert
 }
 
 static var vehicle_next_priority = 0
@@ -383,6 +390,7 @@ func vehicle_spawn(vehicleType: String, spawnPosition: String) -> void:
 		
 	if new_vehicle != null:
 		new_vehicle.global_position = spawners[spawnPosition].global_position
+		spawners_indicators[spawnPosition].display()
 		new_vehicle.priority = vehicle_next_priority
 		vehicle_next_priority += 1
 		
@@ -671,15 +679,54 @@ offset_bottom = 77.66501
 custom_minimum_size = Vector2(0, 0)
 
 [node name="Traffic Light" parent="." unique_id=1400643141 instance=ExtResource("5_t3or0")]
-position = Vector2(1003, 238)
+position = Vector2(656, 290)
 
 [node name="Traffic Light2" parent="." unique_id=316218899 instance=ExtResource("5_t3or0")]
-position = Vector2(121, 331)
+position = Vector2(562, 535)
 
 [node name="Traffic Light3" parent="." unique_id=929433336 instance=ExtResource("5_t3or0")]
-position = Vector2(489, 576)
-rotation = 1.5707964
+position = Vector2(278, 532)
 disable_mode = 1
+
+[node name="Spawners" type="Node2D" parent="." unique_id=590460041 node_paths=PackedStringArray("destinies")]
+position = Vector2(458, 777)
+script = SubResource("GDScript_2llne")
+destinies = NodePath("../Objectives")
+
+[node name="SpawnerS" type="Marker2D" parent="Spawners" unique_id=1927779047]
+
+[node name="Alert" parent="Spawners/SpawnerS" unique_id=1177339137 instance=ExtResource("7_ysn8j")]
+offset_left = 7.0
+offset_top = -221.0
+offset_right = 55.0
+offset_bottom = -173.0
+
+[node name="SpawnerW" type="Marker2D" parent="Spawners" unique_id=1042148606]
+position = Vector2(-588, -449)
+
+[node name="Alert" parent="Spawners/SpawnerW" unique_id=369082797 instance=ExtResource("7_ysn8j")]
+offset_left = 231.0
+offset_top = -25.0
+offset_right = 279.0
+offset_bottom = 23.0
+
+[node name="SpawnerE" type="Marker2D" parent="Spawners" unique_id=732001323]
+position = Vector2(755, -532)
+
+[node name="Alert" parent="Spawners/SpawnerE" unique_id=144513311 instance=ExtResource("7_ysn8j")]
+offset_left = -246.0
+offset_top = -27.0
+offset_right = -198.0
+offset_bottom = 21.0
+
+[node name="SpawnerN" type="Marker2D" parent="Spawners" unique_id=528289012]
+position = Vector2(460, -889)
+
+[node name="Alert" parent="Spawners/SpawnerN" unique_id=1179989282 instance=ExtResource("7_ysn8j")]
+offset_left = -21.0
+offset_top = 201.0
+offset_right = 27.0
+offset_bottom = 249.0
 
 [connection signal="timeout" from="Combo_Timer" to="Spawners" method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="Velocity_Timer" to="Spawners" method="_on_velocity_timer_timeout"]

@@ -7,7 +7,7 @@ enum TrafficLightState{RED, YELLOW, GREEN, HACKED}
 @onready var Red: Sprite2D = $Red
 @onready var Yellow: Sprite2D = $Yellow
 @onready var Green: Sprite2D = $Green
-@onready var Hacked: Sprite2D = $Hacked
+@onready var Hacked: AnimatedSprite2D = $Hacked
 @onready var Collider: CollisionShape2D = $CollisionShape2D
 
 @export var cycleDuration: float
@@ -74,6 +74,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func hack_traffic_light() -> void:
 	if state != TrafficLightState.HACKED:
 		state = TrafficLightState.HACKED
+		Hacked.play("default")
 		timer.stop()
 
 func unhack_traffic_light() ->void:
