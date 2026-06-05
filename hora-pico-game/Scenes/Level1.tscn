@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://dga7rck3xr3sr" path="res://Assets/CarCut.png" id="8_rpty4"]
 [ext_resource type="Texture2D" uid="uid://dxpg6ynwd7tik" path="res://Assets/BusCut.png" id="9_6jj8j"]
 [ext_resource type="Texture2D" uid="uid://c1duugq2duywa" path="res://TestSprites/SPEED_Symbol.png" id="10_0wsr5"]
+[ext_resource type="AudioStream" uid="uid://cmbbb4m63j2uj" path="res://Audio/Effects/Vehicles/arrow.mp3" id="14_06um6"]
+[ext_resource type="AudioStream" uid="uid://dcwu4etfeqgbs" path="res://Audio/Effects/Vehicles/miss.mp3" id="15_ubfni"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jghel"]
 vertices = PackedVector2Array(502.0703, 425.8125, 504.90625, 803.4297, 469.95313, 801.52344, 468.04688, 425.1797)
@@ -93,10 +95,6 @@ const BUS_SCENE = preload(\"res://Prefabs/Bus/Bus.tscn\")
 @export var bus_texture: Texture2D
 @export var ulti_texture: Texture2D
 
-#@onready var display_audio_player: RandomAudioPlayer = $DisplayAudios
-#@onready var failure_audio_player: RandomAudioPlayer = $FailureAudios
-#@onready var success_audio_player: RandomAudioPlayer = $SuccessAudios
-
 enum Directions{UP, DOWN, LEFT, RIGHT}
 var done: Array[Directions]
 var car_pattern: Array[Directions]
@@ -118,6 +116,9 @@ enum Velocity{ F, E, D, C, B, A, S }
 
 @onready var car_combo_container: HBoxContainer = $\"../CanvasLayer/HUD/TrafficBackground/CarComboQueue\"
 @onready var bus_combo_container: HBoxContainer = $\"../CanvasLayer/HUD/TrafficBackground2/BusComboQueue\"
+
+@onready var audio_player: AudioStreamPlayer2D = $\"../AudioStreamPlayer2D\"
+@onready var failure_audio_player: AudioStreamPlayer2D = $\"../AudioStreamPlayer2D2\"
 
 @onready var spawners: Dictionary = {
 	\"N\": $SpawnerN,
@@ -214,7 +215,7 @@ func _input(event: InputEvent) -> void:
 	print(combo, expected)
 	
 	if combo != expected:
-		#failure_audio_player.play()
+		failure_audio_player.play()
 		call_deferred(\"_on_pattern_mistake\")
 		combo_timer.start()
 
@@ -333,12 +334,14 @@ func generate_combo():
 			if p == Directions.LEFT:
 				texture.rotation_degrees = -90
 				
-			if idx < done.size():
-				var selected = done[idx]
-				if selected != p:
-					texture.texture = wrong_arrow
-				else:
-					texture.texture = correct_arrow
+			if patterns.find(pattern) == selected_pattern:
+				if idx < done.size():
+					var selected = done[idx]
+					if selected != p:
+						texture.texture = wrong_arrow
+					else:
+						texture.texture = correct_arrow
+						audio_player.play()
 			
 			texture_container.add_child(texture)
 			combo.add_child(texture_container)
@@ -356,9 +359,6 @@ func random_gen() -> void:
 		vehicleType = \"Bus\"
 	
 	generate_combo()
-	
-	print(\"Car children:\", car_combo_container.get_child_count())
-	print(\"Bus children:\", bus_combo_container.get_child_count())
 
 func cast_ultimate() -> void:
 	var vehicles: Array = [\"Car\", \"Bus\"]
@@ -710,6 +710,12 @@ position = Vector2(562, 535)
 [node name="Traffic Light3" parent="." unique_id=929433336 instance=ExtResource("5_t3or0")]
 position = Vector2(278, 532)
 disable_mode = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2070370597]
+stream = ExtResource("14_06um6")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="." unique_id=249585362]
+stream = ExtResource("15_ubfni")
 
 [connection signal="timeout" from="Combo_Timer" to="Spawners" method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="Velocity_Timer" to="Spawners" method="_on_velocity_timer_timeout"]

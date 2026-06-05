@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://df0wdlpqojsmy"]
 
 [ext_resource type="Script" uid="uid://cr0i3ttu1p2du" path="res://Prefabs/Car/car.gd" id="1_756hr"]
+[ext_resource type="AudioStream" uid="uid://dl4r6dk171deu" path="res://Audio/Effects/Vehicles/car.mp3" id="3_7xxgp"]
 [ext_resource type="Texture2D" uid="uid://cgxeblmouqji1" path="res://Assets/Car.png" id="8_jt2so"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pke32"]
@@ -49,6 +50,10 @@ scale = Vector2(2.5, 2.5)
 texture = ExtResource("8_jt2so")
 region_enabled = true
 region_rect = Rect2(2.7922554, 56.88517, 36.331474, 23.741356)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=262553362]
+stream = ExtResource("3_7xxgp")
+autoplay = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
