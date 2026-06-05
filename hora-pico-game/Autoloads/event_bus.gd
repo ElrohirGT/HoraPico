@@ -5,7 +5,7 @@ signal VehicleDespawned()
 
 signal ElixirChanged(new_elixir_quantity: float)
 
-signal SpeedChanged(isMax: bool)
+signal VehicleChanged(new_vehicle: int)
 
 signal InvokeAbility(source_device_id: int, ability: Enums.Ability, cost: float)
 
