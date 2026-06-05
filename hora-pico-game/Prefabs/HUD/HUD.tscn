@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://beyiw87isjus6" path="res://Audio/Effects/Police/bubbles_3.mp3" id="11_k2a72"]
 [ext_resource type="Script" uid="uid://cgxkolwc2s6mj" path="res://Prefabs/HUD/pause_menu.gd" id="12_mk6xb"]
 [ext_resource type="Script" uid="uid://ce7ktmq0upisv" path="res://Prefabs/HUD/end_menu.gd" id="13_fd360"]
+[ext_resource type="Texture2D" uid="uid://d0xs2s786f2m6" path="res://Assets/LB.png" id="17_5q26g"]
 
 [node name="HUD" type="Control" unique_id=2055424362]
 layout_mode = 3
@@ -355,6 +356,21 @@ theme_override_font_sizes/font_size = 42
 text = "Charges: 1"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=500436457]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -71.0
+offset_top = -107.0
+offset_right = 69.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("17_5q26g")
 
 [connection signal="timeout" from="TopBar/ProgressBar/ChaosTimer" to="TopBar/ProgressBar" method="_on_chaos_timer_timeout"]
 [connection signal="timeout" from="TopBar/TimerBackground/Label/MatchTimer" to="TopBar/TimerBackground/Label" method="_on_match_timer_timeout"]
