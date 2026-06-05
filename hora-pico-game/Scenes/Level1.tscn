@@ -221,7 +221,7 @@ func _input(event: InputEvent) -> void:
 	if combo == expected :
 		done.append(combo)
 		
-		print(\"Done size:\", done.size())
+		refresh_combo_display()
 		
 		if done.size() == pattern.size():
 			if currentVelocity == Velocity.S:
@@ -242,6 +242,15 @@ func _on_vehicle_changed(new_vehicle: int):
 		bus_combo_container.modulate.a = 1
 		
 	print(vehicleType)
+	
+func refresh_combo_display():
+	for child in car_combo_container.get_children():
+		child.queue_free()
+
+	for child in bus_combo_container.get_children():
+		child.queue_free()
+
+	generate_combo()
 
 func _on_pattern_mistake():
 	done = []
