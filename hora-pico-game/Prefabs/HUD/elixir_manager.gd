@@ -9,6 +9,7 @@ class_name ElixirManager
 @onready var elixirLabel: Label = $ElixirLabel
 
 @onready var elixir_plus_player: RandomAudioPlayer = $ElixirPlusAudios
+@onready var elixir_alert: Alert = $"../Alert"
 
 static var elixirQuantity: float
 var elixirTimer: Timer
@@ -57,6 +58,7 @@ func _on_ability_invoked(source_device_id: int, ability: Enums.Ability):
 	if ability != Enums.Ability.ELIXIR:
 		return
 
+	elixir_alert.display()
 	elixir_plus_player.play()
 	maxElixir += 1
 	elixirBar.max_value = maxElixir

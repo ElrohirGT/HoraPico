@@ -10,7 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://c0f0fih2ds64h" path="res://Prefabs/RandomAudioPlayer/RandomAudioPlayer.tscn" id="8_5q26g"]
 [ext_resource type="Texture2D" uid="uid://bckexiugqn0yr" path="res://TestSprites/GAMEBAR_Border.png" id="8_r4eod"]
 [ext_resource type="Texture2D" uid="uid://d3sq6kne5rm7a" path="res://TestSprites/GAMEBAR_Progress.png" id="9_jdyly"]
+[ext_resource type="Texture2D" uid="uid://bbjtrih68k4s1" path="res://TestSprites/PLUS_One_elixir.png" id="10_5q26g"]
 [ext_resource type="Script" uid="uid://crcl78v4mlq7m" path="res://Prefabs/HUD/progress_bar.gd" id="10_jdyly"]
+[ext_resource type="Script" uid="uid://bgjcu0r3s6hjr" path="res://Prefabs/Alert/alert.gd" id="11_5q26g"]
 [ext_resource type="Script" uid="uid://kaf3kt8y7o0" path="res://Prefabs/HUD/match_timer.gd" id="11_45pxb"]
 [ext_resource type="AudioStream" uid="uid://beyiw87isjus6" path="res://Audio/Effects/Police/bubbles_3.mp3" id="11_k2a72"]
 [ext_resource type="Script" uid="uid://cgxkolwc2s6mj" path="res://Prefabs/HUD/pause_menu.gd" id="12_mk6xb"]
@@ -139,7 +141,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 script = ExtResource("1_0qdy1")
-secondsPerElixir = 2.0
+secondsPerElixir = 1.2
 maxElixir = 10.0
 
 [node name="TextureRect" type="TextureRect" parent="TopBar/ElixirBackground/ElixirContainer" unique_id=11147908]
@@ -171,6 +173,22 @@ texture_progress = ExtResource("1_aydyg")
 
 [node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="TopBar/ElixirBackground/ElixirContainer/ElixirPlusAudios" unique_id=1526493193]
 stream = ExtResource("11_k2a72")
+
+[node name="Alert" type="TextureRect" parent="TopBar/ElixirBackground" unique_id=1010524823]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = -14.0
+offset_right = 58.0
+offset_bottom = 26.0
+grow_vertical = 0
+texture = ExtResource("10_5q26g")
+script = ExtResource("11_5q26g")
+display_secs = 2.0
+blink_every_n_secs = 0.2
+metadata/_custom_type_script = "uid://bgjcu0r3s6hjr"
 
 [node name="ProgressBar" type="TextureProgressBar" parent="TopBar" unique_id=2014670878]
 layout_mode = 2
