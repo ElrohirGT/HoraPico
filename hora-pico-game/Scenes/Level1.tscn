@@ -144,9 +144,12 @@ var waiting_for_direction: bool = false
 static var last_combo: String = \"\"
 static var last_direction: String = \"\"
 
+@onready var spawn_cooldown: Timer = $Timer
+
 func _ready() -> void:
 	EventBus.VehicleChanged.connect(_on_vehicle_changed)
 	EventBus.VehicleChanged.emit(0)
+	spawn_cooldown.timeout.connect(_on_spawn_cooldown_done)
 	random_gen()
 
 func _input(event: InputEvent) -> void:
@@ -258,6 +261,8 @@ func refresh_combo_display():
 func _on_pattern_mistake():
 	done = []
 	
+	combo_timer.start()
+	
 	var containers: Array = [car_combo_container, bus_combo_container]
 	
 	for container in containers:
@@ -292,10 +297,10 @@ func generate_random_pattern() -> Array[Directions]:
 	var length: int
 	
 	if currentVelocity != Velocity.S:
-		length = randi_range(5, 8)
+		length = randi_range(3, 4)
 		
 	else:
-		length = 10
+		length = 6
 
 	for i in length:
 		new_pattern.append(directions.pick_random())
@@ -362,16 +367,25 @@ func random_gen() -> void:
 	
 	generate_combo()
 
+var index: int
+func _on_spawn_cooldown_done():
+	if index >= ultimate_charges:
+		index = 0
+		return
+	
+	spawn_cooldown.start()
+	var vehicles: Array = [\"Car\", \"Bus\"]
+	var random_vehicle: String = vehicles.pick_random()
+	var spawnersKeys: Array = spawners.keys()
+	vehicle_spawn(random_vehicle, spawnersKeys.pick_random())
+	index += 1
+
 func cast_ultimate() -> void:
 	var vehicles: Array = [\"Car\", \"Bus\"]
 	var random_vehicle: String = vehicles.pick_random()
 	var spawnersKeys: Array = spawners.keys()
-	var index = 0
 	
-	while index < ultimate_charges:
-		vehicle_spawn(random_vehicle, spawnersKeys.pick_random())
-		index += 1
-		
+	spawn_cooldown.start()
 	ultimate_charges += 1
 	ultimate_label.text = \"Charges: \" + str(ultimate_charges)
 	
@@ -379,6 +393,7 @@ func cast_ultimate() -> void:
 	velocity_timer.timeout.emit()
 
 func vehicle_spawn(vehicleType: String, spawnPosition: String) -> void:
+	EventBus.VehicleSpawned.emit()
 	print(vehicleType, spawnPosition)
 	
 	var new_vehicle
@@ -649,6 +664,9 @@ offset_left = -21.0
 offset_top = 201.0
 offset_right = 27.0
 offset_bottom = 249.0
+
+[node name="Timer" type="Timer" parent="Spawners" unique_id=747812178]
+one_shot = true
 
 [node name="Objectives" type="Node2D" parent="." unique_id=1832137146]
 position = Vector2(458, 777)

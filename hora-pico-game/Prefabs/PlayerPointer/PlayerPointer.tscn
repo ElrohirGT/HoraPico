@@ -98,7 +98,7 @@ layout_mode = 2
 
 [node name="Top" parent="SummonMenu" unique_id=2017830648 instance=ExtResource("3_lo0a1")]
 layout_mode = 2
-cost = 2.0
+cost = 3.0
 actionTexture = ExtResource("4_lo0a1")
 
 [node name="Control2" type="Control" parent="SummonMenu" unique_id=628165406]
@@ -106,7 +106,7 @@ layout_mode = 2
 
 [node name="Left" parent="SummonMenu" unique_id=646082498 instance=ExtResource("3_lo0a1")]
 layout_mode = 2
-cost = 4.0
+cost = 2.0
 actionTexture = ExtResource("7_ew5li")
 ability = 2
 

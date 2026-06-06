@@ -25,8 +25,8 @@ func _process(delta: float) -> void:
 	if alive_vehicles == 0:
 		alive_vehicles = 1.0
 	var bar_delta = - (drain_speed + (1/alive_vehicles)) * delta
-	if spawned_vehicles > 0:
-		bar_delta += alive_vehicles * delta
+	if alive_vehicles > 2:
+		bar_delta += (alive_vehicles - 2) * delta
 	
 	bar_label.text = "S: %d - D: %d - T: %.2f" % [spawned_vehicles, despawned_vehicles, bar_delta]
 	self.value += bar_delta
