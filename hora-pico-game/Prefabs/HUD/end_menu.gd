@@ -5,6 +5,9 @@ extends PanelContainer
 @onready var play_again: Button = $VBoxContainer/PlayAgain
 @onready var main_menu: Button = $VBoxContainer/MainMenu
 
+@onready var main_player: AudioStreamPlayer2D = $"../../../AudioStreamPlayer2D3"
+@onready var victory_player: AudioStreamPlayer2D = $"../../../AudioStreamPlayer2D4"
+
 func _ready() -> void:
 	EventBus.GameEnded.connect(_on_game_ended)
 	self.hide()
@@ -24,6 +27,9 @@ func _input(event: InputEvent) -> void:
 func _on_game_ended(winner: String):
 	self.show()
 	title.text = "%s Wins!" % winner
+	
+	main_player.stop()
+	victory_player.play()
 
 func _on_play_again_pressed() -> void:
 	get_tree().reload_current_scene()

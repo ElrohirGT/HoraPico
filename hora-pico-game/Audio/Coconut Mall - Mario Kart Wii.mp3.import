@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cxqiwtsx1e2c2"
+path="res://.godot/imported/Coconut Mall - Mario Kart Wii.mp3-7e2f807d559526f434b8a934f93d349b.mp3str"
+
+[deps]
+
+source_file="res://Audio/Coconut Mall - Mario Kart Wii.mp3"
+dest_files=["res://.godot/imported/Coconut Mall - Mario Kart Wii.mp3-7e2f807d559526f434b8a934f93d349b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

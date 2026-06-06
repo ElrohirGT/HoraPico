@@ -51,6 +51,5 @@ func _on_refresh_progress_bar():
 	despawned_vehicles = 0
 	spawned_vehicles = 0
 
-
 func _on_chaos_timer_timeout() -> void:
 	EventBus.GameEnded.emit("Traffic")

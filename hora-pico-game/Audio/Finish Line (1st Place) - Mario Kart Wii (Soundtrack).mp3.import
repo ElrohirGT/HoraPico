@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cb62jc1yuoxy2"
+path="res://.godot/imported/Finish Line (1st Place) - Mario Kart Wii (Soundtrack).mp3-390aff4dadc41649f0fb70fd90e94aff.mp3str"
+
+[deps]
+
+source_file="res://Audio/Finish Line (1st Place) - Mario Kart Wii (Soundtrack).mp3"
+dest_files=["res://.godot/imported/Finish Line (1st Place) - Mario Kart Wii (Soundtrack).mp3-390aff4dadc41649f0fb70fd90e94aff.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

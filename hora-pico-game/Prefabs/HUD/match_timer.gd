@@ -14,6 +14,5 @@ func _process(delta: float) -> void:
 	else:
 		self.text = "%ds" % seconds
 
-
 func _on_match_timer_timeout() -> void:
 	EventBus.GameEnded.emit("City")
