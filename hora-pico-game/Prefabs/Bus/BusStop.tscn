@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bh5788bq0q2sl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n85xq"]
+size = Vector2(117, 76)
+
+[node name="BusStop" type="Area2D" unique_id=608463383]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=596925230]
+shape = SubResource("RectangleShape2D_n85xq")
+debug_color = Color(0.9851844, 0, 0.34087172, 0.41960785)

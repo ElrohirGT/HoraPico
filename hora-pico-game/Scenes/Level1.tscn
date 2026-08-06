@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://dcwu4etfeqgbs" path="res://Audio/Effects/Vehicles/miss.mp3" id="15_ubfni"]
 [ext_resource type="AudioStream" uid="uid://cxqiwtsx1e2c2" path="res://Audio/Coconut Mall - Mario Kart Wii.mp3" id="16_ug0sv"]
 [ext_resource type="AudioStream" uid="uid://cb62jc1yuoxy2" path="res://Audio/Finish Line (1st Place) - Mario Kart Wii (Soundtrack).mp3" id="17_0wsr5"]
+[ext_resource type="PackedScene" uid="uid://bh5788bq0q2sl" path="res://Prefabs/Bus/BusStop.tscn" id="18_jgorv"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jghel"]
 vertices = PackedVector2Array(502.0703, 425.8125, 504.90625, 803.4297, 469.95313, 801.52344, 468.04688, 425.1797)
@@ -622,13 +623,13 @@ end_position = Vector2(177.81024, -60.055862)
 [node name="Spawners" type="Node2D" parent="." unique_id=590460041 node_paths=PackedStringArray("destinies")]
 position = Vector2(458, 777)
 script = SubResource("GDScript_2llne")
-destinies = NodePath("../Objectives")
 neutral_arrow = ExtResource("5_rpty4")
 correct_arrow = ExtResource("6_6jj8j")
 wrong_arrow = ExtResource("7_06um6")
 car_texture = ExtResource("8_rpty4")
 bus_texture = ExtResource("9_6jj8j")
 ulti_texture = ExtResource("10_0wsr5")
+destinies = NodePath("../Objectives")
 
 [node name="SpawnerS" type="Marker2D" parent="Spawners" unique_id=1927779047]
 
@@ -743,6 +744,9 @@ autoplay = true
 
 [node name="AudioStreamPlayer2D4" type="AudioStreamPlayer2D" parent="." unique_id=1316687540]
 stream = ExtResource("17_0wsr5")
+
+[node name="BusStop" parent="." unique_id=608463383 instance=ExtResource("18_jgorv")]
+position = Vector2(674, 527)
 
 [connection signal="timeout" from="Combo_Timer" to="Spawners" method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="Velocity_Timer" to="Spawners" method="_on_velocity_timer_timeout"]
