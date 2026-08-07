@@ -107,3 +107,7 @@ func _on_vision_area_entered(area: Area2D) -> void:
 			stop_navigation()
 			await get_tree().create_timer(areaParent.timer.time_left).timeout
 		resume_navigation()
+
+
+func _on_on_sreen_notifier_screen_exited() -> void:
+	despawn()

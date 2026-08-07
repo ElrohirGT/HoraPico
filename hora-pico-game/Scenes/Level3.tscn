@@ -750,7 +750,6 @@ wait_time = 15.0
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=391911840]
-visible = false
 
 [node name="HUD" parent="CanvasLayer" unique_id=2055424362 instance=ExtResource("12_nyt0f")]
 
