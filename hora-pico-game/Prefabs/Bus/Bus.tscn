@@ -48,6 +48,11 @@ region_rect = Rect2(53.165653, 81.98786, 56.385715, 26.906868)
 stream = ExtResource("3_6vnsp")
 autoplay = true
 
+[node name="BusWaitTimer" type="Timer" parent="." unique_id=878563662]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
+[connection signal="timeout" from="BusWaitTimer" to="." method="_on_bus_wait_timer_timeout"]

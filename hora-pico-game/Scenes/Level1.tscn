@@ -82,7 +82,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(1231, 273, 1234, 335, 9
 [sub_resource type="GDScript" id="GDScript_2llne"]
 script/source = "extends Node2D
 
-class_name Spawn
+#sclass_name Spawn
 
 const CAR_SCENE = preload(\"res://Prefabs/Car/Car.tscn\")
 const BUS_SCENE = preload(\"res://Prefabs/Bus/Bus.tscn\")
@@ -623,13 +623,13 @@ end_position = Vector2(177.81024, -60.055862)
 [node name="Spawners" type="Node2D" parent="." unique_id=590460041 node_paths=PackedStringArray("destinies")]
 position = Vector2(458, 777)
 script = SubResource("GDScript_2llne")
+destinies = NodePath("../Objectives")
 neutral_arrow = ExtResource("5_rpty4")
 correct_arrow = ExtResource("6_6jj8j")
 wrong_arrow = ExtResource("7_06um6")
 car_texture = ExtResource("8_rpty4")
 bus_texture = ExtResource("9_6jj8j")
 ulti_texture = ExtResource("10_0wsr5")
-destinies = NodePath("../Objectives")
 
 [node name="SpawnerS" type="Marker2D" parent="Spawners" unique_id=1927779047]
 
@@ -746,7 +746,10 @@ autoplay = true
 stream = ExtResource("17_0wsr5")
 
 [node name="BusStop" parent="." unique_id=608463383 instance=ExtResource("18_jgorv")]
-position = Vector2(674, 527)
+position = Vector2(675, 536)
+
+[node name="BusStop2" parent="." unique_id=1271936138 instance=ExtResource("18_jgorv")]
+position = Vector2(816, 462)
 
 [connection signal="timeout" from="Combo_Timer" to="Spawners" method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="Velocity_Timer" to="Spawners" method="_on_velocity_timer_timeout"]
