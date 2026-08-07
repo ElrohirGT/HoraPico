@@ -14,3 +14,7 @@ signal AbilityInvoked(source_device_id: int, ability: Enums.Ability)
 signal SpeedEnded()
 
 signal GameEnded(winner: String)
+
+signal DeviceConnected(device: int)
+
+signal DeviceDisconnected(device: int)
