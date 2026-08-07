@@ -1,11 +1,15 @@
 extends MarginContainer
 
-@onready var initial_menu: ColorRect = $"../ColorRect2"
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	EventBus.DisplayMenu.connect(_hide_show_menu)
 	pass # Replace with function body.
 
+func _hide_show_menu(id: Enums.Menu):
+	if id == Enums.Menu.LevelSelectMenu:
+		self.show()
+	else:
+		self.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -21,5 +25,4 @@ func _on_level_3_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Level3.tscn")
 
 func _on_quit_button_pressed() -> void:
-	self.hide()
-	initial_menu.show()
+	EventBus.DisplayMenu.emit(Enums.Menu.RoleMenu)

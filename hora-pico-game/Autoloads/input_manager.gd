@@ -1,14 +1,18 @@
 extends Node
 
-
-
 var player_count = -1
-@export var role_by_device = {}
+var role_by_device = {}
 
 func _ready() -> void:
+	EventBus.ChangeRole.connect(_on_change_role)
 	Input.joy_connection_changed.connect(_on_joy_connection_changed)
 
+func _on_change_role(device: int, role: Enums.Role):
+	role_by_device[device] = role
+	EventBus.ChangedRole.emit(device, role)
+
 func _on_joy_connection_changed(device: int, connected: bool):
+	print("Device: ", device, " connected: ", connected)
 	if connected:
 		role_by_device[device] = Enums.Role.TRAFFIC
 		player_count += 1

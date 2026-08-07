@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bo4lighfa027d" path="res://Scenes/Menus/MainMenu/LevelSelector/level_selector.gd" id="1_qvr5k"]
 
 [node name="LevelSelector" type="MarginContainer" unique_id=1318565644]
+z_index = 5
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

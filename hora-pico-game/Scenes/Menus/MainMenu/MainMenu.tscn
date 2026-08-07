@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bfp488y4t37xr" path="res://Prefabs/TrafficLight/Traffic Light.tscn" id="6_dpe20"]
 [ext_resource type="PackedScene" uid="uid://b414gvgep8n1r" path="res://Prefabs/Alert/Alert.tscn" id="6_lt8cq"]
 [ext_resource type="PackedScene" uid="uid://brq6oryy6i4i0" path="res://Scenes/Menus/MainMenu/LevelSelector/LevelSelector.tscn" id="9_g6ism"]
+[ext_resource type="PackedScene" uid="uid://btni4vhi5fmgq" path="res://Scenes/Menus/MainMenu/RoleMenu/RoleMenu.tscn" id="10_0056r"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_c3p6v"]
 vertices = PackedVector2Array(233.45313, 39.242188, 213.96875, 74.85156, 214.53125, 23.828125, 235.10156, -49.179688, 214.15625, -49.3125, 214.35156, 13.2109375, 155.57031, 105.859375, 159.82813, 94.40625, 173.02344, 84.8125, 172.21094, 98.28125, 164.79688, 111.71875, 160.67188, 117.28906, 166.07813, 74.64844, 156.07031, 82.703125, 157.25781, 65.671875, 144.82813, 24.007813, 145.00781, 62.289063, 136.42969, 73.24219, 126.52344, 60.296875, 126.13281, 23.15625, 148.35156, 112.703125, 145.03906, 124.953125, 136.96875, 115.72656, 125.96875, 125.78125, 113.10156, 97.99219, 99.1875, 102.14844, 45.179688, 102.47656, 45.53125, 96.99219, 66.64844, 88.4375, 98.1875, 87.4375, 113.90625, 89.09375, 249.13281, 39.773438, 248.46875, 24, 263.65625, 24, 263.65625, 54.132813, 3.34375, 41.9375, 3.34375, 29.898438, 44.890625, 30.71875, 46.601563, 41.101563, 144.39844, 153.09375, 126.4375, 153.72656, 127.42969, 114.02344, 110.82031, 118.28906, 117.46875, 108.078125, 233.82813, 54.203125, 234.14844, 167.78906, 214.47656, 167.53125, 214.14844, 85.1875, 316.7578, 54.632813, 316.22656, 75.90625, 248.84375, 77.578125, 247.47656, 52.453125, 147.34375, 75.89844, 120.140625, 77.96094, 105.28125, 73.75781, 71.671875, 11.84375, 147.95313, 12.15625, 147.95313, 12.1484375, 66.85156, 23.15625, 45.546875, 12.1171875, 45.25, 83.78125, 3.1328125, 97.140625, 3.0234375, 84.60156)
@@ -169,19 +170,18 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Quit"
 
-[node name="LevelSelector" parent="." unique_id=113121837 instance=ExtResource("9_g6ism")]
+[node name="LevelSelector" parent="." unique_id=1318565644 instance=ExtResource("9_g6ism")]
 visible = false
-custom_minimum_size = Vector2(1000, 500)
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="RoleMenu" parent="." unique_id=1075269094 instance=ExtResource("10_0056r")]
+visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -250.0
-offset_right = 250.0
-offset_bottom = 250.0
 
 [connection signal="pressed" from="ColorRect2/HBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="ColorRect2/HBoxContainer/Quit" to="." method="_on_quit_pressed"]
