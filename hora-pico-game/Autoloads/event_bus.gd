@@ -18,3 +18,9 @@ signal GameEnded(winner: String)
 signal DeviceConnected(device: int)
 
 signal DeviceDisconnected(device: int)
+
+signal ChangeRole(device: int, role: Enums.Role)
+
+signal ChangedRole(device: int, role: Enums.Role)
+
+signal DisplayMenu(id: Enums.Menu)

@@ -1,9 +1,88 @@
 [gd_scene format=3 uid="uid://btni4vhi5fmgq"]
 
+[ext_resource type="Script" uid="uid://yjwi0fmjkrkn" path="res://Scenes/Menus/MainMenu/RoleMenu/role_menu.gd" id="1_u8kp8"]
+[ext_resource type="Texture2D" uid="uid://bpah4lo7q0ce1" path="res://TestSprites/PLAYER_P3.png" id="1_vv4f1"]
+[ext_resource type="Texture2D" uid="uid://c3g460ifs0f05" path="res://TestSprites/PLAYER_P1.png" id="2_evlkn"]
+[ext_resource type="Texture2D" uid="uid://cers3b4ai6fo2" path="res://TestSprites/PLAYER_P2.png" id="3_cgylu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bt0eo"]
+bg_color = Color(0.6, 0.6, 0.6, 0.5294118)
+
 [node name="RoleMenu" type="Control" unique_id=1075269094]
+z_index = 5
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_u8kp8")
+pointer_textures = Array[Texture2D]([ExtResource("2_evlkn"), ExtResource("3_cgylu"), ExtResource("1_vv4f1")])
+
+[node name="Panel" type="Panel" parent="." unique_id=2095162383]
+custom_minimum_size = Vector2(700, 400)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bt0eo")
+
+[node name="HFlowContainer" type="VBoxContainer" parent="Panel" unique_id=376780435]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HFlowContainer" unique_id=194954481]
+layout_mode = 2
+alignment = 1
+
+[node name="TrafficContainer" type="FlowContainer" parent="Panel/HFlowContainer/VBoxContainer" unique_id=2038985440]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Panel/HFlowContainer/VBoxContainer/TrafficContainer" unique_id=368702132]
+layout_mode = 2
+texture = ExtResource("1_vv4f1")
+
+[node name="Label" type="Label" parent="Panel/HFlowContainer/VBoxContainer" unique_id=1445947828]
+layout_mode = 2
+text = "TRAFFIC: Press [Up] to join"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/HFlowContainer" unique_id=231399397]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/HFlowContainer/VBoxContainer2" unique_id=149029342]
+layout_mode = 2
+text = "POLICE: Press [Down] to join"
+horizontal_alignment = 1
+
+[node name="PoliceContainer" type="FlowContainer" parent="Panel/HFlowContainer/VBoxContainer2" unique_id=1644009414]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Panel/HFlowContainer/VBoxContainer2/PoliceContainer" unique_id=555228327]
+layout_mode = 2
+texture = ExtResource("1_vv4f1")
+
+[node name="Play" type="Button" parent="Panel/HFlowContainer" unique_id=2105886585]
+layout_mode = 2
+disabled = true
+text = "Play"
+
+[node name="Back" type="Button" parent="Panel/HFlowContainer" unique_id=435353049]
+layout_mode = 2
+text = "Back"
