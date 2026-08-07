@@ -5,6 +5,8 @@ class_name Bus
 @export var original_movement_speed: float = 60.0
 @export var turbo_speed: float = 100.0
 
+var is_waiting: bool = false
+
 var default_movement_speed: float = original_movement_speed
 var movement_speed: float = original_movement_speed
 var movement_target_position: Vector2 = Vector2.ZERO
@@ -12,6 +14,7 @@ var last_angle: float = 0
 var priority: int = 0
 
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var bus_waiting_timer: Timer = $BusWaitTimer
 
 var sprites: Array[Sprite2D]
 
@@ -32,6 +35,14 @@ func _ready():
 
 	# Make sure to not await during _ready.
 	actor_setup.call_deferred()
+
+func _process(delta: float) -> void:
+	if is_waiting:
+		is_waiting = false
+		navigation_agent.process_mode = Node.PROCESS_MODE_DISABLED
+		movement_speed = 0
+		last_angle = rotation
+		bus_waiting_timer.start()
 
 func actor_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
@@ -64,7 +75,7 @@ func despawn():
 	queue_free()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if (body is Car || body is TrafficLight) && body != self:
+	if (body is Car || body is TrafficLight || body is Bus) && body != self:
 		navigation_agent.process_mode = Node.PROCESS_MODE_DISABLED
 		movement_speed = 0
 		last_angle = rotation
@@ -76,7 +87,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 				movement_speed = default_movement_speed
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if (body is Car || body is TrafficLight) && body != self:
+	if (body is Car || body is TrafficLight || body is Bus) && body != self:
 		navigation_agent.process_mode = Node.PROCESS_MODE_ALWAYS
 		movement_speed = default_movement_speed
 
@@ -88,3 +99,7 @@ func _on_ability_invoked(source_device_id: int, ability: Enums.Ability):
 func _on_speed_ended():
 	default_movement_speed = original_movement_speed
 	movement_speed = original_movement_speed
+
+func _on_bus_wait_timer_timeout() -> void:
+	navigation_agent.process_mode = Node.PROCESS_MODE_ALWAYS
+	movement_speed = default_movement_speed
