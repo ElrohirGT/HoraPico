@@ -55,7 +55,11 @@ region_rect = Rect2(2.7922554, 56.88517, 36.331474, 23.741356)
 stream = ExtResource("3_7xxgp")
 autoplay = true
 
+[node name="OnSreenNotifier" type="VisibleOnScreenNotifier2D" parent="." unique_id=759192959]
+position = Vector2(-32, 0)
+
 [connection signal="area_entered" from="Vision" to="." method="_on_vision_area_entered"]
 [connection signal="body_entered" from="Vision" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Vision" to="." method="_on_area_2d_body_exited"]
 [connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
+[connection signal="screen_exited" from="OnSreenNotifier" to="." method="_on_on_sreen_notifier_screen_exited"]
