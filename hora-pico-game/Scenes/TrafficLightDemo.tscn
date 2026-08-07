@@ -2,8 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cqnv22nghhewf" path="res://TestSprites/BasicIntersection.png" id="1_mdu1y"]
 [ext_resource type="PackedScene" uid="uid://bfp488y4t37xr" path="res://Prefabs/TrafficLight/Traffic Light.tscn" id="2_37miv"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_d65wf"]
+[ext_resource type="PackedScene" uid="uid://df0wdlpqojsmy" path="res://Prefabs/Car/Car.tscn" id="3_d65wf"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_r5dmi"]
 vertices = PackedVector2Array(1139, 330.96094, 593, 329.03125, 593, 272.90625, 1139, 268.07813)
@@ -22,11 +21,9 @@ position = Vector2(574.5, 324)
 scale = Vector2(2.294, 1.288)
 texture = ExtResource("1_mdu1y")
 
-[node name="TopLane" type="NavigationRegion2D" parent="." unique_id=1093217428]
-navigation_polygon = SubResource("NavigationPolygon_d65wf")
-
-[node name="Traffic Light" parent="TopLane" unique_id=1400643141 instance=ExtResource("2_37miv")]
-position = Vector2(759, 290)
+[node name="Traffic Light" parent="." unique_id=1400643141 instance=ExtResource("2_37miv")]
+position = Vector2(391, 393)
+cycleDuration = 3.0
 
 [node name="Destination" type="Marker2D" parent="." unique_id=814555735]
 position = Vector2(52, 392)
@@ -44,3 +41,15 @@ end_position = Vector2(238, 300)
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=1778593953]
 position = Vector2(-1, 93)
 navigation_polygon = SubResource("NavigationPolygon_8igt4")
+
+[node name="Car2" parent="." unique_id=1651818327 instance=ExtResource("3_d65wf")]
+position = Vector2(1112, 397)
+movement_target_position = Vector2(52, 392)
+
+[node name="Car3" parent="." unique_id=907077498 instance=ExtResource("3_d65wf")]
+position = Vector2(964, 384)
+movement_target_position = Vector2(52, 392)
+
+[node name="Car4" parent="." unique_id=1642030730 instance=ExtResource("3_d65wf")]
+position = Vector2(803, 399)
+movement_target_position = Vector2(52, 392)

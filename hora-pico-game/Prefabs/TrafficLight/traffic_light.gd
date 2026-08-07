@@ -8,11 +8,12 @@ enum TrafficLightState{RED, YELLOW, GREEN, HACKED}
 @onready var Yellow: Sprite2D = $Yellow
 @onready var Green: Sprite2D = $Green
 @onready var Hacked: AnimatedSprite2D = $Hacked
-@onready var Collider: CollisionShape2D = $CollisionShape2D
+@onready var Collider: CollisionShape2D = $CollisionBoundary
 
 @export var cycleDuration: float
 @export var yellowPercentage: float
 @export var state: TrafficLightState
+@export var bodiesColliding: int
 
 var timer: Timer
 var is_cursor_hovering: bool = false
@@ -45,11 +46,15 @@ func _ready() -> void:
 	timer.start()
 
 func _on_timer_timeout() -> void:
-	# print("Timer done!")
 	if state == TrafficLightState.RED:
 		state = TrafficLightState.GREEN
 	elif state == TrafficLightState.GREEN or state == TrafficLightState.YELLOW:
-		state = TrafficLightState.RED
+		# Attempt to go to red state. If imposible because of collision
+		#while bodiesColliding != 0:
+		if bodiesColliding == 0:
+			state = TrafficLightState.RED
+				#break
+			#await get_tree().create_timer(0.2).timeout
 	
 	timer.start()
 
@@ -80,3 +85,11 @@ func hack_traffic_light() -> void:
 func unhack_traffic_light() ->void:
 	state = TrafficLightState.GREEN
 	timer.start()
+
+
+func _on_warning_area_body_entered(body: Node2D) -> void:
+	bodiesColliding += 1
+
+
+func _on_warning_area_body_exited(body: Node2D) -> void:
+	bodiesColliding -= 1

@@ -58,16 +58,19 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_igdak")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_js5qc"]
-size = Vector2(31, 79)
+size = Vector2(34, 82)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bt0eo"]
+size = Vector2(34, 78)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b4had"]
-size = Vector2(31.75, 58)
+size = Vector2(34, 62)
 
 [node name="Traffic Light" type="StaticBody2D" unique_id=414423625]
 z_index = 10
@@ -89,13 +92,25 @@ texture = ExtResource("2_3axdo")
 sprite_frames = SubResource("SpriteFrames_aa4xd")
 frame_progress = 0.8627701
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=865414064]
+[node name="CollisionBoundary" type="CollisionShape2D" parent="." unique_id=865414064]
+position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_js5qc")
+debug_color = Color(0.99999994, 0.008068639, 0.07154871, 0.41960785)
 
-[node name="InteractArea" type="Area2D" parent="." unique_id=1784426429]
+[node name="WarningArea" type="Area2D" parent="." unique_id=1042974324]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea" unique_id=117690559]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WarningArea" unique_id=918084295]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_bt0eo")
+debug_color = Color(0.6484775, 0.5210381, 0, 0.41960785)
+
+[node name="ClickArea" type="Area2D" parent="." unique_id=1784426429]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea" unique_id=117690559]
+position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_b4had")
 
-[connection signal="area_entered" from="InteractArea" to="." method="_on_interact_area_area_entered"]
-[connection signal="area_exited" from="InteractArea" to="." method="_on_interact_area_area_exited"]
+[connection signal="body_entered" from="WarningArea" to="." method="_on_warning_area_body_entered"]
+[connection signal="body_exited" from="WarningArea" to="." method="_on_warning_area_body_exited"]
+[connection signal="area_entered" from="ClickArea" to="." method="_on_interact_area_area_entered"]
+[connection signal="area_exited" from="ClickArea" to="." method="_on_interact_area_area_exited"]
