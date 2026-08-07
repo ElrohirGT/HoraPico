@@ -7,7 +7,7 @@ class_name Car
 
 var default_movement_speed: float = original_movement_speed
 var movement_speed: float = original_movement_speed
-var movement_target_position: Vector2 = Vector2.ZERO
+@export var movement_target_position: Vector2 = Vector2.ZERO
 var last_angle: float = 0
 var priority: int = 0
 
@@ -65,20 +65,25 @@ func despawn() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if (body is Car || body is TrafficLight || body is Bus) && body != self:
+		#if body is TrafficLight:
+			#if body.state == TrafficLight.TrafficLightState.GREEN or body.state == TrafficLight.TrafficLightState.YELLOW:
+				#return
 
-		if body is TrafficLight:
-			if body.state == TrafficLight.TrafficLightState.GREEN or body.state == TrafficLight.TrafficLightState.YELLOW:
-				return
-
-		navigation_agent.process_mode = Node.PROCESS_MODE_DISABLED
-		movement_speed = 0
-		last_angle = rotation
+		stop_navigation()
 
 		if body is Car:
 			var otherCar = body as Car
 			if priority < otherCar.priority:
-				navigation_agent.process_mode = Node.PROCESS_MODE_ALWAYS
-				movement_speed = default_movement_speed
+				resume_navigation()
+
+func stop_navigation():
+	navigation_agent.process_mode = Node.PROCESS_MODE_DISABLED
+	movement_speed = 0
+	last_angle = rotation
+
+func resume_navigation():
+	navigation_agent.process_mode = Node.PROCESS_MODE_ALWAYS
+	movement_speed = default_movement_speed
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if (body is Car || body is TrafficLight || body is Bus) && body != self:
@@ -93,3 +98,12 @@ func _on_ability_invoked(source_device_id: int, ability: Enums.Ability):
 func _on_speed_ended():
 	default_movement_speed = original_movement_speed
 	movement_speed = original_movement_speed
+
+
+func _on_vision_area_entered(area: Area2D) -> void:
+	var areaParent = area.get_parent()
+	if areaParent is TrafficLight:
+		while areaParent.state == TrafficLight.TrafficLightState.RED or areaParent.state == TrafficLight.TrafficLightState.YELLOW:
+			stop_navigation()
+			await get_tree().create_timer(areaParent.timer.time_left).timeout
+		resume_navigation()
