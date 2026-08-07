@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://brq6oryy6i4i0"]
+
+[ext_resource type="Script" uid="uid://bo4lighfa027d" path="res://Scenes/Menus/MainMenu/LevelSelector/level_selector.gd" id="1_qvr5k"]
+
+[node name="LevelSelector" type="MarginContainer" unique_id=1318565644]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+script = ExtResource("1_qvr5k")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=117135174]
+layout_mode = 2
+color = Color(0, 0, 0, 0.47058824)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1344073053]
+layout_mode = 2
+theme_override_constants/separation = 185
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=552090324]
+layout_mode = 2
+theme_override_font_sizes/font_size = 49
+text = "Niveles"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1306809308]
+layout_mode = 2
+theme_override_constants/separation = 69
+alignment = 1
+
+[node name="Level1Button" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=183558101]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Nivel 1"
+
+[node name="Level2Button" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=737486674]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Nivel 2"
+
+[node name="Level3Button" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=602980180]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Nivel 3"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=623088716]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Volver
+"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Level1Button" to="." method="_on_level_1_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Level2Button" to="." method="_on_level_2_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Level3Button" to="." method="_on_level_3_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
