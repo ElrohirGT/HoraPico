@@ -1,0 +1,689 @@
+[gd_scene format=3 uid="uid://dvkc0rgk2e787"]
+
+[ext_resource type="PackedScene" uid="uid://dkqpgnifqiqih" path="res://Prefabs/PlayerJoiner/PlayerJoiner.tscn" id="1_w8w55"]
+[ext_resource type="PackedScene" uid="uid://6tlt2pqn7seh" path="res://Prefabs/PlayerPointer/TrafficPlayerPointer.tscn" id="2_n11h6"]
+[ext_resource type="Texture2D" uid="uid://fussdq8d8nco" path="res://TestSprites/LVL3.png" id="3_nfsas"]
+[ext_resource type="Texture2D" uid="uid://cndf2vyalj7g2" path="res://TestSprites/COMBO_ARROW_Neutral.png" id="5_7i42h"]
+[ext_resource type="Texture2D" uid="uid://cng57pj14kto" path="res://TestSprites/COMBO_ARROW_Ok.png" id="6_os83n"]
+[ext_resource type="Texture2D" uid="uid://eeyqpdtf31da" path="res://TestSprites/COMBO_ARROW_Failed.png" id="7_l7c12"]
+[ext_resource type="Texture2D" uid="uid://dga7rck3xr3sr" path="res://Assets/CarCut.png" id="8_vu2is"]
+[ext_resource type="Texture2D" uid="uid://dxpg6ynwd7tik" path="res://Assets/BusCut.png" id="9_ok15r"]
+[ext_resource type="Texture2D" uid="uid://c1duugq2duywa" path="res://TestSprites/SPEED_Symbol.png" id="10_kqtrc"]
+[ext_resource type="PackedScene" uid="uid://b414gvgep8n1r" path="res://Prefabs/Alert/Alert.tscn" id="11_dp6di"]
+[ext_resource type="PackedScene" uid="uid://cqcnrpfy4ruk5" path="res://Prefabs/HUD/HUD.tscn" id="12_nyt0f"]
+[ext_resource type="AudioStream" uid="uid://cmbbb4m63j2uj" path="res://Audio/Effects/Vehicles/arrow.mp3" id="14_6cbro"]
+[ext_resource type="AudioStream" uid="uid://dcwu4etfeqgbs" path="res://Audio/Effects/Vehicles/miss.mp3" id="15_ghpjo"]
+[ext_resource type="AudioStream" uid="uid://cxqiwtsx1e2c2" path="res://Audio/Coconut Mall - Mario Kart Wii.mp3" id="16_g2r38"]
+[ext_resource type="AudioStream" uid="uid://cb62jc1yuoxy2" path="res://Audio/Finish Line (1st Place) - Mario Kart Wii (Soundtrack).mp3" id="17_0redk"]
+[ext_resource type="PackedScene" uid="uid://bh5788bq0q2sl" path="res://Prefabs/Bus/BusStop.tscn" id="18_nnfg0"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ktnig"]
+vertices = PackedVector2Array(76.578125, 637.9219, 15.640625, 637.1797, 309.35156, 11, 359.52344, 11)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(303, 1, 375, 1, 83, 648, 0, 647)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_nfsas"]
+vertices = PackedVector2Array(172.32031, 638, 111.36719, 638, 389.5, 11, 432.03125, 11)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(383, 1, 447, 1, 179, 648, 96, 648)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ms3ee"]
+vertices = PackedVector2Array(554.02344, 638, 486.64844, 638, 731.84375, 10, 784.6719, 10)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(725, 0, 799, 0, 561, 648, 472, 648)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xxw0v"]
+vertices = PackedVector2Array(650.9922, 638, 587.3281, 638, 817.97656, 10, 878.7422, 10)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(811, 0, 893, 0, 658, 648, 573, 648)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_5pcch"]
+vertices = PackedVector2Array(649.21875, 164.9375, 616.25, 246.96875, 361.3672, 246.04688, 391.9297, 164.02344)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(385, 154, 347, 256, 623, 257, 664, 155)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_85b6l"]
+vertices = PackedVector2Array(512.27344, 512.09375, 247.11719, 515.78125, 285.64844, 423.96875, 549.03125, 423.04688)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(279, 414, 232, 526, 519, 522, 564, 413)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_qq3uj"]
+vertices = PackedVector2Array(1140.9609, 402.84375, 1140.1328, 516.21875, 804.3281, 288.28125, 850.2578, 176)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1151, 398, 1150, 535, 792, 292, 846, 160)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_e63ni"]
+vertices = PackedVector2Array(916.8125, 490.39844, 715.77344, 523.4297, 749.53125, 422.96875, 910.60156, 398.47656, 1097.5469, 637, 1141, 556.27344, 1141, 637)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5, 6)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1151, 551, 1151, 647, 1094, 647, 914, 501, 701, 536, 742, 414, 913, 388)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_bnsu8"]
+vertices = PackedVector2Array(177.78125, 244.96094, 11.09375, 244.04688, 11.8984375, 161, 218.96094, 161)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(2, 151, 1, 254, 184, 255, 235, 151)])
+
+[sub_resource type="GDScript" id="GDScript_2llne"]
+script/source = "extends Node2D
+
+#sclass_name Spawn
+
+const CAR_SCENE = preload(\"res://Prefabs/Car/Car.tscn\")
+const BUS_SCENE = preload(\"res://Prefabs/Bus/Bus.tscn\")
+
+@export var destinies: Node2D # Le ponés el target al spawner 
+@export var ultimate_charges: int = 1
+
+@export var neutral_arrow: Texture2D
+@export var correct_arrow: Texture2D
+@export var wrong_arrow: Texture2D
+
+@export var car_texture: Texture2D
+@export var bus_texture: Texture2D
+@export var ulti_texture: Texture2D
+
+enum Directions{UP, DOWN, LEFT, RIGHT}
+var done: Array[Directions]
+var car_pattern: Array[Directions]
+var bus_pattern: Array[Directions]
+
+var selected_pattern: int = 0
+
+var vehicleType: String
+
+enum Velocity{ F, E, D, C, B, A, S }
+@export var currentVelocity = Velocity.F
+
+@onready var vehicle_timer: Timer = $\"../Car_Timer\"
+@onready var combo_timer: Timer = $\"../Combo_Timer\"
+@onready var velocity_timer: Timer = $\"../Velocity_Timer\"
+
+@onready var velocity_label: Label = $\"../CanvasLayer/HUD/ColorRect/VelocityLabel\"
+@onready var ultimate_label: Label = $\"../CanvasLayer/HUD/ColorRect/UltimateCharges\"
+
+@onready var car_combo_container: HBoxContainer = $\"../CanvasLayer/HUD/TrafficBackground/CarComboQueue\"
+@onready var bus_combo_container: HBoxContainer = $\"../CanvasLayer/HUD/TrafficBackground2/BusComboQueue\"
+
+@onready var audio_player: AudioStreamPlayer2D = $\"../AudioStreamPlayer2D\"
+@onready var failure_audio_player: AudioStreamPlayer2D = $\"../AudioStreamPlayer2D2\"
+
+@onready var spawners: Dictionary = {
+	\"N\": $SpawnerN,
+	\"S\": $SpawnerS,
+	\"E\": $SpawnerE,
+	\"W\": $SpawnerW
+}
+@onready var spawners_indicators: Dictionary = {
+	\"N\": $SpawnerN/Alert,
+	\"S\": $SpawnerS/Alert,
+	\"E\": $SpawnerE/Alert,
+	\"W\": $SpawnerW/Alert
+}
+
+static var vehicle_next_priority = 0
+
+var combo: Directions
+var direction: String = \"\"
+var waiting_for_direction: bool = false
+
+static var last_combo: String = \"\"
+static var last_direction: String = \"\"
+
+@onready var spawn_cooldown: Timer = $Timer
+
+func _ready() -> void:
+	EventBus.VehicleChanged.connect(_on_vehicle_changed)
+	EventBus.VehicleChanged.emit(0)
+	spawn_cooldown.timeout.connect(_on_spawn_cooldown_done)
+	random_gen()
+
+func _input(event: InputEvent) -> void:
+	if not event.is_pressed() or event.is_echo():
+		return
+		
+	if waiting_for_direction:
+		if event.is_action_pressed(\"north_traffic\"):
+			direction = \"N\"
+		elif event.is_action_pressed(\"south_traffic\"):
+			direction = \"S\"
+		elif event.is_action_pressed(\"east_traffic\"):
+			direction = \"E\"
+		elif event.is_action_pressed(\"west_traffic\"):
+			direction = \"W\"
+		else:
+			return
+
+		if direction != \"\":
+			waiting_for_direction = false
+			call_deferred(\"_on_pattern_complete\")
+			
+		else:
+			waiting_for_direction = false
+			call_deferred(\"_on_pattern_mistake\")
+			
+		return
+		
+	if event.is_action_pressed(\"toggle_vehicle\"):
+		selected_pattern = (selected_pattern + 1) % 2
+		EventBus.VehicleChanged.emit(selected_pattern)
+	
+	var idx = len(done)
+	var expected
+	var pattern
+	
+	if selected_pattern == 0:
+		if idx >= len(car_pattern):
+			call_deferred(\"_on_pattern_mistake\")
+			return
+
+		expected = car_pattern[idx]
+		pattern = car_pattern
+		
+	else:
+		if idx >= len(bus_pattern):
+			call_deferred(\"_on_pattern_mistake\")
+			return
+		
+		expected = bus_pattern[idx]
+		pattern = bus_pattern
+	
+	if event.is_action_pressed(\"up_traffic\"):
+		combo = Directions.UP
+		
+	elif event.is_action_pressed(\"down_traffic\"):
+		combo = Directions.DOWN
+		
+	elif event.is_action_pressed(\"right_traffic\"):
+		combo = Directions.RIGHT
+		
+	elif event.is_action_pressed(\"left_traffic\"):
+		combo = Directions.LEFT
+		
+	else:
+		return
+		
+	print(combo, expected)
+	
+	if combo != expected:
+		failure_audio_player.play()
+		call_deferred(\"_on_pattern_mistake\")
+		combo_timer.start()
+
+	if combo == expected :
+		done.append(combo)
+		
+		refresh_combo_display()
+		
+		if done.size() == pattern.size():
+			if currentVelocity == Velocity.S:
+				call_deferred(\"_on_pattern_complete\")
+				
+			else:
+				waiting_for_direction = true
+
+func _on_vehicle_changed(new_vehicle: int):
+	if new_vehicle == 0:
+		vehicleType = \"Car\"
+		car_combo_container.modulate.a = 1
+		bus_combo_container.modulate.a = 0.2
+		
+	else:
+		vehicleType = \"Bus\"
+		car_combo_container.modulate.a = 0.2
+		bus_combo_container.modulate.a = 1
+		
+	print(vehicleType)
+	
+func refresh_combo_display():
+	for child in car_combo_container.get_children():
+		child.queue_free()
+
+	for child in bus_combo_container.get_children():
+		child.queue_free()
+
+	generate_combo()
+
+func _on_pattern_mistake():
+	done = []
+	
+	combo_timer.start()
+	
+	var containers: Array = [car_combo_container, bus_combo_container]
+	
+	for container in containers:
+		for child in container.get_children():
+			child.queue_free()
+	
+	random_gen()
+
+func _on_pattern_complete():
+	var containers: Array = [car_combo_container, bus_combo_container]
+	done = []
+	
+	combo_timer.start()
+	
+	if currentVelocity == Velocity.S:
+		cast_ultimate()
+		
+	else:
+		call_deferred(\"vehicle_spawn\", vehicleType, direction)
+		speeding_up(vehicleType)
+	
+	for container in containers:
+		for child in container.get_children():
+			child.queue_free()
+	
+	direction = \"\"
+	random_gen()
+
+func generate_random_pattern() -> Array[Directions]:
+	var directions = [Directions.UP, Directions.DOWN, Directions.LEFT, Directions.RIGHT]
+	var new_pattern: Array[Directions]
+	var length: int
+	
+	if currentVelocity != Velocity.S:
+		length = randi_range(3, 4)
+		
+	else:
+		length = 6
+
+	for i in length:
+		new_pattern.append(directions.pick_random())
+	
+	return new_pattern
+	
+func generate_random_spawner() -> String:
+	var spawners: Array[String] = [\"N\", \"S\", \"E\", \"W\"]
+	
+	return spawners.pick_random()
+
+func generate_combo():
+	var patterns: Array = [car_pattern, bus_pattern]
+	var containers: Array = [car_combo_container, bus_combo_container]
+	
+	for pattern in patterns:
+		var combo: HBoxContainer = HBoxContainer.new()
+		combo.set_anchors_preset(Control.PRESET_CENTER)
+		combo.add_theme_constant_override(\"separation\", 40)
+	
+		for idx in pattern.size():
+			
+			var p = pattern[idx]
+			
+			var texture_container: Control = Control.new()
+			
+			var texture: TextureRect = TextureRect.new()
+			texture.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+			texture.custom_minimum_size = Vector2(32, 32)
+			texture.set_anchors_preset(Control.PRESET_CENTER)
+			texture.pivot_offset_ratio = Vector2(0.5, 0.5)
+			texture.texture = neutral_arrow
+			
+			if p == Directions.DOWN:
+				texture.rotation_degrees = 180
+			if p == Directions.RIGHT:
+				texture.rotation_degrees = 90
+			if p == Directions.LEFT:
+				texture.rotation_degrees = -90
+				
+			if patterns.find(pattern) == selected_pattern:
+				if idx < done.size():
+					var selected = done[idx]
+					if selected != p:
+						texture.texture = wrong_arrow
+					else:
+						texture.texture = correct_arrow
+						audio_player.play()
+			
+			texture_container.add_child(texture)
+			combo.add_child(texture_container)
+	
+		containers[patterns.find(pattern)].add_child(combo)
+
+func random_gen() -> void:
+	car_pattern = generate_random_pattern()
+	bus_pattern = generate_random_pattern()
+	
+	if selected_pattern == 0:
+		vehicleType = \"Car\"
+	
+	else:
+		vehicleType = \"Bus\"
+	
+	generate_combo()
+
+var index: int
+func _on_spawn_cooldown_done():
+	if index >= ultimate_charges:
+		index = 0
+		return
+	
+	spawn_cooldown.start()
+	var vehicles: Array = [\"Car\", \"Bus\"]
+	var random_vehicle: String = vehicles.pick_random()
+	var spawnersKeys: Array = spawners.keys()
+	vehicle_spawn(random_vehicle, spawnersKeys.pick_random())
+	index += 1
+
+func cast_ultimate() -> void:
+	var vehicles: Array = [\"Car\", \"Bus\"]
+	var random_vehicle: String = vehicles.pick_random()
+	var spawnersKeys: Array = spawners.keys()
+	
+	spawn_cooldown.start()
+	ultimate_charges += 1
+	ultimate_label.text = \"Charges: \" + str(ultimate_charges)
+	
+	velocity_timer.stop()
+	velocity_timer.timeout.emit()
+
+func vehicle_spawn(vehicleType: String, spawnPosition: String) -> void:
+	EventBus.VehicleSpawned.emit()
+	print(vehicleType, spawnPosition)
+	
+	var new_vehicle
+	
+	if vehicleType == \"Car\":
+		new_vehicle = CAR_SCENE.instantiate()
+	
+	elif vehicleType == \"Bus\":
+		new_vehicle = BUS_SCENE.instantiate()
+		
+	if new_vehicle != null:
+		new_vehicle.global_position = spawners[spawnPosition].global_position
+		spawners_indicators[spawnPosition].display()
+		new_vehicle.priority = vehicle_next_priority
+		vehicle_next_priority += 1
+		
+		if destinies != null:
+			var random_objective: Marker2D = destinies.get_children().pick_random()
+			new_vehicle.movement_target_position = random_objective.global_position
+		
+		else:
+			print(\"No destino.\")
+			return
+		
+		get_tree().current_scene.add_child(new_vehicle)
+		print(\"%s to: \" % vehicleType, new_vehicle.movement_target_position, \"with ID: \", new_vehicle.priority) # Está curioso el format string aquí xd
+		
+		last_combo = vehicleType
+		last_direction = spawnPosition
+		
+		vehicle_timer.wait_time = 3 # randf_range(0, 5)
+		vehicle_timer.start()
+
+func speeding_up(combo: String):
+	if currentVelocity < 5:
+		currentVelocity = (currentVelocity + 1)
+		
+	else:
+		currentVelocity = Velocity.S
+	
+	velocity_label.text = Velocity.keys()[currentVelocity]
+	velocity_timer.start()
+		
+func _on_combo_timer_timeout() -> void:
+	call_deferred(\"_on_pattern_mistake\")
+	direction = \"\"
+	waiting_for_direction = false
+	print(\"Combo reseteado por timeout.\")
+
+func _on_velocity_timer_timeout() -> void:
+	currentVelocity = Velocity.F
+	velocity_label.text = Velocity.keys()[currentVelocity]
+	print(\"Velocidad (Rango) reseteada por timeout.\")
+
+func _on_mistake_display_timer_timeout() -> void:
+	call_deferred(\"_on_pattern_mistake\")
+"
+
+[node name="Level1" type="Node2D" unique_id=944242678]
+
+[node name="PlayerJoiner" parent="." unique_id=1218929265 instance=ExtResource("1_w8w55")]
+z_index = 15
+position = Vector2(493, 348)
+traffic_player_prefab = ExtResource("2_n11h6")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=91177656]
+z_index = -5
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("3_nfsas")
+expand_mode = 1
+
+[node name="NavigationRegions" type="Node2D" parent="." unique_id=721595883]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="NavigationRegions" unique_id=301063555]
+navigation_polygon = SubResource("NavigationPolygon_ktnig")
+
+[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="NavigationRegions" unique_id=677926090]
+navigation_polygon = SubResource("NavigationPolygon_nfsas")
+
+[node name="NavigationRegion2D3" type="NavigationRegion2D" parent="NavigationRegions" unique_id=1114505802]
+navigation_polygon = SubResource("NavigationPolygon_ms3ee")
+
+[node name="NavigationRegion2D4" type="NavigationRegion2D" parent="NavigationRegions" unique_id=1671168711]
+navigation_polygon = SubResource("NavigationPolygon_xxw0v")
+
+[node name="NavigationRegion2D5" type="NavigationRegion2D" parent="NavigationRegions" unique_id=350713202]
+navigation_polygon = SubResource("NavigationPolygon_5pcch")
+
+[node name="NavigationRegion2D6" type="NavigationRegion2D" parent="NavigationRegions" unique_id=138430070]
+navigation_polygon = SubResource("NavigationPolygon_85b6l")
+
+[node name="NavigationRegion2D7" type="NavigationRegion2D" parent="NavigationRegions" unique_id=838313065]
+navigation_polygon = SubResource("NavigationPolygon_qq3uj")
+
+[node name="NavigationRegion2D8" type="NavigationRegion2D" parent="NavigationRegions" unique_id=1260467745]
+navigation_polygon = SubResource("NavigationPolygon_e63ni")
+
+[node name="NavigationRegion2D9" type="NavigationRegion2D" parent="NavigationRegions" unique_id=1888564187]
+navigation_polygon = SubResource("NavigationPolygon_bnsu8")
+
+[node name="UniLinks" type="Node2D" parent="." unique_id=1015325278]
+position = Vector2(487, 302)
+rotation = -0.16580628
+scale = Vector2(1.795, 1.795)
+
+[node name="NavigationLink2D2" type="NavigationLink2D" parent="UniLinks" unique_id=567448090]
+bidirectional = false
+start_position = Vector2(210.94185, -25.139343)
+end_position = Vector2(195.3886, -50.33606)
+
+[node name="NavigationLink2D" type="NavigationLink2D" parent="UniLinks" unique_id=1784137198]
+bidirectional = false
+start_position = Vector2(202.0496, -12.506165)
+end_position = Vector2(94.1888, -56.538956)
+
+[node name="NavigationLink2D3" type="NavigationLink2D" parent="UniLinks" unique_id=1892396882]
+bidirectional = false
+start_position = Vector2(186.27678, 17.615662)
+end_position = Vector2(115.22334, -10.090408)
+
+[node name="NavigationLink2D4" type="NavigationLink2D" parent="UniLinks" unique_id=2009939460]
+position = Vector2(13.012121, -10.249208)
+bidirectional = false
+start_position = Vector2(-49.960983, -69.364365)
+end_position = Vector2(-73.76956, -75.607956)
+
+[node name="NavigationLink2D5" type="NavigationLink2D" parent="UniLinks" unique_id=1756214714]
+position = Vector2(-1.1953325, 7.1430144)
+bidirectional = false
+start_position = Vector2(-207.48346, 58.479385)
+end_position = Vector2(-139.90845, 83.34395)
+
+[node name="NavigationLink2D6" type="NavigationLink2D" parent="UniLinks" unique_id=1642458052]
+position = Vector2(13.927151, -8.966387)
+bidirectional = false
+start_position = Vector2(-156.92621, 56.772446)
+end_position = Vector2(-133.2096, 63.565506)
+
+[node name="NavigationLink2D7" type="NavigationLink2D" parent="UniLinks" unique_id=966130902]
+position = Vector2(-20.901867, 30.393208)
+bidirectional = false
+start_position = Vector2(-34.477417, -77.50545)
+end_position = Vector2(-99.86125, -91.836044)
+
+[node name="NavigationLink2D8" type="NavigationLink2D" parent="UniLinks" unique_id=1449013607]
+bidirectional = false
+start_position = Vector2(12.770294, 78.95657)
+end_position = Vector2(36.76497, 80.712494)
+
+[node name="NavigationLink2D9" type="NavigationLink2D" parent="UniLinks" unique_id=524991244]
+bidirectional = false
+start_position = Vector2(-6.8509827, 111.823456)
+end_position = Vector2(66.49895, 129.18167)
+
+[node name="NavigationLink2D10" type="NavigationLink2D" parent="UniLinks" unique_id=51905035]
+position = Vector2(19.439606, -35.1567)
+bidirectional = false
+start_position = Vector2(91.13283, 133.86884)
+end_position = Vector2(115.67699, 135.71674)
+
+[node name="NavigationLink2D11" type="NavigationLink2D" parent="UniLinks" unique_id=25159497]
+bidirectional = false
+start_position = Vector2(-145.28722, -93.789246)
+end_position = Vector2(-124.315674, -90.844666)
+
+[node name="NavigationLink2D12" type="NavigationLink2D" parent="UniLinks" unique_id=1929844637]
+position = Vector2(-21.908846, 29.659845)
+bidirectional = false
+start_position = Vector2(-145.28722, -93.789246)
+end_position = Vector2(-124.315674, -90.844666)
+
+[node name="NavigationLink2D13" type="NavigationLink2D" parent="UniLinks" unique_id=1576241995]
+bidirectional = false
+start_position = Vector2(94.34599, -16.973175)
+end_position = Vector2(73.37666, -23.306488)
+
+[node name="NavigationLink2D14" type="NavigationLink2D" parent="UniLinks" unique_id=1366699791]
+bidirectional = false
+start_position = Vector2(151.22316, -19.317047)
+end_position = Vector2(87.31273, -45.827774)
+
+[node name="Spawners" type="Node2D" parent="." unique_id=590460041 node_paths=PackedStringArray("destinies")]
+visible = false
+position = Vector2(458, 777)
+script = SubResource("GDScript_2llne")
+destinies = NodePath("../Objectives")
+neutral_arrow = ExtResource("5_7i42h")
+correct_arrow = ExtResource("6_os83n")
+wrong_arrow = ExtResource("7_l7c12")
+car_texture = ExtResource("8_vu2is")
+bus_texture = ExtResource("9_ok15r")
+ulti_texture = ExtResource("10_kqtrc")
+
+[node name="SpawnerS" type="Marker2D" parent="Spawners" unique_id=1927779047]
+
+[node name="Alert" parent="Spawners/SpawnerS" unique_id=1177339137 instance=ExtResource("11_dp6di")]
+offset_left = 7.0
+offset_top = -221.0
+offset_right = 55.0
+offset_bottom = -173.0
+
+[node name="SpawnerW" type="Marker2D" parent="Spawners" unique_id=1042148606]
+position = Vector2(-588, -449)
+
+[node name="Alert" parent="Spawners/SpawnerW" unique_id=369082797 instance=ExtResource("11_dp6di")]
+offset_left = 231.0
+offset_top = -25.0
+offset_right = 279.0
+offset_bottom = 23.0
+
+[node name="SpawnerE" type="Marker2D" parent="Spawners" unique_id=732001323]
+position = Vector2(755, -532)
+
+[node name="Alert" parent="Spawners/SpawnerE" unique_id=144513311 instance=ExtResource("11_dp6di")]
+offset_left = -246.0
+offset_top = -27.0
+offset_right = -198.0
+offset_bottom = 21.0
+
+[node name="SpawnerN" type="Marker2D" parent="Spawners" unique_id=528289012]
+position = Vector2(470, -797)
+
+[node name="Alert" parent="Spawners/SpawnerN" unique_id=1179989282 instance=ExtResource("11_dp6di")]
+offset_left = -21.0
+offset_top = 201.0
+offset_right = 27.0
+offset_bottom = 249.0
+
+[node name="Timer" type="Timer" parent="Spawners" unique_id=747812178]
+one_shot = true
+
+[node name="Objectives" type="Node2D" parent="." unique_id=1832137146]
+visible = false
+position = Vector2(458, 777)
+
+[node name="ObjectiveN" type="Marker2D" parent="Objectives" unique_id=1625786939]
+position = Vector2(18, -800)
+
+[node name="ObjectiveS" type="Marker2D" parent="Objectives" unique_id=1840739839]
+position = Vector2(130, 14)
+
+[node name="ObjectiveE" type="Marker2D" parent="Objectives" unique_id=21070087]
+position = Vector2(-520, -639)
+
+[node name="ObjectiveW" type="Marker2D" parent="Objectives" unique_id=1445590315]
+position = Vector2(-583, -244)
+
+[node name="Car_Timer" type="Timer" parent="." unique_id=566632789]
+wait_time = 3.0
+one_shot = true
+
+[node name="Combo_Timer" type="Timer" parent="." unique_id=449575805]
+wait_time = 5.0
+autostart = true
+
+[node name="Velocity_Timer" type="Timer" parent="." unique_id=1657294742]
+wait_time = 15.0
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=391911840]
+
+[node name="HUD" parent="CanvasLayer" unique_id=2055424362 instance=ExtResource("12_nyt0f")]
+
+[node name="TrafficBackground" parent="CanvasLayer/HUD" index="0" unique_id=1237301669]
+offset_right = 570.0
+color = Color(0.13333334, 0.1254902, 0.20392157, 0.84705883)
+
+[node name="CarComboQueue" parent="CanvasLayer/HUD/TrafficBackground" index="0" unique_id=992683722]
+theme_override_constants/separation = 50
+
+[node name="TrafficBackground2" parent="CanvasLayer/HUD" index="1" unique_id=1881621810]
+offset_left = -568.105
+offset_top = -76.0
+offset_right = 1.895752
+offset_bottom = -1.0
+color = Color(0.13333334, 0.1254902, 0.20392157, 0.80784315)
+
+[node name="ColorRect" parent="CanvasLayer/HUD" index="5" unique_id=1963125324]
+offset_left = -100.0
+offset_top = -224.0
+offset_bottom = -124.0
+
+[node name="VelocityLabel" parent="CanvasLayer/HUD/ColorRect" index="0" unique_id=1123354540]
+custom_minimum_size = Vector2(0, 0)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2070370597]
+stream = ExtResource("14_6cbro")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="." unique_id=249585362]
+stream = ExtResource("15_ghpjo")
+
+[node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="." unique_id=267064549]
+stream = ExtResource("16_g2r38")
+autoplay = true
+
+[node name="AudioStreamPlayer2D4" type="AudioStreamPlayer2D" parent="." unique_id=1316687540]
+stream = ExtResource("17_0redk")
+
+[node name="BusStop" parent="." unique_id=608463383 instance=ExtResource("18_nnfg0")]
+position = Vector2(675, 536)
+
+[node name="BusStop2" parent="." unique_id=1271936138 instance=ExtResource("18_nnfg0")]
+position = Vector2(816, 462)
+
+[connection signal="timeout" from="Combo_Timer" to="Spawners" method="_on_combo_timer_timeout"]
+[connection signal="timeout" from="Velocity_Timer" to="Spawners" method="_on_velocity_timer_timeout"]
+
+[editable path="CanvasLayer/HUD"]
