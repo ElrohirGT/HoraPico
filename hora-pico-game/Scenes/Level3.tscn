@@ -62,6 +62,26 @@ vertices = PackedVector2Array(177.78125, 244.96094, 11.09375, 244.04688, 11.8984
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(2, 151, 1, 254, 184, 255, 235, 151)])
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_al7xm"]
+vertices = PackedVector2Array(1019.0703, 1188.1172, -110.02344, 1202.8516, -60.859375, 665.9375, 1022.9219, 659.0625)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-70, 656, 1033, 649, 1029, 1198, -121, 1213)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_81bqa"]
+vertices = PackedVector2Array(1037.1172, -19.023438, 166.49219, -20.96875, 183.53125, -375.15625, 1041.8594, -389.8203)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(156, -11, 1047, -9, 1052, -400, 174, -385)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_yi7gs"]
+vertices = PackedVector2Array(1073.8203, 1184.6016, 1065.1797, 682.47656, 1172.0703, 687.47656, 1827.6563, 1154.3984, 1797.3281, 279.67188, 1169.0703, 258.34375)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 3, 2, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1159, 248, 1162, 677, 1055, 672, 1064, 1195, 1838, 1164, 1807, 270)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_dg25f"]
+vertices = PackedVector2Array(-13.0703125, 29.9375, -15.921875, 414.82813, -615.14844, 405.1797, -549.59375, 27.039063)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-558, 17, -3, 20, -6, 425, -627, 415)])
+
 [sub_resource type="GDScript" id="GDScript_2llne"]
 script/source = "extends Node2D
 
@@ -479,6 +499,18 @@ navigation_polygon = SubResource("NavigationPolygon_e63ni")
 [node name="NavigationRegion2D9" type="NavigationRegion2D" parent="NavigationRegions" unique_id=1888564187]
 navigation_polygon = SubResource("NavigationPolygon_bnsu8")
 
+[node name="NavigationRegion2D10" type="NavigationRegion2D" parent="NavigationRegions" unique_id=1604911369]
+navigation_polygon = SubResource("NavigationPolygon_al7xm")
+
+[node name="NavigationRegion2D11" type="NavigationRegion2D" parent="NavigationRegions" unique_id=1300787940]
+navigation_polygon = SubResource("NavigationPolygon_81bqa")
+
+[node name="NavigationRegion2D12" type="NavigationRegion2D" parent="NavigationRegions" unique_id=1265019710]
+navigation_polygon = SubResource("NavigationPolygon_yi7gs")
+
+[node name="NavigationRegion2D13" type="NavigationRegion2D" parent="NavigationRegions" unique_id=1133751234]
+navigation_polygon = SubResource("NavigationPolygon_dg25f")
+
 [node name="UniLinks" type="Node2D" parent="." unique_id=1015325278]
 position = Vector2(487, 302)
 rotation = -0.16580628
@@ -489,10 +521,11 @@ bidirectional = false
 start_position = Vector2(210.94185, -25.139343)
 end_position = Vector2(195.3886, -50.33606)
 
-[node name="NavigationLink2D" type="NavigationLink2D" parent="UniLinks" unique_id=1784137198]
+[node name="NavigationLink2D29" type="NavigationLink2D" parent="UniLinks" unique_id=2047129359]
+position = Vector2(-18.614296, 33.60026)
 bidirectional = false
-start_position = Vector2(202.0496, -12.506165)
-end_position = Vector2(94.1888, -56.538956)
+start_position = Vector2(210.57407, -22.941483)
+end_position = Vector2(190.89648, -43.74472)
 
 [node name="NavigationLink2D3" type="NavigationLink2D" parent="UniLinks" unique_id=1892396882]
 bidirectional = false
@@ -526,12 +559,12 @@ end_position = Vector2(-99.86125, -91.836044)
 [node name="NavigationLink2D8" type="NavigationLink2D" parent="UniLinks" unique_id=1449013607]
 bidirectional = false
 start_position = Vector2(12.770294, 78.95657)
-end_position = Vector2(36.76497, 80.712494)
+end_position = Vector2(87.22139, 93.109955)
 
 [node name="NavigationLink2D9" type="NavigationLink2D" parent="UniLinks" unique_id=524991244]
 bidirectional = false
 start_position = Vector2(-6.8509827, 111.823456)
-end_position = Vector2(66.49895, 129.18167)
+end_position = Vector2(14.849442, 120.53851)
 
 [node name="NavigationLink2D10" type="NavigationLink2D" parent="UniLinks" unique_id=51905035]
 position = Vector2(19.439606, -35.1567)
@@ -539,7 +572,25 @@ bidirectional = false
 start_position = Vector2(91.13283, 133.86884)
 end_position = Vector2(115.67699, 135.71674)
 
+[node name="NavigationLink2D30" type="NavigationLink2D" parent="UniLinks" unique_id=745266899]
+position = Vector2(-1.2828221, 0.91502994)
+bidirectional = false
+start_position = Vector2(91.13283, 133.86884)
+end_position = Vector2(115.67699, 135.71674)
+
 [node name="NavigationLink2D11" type="NavigationLink2D" parent="UniLinks" unique_id=25159497]
+bidirectional = false
+start_position = Vector2(-145.28722, -93.789246)
+end_position = Vector2(-124.315674, -90.844666)
+
+[node name="NavigationLink2D27" type="NavigationLink2D" parent="UniLinks" unique_id=1352427486]
+position = Vector2(-122.440475, -17.665258)
+bidirectional = false
+start_position = Vector2(-145.28722, -93.789246)
+end_position = Vector2(-124.315674, -90.844666)
+
+[node name="NavigationLink2D28" type="NavigationLink2D" parent="UniLinks" unique_id=314349657]
+position = Vector2(-126.578156, 7.060564)
 bidirectional = false
 start_position = Vector2(-145.28722, -93.789246)
 end_position = Vector2(-124.315674, -90.844666)
@@ -557,11 +608,71 @@ end_position = Vector2(73.37666, -23.306488)
 
 [node name="NavigationLink2D14" type="NavigationLink2D" parent="UniLinks" unique_id=1366699791]
 bidirectional = false
-start_position = Vector2(151.22316, -19.317047)
-end_position = Vector2(87.31273, -45.827774)
+start_position = Vector2(152.23238, -21.972412)
+end_position = Vector2(92.53822, -53.42607)
+
+[node name="NavigationLink2D15" type="NavigationLink2D" parent="UniLinks" unique_id=1150286859]
+bidirectional = false
+start_position = Vector2(33.83882, 212.9625)
+end_position = Vector2(44.567795, 192.72879)
+
+[node name="NavigationLink2D20" type="NavigationLink2D" parent="UniLinks" unique_id=1397530991]
+position = Vector2(-55.587685, -8.737339)
+bidirectional = false
+start_position = Vector2(43.468872, 192.54489)
+end_position = Vector2(33.289337, 212.87054)
+
+[node name="NavigationLink2D16" type="NavigationLink2D" parent="UniLinks" unique_id=1815245628]
+bidirectional = false
+start_position = Vector2(222.63716, -122.030914)
+end_position = Vector2(236.29958, -146.29254)
+
+[node name="NavigationLink2D17" type="NavigationLink2D" parent="UniLinks" unique_id=596234821]
+bidirectional = false
+start_position = Vector2(184.65007, -154.9357)
+end_position = Vector2(174.37639, -130.67184)
+
+[node name="NavigationLink2D18" type="NavigationLink2D" parent="UniLinks" unique_id=2096013273]
+bidirectional = false
+start_position = Vector2(-15.645798, -163.03549)
+end_position = Vector2(-3.2661743, -186.3821)
+
+[node name="NavigationLink2D19" type="NavigationLink2D" parent="UniLinks" unique_id=1150132712]
+bidirectional = false
+start_position = Vector2(-46.58177, -194.1955)
+end_position = Vector2(-59.053345, -170.29944)
+
+[node name="NavigationLink2D21" type="NavigationLink2D" parent="UniLinks" unique_id=1786174615]
+bidirectional = false
+start_position = Vector2(-271.4652, 140.40787)
+end_position = Vector2(-285.21738, 161.8302)
+
+[node name="NavigationLink2D22" type="NavigationLink2D" parent="UniLinks" unique_id=1553900833]
+bidirectional = false
+start_position = Vector2(-232.92647, 170.01584)
+end_position = Vector2(-219.8157, 149.05103)
+
+[node name="NavigationLink2D23" type="NavigationLink2D" parent="UniLinks" unique_id=405787052]
+bidirectional = false
+start_position = Vector2(366.80597, 140.46121)
+end_position = Vector2(343.64325, 126.982666)
+
+[node name="NavigationLink2D24" type="NavigationLink2D" parent="UniLinks" unique_id=936616572]
+bidirectional = false
+start_position = Vector2(329.84875, 212.7908)
+end_position = Vector2(352.45978, 229.56613)
+
+[node name="NavigationLink2D25" type="NavigationLink2D" parent="UniLinks" unique_id=368161308]
+bidirectional = false
+start_position = Vector2(360.549, 184.60214)
+end_position = Vector2(337.20685, 165.44504)
+
+[node name="NavigationLink2D26" type="NavigationLink2D" parent="UniLinks" unique_id=1446973911]
+bidirectional = false
+start_position = Vector2(318.65778, 239.16058)
+end_position = Vector2(345.9292, 271.9667)
 
 [node name="Spawners" type="Node2D" parent="." unique_id=590460041 node_paths=PackedStringArray("destinies")]
-visible = false
 position = Vector2(458, 777)
 script = SubResource("GDScript_2llne")
 destinies = NodePath("../Objectives")
@@ -573,15 +684,16 @@ bus_texture = ExtResource("9_ok15r")
 ulti_texture = ExtResource("10_kqtrc")
 
 [node name="SpawnerS" type="Marker2D" parent="Spawners" unique_id=1927779047]
+position = Vector2(-136, -28)
 
 [node name="Alert" parent="Spawners/SpawnerS" unique_id=1177339137 instance=ExtResource("11_dp6di")]
-offset_left = 7.0
+offset_left = 121.0
 offset_top = -221.0
-offset_right = 55.0
+offset_right = 169.0
 offset_bottom = -173.0
 
 [node name="SpawnerW" type="Marker2D" parent="Spawners" unique_id=1042148606]
-position = Vector2(-588, -449)
+position = Vector2(-692, -657)
 
 [node name="Alert" parent="Spawners/SpawnerW" unique_id=369082797 instance=ExtResource("11_dp6di")]
 offset_left = 231.0
@@ -590,41 +702,40 @@ offset_right = 279.0
 offset_bottom = 23.0
 
 [node name="SpawnerE" type="Marker2D" parent="Spawners" unique_id=732001323]
-position = Vector2(755, -532)
+position = Vector2(809, -282)
 
 [node name="Alert" parent="Spawners/SpawnerE" unique_id=144513311 instance=ExtResource("11_dp6di")]
-offset_left = -246.0
-offset_top = -27.0
-offset_right = -198.0
-offset_bottom = 21.0
+offset_left = -164.0
+offset_top = -187.0
+offset_right = -116.0
+offset_bottom = -139.0
 
 [node name="SpawnerN" type="Marker2D" parent="Spawners" unique_id=528289012]
-position = Vector2(470, -797)
+position = Vector2(121, -855)
 
 [node name="Alert" parent="Spawners/SpawnerN" unique_id=1179989282 instance=ExtResource("11_dp6di")]
-offset_left = -21.0
-offset_top = 201.0
-offset_right = 27.0
-offset_bottom = 249.0
+offset_left = 291.0
+offset_top = 193.0
+offset_right = 339.0
+offset_bottom = 241.0
 
 [node name="Timer" type="Timer" parent="Spawners" unique_id=747812178]
 one_shot = true
 
 [node name="Objectives" type="Node2D" parent="." unique_id=1832137146]
-visible = false
 position = Vector2(458, 777)
 
 [node name="ObjectiveN" type="Marker2D" parent="Objectives" unique_id=1625786939]
-position = Vector2(18, -800)
+position = Vector2(125, -993)
 
 [node name="ObjectiveS" type="Marker2D" parent="Objectives" unique_id=1840739839]
-position = Vector2(130, 14)
+position = Vector2(-162, 187)
 
 [node name="ObjectiveE" type="Marker2D" parent="Objectives" unique_id=21070087]
-position = Vector2(-520, -639)
+position = Vector2(985, -269)
 
 [node name="ObjectiveW" type="Marker2D" parent="Objectives" unique_id=1445590315]
-position = Vector2(-583, -244)
+position = Vector2(-466, 162)
 
 [node name="Car_Timer" type="Timer" parent="." unique_id=566632789]
 wait_time = 3.0
@@ -639,6 +750,7 @@ wait_time = 15.0
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=391911840]
+visible = false
 
 [node name="HUD" parent="CanvasLayer" unique_id=2055424362 instance=ExtResource("12_nyt0f")]
 
