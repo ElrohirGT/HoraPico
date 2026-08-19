@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://brq6oryy6i4i0"]
 
 [ext_resource type="Script" uid="uid://bo4lighfa027d" path="res://Scenes/Menus/MainMenu/LevelSelector/level_selector.gd" id="1_qvr5k"]
+[ext_resource type="Texture2D" uid="uid://krvf5mo54mae" path="res://Assets/BackgroundCity.png" id="2_u2tct"]
+[ext_resource type="Texture2D" uid="uid://isb4tom7ft5l" path="res://Assets/Level2.png" id="3_dqmh0"]
+[ext_resource type="Texture2D" uid="uid://fussdq8d8nco" path="res://TestSprites/LVL3.png" id="4_buog1"]
 
 [node name="LevelSelector" type="MarginContainer" unique_id=1318565644]
 z_index = 5
@@ -19,44 +22,71 @@ script = ExtResource("1_qvr5k")
 layout_mode = 2
 color = Color(0, 0, 0, 0.47058824)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1344073053]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1187113077]
 layout_mode = 2
-theme_override_constants/separation = 185
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1344073053]
+layout_mode = 2
+theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=552090324]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=552090324]
 layout_mode = 2
 theme_override_font_sizes/font_size = 49
 text = "Niveles"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1306809308]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1306809308]
 layout_mode = 2
-theme_override_constants/separation = 69
+theme_override_constants/separation = 64
 alignment = 1
 
-[node name="Level1Button" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=183558101]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=743051076]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1912867237]
+layout_mode = 2
+texture = ExtResource("2_u2tct")
+
+[node name="Level1Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=183558101]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "[Left] Nivel 1"
 
-[node name="Level2Button" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=737486674]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1039565512]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=2056889875]
+layout_mode = 2
+texture = ExtResource("3_dqmh0")
+
+[node name="Level2Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=737486674]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "[Up] Nivel 2"
 
-[node name="Level3Button" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=602980180]
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=397264202]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3" unique_id=629980127]
+custom_maximum_size = Vector2(320, 180)
+layout_mode = 2
+texture = ExtResource("4_buog1")
+
+[node name="Level3Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3" unique_id=602980180]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "[Right] Nivel 3"
 
-[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=623088716]
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=623088716]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Volver
 "
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Level1Button" to="." method="_on_level_1_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Level2Button" to="." method="_on_level_2_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/Level3Button" to="." method="_on_level_3_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Level1Button" to="." method="_on_level_1_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Level2Button" to="." method="_on_level_2_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/Level3Button" to="." method="_on_level_3_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
