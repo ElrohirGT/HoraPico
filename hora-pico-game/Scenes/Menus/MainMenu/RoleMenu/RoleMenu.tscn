@@ -80,9 +80,11 @@ texture = ExtResource("1_vv4f1")
 
 [node name="Play" type="Button" parent="Panel/HFlowContainer" unique_id=2105886585]
 layout_mode = 2
-disabled = true
 text = "Play"
 
 [node name="Back" type="Button" parent="Panel/HFlowContainer" unique_id=435353049]
 layout_mode = 2
 text = "Back"
+
+[connection signal="pressed" from="Panel/HFlowContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Panel/HFlowContainer/Back" to="." method="_on_back_pressed"]
