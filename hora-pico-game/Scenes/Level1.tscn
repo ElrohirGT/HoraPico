@@ -749,10 +749,10 @@ autoplay = true
 stream = ExtResource("17_0wsr5")
 
 [node name="BusStop" parent="." unique_id=608463383 instance=ExtResource("18_jgorv")]
-position = Vector2(675, 536)
+position = Vector2(675, 468)
 
 [node name="BusStop2" parent="." unique_id=1271936138 instance=ExtResource("18_jgorv")]
-position = Vector2(816, 462)
+position = Vector2(868, 467)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1651878778]
 position = Vector2(0, 8)

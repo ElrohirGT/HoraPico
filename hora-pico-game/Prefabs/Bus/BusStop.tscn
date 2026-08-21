@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://bh5788bq0q2sl"]
 
 [ext_resource type="Script" uid="uid://c6vox7keyetox" path="res://Prefabs/Bus/bus_stop.gd" id="1_3wqrs"]
+[ext_resource type="Texture2D" uid="uid://tqitr77siidt" path="res://Assets/BusStop.png" id="2_2cqls"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n85xq"]
-size = Vector2(40, 20)
+size = Vector2(40, 87)
 
 [node name="BusStop" type="Area2D" unique_id=608463383]
 script = ExtResource("1_3wqrs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=596925230]
-visible = false
-position = Vector2(0, 1)
+position = Vector2(0, 75.5)
 shape = SubResource("RectangleShape2D_n85xq")
 debug_color = Color(0.9851844, 0, 0.34087172, 0.41960785)
 
@@ -18,6 +18,9 @@ debug_color = Color(0.9851844, 0, 0.34087172, 0.41960785)
 wait_time = 3.0
 one_shot = true
 autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1613316175]
+texture = ExtResource("2_2cqls")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
