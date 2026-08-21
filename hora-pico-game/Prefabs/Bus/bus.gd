@@ -5,6 +5,9 @@ class_name Bus
 @export var original_movement_speed: float = 60.0
 @export var turbo_speed: float = 100.0
 
+@onready var light_right: PointLight2D = $PointLight2D
+@onready var light_left: PointLight2D = $PointLight2D2
+
 var is_waiting: bool = false
 
 var default_movement_speed: float = original_movement_speed
@@ -21,7 +24,10 @@ var sprites: Array[Sprite2D]
 func _ready():
 	EventBus.AbilityInvoked.connect(_on_ability_invoked)
 	EventBus.SpeedEnded.connect(_on_speed_ended)
-
+	EventBus.daytime_changed.connect(_on_daytime_changed)
+	
+	toggle_lights(Daytime.current_state)
+	
 	var sp = find_children("Bus*", "Sprite2D").map(func(el): return (el as Sprite2D))
 	sprites.assign(sp)
 
@@ -103,3 +109,15 @@ func _on_speed_ended():
 func _on_bus_wait_timer_timeout() -> void:
 	navigation_agent.process_mode = Node.PROCESS_MODE_ALWAYS
 	movement_speed = default_movement_speed
+	
+func toggle_lights(current_daytime: int) -> void:
+	if current_daytime == 0:
+		light_right.hide()
+		light_left.hide()
+
+	elif current_daytime == 1:
+		light_right.show()
+		light_left.show()
+
+func _on_daytime_changed(current_daytime: int) -> void:
+	toggle_lights(current_daytime)

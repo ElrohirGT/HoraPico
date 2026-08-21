@@ -24,3 +24,7 @@ signal ChangeRole(device: int, role: Enums.Role)
 signal ChangedRole(device: int, role: Enums.Role)
 
 signal DisplayMenu(id: Enums.Menu)
+
+## Emite una señal cuando cambia el ciclo de Día - Noche y retorna el estado actual
+signal daytime_changed(state: int)
+# Así es, aprendí a documentar jajaja

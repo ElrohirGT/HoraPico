@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cr0i3ttu1p2du" path="res://Prefabs/Car/car.gd" id="1_756hr"]
 [ext_resource type="AudioStream" uid="uid://dl4r6dk171deu" path="res://Audio/Effects/Vehicles/car.mp3" id="3_7xxgp"]
+[ext_resource type="Texture2D" uid="uid://qfqrdfgvow3" path="res://Assets/2d_lights_and_shadows_neutral_point_light.webp" id="4_l017f"]
 [ext_resource type="Texture2D" uid="uid://cgxeblmouqji1" path="res://Assets/Car.png" id="8_jt2so"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pke32"]
@@ -10,7 +11,10 @@ size = Vector2(38.394997, 33)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_11k86"]
 size = Vector2(85, 40)
 
-[node name="Car2" type="CharacterBody2D" unique_id=1651818327]
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7xxgp"]
+polygon = PackedVector2Array(-40, -19, -40, -13, -43, -13, -43, 14, -40, 14, -40, 18, 32, 18, 32, -20)
+
+[node name="Car" type="CharacterBody2D" unique_id=1651818327]
 script = ExtResource("1_756hr")
 
 [node name="Vision" type="Area2D" parent="." unique_id=43982859]
@@ -57,6 +61,31 @@ autoplay = true
 
 [node name="OnSreenNotifier" type="VisibleOnScreenNotifier2D" parent="." unique_id=759192959]
 position = Vector2(-32, 0)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1147071173]
+occluder = SubResource("OccluderPolygon2D_7xxgp")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=571254446]
+position = Vector2(33.9522, -16)
+rotation = 0.17104226
+scale = Vector2(38.67763, 20.617188)
+color = Color(1, 1, 0, 1)
+energy = 4.24
+shadow_enabled = true
+texture = ExtResource("4_l017f")
+offset = Vector2(1.255, 0)
+texture_scale = 0.01
+
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=191826160]
+position = Vector2(33, 16)
+rotation = -0.17104226
+scale = Vector2(40.19921, 20.617188)
+color = Color(1, 1, 0, 1)
+energy = 4.24
+shadow_enabled = true
+texture = ExtResource("4_l017f")
+offset = Vector2(1.235, 0)
+texture_scale = 0.01
 
 [connection signal="area_entered" from="Vision" to="." method="_on_vision_area_entered"]
 [connection signal="body_entered" from="Vision" to="." method="_on_area_2d_body_entered"]
