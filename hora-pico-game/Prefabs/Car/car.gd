@@ -117,13 +117,21 @@ func _on_on_sreen_notifier_screen_exited() -> void:
 	despawn()
 
 func toggle_lights(current_daytime: int) -> void:
-	if current_daytime == 0:
-		light_right.hide()
-		light_left.hide()
-
-	elif current_daytime == 1:
-		light_right.show()
-		light_left.show()
+	var target_energy: float = 0.0
+	
+	if current_daytime == 1:
+		target_energy = 0.0
+	
+	elif current_daytime == 3:
+		target_energy = 1.0
+	
+	var tween := create_tween()
+	tween.set_parallel()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	
+	tween.tween_property(light_right, "energy", target_energy, 0.5)
+	tween.tween_property(light_left, "energy", target_energy, 0.5)
 
 func _on_daytime_changed(current_daytime: int) -> void:
 	toggle_lights(current_daytime)

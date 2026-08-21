@@ -60,7 +60,7 @@ one_shot = true
 position = Vector2(79.99999, 19.999987)
 scale = Vector2(1.0000002, 0.4288858)
 color = Color(1, 1, 0, 1)
-energy = 4.24
+energy = 0.0
 shadow_enabled = true
 texture = ExtResource("4_nk70u")
 offset = Vector2(43, 0)
@@ -70,13 +70,14 @@ texture_scale = 0.35
 position = Vector2(79.00001, -14)
 scale = Vector2(1.0000001, 0.46874472)
 color = Color(1, 1, 0, 1)
-energy = 4.24
+energy = 0.0
 shadow_enabled = true
 texture = ExtResource("4_nk70u")
 offset = Vector2(43, 0)
 texture_scale = 0.35
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=2137940262]
+visible = false
 occluder = SubResource("OccluderPolygon2D_nk70u")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

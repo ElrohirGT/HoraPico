@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://cxqiwtsx1e2c2" path="res://Audio/Coconut Mall - Mario Kart Wii.mp3" id="16_uelq8"]
 [ext_resource type="AudioStream" uid="uid://cb62jc1yuoxy2" path="res://Audio/Finish Line (1st Place) - Mario Kart Wii (Soundtrack).mp3" id="17_1gnxd"]
 [ext_resource type="PackedScene" uid="uid://bh5788bq0q2sl" path="res://Prefabs/Bus/BusStop.tscn" id="18_ubjqm"]
+[ext_resource type="Script" uid="uid://c0ryqxevid1kl" path="res://Scenes/directional_light_2d.gd" id="19_8wk15"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jghel"]
 vertices = PackedVector2Array(611.1797, 437.85938, 497.39844, 482.15625, 471.22656, 420.57813, 595.0078, 372.4375)
@@ -423,7 +424,7 @@ func _on_mistake_display_timer_timeout() -> void:
 	call_deferred(\"_on_pattern_mistake\")
 "
 
-[node name="Level1" type="Node2D" unique_id=944242678]
+[node name="Level2" type="Node2D" unique_id=944242678]
 
 [node name="PlayerJoiner" parent="." unique_id=1218929265 instance=ExtResource("1_utdxf")]
 z_index = 15
@@ -638,7 +639,20 @@ position = Vector2(547, 428)
 [node name="BusStop2" parent="." unique_id=1271936138 instance=ExtResource("18_ubjqm")]
 position = Vector2(269, 516)
 
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=2059408131]
+position = Vector2(0, 8)
+blend_mode = 2
+script = ExtResource("19_8wk15")
+day_color = Color(1, 1, 1, 1)
+night_color = Color(0, 9.62615e-08, 0.3218994, 1)
+fade_duration = 50.0
+
+[node name="DayNight" type="Timer" parent="." unique_id=1647804804]
+autostart = true
+ignore_time_scale = true
+
 [connection signal="timeout" from="Combo_Timer" to="Spawners" method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="Velocity_Timer" to="Spawners" method="_on_velocity_timer_timeout"]
+[connection signal="timeout" from="DayNight" to="DirectionalLight2D" method="_on_day_night_timeout"]
 
 [editable path="CanvasLayer/HUD"]

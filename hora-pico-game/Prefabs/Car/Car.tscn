@@ -63,6 +63,7 @@ autoplay = true
 position = Vector2(-32, 0)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1147071173]
+visible = false
 occluder = SubResource("OccluderPolygon2D_7xxgp")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=571254446]
@@ -70,7 +71,7 @@ position = Vector2(33.9522, -16)
 rotation = 0.17104226
 scale = Vector2(38.67763, 20.617188)
 color = Color(1, 1, 0, 1)
-energy = 4.24
+energy = 0.0
 shadow_enabled = true
 texture = ExtResource("4_l017f")
 offset = Vector2(1.255, 0)
@@ -81,7 +82,7 @@ position = Vector2(33, 16)
 rotation = -0.17104226
 scale = Vector2(40.19921, 20.617188)
 color = Color(1, 1, 0, 1)
-energy = 4.24
+energy = 0.0
 shadow_enabled = true
 texture = ExtResource("4_l017f")
 offset = Vector2(1.235, 0)
