@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bfqjpim2xy56j"]
+
+[ext_resource type="Texture2D" uid="uid://c76domf2dr71e" path="res://Assets/PublicLamp.png" id="1_arneq"]
+[ext_resource type="Script" uid="uid://cbpntneinb8ye" path="res://Prefabs/Public Lights/public_light.gd" id="1_jq2i8"]
+[ext_resource type="Texture2D" uid="uid://qfqrdfgvow3" path="res://Assets/2d_lights_and_shadows_neutral_point_light.webp" id="2_t5wjh"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_t5wjh"]
+polygon = PackedVector2Array(-4, 32, -4, -24, 3, -31, 14, -31, 20, -25, 20, -21, 14, -21, 11, -25, 6, -25, 3, -22, 3, 32)
+
+[node name="PublicLight" type="Node2D" unique_id=1100289769]
+z_index = 5
+script = ExtResource("1_jq2i8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1785064864]
+texture = ExtResource("1_arneq")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=2118890349]
+z_index = 10
+position = Vector2(46.000004, 25.999985)
+scale = Vector2(44.991203, 16.714231)
+color = Color(1, 1, 0.2901961, 1)
+energy = 0.0
+shadow_enabled = true
+texture = ExtResource("2_t5wjh")
+texture_scale = 0.01
+
+[node name="PointLight2D3" type="PointLight2D" parent="." unique_id=671640140]
+position = Vector2(9.0000105, -16.000002)
+rotation = 0.6894051
+scale = Vector2(59.034355, 14.187441)
+color = Color(1, 1, 0.2901961, 1)
+energy = 0.0
+shadow_enabled = true
+texture = ExtResource("2_t5wjh")
+texture_scale = 0.01
+
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=1634707826]
+position = Vector2(17.99999, -16)
+scale = Vector2(5.5034, 5.995528)
+color = Color(1, 1, 0.2901961, 1)
+energy = 0.0
+shadow_enabled = true
+texture = ExtResource("2_t5wjh")
+texture_scale = 0.01
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1735155699]
+occluder = SubResource("OccluderPolygon2D_t5wjh")

@@ -13,11 +13,17 @@ var priority: int = 0
 
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 
+@onready var light_right: PointLight2D = $PointLight2D
+@onready var light_left: PointLight2D = $PointLight2D2
+
 var sprites: Array[Sprite2D]
 
 func _ready():
 	EventBus.AbilityInvoked.connect(_on_ability_invoked)
 	EventBus.SpeedEnded.connect(_on_speed_ended)
+	EventBus.daytime_changed.connect(_on_daytime_changed)
+	
+	toggle_lights(Daytime.current_state)
 
 	var sp = find_children("Car*", "Sprite2D").map(func(el): return (el as Sprite2D))
 	sprites.assign(sp)
@@ -99,7 +105,6 @@ func _on_speed_ended():
 	default_movement_speed = original_movement_speed
 	movement_speed = original_movement_speed
 
-
 func _on_vision_area_entered(area: Area2D) -> void:
 	var areaParent = area.get_parent()
 	if areaParent is TrafficLight:
@@ -108,6 +113,25 @@ func _on_vision_area_entered(area: Area2D) -> void:
 			await get_tree().create_timer(areaParent.timer.time_left).timeout
 		resume_navigation()
 
-
 func _on_on_sreen_notifier_screen_exited() -> void:
 	despawn()
+
+func toggle_lights(current_daytime: int) -> void:
+	var target_energy: float = 0.0
+	
+	if current_daytime == 1:
+		target_energy = 0.0
+	
+	elif current_daytime == 3:
+		target_energy = 1.0
+	
+	var tween := create_tween()
+	tween.set_parallel()
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_IN_OUT)
+	
+	tween.tween_property(light_right, "energy", target_energy, 0.5)
+	tween.tween_property(light_left, "energy", target_energy, 0.5)
+
+func _on_daytime_changed(current_daytime: int) -> void:
+	toggle_lights(current_daytime)
