@@ -4,6 +4,7 @@ class_name Car
 
 @export var original_movement_speed: float = 100.0
 @export var turbo_speed: float = 170.0
+@export var turn_rate: float = 2.5
 
 var default_movement_speed: float = original_movement_speed
 var movement_speed: float = original_movement_speed
@@ -49,17 +50,24 @@ func actor_setup():
 func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
 
+
 func _physics_process(delta):
 	if navigation_agent.is_navigation_finished():
 		return
-
-	var current_agent_position: Vector2 = global_position
-	var next_path_position: Vector2 = navigation_agent.get_next_path_position()
-
-	velocity = current_agent_position.direction_to(next_path_position) * movement_speed
-	rotation = velocity.angle()
-	if velocity == Vector2.ZERO:
-		rotation = last_angle
+	
+	var next_path_position := navigation_agent.get_next_path_position()
+	var target_direction := global_position.direction_to(next_path_position)
+	
+	var target_angle := target_direction.angle()
+	
+	rotation = rotate_toward(
+		rotation,
+		target_angle,
+		turn_rate * delta
+	)
+	
+	velocity = Vector2.RIGHT.rotated(rotation) * movement_speed
+	
 	move_and_slide()
 
 func _on_navigation_agent_2d_navigation_finished() -> void:

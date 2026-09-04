@@ -16,6 +16,7 @@ polygon = PackedVector2Array(75, -24, 75, 29, -82, 28, -82, -23)
 
 [node name="Bus" type="CharacterBody2D" unique_id=1651818327]
 script = ExtResource("1_tvseh")
+turn_rate = 1.0
 
 [node name="Area2D" type="Area2D" parent="." unique_id=43982859]
 
