@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://ucjt0xsvo1dg"]
+
+[ext_resource type="VideoStream" uid="uid://craoeq2qgm6bl" path="res://Assets/Splash.ogv" id="1_4ptes"]
+[ext_resource type="Script" uid="uid://cnb66le4hp1mu" path="res://Scenes/splash_screen.gd" id="1_q8uj6"]
+
+[node name="SplashScreen" type="Control" unique_id=132005374]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q8uj6")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=1123870384]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("1_4ptes")
+autoplay = true
+expand = true
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
