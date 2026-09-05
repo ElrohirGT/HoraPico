@@ -1,9 +1,9 @@
 extends Control
 
-@onready var play_btn: Button = $ColorRect2/HBoxContainer/Play
-@onready var quit_btn: Button = $ColorRect2/HBoxContainer/Quit
+@onready var play_btn: Button = $CanvasLayer/ColorRect2/HBoxContainer/Play
+@onready var quit_btn: Button = $CanvasLayer/ColorRect2/HBoxContainer/Quit
 
-@onready var initial_menu: ColorRect = $ColorRect2
+@onready var initial_menu: ColorRect = $CanvasLayer/ColorRect2
 
 func _ready() -> void:
 	EventBus.DisplayMenu.connect(_hide_show_if_should)

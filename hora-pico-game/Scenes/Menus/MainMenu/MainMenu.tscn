@@ -105,16 +105,17 @@ position = Vector2(205.5, 18.666668)
 scale = Vector2(0.3, 0.3)
 cycleDuration = 8.0
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1480329568]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=174232838]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1480329568]
 z_index = 5
 custom_minimum_size = Vector2(400, 200)
-layout_mode = 1
 anchors_preset = -1
 offset_right = 400.0
 offset_bottom = 200.0
 color = Color(0, 0, 0, 0)
 
-[node name="ColorRect" type="ColorRect" parent="ColorRect" unique_id=473976922]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/ColorRect" unique_id=473976922]
 light_mask = 2
 layout_mode = 1
 anchors_preset = 15
@@ -128,7 +129,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
-[node name="TextureRect" type="TextureRect" parent="ColorRect/ColorRect" unique_id=234848251]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect/ColorRect" unique_id=234848251]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -138,10 +139,9 @@ grow_vertical = 2
 texture = ExtResource("1_tt5f1")
 stretch_mode = 5
 
-[node name="ColorRect2" type="ColorRect" parent="." unique_id=594522145]
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer" unique_id=594522145]
 z_index = 5
 custom_minimum_size = Vector2(0, 70)
-layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -151,7 +151,7 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(0, 0, 0, 0.39215687)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect2" unique_id=512967309]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect2" unique_id=512967309]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -163,28 +163,28 @@ offset_bottom = 22.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Play" type="Button" parent="ColorRect2/HBoxContainer" unique_id=1451027850]
+[node name="Play" type="Button" parent="CanvasLayer/ColorRect2/HBoxContainer" unique_id=1451027850]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Play"
 
-[node name="Quit" type="Button" parent="ColorRect2/HBoxContainer" unique_id=1518697416]
+[node name="Quit" type="Button" parent="CanvasLayer/ColorRect2/HBoxContainer" unique_id=1518697416]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Quit"
 
-[node name="LevelSelector" parent="." unique_id=1318565644 instance=ExtResource("9_g6ism")]
+[node name="LevelSelector" parent="CanvasLayer" unique_id=1318565644 instance=ExtResource("9_g6ism")]
 visible = false
-layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
+offset_right = 1328.0
+offset_bottom = 566.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="RoleMenu" parent="." unique_id=1075269094 instance=ExtResource("10_0056r")]
+[node name="RoleMenu" parent="CanvasLayer" unique_id=1075269094 instance=ExtResource("10_0056r")]
 visible = false
-layout_mode = 1
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=332148075]
 position = Vector2(0, 8)
@@ -213,6 +213,6 @@ scale = Vector2(1.69, 1.69)
 position = Vector2(946.0001, 362.00003)
 scale = Vector2(1.69, 1.69)
 
-[connection signal="pressed" from="ColorRect2/HBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="ColorRect2/HBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/ColorRect2/HBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/ColorRect2/HBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="timeout" from="DayNight" to="DirectionalLight2D" method="_on_day_night_timeout"]
