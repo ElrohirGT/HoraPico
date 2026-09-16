@@ -49,8 +49,8 @@
         # Android setup
         buildInputs = [androidSDK.androidsdk pkgs.jdk17];
         JAVA_HOME = "${pkgs.jdk17.home}";
-        ANDROID_HOME = "${pkgs.androidsdk}/libexec/android-sdk";
-        ANDROID_SDK_ROOT = "${pkgs.androidsdk}/libexec/android-sdk";
+        ANDROID_HOME = "${androidSDK.androidsdk}/libexec/android-sdk";
+        ANDROID_SDK_ROOT = "${androidSDK.androidsdk}/libexec/android-sdk";
       };
     });
   };
