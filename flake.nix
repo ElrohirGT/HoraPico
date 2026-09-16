@@ -27,6 +27,7 @@
       # Android SDK
       androidSDK = pkgs.androidenv.composeAndroidPackages {
         platformVersions = ["35"];
+        platformToolsVersion = "35.0.0";
         buildToolsVersions = ["35.0.1"];
         cmdLineToolsVersion = "latest";
 
