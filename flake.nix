@@ -26,9 +26,9 @@
       pkgs = nixpkgsFor.${system};
       # Android SDK
       androidSDK = pkgs.androidenv.composeAndroidPackages {
-        platformVersions = ["35"];
-        platformToolsVersion = "35.0.0";
-        buildToolsVersions = ["35.0.1"];
+        platformVersions = ["latest"];
+        platformToolsVersion = "latest";
+        buildToolsVersions = ["latest"];
         cmdLineToolsVersion = "latest";
 
         includeCmake = true;
