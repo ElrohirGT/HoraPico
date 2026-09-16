@@ -36,6 +36,7 @@
         ndkVersions = ["latest"];
 
         # Don't download any images or ABI versions
+        includeEmulator = false;
         includeSystemImages = false;
         abiVersions = [];
       };
