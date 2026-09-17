@@ -23,10 +23,11 @@ func _ready() -> void:
 	
 func _hide_show_menu(id: Enums.Menu):
 	if id == Enums.Menu.RoleMenu:
-		self.show()
+		print("Showing menu!")
+		self.get_parent().show()
 		refresh_screen()
 	else:
-		self.hide()
+		self.get_parent().hide()
 
 func _input(event: InputEvent) -> void:
 	if not self.is_visible_in_tree():

@@ -12,8 +12,8 @@ func _ready() -> void:
 	EventBus.GameEnded.connect(_on_game_ended)
 	self.hide()
 	
-	play_again.text = "[%s] Play Again" % Utils.get_key_or_button_for_action("ui_accept")
-	main_menu.text = "[%s] Main Menu" % Utils.get_key_or_button_for_action("ui_select")
+	play_again.pressed.connect(_on_play_again_pressed)
+	main_menu.pressed.connect(_on_main_menu_pressed)
 
 func _input(event: InputEvent) -> void:
 	if not self.visible:
