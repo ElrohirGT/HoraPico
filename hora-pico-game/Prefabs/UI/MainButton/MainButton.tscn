@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cfcsfx5tkg0j3"]
+
+[ext_resource type="Script" uid="uid://cqtnikk1cdfts" path="res://Prefabs/UI/MainButton/main_button.gd" id="1_punrg"]
+
+[node name="MainButton" type="Button" unique_id=553254516]
+script = ExtResource("1_punrg")

@@ -1,5 +1,11 @@
 extends Node
 
+func format_button_text(prefix_fmt: String, button_text: String, action: String) -> String:
+	var prefix = ""
+	if InputManager.is_any_joycon_connected():
+		prefix = prefix_fmt % get_key_or_button_for_action(action)
+	return "%s%s" % [prefix, button_text]
+
 func get_key_or_button_for_action(action: String) -> String:
 	var events = InputMap.action_get_events(action)
 	var txt = "?"

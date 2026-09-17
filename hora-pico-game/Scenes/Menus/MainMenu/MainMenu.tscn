@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://cwkveb2a4y2e0"]
 
+[ext_resource type="Script" uid="uid://cpu5ahs4dxyio" path="res://Prefabs/UI/ui_base.gd" id="1_10v2p"]
 [ext_resource type="Script" uid="uid://dghoilh20l4i2" path="res://Scenes/Menus/MainMenu/main_menu.gd" id="1_853f1"]
 [ext_resource type="Texture2D" uid="uid://g3f6fq4n5b0m" path="res://TestSprites/TITLE_CARD.png" id="1_tt5f1"]
 [ext_resource type="Texture2D" uid="uid://krvf5mo54mae" path="res://Assets/BackgroundCity.png" id="2_c3p6v"]
+[ext_resource type="Theme" uid="uid://ddtv8ntjqwl0a" path="res://Themes/mobile.tres" id="2_knd3v"]
+[ext_resource type="Theme" uid="uid://bfmc47373h4sf" path="res://Themes/desktop.tres" id="3_0jkf2"]
 [ext_resource type="Script" uid="uid://d20umrt22cy4p" path="res://Scenes/Menus/MainMenu/menu_spawner.gd" id="3_445kf"]
 [ext_resource type="PackedScene" uid="uid://dxtx0mstvmlkq" path="res://Prefabs/Bus/Bus.tscn" id="4_bq65x"]
 [ext_resource type="PackedScene" uid="uid://df0wdlpqojsmy" path="res://Prefabs/Car/Car.tscn" id="5_dpe20"]
@@ -11,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bfqjpim2xy56j" path="res://Prefabs/Public Lights/PublicLight.tscn" id="9_dji1l"]
 [ext_resource type="PackedScene" uid="uid://brq6oryy6i4i0" path="res://Scenes/Menus/MainMenu/LevelSelector/LevelSelector.tscn" id="9_g6ism"]
 [ext_resource type="PackedScene" uid="uid://btni4vhi5fmgq" path="res://Scenes/Menus/MainMenu/RoleMenu/RoleMenu.tscn" id="10_0056r"]
+[ext_resource type="Script" uid="uid://cqtnikk1cdfts" path="res://Prefabs/UI/MainButton/main_button.gd" id="10_knd3v"]
 [ext_resource type="Script" uid="uid://c0ryqxevid1kl" path="res://Scenes/directional_light_2d.gd" id="11_gu2j1"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_c3p6v"]
@@ -19,8 +23,17 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(0, 81.66667, 0.16666412, 100.16667, 42.333332, 100, 42, 105.5, 97.66667, 105.16667, 108.833336, 120.66667, 123, 127.66667, 123.5, 156.83334, 147.33334, 156, 148, 126.833336, 162.66667, 119.66667, 167.33334, 113.333336, 175.16667, 99.16667, 175.83334, 87.833336, 211.16667, 88.16667, 211.5, 170.5, 237.16667, 170.83334, 236.83334, 56.833336, 244.66667, 55.833336, 246, 80.66667, 319.1667, 78.833336, 319.83334, 51.666668, 266.6667, 51.166668, 266.6667, 21, 245.33334, 21, 246, 36.666668, 236.5, 36.333336, 238.16667, -52.166668, 211.16667, -52.333336, 211.33334, 10.166667, 148, 9.166667, 71.66667, 8.833334, 42.666668, 9.166667, 42, 27.666668, 0.33333206, 26.833334, 0.33333206, 45, 43.5, 44.166668, 42.333332, 80.833336)])
 agent_radius = 3.0
 
-[node name="MainMenu" type="Control" unique_id=399083296]
+[node name="Base" type="Control" unique_id=341917978]
 layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_0jkf2")
+
+[node name="MainMenu" type="Control" parent="." unique_id=512516758]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -28,7 +41,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_853f1")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1711435044]
+[node name="TextureRect" type="TextureRect" parent="MainMenu" unique_id=1711435044]
 layout_mode = 1
 anchors_preset = -1
 offset_left = -300.0
@@ -37,85 +50,98 @@ offset_bottom = 180.0
 scale = Vector2(6, 6)
 texture = ExtResource("2_c3p6v")
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="TextureRect" unique_id=445855782]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="MainMenu/TextureRect" unique_id=445855782]
 navigation_polygon = SubResource("NavigationPolygon_c3p6v")
 
-[node name="Polygon2D" type="Polygon2D" parent="TextureRect/NavigationRegion2D" unique_id=1328464786]
+[node name="Polygon2D" type="Polygon2D" parent="MainMenu/TextureRect/NavigationRegion2D" unique_id=1328464786]
 color = Color(0, 0, 0, 0)
 polygon = PackedVector2Array(69.833336, 26.166668, 123.16667, 26.166668, 123.5, 58.666668, 103, 71.66667, 96.333336, 84.5, 69.66667, 85.333336)
 
-[node name="Polygon2D2" type="Polygon2D" parent="TextureRect/NavigationRegion2D" unique_id=458426059]
+[node name="Polygon2D2" type="Polygon2D" parent="MainMenu/TextureRect/NavigationRegion2D" unique_id=458426059]
 color = Color(1, 1, 1, 0)
 polygon = PackedVector2Array(147.83334, 27, 211.5, 26.833334, 211, 71.833336, 167.33334, 71.66667, 158.83334, 63, 148, 60)
 
-[node name="Polygon2D3" type="Polygon2D" parent="TextureRect/NavigationRegion2D" unique_id=1444725229]
+[node name="Polygon2D3" type="Polygon2D" parent="MainMenu/TextureRect/NavigationRegion2D" unique_id=1444725229]
 color = Color(1, 1, 1, 0)
 polygon = PackedVector2Array(136.5, 76.333336, 122.16667, 80.5, 116.833336, 90, 116.16667, 97.5, 119.833336, 106, 128.5, 111.16667, 136.83334, 112.66667, 146.83334, 110, 153, 104.16667, 156.66667, 94.333336, 153.5, 84.5, 146, 78.66667)
 
-[node name="Spawner1" type="Marker2D" parent="TextureRect" unique_id=1666968768]
+[node name="Spawner1" type="Marker2D" parent="MainMenu/TextureRect" unique_id=1666968768]
 position = Vector2(4, 90.833336)
 script = ExtResource("3_445kf")
 objs = Array[PackedScene]([ExtResource("4_bq65x"), ExtResource("5_dpe20")])
 min_seconds = 7.0
 max_seconds = 15.0
 
-[node name="Alert" parent="TextureRect/Spawner1" unique_id=1177339137 instance=ExtResource("6_lt8cq")]
+[node name="Alert" parent="MainMenu/TextureRect/Spawner1" unique_id=1177339137 instance=ExtResource("6_lt8cq")]
 offset_left = 46.0
 offset_top = -10.5
 offset_right = 62.0
 offset_bottom = 5.5
 
-[node name="Spawner2" type="Marker2D" parent="TextureRect" unique_id=587654112]
+[node name="Spawner2" type="Marker2D" parent="MainMenu/TextureRect" unique_id=587654112]
 position = Vector2(3.6666667, 36)
 script = ExtResource("3_445kf")
 objs = Array[PackedScene]([ExtResource("5_dpe20"), ExtResource("4_bq65x")])
 min_seconds = 7.0
 max_seconds = 15.0
 
-[node name="Alert" parent="TextureRect/Spawner2" unique_id=1322169329 instance=ExtResource("6_lt8cq")]
+[node name="Alert" parent="MainMenu/TextureRect/Spawner2" unique_id=1322169329 instance=ExtResource("6_lt8cq")]
 offset_left = 46.333336
 offset_top = -4.3333335
 offset_right = 62.333336
 offset_bottom = 11.666666
 
-[node name="Spawner3" type="Marker2D" parent="TextureRect" unique_id=989041986]
+[node name="Spawner3" type="Marker2D" parent="MainMenu/TextureRect" unique_id=989041986]
 position = Vector2(136.00002, 150.16667)
 script = ExtResource("3_445kf")
 objs = Array[PackedScene]([ExtResource("5_dpe20"), ExtResource("4_bq65x")])
 min_seconds = 7.0
 max_seconds = 15.0
 
-[node name="Alert" parent="TextureRect/Spawner3" unique_id=832051618 instance=ExtResource("6_lt8cq")]
+[node name="Alert" parent="MainMenu/TextureRect/Spawner3" unique_id=832051618 instance=ExtResource("6_lt8cq")]
 offset_left = 21.666647
 offset_top = -69.833336
 offset_right = 37.66665
 offset_bottom = -53.833336
 
-[node name="End" type="Marker2D" parent="TextureRect" unique_id=786556486]
+[node name="End" type="Marker2D" parent="MainMenu/TextureRect" unique_id=786556486]
 position = Vector2(316, 67)
 
-[node name="End2" type="Marker2D" parent="TextureRect" unique_id=425779087]
+[node name="End2" type="Marker2D" parent="MainMenu/TextureRect" unique_id=425779087]
 position = Vector2(225.5, 164.33333)
 
-[node name="End3" type="Marker2D" parent="TextureRect" unique_id=1781956562]
+[node name="End3" type="Marker2D" parent="MainMenu/TextureRect" unique_id=1781956562]
 position = Vector2(224.66667, -44.833336)
 
-[node name="Traffic Light" parent="TextureRect" unique_id=414423625 instance=ExtResource("6_dpe20")]
+[node name="Traffic Light" parent="MainMenu/TextureRect" unique_id=414423625 instance=ExtResource("6_dpe20")]
 position = Vector2(205.5, 18.666668)
 scale = Vector2(0.3, 0.3)
 cycleDuration = 8.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=174232838]
+[node name="CanvasLayer" type="CanvasLayer" parent="MainMenu" unique_id=174232838]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1480329568]
+[node name="UIBase" type="Control" parent="MainMenu/CanvasLayer" unique_id=1094581506]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_knd3v")
+script = ExtResource("1_10v2p")
+assume_theme = ExtResource("2_knd3v")
+metadata/_custom_type_script = "uid://cpu5ahs4dxyio"
+
+[node name="ColorRect" type="ColorRect" parent="MainMenu/CanvasLayer/UIBase" unique_id=1480329568]
 z_index = 5
 custom_minimum_size = Vector2(400, 200)
+layout_mode = 1
 anchors_preset = -1
 offset_right = 400.0
 offset_bottom = 200.0
 color = Color(0, 0, 0, 0)
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/ColorRect" unique_id=473976922]
+[node name="ColorRect" type="ColorRect" parent="MainMenu/CanvasLayer/UIBase/ColorRect" unique_id=473976922]
 light_mask = 2
 layout_mode = 1
 anchors_preset = 15
@@ -129,7 +155,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/ColorRect/ColorRect" unique_id=234848251]
+[node name="TextureRect" type="TextureRect" parent="MainMenu/CanvasLayer/UIBase/ColorRect/ColorRect" unique_id=234848251]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -139,9 +165,11 @@ grow_vertical = 2
 texture = ExtResource("1_tt5f1")
 stretch_mode = 5
 
-[node name="ColorRect2" type="ColorRect" parent="CanvasLayer" unique_id=594522145]
+[node name="BottomMenu" type="ColorRect" parent="MainMenu/CanvasLayer/UIBase" unique_id=594522145]
+unique_name_in_owner = true
 z_index = 5
 custom_minimum_size = Vector2(0, 70)
+layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -151,7 +179,7 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(0, 0, 0, 0.39215687)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/ColorRect2" unique_id=512967309]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/CanvasLayer/UIBase/BottomMenu" unique_id=512967309]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5
@@ -163,18 +191,29 @@ offset_bottom = 22.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Play" type="Button" parent="CanvasLayer/ColorRect2/HBoxContainer" unique_id=1451027850]
+[node name="Play" type="Button" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/HBoxContainer" unique_id=391837548]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
 text = "Play"
+script = ExtResource("10_knd3v")
+prefix_format = "[%s] "
+button_text = "Play"
+action = "ui_accept"
+metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
-[node name="Quit" type="Button" parent="CanvasLayer/ColorRect2/HBoxContainer" unique_id=1518697416]
+[node name="Quit" type="Button" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/HBoxContainer" unique_id=893889301]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
 text = "Quit"
+script = ExtResource("10_knd3v")
+prefix_format = "[%s] "
+button_text = "Quit"
+action = "ui_select"
+metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
-[node name="LevelSelector" parent="CanvasLayer" unique_id=1318565644 instance=ExtResource("9_g6ism")]
+[node name="LevelSelector" parent="MainMenu/CanvasLayer/UIBase" unique_id=1318565644 instance=ExtResource("9_g6ism")]
 visible = false
+layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -183,10 +222,11 @@ offset_bottom = 566.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="RoleMenu" parent="CanvasLayer" unique_id=1075269094 instance=ExtResource("10_0056r")]
+[node name="RoleMenu" parent="MainMenu/CanvasLayer/UIBase" unique_id=1075269094 instance=ExtResource("10_0056r")]
 visible = false
+layout_mode = 1
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=332148075]
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="MainMenu" unique_id=332148075]
 position = Vector2(0, 8)
 blend_mode = 2
 script = ExtResource("11_gu2j1")
@@ -197,22 +237,20 @@ night_color = Color(0, 9.62615e-08, 0.3218994, 1)
 cycle_duration = 5.0
 fade_duration = 1.0
 
-[node name="DayNight" type="Timer" parent="." unique_id=917196126]
+[node name="DayNight" type="Timer" parent="MainMenu" unique_id=917196126]
 autostart = true
 ignore_time_scale = true
 
-[node name="PublicLight" parent="." unique_id=1100289769 instance=ExtResource("9_dji1l")]
+[node name="PublicLight" parent="MainMenu" unique_id=1100289769 instance=ExtResource("9_dji1l")]
 position = Vector2(425.00003, 221.00002)
 scale = Vector2(1.69, 1.69)
 
-[node name="PublicLight2" parent="." unique_id=455852845 instance=ExtResource("9_dji1l")]
+[node name="PublicLight2" parent="MainMenu" unique_id=455852845 instance=ExtResource("9_dji1l")]
 position = Vector2(941, 173.00003)
 scale = Vector2(1.69, 1.69)
 
-[node name="PublicLight3" parent="." unique_id=30483800 instance=ExtResource("9_dji1l")]
+[node name="PublicLight3" parent="MainMenu" unique_id=30483800 instance=ExtResource("9_dji1l")]
 position = Vector2(946.0001, 362.00003)
 scale = Vector2(1.69, 1.69)
 
-[connection signal="pressed" from="CanvasLayer/ColorRect2/HBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="CanvasLayer/ColorRect2/HBoxContainer/Quit" to="." method="_on_quit_pressed"]
-[connection signal="timeout" from="DayNight" to="DirectionalLight2D" method="_on_day_night_timeout"]
+[connection signal="timeout" from="MainMenu/DayNight" to="MainMenu/DirectionalLight2D" method="_on_day_night_timeout"]

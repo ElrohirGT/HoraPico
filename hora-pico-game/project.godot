@@ -12,7 +12,7 @@ config_version=5
 
 config/name="HoraPicoGame"
 config/version="0.1"
-run/main_scene="uid://ucjt0xsvo1dg"
+run/main_scene="uid://cqcnrpfy4ruk5"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="uid://tqitr77siidt"
 
@@ -22,6 +22,7 @@ EventBus="*uid://2sqnkycjqfjn"
 Enums="*uid://d0aj1ljfac1hn"
 Utils="*uid://mdm54ixtp4m1"
 InputManager="*uid://b1gjqiqy20xgn"
+ProjectFeatures="*uid://0nypp3ptopmn"
 
 [display]
 

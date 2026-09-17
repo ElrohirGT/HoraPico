@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://27k8ptic051g" path="res://Prefabs/HUD/elixir_manager.gd" id="1_0qdy1"]
 [ext_resource type="Texture2D" uid="uid://blnkux5p8cfni" path="res://TestSprites/ELIXIR_Progress.png" id="1_aydyg"]
+[ext_resource type="Script" uid="uid://cpu5ahs4dxyio" path="res://Prefabs/UI/ui_base.gd" id="1_f62wt"]
 [ext_resource type="Texture2D" uid="uid://bhlg4p5y0g7w8" path="res://TestSprites/ELIXIR_Over.png" id="1_kg4qw"]
+[ext_resource type="Theme" uid="uid://ddtv8ntjqwl0a" path="res://Themes/mobile.tres" id="1_qxswg"]
 [ext_resource type="Texture2D" uid="uid://dga7rck3xr3sr" path="res://Assets/CarCut.png" id="1_rbya7"]
 [ext_resource type="Texture2D" uid="uid://dxpg6ynwd7tik" path="res://Assets/BusCut.png" id="2_5jdsq"]
 [ext_resource type="Texture2D" uid="uid://bnwj31ja0dvw0" path="res://TestSprites/ELIXIR_Symbol.png" id="2_jr6l7"]
@@ -18,13 +20,17 @@
 [ext_resource type="Script" uid="uid://ce7ktmq0upisv" path="res://Prefabs/HUD/end_menu.gd" id="13_fd360"]
 [ext_resource type="Texture2D" uid="uid://d0xs2s786f2m6" path="res://Assets/LB.png" id="17_5q26g"]
 
-[node name="HUD" type="Control" unique_id=2055424362]
+[node name="HUD" type="Control" unique_id=1165023422]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_qxswg")
+script = ExtResource("1_f62wt")
+assume_theme = ExtResource("1_qxswg")
+metadata/_custom_type_script = "uid://cpu5ahs4dxyio"
 
 [node name="TrafficBackground" type="ColorRect" parent="." unique_id=1237301669]
 custom_minimum_size = Vector2(500, 75)
@@ -316,8 +322,8 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.6745098)
 
 [node name="VelocityLabel" type="Label" parent="ColorRect" unique_id=1123354540]
-clip_contents = true
 custom_minimum_size = Vector2(120, 0)
+clip_contents = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -336,8 +342,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="UltimateCharges" type="Label" parent="ColorRect" unique_id=1172524566]
-clip_contents = true
 custom_minimum_size = Vector2(120, 0)
+clip_contents = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

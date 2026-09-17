@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://daq2th4fyx53n"]
+
+[ext_resource type="Script" uid="uid://cpu5ahs4dxyio" path="res://Prefabs/UI/ui_base.gd" id="1_1i1wq"]
+
+[node name="UiBase" type="Control" unique_id=999056541]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1i1wq")
