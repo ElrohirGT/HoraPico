@@ -16,9 +16,9 @@ func _ready() -> void:
 
 func _hide_show_menu(id: Enums.Menu):
 	if id == Enums.Menu.LevelSelectMenu:
-		self.show()
+		self.get_parent().show()
 	else:
-		self.hide()
+		self.get_parent().hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

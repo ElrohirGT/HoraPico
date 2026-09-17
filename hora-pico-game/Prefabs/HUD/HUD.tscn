@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://cgxkolwc2s6mj" path="res://Prefabs/HUD/pause_menu.gd" id="12_mk6xb"]
 [ext_resource type="Script" uid="uid://ce7ktmq0upisv" path="res://Prefabs/HUD/end_menu.gd" id="13_fd360"]
 [ext_resource type="Texture2D" uid="uid://d0xs2s786f2m6" path="res://Assets/LB.png" id="17_5q26g"]
+[ext_resource type="Script" uid="uid://cqtnikk1cdfts" path="res://Prefabs/UI/MainButton/main_button.gd" id="18_k2a72"]
 
 [node name="HUD" type="Control" unique_id=1165023422]
 layout_mode = 3
@@ -271,13 +272,23 @@ theme_override_font_sizes/font_size = 64
 text = "Pause"
 horizontal_alignment = 1
 
-[node name="Continue" type="Button" parent="PauseMenu/VBoxContainer" unique_id=1632475990]
+[node name="Continue" type="Button" parent="PauseMenu/VBoxContainer" unique_id=1417794569]
 layout_mode = 2
-text = "Continue"
+text = "[UpArrow] Continue"
+script = ExtResource("18_k2a72")
+prefix_format = "[%s] "
+button_text = "Continue"
+action = "pause_game"
+metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
-[node name="Quit" type="Button" parent="PauseMenu/VBoxContainer" unique_id=2080858058]
+[node name="Quit" type="Button" parent="PauseMenu/VBoxContainer" unique_id=216053539]
 layout_mode = 2
-text = "Quit"
+text = "[DownArrow] Continue"
+script = ExtResource("18_k2a72")
+prefix_format = "[%s] "
+button_text = "Quit"
+action = "ui_accept"
+metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
 [node name="EndMenu" type="PanelContainer" parent="." unique_id=607257382]
 visible = false
@@ -298,13 +309,17 @@ size_flags_vertical = 4
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 
-[node name="PlayAgain" type="Button" parent="EndMenu/VBoxContainer" unique_id=669155173]
+[node name="PlayAgain" type="Button" parent="EndMenu/VBoxContainer" unique_id=916355003]
 layout_mode = 2
 text = "Play Again"
+script = ExtResource("18_k2a72")
+metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
-[node name="MainMenu" type="Button" parent="EndMenu/VBoxContainer" unique_id=114109091]
+[node name="MainMenu" type="Button" parent="EndMenu/VBoxContainer" unique_id=1891628181]
 layout_mode = 2
 text = "Main Menu"
+script = ExtResource("18_k2a72")
+metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1963125324]
 custom_minimum_size = Vector2(100, 100)
@@ -380,7 +395,3 @@ texture = ExtResource("17_5q26g")
 
 [connection signal="timeout" from="TopBar/ProgressBar/ChaosTimer" to="TopBar/ProgressBar" method="_on_chaos_timer_timeout"]
 [connection signal="timeout" from="TopBar/TimerBackground/Label/MatchTimer" to="TopBar/TimerBackground/Label" method="_on_match_timer_timeout"]
-[connection signal="pressed" from="PauseMenu/VBoxContainer/Continue" to="PauseMenu" method="_on_continue_pressed"]
-[connection signal="pressed" from="PauseMenu/VBoxContainer/Quit" to="PauseMenu" method="_on_quit_pressed"]
-[connection signal="pressed" from="EndMenu/VBoxContainer/PlayAgain" to="EndMenu" method="_on_play_again_pressed"]
-[connection signal="pressed" from="EndMenu/VBoxContainer/MainMenu" to="EndMenu" method="_on_main_menu_pressed"]
