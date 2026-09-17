@@ -1,14 +1,18 @@
 extends Control
 
-@onready var play_btn: Button = $CanvasLayer/ColorRect2/HBoxContainer/Play
-@onready var quit_btn: Button = $CanvasLayer/ColorRect2/HBoxContainer/Quit
+@onready var play_btn: MainButton = %Play
+@onready var quit_btn: MainButton = %Quit
 
-@onready var initial_menu: ColorRect = $CanvasLayer/ColorRect2
+@onready var initial_menu: ColorRect = %BottomMenu
 
 func _ready() -> void:
 	EventBus.DisplayMenu.connect(_hide_show_if_should)
-	play_btn.text = "[%s] Play" % Utils.get_key_or_button_for_action("ui_accept")
-	quit_btn.text = "[%s] Quit" % Utils.get_key_or_button_for_action("ui_select")
+	play_btn.pressed.connect(_on_play_pressed)
+	quit_btn.pressed.connect(_on_quit_pressed)
+	# play_btn.text = Utils.format_button_text("[%s] ", "Play", "ui_accept")
+	# play_btn.text = "[%s] Play" % Utils.get_key_or_button_for_action("ui_accept")
+	# quit_btn.text = Utils.format_button_text("[%s] ", "Quit", "ui_select")
+	# quit_btn.text = "[%s] Quit" % Utils.get_key_or_button_for_action("ui_select")
 
 func _hide_show_if_should(id: Enums.Menu):
 	if id == Enums.Menu.MainMenu:

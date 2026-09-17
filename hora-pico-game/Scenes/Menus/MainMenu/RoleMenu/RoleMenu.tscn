@@ -1,14 +1,15 @@
 [gd_scene format=3 uid="uid://btni4vhi5fmgq"]
 
+[ext_resource type="Theme" uid="uid://bfmc47373h4sf" path="res://Themes/desktop.tres" id="1_myfl2"]
 [ext_resource type="Script" uid="uid://yjwi0fmjkrkn" path="res://Scenes/Menus/MainMenu/RoleMenu/role_menu.gd" id="1_u8kp8"]
 [ext_resource type="Texture2D" uid="uid://bpah4lo7q0ce1" path="res://TestSprites/PLAYER_P3.png" id="1_vv4f1"]
-[ext_resource type="Texture2D" uid="uid://c3g460ifs0f05" path="res://TestSprites/PLAYER_P1.png" id="2_evlkn"]
-[ext_resource type="Texture2D" uid="uid://cers3b4ai6fo2" path="res://TestSprites/PLAYER_P2.png" id="3_cgylu"]
+[ext_resource type="Script" uid="uid://cpu5ahs4dxyio" path="res://Prefabs/UI/ui_base.gd" id="1_x5l5m"]
+[ext_resource type="Script" uid="uid://cqtnikk1cdfts" path="res://Prefabs/UI/MainButton/main_button.gd" id="5_cgylu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bt0eo"]
 bg_color = Color(0.6, 0.6, 0.6, 0.5294118)
 
-[node name="RoleMenu" type="Control" unique_id=1075269094]
+[node name="Base" type="Control" unique_id=56772087]
 z_index = 5
 layout_mode = 3
 anchors_preset = 15
@@ -16,10 +17,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_u8kp8")
-pointer_textures = Array[Texture2D]([ExtResource("2_evlkn"), ExtResource("3_cgylu"), ExtResource("1_vv4f1")])
+theme = ExtResource("1_myfl2")
+script = ExtResource("1_x5l5m")
+assume_theme = ExtResource("1_myfl2")
+metadata/_custom_type_script = "uid://cpu5ahs4dxyio"
 
-[node name="Panel" type="Panel" parent="." unique_id=2095162383]
+[node name="RoleMenu" type="Control" parent="." unique_id=1186732307]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u8kp8")
+
+[node name="MenuContainer" type="Panel" parent="RoleMenu" unique_id=2095162383]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(700, 400)
 layout_mode = 1
 anchors_preset = 8
@@ -27,15 +40,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -350.0
+offset_top = -200.0
+offset_right = 350.0
+offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bt0eo")
 
-[node name="HFlowContainer" type="VBoxContainer" parent="Panel" unique_id=376780435]
+[node name="HFlowContainer" type="VBoxContainer" parent="RoleMenu/MenuContainer" unique_id=376780435]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,47 +57,58 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HFlowContainer" unique_id=194954481]
+[node name="VBoxContainer" type="VBoxContainer" parent="RoleMenu/MenuContainer/HFlowContainer" unique_id=194954481]
 layout_mode = 2
 alignment = 1
 
-[node name="TrafficContainer" type="FlowContainer" parent="Panel/HFlowContainer/VBoxContainer" unique_id=2038985440]
+[node name="TrafficContainer" type="FlowContainer" parent="RoleMenu/MenuContainer/HFlowContainer/VBoxContainer" unique_id=2038985440]
+unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Panel/HFlowContainer/VBoxContainer/TrafficContainer" unique_id=368702132]
+[node name="TextureRect" type="TextureRect" parent="RoleMenu/MenuContainer/HFlowContainer/VBoxContainer/TrafficContainer" unique_id=368702132]
 layout_mode = 2
 texture = ExtResource("1_vv4f1")
 
-[node name="Label" type="Label" parent="Panel/HFlowContainer/VBoxContainer" unique_id=1445947828]
+[node name="Label" type="Label" parent="RoleMenu/MenuContainer/HFlowContainer/VBoxContainer" unique_id=1445947828]
 layout_mode = 2
 text = "TRAFFIC: Press [Up] to join"
 horizontal_alignment = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/HFlowContainer" unique_id=231399397]
+[node name="VBoxContainer2" type="VBoxContainer" parent="RoleMenu/MenuContainer/HFlowContainer" unique_id=231399397]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="Panel/HFlowContainer/VBoxContainer2" unique_id=149029342]
+[node name="Label" type="Label" parent="RoleMenu/MenuContainer/HFlowContainer/VBoxContainer2" unique_id=149029342]
 layout_mode = 2
 text = "POLICE: Press [Down] to join"
 horizontal_alignment = 1
 
-[node name="PoliceContainer" type="FlowContainer" parent="Panel/HFlowContainer/VBoxContainer2" unique_id=1644009414]
+[node name="PoliceContainer" type="FlowContainer" parent="RoleMenu/MenuContainer/HFlowContainer/VBoxContainer2" unique_id=1644009414]
+unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Panel/HFlowContainer/VBoxContainer2/PoliceContainer" unique_id=555228327]
+[node name="TextureRect" type="TextureRect" parent="RoleMenu/MenuContainer/HFlowContainer/VBoxContainer2/PoliceContainer" unique_id=555228327]
 layout_mode = 2
 texture = ExtResource("1_vv4f1")
 
-[node name="Play" type="Button" parent="Panel/HFlowContainer" unique_id=2105886585]
+[node name="Play" type="Button" parent="RoleMenu/MenuContainer/HFlowContainer" unique_id=1426215693]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Play"
+script = ExtResource("5_cgylu")
+prefix_format = "[%s] "
+button_text = "Confirm"
+action = "ui_accept"
+metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
-[node name="Back" type="Button" parent="Panel/HFlowContainer" unique_id=435353049]
+[node name="Back" type="Button" parent="RoleMenu/MenuContainer/HFlowContainer" unique_id=1272426862]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Back"
-
-[connection signal="pressed" from="Panel/HFlowContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Panel/HFlowContainer/Back" to="." method="_on_back_pressed"]
+script = ExtResource("5_cgylu")
+prefix_format = "[%s] "
+button_text = "Back"
+action = "ui_select"
+metadata/_custom_type_script = "uid://cqtnikk1cdfts"

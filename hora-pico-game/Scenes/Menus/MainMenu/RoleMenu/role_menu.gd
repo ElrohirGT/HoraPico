@@ -2,13 +2,13 @@ extends Control
 
 @export var pointer_textures: Array[Texture2D]
 
-@onready var play: Button = $Panel/HFlowContainer/Play
-@onready var back: Button = $Panel/HFlowContainer/Back
+@onready var play: MainButton = %Play
+@onready var back: MainButton = %Back
 
-@onready var traffic = $Panel/HFlowContainer/VBoxContainer/TrafficContainer
-@onready var police = $Panel/HFlowContainer/VBoxContainer2/PoliceContainer
+@onready var traffic: FlowContainer = %TrafficContainer
+@onready var police: FlowContainer = %PoliceContainer
 
-@onready var role_menu = $Panel
+@onready var role_menu: Panel = %MenuContainer
 
 func _ready() -> void:
 	EventBus.DeviceConnected.connect(func (_a): refresh_screen())
@@ -16,8 +16,8 @@ func _ready() -> void:
 	EventBus.ChangedRole.connect(func (_a, _b): refresh_screen())
 	EventBus.DisplayMenu.connect(_hide_show_menu)
 	
-	play.text = "[%s] Play" % Utils.get_key_or_button_for_action("ui_accept")
-	back.text = "[%s] Quit" % Utils.get_key_or_button_for_action("ui_select")
+	play.pressed.connect(_on_play_pressed)
+	back.pressed.connect(_on_back_pressed)
 	
 	refresh_screen()
 	
@@ -83,5 +83,4 @@ func _on_play_pressed() -> void:
 
 
 func _on_back_pressed() -> void:
-	print("BACK Pressed")
 	EventBus.DisplayMenu.emit(Enums.Menu.MainMenu)

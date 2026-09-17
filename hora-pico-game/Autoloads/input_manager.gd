@@ -1,6 +1,6 @@
 extends Node
 
-var player_count = -1
+var joycon_count = 0
 var role_by_device = {}
 
 func _ready() -> void:
@@ -15,15 +15,18 @@ func _on_joy_connection_changed(device: int, connected: bool):
 	print("Device: ", device, " connected: ", connected)
 	if connected:
 		role_by_device[device] = Enums.Role.TRAFFIC
-		player_count += 1
+		joycon_count += 1
 		
 		if is_traffic_greater_than_one():
 			role_by_device[device] = Enums.Role.POLICE
 		EventBus.DeviceConnected.emit(device)
 	else:
 		role_by_device.erase(device)
-		player_count -= 1
+		joycon_count -= 1
 		EventBus.DeviceDisconnected.emit(device)
+
+func is_any_joycon_connected() -> bool:
+	return joycon_count > 0
 
 func is_traffic_greater_than_one() -> bool:
 	var count = 0
