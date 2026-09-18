@@ -1,9 +1,9 @@
 extends Control
 
-@onready var play_btn: MainButton = %Play
+@onready var play_btn: MainButton = %Host
 @onready var quit_btn: MainButton = %Quit
 
-@onready var initial_menu: ColorRect = %BottomMenu
+@onready var initial_menu: Panel = %BottomMenu
 
 func _ready() -> void:
 	EventBus.DisplayMenu.connect(_hide_show_if_should)
