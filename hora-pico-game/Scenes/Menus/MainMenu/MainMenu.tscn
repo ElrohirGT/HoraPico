@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://brq6oryy6i4i0" path="res://Scenes/Menus/MainMenu/LevelSelector/LevelSelector.tscn" id="9_g6ism"]
 [ext_resource type="PackedScene" uid="uid://btni4vhi5fmgq" path="res://Scenes/Menus/MainMenu/RoleMenu/RoleMenu.tscn" id="10_0056r"]
 [ext_resource type="Script" uid="uid://cqtnikk1cdfts" path="res://Prefabs/UI/MainButton/main_button.gd" id="10_knd3v"]
+[ext_resource type="Script" uid="uid://dy7yv0j0cxehr" path="res://addons/controller_icons/objects/ControllerIconTexture.gd" id="11_a84wo"]
 [ext_resource type="Script" uid="uid://c0ryqxevid1kl" path="res://Scenes/directional_light_2d.gd" id="11_gu2j1"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_c3p6v"]
@@ -21,6 +22,27 @@ vertices = PackedVector2Array(233.45313, 39.242188, 213.96875, 74.85156, 214.531
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 3, 2, 5), PackedInt32Array(6, 7, 8, 9, 10, 11), PackedInt32Array(12, 8, 7, 13, 14), PackedInt32Array(15, 16, 17, 18, 19), PackedInt32Array(20, 6, 11, 21), PackedInt32Array(22, 20, 21, 23), PackedInt32Array(24, 25, 26, 27, 28, 29, 30), PackedInt32Array(31, 32, 33, 34), PackedInt32Array(35, 36, 37, 38), PackedInt32Array(39, 40, 23, 21), PackedInt32Array(41, 22, 23, 42), PackedInt32Array(43, 41, 42, 25), PackedInt32Array(24, 43, 25), PackedInt32Array(44, 45, 46, 47), PackedInt32Array(34, 48, 49, 50), PackedInt32Array(34, 50, 51, 31), PackedInt32Array(0, 31, 51, 44), PackedInt32Array(1, 0, 44, 47), PackedInt32Array(1, 47, 8, 12), PackedInt32Array(14, 13, 52, 16), PackedInt32Array(16, 52, 17), PackedInt32Array(18, 17, 53, 54), PackedInt32Array(54, 53, 30, 29), PackedInt32Array(55, 56, 5, 2, 15, 19), PackedInt32Array(55, 57, 56), PackedInt32Array(55, 19, 58, 59), PackedInt32Array(37, 59, 58, 28, 38), PackedInt32Array(60, 38, 28, 27), PackedInt32Array(27, 61, 62, 60)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(0, 81.66667, 0.16666412, 100.16667, 42.333332, 100, 42, 105.5, 97.66667, 105.16667, 108.833336, 120.66667, 123, 127.66667, 123.5, 156.83334, 147.33334, 156, 148, 126.833336, 162.66667, 119.66667, 167.33334, 113.333336, 175.16667, 99.16667, 175.83334, 87.833336, 211.16667, 88.16667, 211.5, 170.5, 237.16667, 170.83334, 236.83334, 56.833336, 244.66667, 55.833336, 246, 80.66667, 319.1667, 78.833336, 319.83334, 51.666668, 266.6667, 51.166668, 266.6667, 21, 245.33334, 21, 246, 36.666668, 236.5, 36.333336, 238.16667, -52.166668, 211.16667, -52.333336, 211.33334, 10.166667, 148, 9.166667, 71.66667, 8.833334, 42.666668, 9.166667, 42, 27.666668, 0.33333206, 26.833334, 0.33333206, 45, 43.5, 44.166668, 42.333332, 80.833336)])
 agent_radius = 3.0
+
+[sub_resource type="Texture2D" id="Texture2D_b2qm7"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("11_a84wo")
+path = "ui_accept"
+metadata/_custom_type_script = "uid://dy7yv0j0cxehr"
+
+[sub_resource type="Texture2D" id="Texture2D_punrg"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("11_a84wo")
+path = "ui_select"
+metadata/_custom_type_script = "uid://dy7yv0j0cxehr"
+
+[sub_resource type="Texture2D" id="Texture2D_s6fsn"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("11_a84wo")
+path = "ui_cancel"
+metadata/_custom_type_script = "uid://dy7yv0j0cxehr"
 
 [node name="Base" type="Control" unique_id=341917978]
 layout_mode = 3
@@ -186,34 +208,37 @@ grow_vertical = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/MarginContainer" unique_id=1832984304]
 layout_mode = 2
 
-[node name="Play" type="Button" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/MarginContainer/HBoxContainer" unique_id=2028118389]
+[node name="Play" type="Button" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/MarginContainer/HBoxContainer" unique_id=1186576484]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+custom_maximum_size = Vector2(-1, 100)
 layout_mode = 2
-text = "[Top Arrow] Play"
+text = "Play"
+icon = SubResource("Texture2D_b2qm7")
+expand_icon = true
 script = ExtResource("10_knd3v")
-prefix_format = "[%s] "
-button_text = "Play"
-action = "ui_accept"
 metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
-[node name="Online" type="Button" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/MarginContainer/HBoxContainer" unique_id=1220852779]
+[node name="Online" type="Button" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/MarginContainer/HBoxContainer" unique_id=321038741]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+custom_maximum_size = Vector2(-1, 100)
 layout_mode = 2
-text = "[Top Arrow] Online"
+text = "Online"
+icon = SubResource("Texture2D_punrg")
+expand_icon = true
 script = ExtResource("10_knd3v")
-prefix_format = "[%s] "
-button_text = "Online"
-action = "ui_select"
 metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
-[node name="Quit" type="Button" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/MarginContainer/HBoxContainer" unique_id=1790117844]
+[node name="Quit" type="Button" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/MarginContainer/HBoxContainer" unique_id=2114790509]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+custom_maximum_size = Vector2(-1, 100)
 layout_mode = 2
-text = "[Bottom Arrow] Quit"
+text = "Quit"
+icon = SubResource("Texture2D_s6fsn")
+expand_icon = true
 script = ExtResource("10_knd3v")
-prefix_format = "[%s] "
-button_text = "Quit"
-action = "ui_cancel"
 metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
 [node name="LevelSelector" parent="MainMenu/CanvasLayer/UIBase" unique_id=1318565644 instance=ExtResource("9_g6ism")]
