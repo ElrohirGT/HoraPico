@@ -182,80 +182,38 @@ anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 45.625
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/MarginContainer" unique_id=946276401]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/MarginContainer" unique_id=1832984304]
 layout_mode = 2
 
-[node name="Username" type="LineEdit" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/MarginContainer/HBoxContainer" unique_id=668545160]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_vertical = 4
-placeholder_text = "Username:"
-max_length = 16
-
-[node name="Host" type="Button" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/MarginContainer/HBoxContainer" unique_id=1307331710]
+[node name="Play" type="Button" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/MarginContainer/HBoxContainer" unique_id=2028118389]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Host"
+text = "[Top Arrow] Play"
 script = ExtResource("10_knd3v")
 prefix_format = "[%s] "
-button_text = "Host"
+button_text = "Play"
 action = "ui_accept"
 metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
-[node name="Quit" type="Button" parent="MainMenu/CanvasLayer/UIBase/BottomMenu" unique_id=457767945]
+[node name="Online" type="Button" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/MarginContainer/HBoxContainer" unique_id=1220852779]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -45.5
-offset_right = 45.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "Quit"
+layout_mode = 2
+text = "[Top Arrow] Online"
+script = ExtResource("10_knd3v")
+prefix_format = "[%s] "
+button_text = "Online"
+action = "ui_select"
+metadata/_custom_type_script = "uid://cqtnikk1cdfts"
+
+[node name="Quit" type="Button" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/MarginContainer/HBoxContainer" unique_id=1790117844]
+unique_name_in_owner = true
+layout_mode = 2
+text = "[Bottom Arrow] Quit"
 script = ExtResource("10_knd3v")
 prefix_format = "[%s] "
 button_text = "Quit"
 action = "ui_cancel"
-metadata/_custom_type_script = "uid://cqtnikk1cdfts"
-
-[node name="MarginContainer2" type="MarginContainer" parent="MainMenu/CanvasLayer/UIBase/BottomMenu" unique_id=1271343495]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -45.625
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/MarginContainer2" unique_id=798844362]
-layout_mode = 2
-
-[node name="RoomId" type="LineEdit" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/MarginContainer2/HBoxContainer" unique_id=1098972815]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_vertical = 4
-placeholder_text = "Room Id:"
-
-[node name="Join" type="Button" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/MarginContainer2/HBoxContainer" unique_id=666220741]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Join"
-script = ExtResource("10_knd3v")
-prefix_format = "[%s] "
-button_text = "Join"
-action = "ui_select"
 metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
 [node name="LevelSelector" parent="MainMenu/CanvasLayer/UIBase" unique_id=1318565644 instance=ExtResource("9_g6ism")]

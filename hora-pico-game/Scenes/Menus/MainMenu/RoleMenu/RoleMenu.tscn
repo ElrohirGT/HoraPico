@@ -4,8 +4,10 @@
 [ext_resource type="Script" uid="uid://yjwi0fmjkrkn" path="res://Scenes/Menus/MainMenu/RoleMenu/role_menu.gd" id="1_u8kp8"]
 [ext_resource type="Texture2D" uid="uid://bpah4lo7q0ce1" path="res://TestSprites/PLAYER_P3.png" id="1_vv4f1"]
 [ext_resource type="Script" uid="uid://cpu5ahs4dxyio" path="res://Prefabs/UI/ui_base.gd" id="1_x5l5m"]
+[ext_resource type="Texture2D" uid="uid://c3g460ifs0f05" path="res://TestSprites/PLAYER_P1.png" id="4_hmhox"]
 [ext_resource type="Texture2D" uid="uid://dga7rck3xr3sr" path="res://Assets/CarCut.png" id="4_myfl2"]
 [ext_resource type="Script" uid="uid://cqtnikk1cdfts" path="res://Prefabs/UI/MainButton/main_button.gd" id="5_cgylu"]
+[ext_resource type="Texture2D" uid="uid://cers3b4ai6fo2" path="res://TestSprites/PLAYER_P2.png" id="5_ijc44"]
 [ext_resource type="Texture2D" uid="uid://dgcspri4fvk2f" path="res://TestSprites/POLICE_Cap.png" id="7_7nxsf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bt0eo"]
@@ -32,6 +34,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u8kp8")
+pointer_textures = Array[Texture2D]([ExtResource("4_hmhox"), ExtResource("5_ijc44"), ExtResource("1_vv4f1")])
 
 [node name="MenuContainer" type="Panel" parent="RoleMenu" unique_id=2095162383]
 unique_name_in_owner = true

@@ -122,5 +122,5 @@ text = "Volver
 script = ExtResource("6_ir00o")
 prefix_format = "[%s] "
 button_text = "Volver"
-action = "ui_select"
+action = "ui_cancel"
 metadata/_custom_type_script = "uid://cqtnikk1cdfts"

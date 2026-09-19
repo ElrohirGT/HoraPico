@@ -49,7 +49,7 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("ui_accept") and not play.disabled:
 		get_tree().get_root().set_input_as_handled()
 		_on_play_pressed()
-	elif event.is_action_pressed("ui_select"):
+	elif event.is_action_pressed("ui_cancel"):
 		get_tree().get_root().set_input_as_handled()
 		_on_back_pressed()
 	refresh_screen()
