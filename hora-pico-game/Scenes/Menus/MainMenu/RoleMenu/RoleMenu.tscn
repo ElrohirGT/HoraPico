@@ -9,9 +9,38 @@
 [ext_resource type="Script" uid="uid://cqtnikk1cdfts" path="res://Prefabs/UI/MainButton/main_button.gd" id="5_cgylu"]
 [ext_resource type="Texture2D" uid="uid://cers3b4ai6fo2" path="res://TestSprites/PLAYER_P2.png" id="5_ijc44"]
 [ext_resource type="Texture2D" uid="uid://dgcspri4fvk2f" path="res://TestSprites/POLICE_Cap.png" id="7_7nxsf"]
+[ext_resource type="Script" uid="uid://dy7yv0j0cxehr" path="res://addons/controller_icons/objects/ControllerIconTexture.gd" id="9_ijc44"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bt0eo"]
 bg_color = Color(0.6, 0.6, 0.6, 0.5294118)
+
+[sub_resource type="Texture2D" id="Texture2D_7wjpt"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("9_ijc44")
+path = "ui_up"
+metadata/_custom_type_script = "uid://dy7yv0j0cxehr"
+
+[sub_resource type="Texture2D" id="Texture2D_cb024"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("9_ijc44")
+path = "ui_down"
+metadata/_custom_type_script = "uid://dy7yv0j0cxehr"
+
+[sub_resource type="Texture2D" id="Texture2D_h2444"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("9_ijc44")
+path = "ui_accept"
+metadata/_custom_type_script = "uid://dy7yv0j0cxehr"
+
+[sub_resource type="Texture2D" id="Texture2D_b2qm7"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("9_ijc44")
+path = "ui_cancel"
+metadata/_custom_type_script = "uid://dy7yv0j0cxehr"
 
 [node name="Base" type="Control" unique_id=56772087]
 z_index = 5
@@ -60,27 +89,30 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 10
 alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="RoleMenu/MenuContainer/HFlowContainer" unique_id=1550591316]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="HFlowContainer" parent="RoleMenu/MenuContainer/HFlowContainer/MarginContainer" unique_id=1042239038]
 layout_mode = 2
 
+[node name="TextureRect" type="TextureRect" parent="RoleMenu/MenuContainer/HFlowContainer/MarginContainer/VBoxContainer" unique_id=579905185]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+texture = ExtResource("4_myfl2")
+stretch_mode = 5
+
 [node name="JoinTraffic" type="Button" parent="RoleMenu/MenuContainer/HFlowContainer/MarginContainer/VBoxContainer" unique_id=1606484319]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+custom_maximum_size = Vector2(-1, 100)
 layout_mode = 2
 text = "Traffic"
-icon = ExtResource("4_myfl2")
+icon = SubResource("Texture2D_7wjpt")
+expand_icon = true
 script = ExtResource("5_cgylu")
-prefix_format = "[%s] "
-button_text = "Traffic"
-action = "ui_up"
 metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
 [node name="TrafficContainer" type="FlowContainer" parent="RoleMenu/MenuContainer/HFlowContainer/MarginContainer/VBoxContainer" unique_id=2038985440]
@@ -94,23 +126,24 @@ texture = ExtResource("1_vv4f1")
 
 [node name="MarginContainer2" type="MarginContainer" parent="RoleMenu/MenuContainer/HFlowContainer" unique_id=2129165792]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer2" type="HFlowContainer" parent="RoleMenu/MenuContainer/HFlowContainer/MarginContainer2" unique_id=179957590]
 layout_mode = 2
 
+[node name="TextureRect" type="TextureRect" parent="RoleMenu/MenuContainer/HFlowContainer/MarginContainer2/VBoxContainer2" unique_id=1620911698]
+layout_mode = 2
+texture = ExtResource("7_7nxsf")
+stretch_mode = 5
+
 [node name="JoinPolice" type="Button" parent="RoleMenu/MenuContainer/HFlowContainer/MarginContainer2/VBoxContainer2" unique_id=1329634234]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+custom_maximum_size = Vector2(-1, 100)
 layout_mode = 2
 text = "Police"
-icon = ExtResource("7_7nxsf")
+icon = SubResource("Texture2D_cb024")
+expand_icon = true
 script = ExtResource("5_cgylu")
-prefix_format = "[%s] "
-button_text = "Police"
-action = "ui_down"
 metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
 [node name="PoliceContainer" type="FlowContainer" parent="RoleMenu/MenuContainer/HFlowContainer/MarginContainer2/VBoxContainer2" unique_id=1644009414]
@@ -124,20 +157,24 @@ texture = ExtResource("1_vv4f1")
 
 [node name="Play" type="Button" parent="RoleMenu/MenuContainer/HFlowContainer" unique_id=1147690132]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+custom_maximum_size = Vector2(-1, 100)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Play"
+icon = SubResource("Texture2D_h2444")
+expand_icon = true
 script = ExtResource("5_cgylu")
-prefix_format = "[%s] "
-button_text = "Confirm"
-action = "ui_accept"
 metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
 [node name="Back" type="Button" parent="RoleMenu/MenuContainer/HFlowContainer" unique_id=1272426862]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+custom_maximum_size = Vector2(-1, 100)
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Back"
+icon = SubResource("Texture2D_b2qm7")
+expand_icon = true
 script = ExtResource("5_cgylu")
-prefix_format = "[%s] "
-button_text = "Back"
-action = "ui_cancel"
 metadata/_custom_type_script = "uid://cqtnikk1cdfts"
