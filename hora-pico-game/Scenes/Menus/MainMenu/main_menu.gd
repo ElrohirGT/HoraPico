@@ -3,7 +3,7 @@ extends Control
 @onready var play_btn: MainButton = %Play
 @onready var quit_btn: MainButton = %Quit
 
-@onready var initial_menu: ColorRect = %BottomMenu
+@onready var initial_menu: Panel = %BottomMenu
 
 func _ready() -> void:
 	EventBus.DisplayMenu.connect(_hide_show_if_should)
@@ -25,7 +25,7 @@ func _input(event: InputEvent) -> void:
 	if not initial_menu.is_visible_in_tree():
 		return
 	
-	if event.is_action_pressed("ui_select"):
+	if event.is_action_pressed("ui_cancel"):
 		get_tree().get_root().set_input_as_handled()
 		_on_quit_pressed()
 	if event.is_action_pressed("ui_accept"):

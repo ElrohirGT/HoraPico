@@ -4,11 +4,15 @@ extends Control
 
 @onready var play: MainButton = %Play
 @onready var back: MainButton = %Back
+@onready var join_traffic: MainButton = %JoinTraffic
+@onready var join_police: MainButton = %JoinPolice
 
 @onready var traffic: FlowContainer = %TrafficContainer
 @onready var police: FlowContainer = %PoliceContainer
 
 @onready var role_menu: Panel = %MenuContainer
+
+var playerId = 0
 
 func _ready() -> void:
 	EventBus.DeviceConnected.connect(func (_a): refresh_screen())
@@ -18,6 +22,9 @@ func _ready() -> void:
 	
 	play.pressed.connect(_on_play_pressed)
 	back.pressed.connect(_on_back_pressed)
+	
+	join_traffic.pressed.connect(_on_join_traffic_pressed)
+	join_police.pressed.connect(_on_join_police_pressed)
 	
 	refresh_screen()
 	
@@ -42,7 +49,7 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("ui_accept") and not play.disabled:
 		get_tree().get_root().set_input_as_handled()
 		_on_play_pressed()
-	elif event.is_action_pressed("ui_select"):
+	elif event.is_action_pressed("ui_cancel"):
 		get_tree().get_root().set_input_as_handled()
 		_on_back_pressed()
 	refresh_screen()
@@ -82,6 +89,11 @@ func refresh_screen():
 func _on_play_pressed() -> void:
 	EventBus.DisplayMenu.emit(Enums.Menu.LevelSelectMenu)
 
+func _on_join_traffic_pressed() -> void:
+	EventBus.ChangeRole.emit(playerId, Enums.Role.TRAFFIC)
+	
+func _on_join_police_pressed() -> void:
+	EventBus.ChangeRole.emit(playerId, Enums.Role.POLICE)
 
 func _on_back_pressed() -> void:
 	EventBus.DisplayMenu.emit(Enums.Menu.MainMenu)

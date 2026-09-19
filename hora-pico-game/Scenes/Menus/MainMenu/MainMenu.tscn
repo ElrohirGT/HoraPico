@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://dghoilh20l4i2" path="res://Scenes/Menus/MainMenu/main_menu.gd" id="1_853f1"]
 [ext_resource type="Texture2D" uid="uid://g3f6fq4n5b0m" path="res://TestSprites/TITLE_CARD.png" id="1_tt5f1"]
 [ext_resource type="Texture2D" uid="uid://krvf5mo54mae" path="res://Assets/BackgroundCity.png" id="2_c3p6v"]
-[ext_resource type="Theme" uid="uid://ddtv8ntjqwl0a" path="res://Themes/mobile.tres" id="2_knd3v"]
 [ext_resource type="Theme" uid="uid://bfmc47373h4sf" path="res://Themes/desktop.tres" id="3_0jkf2"]
 [ext_resource type="Script" uid="uid://d20umrt22cy4p" path="res://Scenes/Menus/MainMenu/menu_spawner.gd" id="3_445kf"]
 [ext_resource type="PackedScene" uid="uid://dxtx0mstvmlkq" path="res://Prefabs/Bus/Bus.tscn" id="4_bq65x"]
@@ -127,9 +126,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_knd3v")
+theme = ExtResource("3_0jkf2")
 script = ExtResource("1_10v2p")
-assume_theme = ExtResource("2_knd3v")
+assume_theme = ExtResource("3_0jkf2")
 metadata/_custom_type_script = "uid://cpu5ahs4dxyio"
 
 [node name="ColorRect" type="ColorRect" parent="MainMenu/CanvasLayer/UIBase" unique_id=1480329568]
@@ -165,7 +164,7 @@ grow_vertical = 2
 texture = ExtResource("1_tt5f1")
 stretch_mode = 5
 
-[node name="BottomMenu" type="ColorRect" parent="MainMenu/CanvasLayer/UIBase" unique_id=594522145]
+[node name="BottomMenu" type="Panel" parent="MainMenu/CanvasLayer/UIBase" unique_id=496066847]
 unique_name_in_owner = true
 z_index = 5
 custom_minimum_size = Vector2(0, 70)
@@ -174,41 +173,47 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -70.0
 grow_horizontal = 2
 grow_vertical = 0
-color = Color(0, 0, 0, 0.39215687)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/CanvasLayer/UIBase/BottomMenu" unique_id=512967309]
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu/CanvasLayer/UIBase/BottomMenu" unique_id=2126187265]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 10.0
-offset_top = -22.5
-offset_bottom = 22.5
-grow_horizontal = 2
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 45.625
 grow_vertical = 2
 
-[node name="Play" type="Button" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/HBoxContainer" unique_id=391837548]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/MarginContainer" unique_id=1832984304]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/MarginContainer/HBoxContainer" unique_id=2028118389]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Play"
+text = "[Top Arrow] Play"
 script = ExtResource("10_knd3v")
 prefix_format = "[%s] "
 button_text = "Play"
 action = "ui_accept"
 metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
-[node name="Quit" type="Button" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/HBoxContainer" unique_id=893889301]
+[node name="Online" type="Button" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/MarginContainer/HBoxContainer" unique_id=1220852779]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Quit"
+text = "[Top Arrow] Online"
+script = ExtResource("10_knd3v")
+prefix_format = "[%s] "
+button_text = "Online"
+action = "ui_select"
+metadata/_custom_type_script = "uid://cqtnikk1cdfts"
+
+[node name="Quit" type="Button" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/MarginContainer/HBoxContainer" unique_id=1790117844]
+unique_name_in_owner = true
+layout_mode = 2
+text = "[Bottom Arrow] Quit"
 script = ExtResource("10_knd3v")
 prefix_format = "[%s] "
 button_text = "Quit"
-action = "ui_select"
+action = "ui_cancel"
 metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
 [node name="LevelSelector" parent="MainMenu/CanvasLayer/UIBase" unique_id=1318565644 instance=ExtResource("9_g6ism")]

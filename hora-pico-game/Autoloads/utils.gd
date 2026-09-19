@@ -16,6 +16,8 @@ func get_key_or_button_for_action(action: String) -> String:
 	if txt != "?":
 		var start = txt.find("(")
 		var end = txt.find(",", start)
+		if end == -1:
+			end = txt.find(")", start)
 		
 		var new_txt = txt.substr(start+1, end-start-1)
 		print("txt %s[%d:%d] -> %s" % [txt, start, end, new_txt])

@@ -4,7 +4,11 @@
 [ext_resource type="Script" uid="uid://yjwi0fmjkrkn" path="res://Scenes/Menus/MainMenu/RoleMenu/role_menu.gd" id="1_u8kp8"]
 [ext_resource type="Texture2D" uid="uid://bpah4lo7q0ce1" path="res://TestSprites/PLAYER_P3.png" id="1_vv4f1"]
 [ext_resource type="Script" uid="uid://cpu5ahs4dxyio" path="res://Prefabs/UI/ui_base.gd" id="1_x5l5m"]
+[ext_resource type="Texture2D" uid="uid://c3g460ifs0f05" path="res://TestSprites/PLAYER_P1.png" id="4_hmhox"]
+[ext_resource type="Texture2D" uid="uid://dga7rck3xr3sr" path="res://Assets/CarCut.png" id="4_myfl2"]
 [ext_resource type="Script" uid="uid://cqtnikk1cdfts" path="res://Prefabs/UI/MainButton/main_button.gd" id="5_cgylu"]
+[ext_resource type="Texture2D" uid="uid://cers3b4ai6fo2" path="res://TestSprites/PLAYER_P2.png" id="5_ijc44"]
+[ext_resource type="Texture2D" uid="uid://dgcspri4fvk2f" path="res://TestSprites/POLICE_Cap.png" id="7_7nxsf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bt0eo"]
 bg_color = Color(0.6, 0.6, 0.6, 0.5294118)
@@ -30,6 +34,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u8kp8")
+pointer_textures = Array[Texture2D]([ExtResource("4_hmhox"), ExtResource("5_ijc44"), ExtResource("1_vv4f1")])
 
 [node name="MenuContainer" type="Panel" parent="RoleMenu" unique_id=2095162383]
 unique_name_in_owner = true
@@ -57,43 +62,67 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="RoleMenu/MenuContainer/HFlowContainer" unique_id=194954481]
+[node name="MarginContainer" type="MarginContainer" parent="RoleMenu/MenuContainer/HFlowContainer" unique_id=1550591316]
 layout_mode = 2
-alignment = 1
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="TrafficContainer" type="FlowContainer" parent="RoleMenu/MenuContainer/HFlowContainer/VBoxContainer" unique_id=2038985440]
+[node name="VBoxContainer" type="HFlowContainer" parent="RoleMenu/MenuContainer/HFlowContainer/MarginContainer" unique_id=1042239038]
+layout_mode = 2
+
+[node name="JoinTraffic" type="Button" parent="RoleMenu/MenuContainer/HFlowContainer/MarginContainer/VBoxContainer" unique_id=1606484319]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Traffic"
+icon = ExtResource("4_myfl2")
+script = ExtResource("5_cgylu")
+prefix_format = "[%s] "
+button_text = "Traffic"
+action = "ui_up"
+metadata/_custom_type_script = "uid://cqtnikk1cdfts"
+
+[node name="TrafficContainer" type="FlowContainer" parent="RoleMenu/MenuContainer/HFlowContainer/MarginContainer/VBoxContainer" unique_id=2038985440]
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="RoleMenu/MenuContainer/HFlowContainer/VBoxContainer/TrafficContainer" unique_id=368702132]
+[node name="TextureRect" type="TextureRect" parent="RoleMenu/MenuContainer/HFlowContainer/MarginContainer/VBoxContainer/TrafficContainer" unique_id=368702132]
 layout_mode = 2
 texture = ExtResource("1_vv4f1")
 
-[node name="Label" type="Label" parent="RoleMenu/MenuContainer/HFlowContainer/VBoxContainer" unique_id=1445947828]
+[node name="MarginContainer2" type="MarginContainer" parent="RoleMenu/MenuContainer/HFlowContainer" unique_id=2129165792]
 layout_mode = 2
-text = "TRAFFIC: Press [Up] to join"
-horizontal_alignment = 1
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="RoleMenu/MenuContainer/HFlowContainer" unique_id=231399397]
+[node name="VBoxContainer2" type="HFlowContainer" parent="RoleMenu/MenuContainer/HFlowContainer/MarginContainer2" unique_id=179957590]
 layout_mode = 2
-alignment = 1
 
-[node name="Label" type="Label" parent="RoleMenu/MenuContainer/HFlowContainer/VBoxContainer2" unique_id=149029342]
+[node name="JoinPolice" type="Button" parent="RoleMenu/MenuContainer/HFlowContainer/MarginContainer2/VBoxContainer2" unique_id=1329634234]
+unique_name_in_owner = true
 layout_mode = 2
-text = "POLICE: Press [Down] to join"
-horizontal_alignment = 1
+text = "Police"
+icon = ExtResource("7_7nxsf")
+script = ExtResource("5_cgylu")
+prefix_format = "[%s] "
+button_text = "Police"
+action = "ui_down"
+metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
-[node name="PoliceContainer" type="FlowContainer" parent="RoleMenu/MenuContainer/HFlowContainer/VBoxContainer2" unique_id=1644009414]
+[node name="PoliceContainer" type="FlowContainer" parent="RoleMenu/MenuContainer/HFlowContainer/MarginContainer2/VBoxContainer2" unique_id=1644009414]
 unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="RoleMenu/MenuContainer/HFlowContainer/VBoxContainer2/PoliceContainer" unique_id=555228327]
+[node name="TextureRect" type="TextureRect" parent="RoleMenu/MenuContainer/HFlowContainer/MarginContainer2/VBoxContainer2/PoliceContainer" unique_id=555228327]
 layout_mode = 2
 texture = ExtResource("1_vv4f1")
 
-[node name="Play" type="Button" parent="RoleMenu/MenuContainer/HFlowContainer" unique_id=1426215693]
+[node name="Play" type="Button" parent="RoleMenu/MenuContainer/HFlowContainer" unique_id=1147690132]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Play"
@@ -110,5 +139,5 @@ text = "Back"
 script = ExtResource("5_cgylu")
 prefix_format = "[%s] "
 button_text = "Back"
-action = "ui_select"
+action = "ui_cancel"
 metadata/_custom_type_script = "uid://cqtnikk1cdfts"
