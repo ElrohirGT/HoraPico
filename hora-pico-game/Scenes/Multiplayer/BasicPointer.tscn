@@ -1,0 +1,141 @@
+[gd_scene format=3 uid="uid://c0pj4kpj0xop"]
+
+[ext_resource type="Script" uid="uid://c0eyfjl5au8cr" path="res://Scenes/Multiplayer/basic_pointer.gd" id="1_8dkwx"]
+[ext_resource type="Texture2D" uid="uid://bpah4lo7q0ce1" path="res://TestSprites/PLAYER_P3.png" id="3_c3cht"]
+[ext_resource type="Script" uid="uid://cpu5ahs4dxyio" path="res://Prefabs/UI/ui_base.gd" id="4_c3url"]
+[ext_resource type="Script" uid="uid://dy7yv0j0cxehr" path="res://addons/controller_icons/objects/ControllerIconTexture.gd" id="6_qay1l"]
+[ext_resource type="Script" uid="uid://cqtnikk1cdfts" path="res://Prefabs/UI/MainButton/main_button.gd" id="7_3ey2p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c3cht"]
+size = Vector2(32, 32)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_c3cht"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[sub_resource type="Texture2D" id="Texture2D_n1mek"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("6_qay1l")
+path = "ui_select"
+metadata/_custom_type_script = "uid://dy7yv0j0cxehr"
+
+[sub_resource type="Texture2D" id="Texture2D_ipac2"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("6_qay1l")
+path = "ui_cancel"
+metadata/_custom_type_script = "uid://dy7yv0j0cxehr"
+
+[sub_resource type="Texture2D" id="Texture2D_5kyfg"]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("6_qay1l")
+path = "pause_game"
+metadata/_custom_type_script = "uid://dy7yv0j0cxehr"
+
+[node name="UIBase" type="Control" unique_id=1818198200]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_c3url")
+metadata/_custom_type_script = "uid://cpu5ahs4dxyio"
+
+[node name="Control" type="Control" parent="." unique_id=1772657326]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8dkwx")
+moveMagnitude = 5.0
+textures = ExtResource("3_c3cht")
+
+[node name="Pointer" type="TextureRect" parent="Control" unique_id=1644936501]
+unique_name_in_owner = true
+modulate = Color(1, 0, 1, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_c3cht")
+
+[node name="Area2D" type="Area2D" parent="Control/Pointer" unique_id=1723109513]
+position = Vector2(-91, -78)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Pointer/Area2D" unique_id=1770277683]
+position = Vector2(123, 110)
+shape = SubResource("RectangleShape2D_c3cht")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Control/Pointer" unique_id=200267681]
+replication_config = SubResource("SceneReplicationConfig_c3cht")
+
+[node name="PauseMenu" type="PanelContainer" parent="Control" unique_id=630097083]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PauseMenu" unique_id=2102616521]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PauseMenu/MarginContainer" unique_id=1864301533]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/PauseMenu/MarginContainer/HBoxContainer" unique_id=989512765]
+layout_mode = 2
+text = "Room: "
+
+[node name="RoomId" type="Label" parent="Control/PauseMenu/MarginContainer/HBoxContainer" unique_id=819515802]
+unique_name_in_owner = true
+layout_mode = 2
+text = "123124123"
+
+[node name="Copy" type="Button" parent="Control/PauseMenu/MarginContainer/HBoxContainer" unique_id=805356373]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+custom_maximum_size = Vector2(-1, 100)
+layout_mode = 2
+text = "Copy"
+icon = SubResource("Texture2D_n1mek")
+expand_icon = true
+script = ExtResource("7_3ey2p")
+metadata/_custom_type_script = "uid://cqtnikk1cdfts"
+
+[node name="Exit" type="Button" parent="Control/PauseMenu/MarginContainer/HBoxContainer" unique_id=744428492]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+custom_maximum_size = Vector2(-1, 100)
+layout_mode = 2
+text = "Exit"
+icon = SubResource("Texture2D_ipac2")
+expand_icon = true
+script = ExtResource("7_3ey2p")
+metadata/_custom_type_script = "uid://cqtnikk1cdfts"
+
+[node name="PauseButton" type="Button" parent="Control" unique_id=149338369]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+custom_maximum_size = Vector2(-1, 100)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Pause"
+icon = SubResource("Texture2D_5kyfg")
+expand_icon = true
+script = ExtResource("7_3ey2p")
+metadata/_custom_type_script = "uid://cqtnikk1cdfts"
