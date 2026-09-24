@@ -48,14 +48,6 @@ script = ExtResource("7_7s8xi")
 path = "right_traffic"
 metadata/_custom_type_script = "uid://dy7yv0j0cxehr"
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_xm4fy"]
-properties/0/path = NodePath(".:role_by_player")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:texture_by_player")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-
 [node name="Lobby" type="Node2D" unique_id=94297179]
 script = ExtResource("1_xm4fy")
 
@@ -91,6 +83,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="RoleSelectionMenu" type="PanelContainer" parent="CanvasLayer/UIBase/MenusContainer" unique_id=2065698059]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -300,7 +293,3 @@ icon = SubResource("Texture2D_vqrtq")
 expand_icon = true
 script = ExtResource("5_dx2cy")
 metadata/_custom_type_script = "uid://cqtnikk1cdfts"
-
-[node name="RoleSyncronizer" type="MultiplayerSynchronizer" parent="." unique_id=1673764980]
-unique_name_in_owner = true
-replication_config = SubResource("SceneReplicationConfig_xm4fy")
