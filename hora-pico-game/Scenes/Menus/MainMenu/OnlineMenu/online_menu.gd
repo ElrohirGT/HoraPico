@@ -7,12 +7,17 @@ extends Control
 @onready var go_back: MainButton = %GoBack
 @onready var error: Label = %Error
 
+@onready var menu_container: PanelContainer = $MenuContainer
+@onready var loading: PanelContainer = %Loading
+@onready var loading_animation_player: AnimationPlayer = %LoadingAnimationPlayer
+
 const LOBBY = preload("uid://cm6v3a2dss62y")
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	EventBus.DisplayMenu.connect(_hide_show_menu)
+	loading_animation_player.animation_finished.connect(func (_arg): loading_animation_player.play("loading"))
 	error.text = ""
 	
 	Network.tube_client.error_raised.connect(_on_error_raised)
@@ -51,25 +56,29 @@ func _on_back_pressed() -> void:
 
 func _on_join_tube() -> void:
 	multiplayer.connected_to_server.connect(Globals.add_world)
+	menu_container.hide()
+	loading.show()
+	loading_animation_player.play("loading")
 	Network.tube_join(room_id.text)
 
 func _on_host_tube() -> void:
+	menu_container.hide()
+	loading.show()
+	loading_animation_player.play("loading")
 	Globals.host_and_spawn()
 
 func _on_username_changed(new_text: String) -> void:
-	if len(new_text) != 0:
-		host_room.disabled = false
-	else:
-		host_room.disabled = true
+	join_room.disabled = len(new_text) == 0 or len(room_id.text) == 0
+	host_room.disabled = len(new_text) == 0
 	Globals.username = new_text
 
 func _on_room_id_changed(new_text: String) -> void:
-	if len(new_text) != 0:
-		join_room.disabled = false
-	else:
-		join_room.disabled = true
+	join_room.disabled = len(new_text) == 0 or len(username.text) == 0
 
 func _on_error_raised(code, message):
 	room_id.text = ""
 	error.text = "%s: %s" % [code, message]
+	loading.hide()
+	loading_animation_player.stop()
+	menu_container.show()
 	Network.clean_up_signals()

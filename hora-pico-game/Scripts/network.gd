@@ -11,6 +11,8 @@ var tube_enabled = true
 var PORT = 9999
 var IP_ADDRESS = '127.0.0.1'
 
+var root_by_player = {}
+
 func _ready() -> void:
 	if tube_enabled:
 		tube_client.context = TUBE_CONTEXT
@@ -32,21 +34,20 @@ func on_connected_to_server():
 	add_player(multiplayer.get_unique_id())
 
 func add_player(peer_id: int):
+	EventBus.PlayerJoining.emit(peer_id)
 	print("Trying to add the player %d to the scene!" % peer_id)
 	if peer_id == 1 and multiplayer.multiplayer_peer is ENetMultiplayerPeer:
 		return
 	
 	var new_player = PLAYER.instantiate()
 	new_player.name = str(peer_id)
-	# new_player.name = "%s-%s" % [str(peer_id), Globals.username]
-
-	var rand_x = randf_range(-5.0, 5.0)
-	var rand_y = randf_range(-5.0, 5.0)
-
-	new_player.position = Vector2(rand_x, rand_y)
+	
 	if get_tree().current_scene == null:
 		await get_tree().scene_changed
 	get_tree().current_scene.add_child(new_player, true)
+	root_by_player[peer_id] = new_player
+	print("Added player %d!" % peer_id)
+	EventBus.PlayerJoined.emit(peer_id)
 
 func remove_player(peer_id):
 	if peer_id == 1:

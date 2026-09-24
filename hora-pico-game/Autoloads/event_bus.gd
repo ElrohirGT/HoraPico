@@ -25,6 +25,10 @@ signal ChangedRole(device: int, role: Enums.Role)
 
 signal DisplayMenu(id: Enums.Menu)
 
+## Multiplayer
+signal PlayerJoining(peer_id: int)
+signal PlayerJoined(peer_id: int)
+
 ## Emite una señal cuando cambia el ciclo de Día - Noche y retorna el estado actual
 signal daytime_changed(state: int)
 # Así es, aprendí a documentar jajaja

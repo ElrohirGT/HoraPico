@@ -1,9 +1,8 @@
 extends Control
 
 @export var moveMagnitude: float
-@export var textures: Texture2D
 
-@onready var pointer: TextureRect = %Pointer
+
 @onready var pause_menu: PanelContainer = %PauseMenu
 
 @onready var room_id: Label = %RoomId
@@ -16,13 +15,9 @@ var selected: PlayerPointerButton = null
 var device_id: int = 0
 
 func _enter_tree() -> void:
-	#var name_parts = self.get_parent().name.split("-", true, 2)
-	#var peer_id = name_parts[0]
-	#var player_name = name_parts[1]
-	set_multiplayer_authority(int(self.get_parent().name))
+	set_multiplayer_authority(int(self.get_parent().get_parent().name))
 
 func _ready() -> void:
-	pointer.texture = textures
 	add_to_group("Players")
 	
 	if not is_multiplayer_authority():
@@ -46,14 +41,6 @@ func _input(event: InputEvent) -> void:
 		else:
 			pause_menu.show()
 			pause_button.hide()
-
-func _process(delta: float) -> void:
-	var velocity := Vector2(
-		Input.get_joy_axis(device_id, JOY_AXIS_LEFT_X),
-		Input.get_joy_axis(device_id, JOY_AXIS_LEFT_Y),
-	).limit_length(1.0)
-	if velocity.length() > 0.2 and not pause_menu.is_visible_in_tree():
-		pointer.set_position(pointer.position + velocity * moveMagnitude)
 
 func set_device_id(id: int):
 	device_id = id

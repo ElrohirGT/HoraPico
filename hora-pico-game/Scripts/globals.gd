@@ -10,3 +10,7 @@ func host_and_spawn():
 	add_world()
 	await get_tree().scene_changed
 	Network.tube_create()
+
+@rpc("any_peer", "call_local")
+func change_role(peer_id: int, role: Enums.Role):
+	EventBus.ChangeRole.emit(peer_id, role)
