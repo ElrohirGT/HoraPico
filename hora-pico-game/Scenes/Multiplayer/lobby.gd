@@ -19,7 +19,8 @@ func _ready() -> void:
 	EventBus.ChangeRole.connect(_on_player_change_role)
 
 func _on_player_joined(peer_id: int):
-	texture_by_player[peer_id] = ImageTexture.create_from_image(textures[len(role_by_player) % len(textures)])
+	#texture_by_player[peer_id] = ImageTexture.create_from_image(textures[len(role_by_player) % len(textures)])
+	texture_by_player[peer_id] = len(role_by_player) % len(textures)
 	role_by_player[peer_id] = Enums.Role.TRAFFIC
 	if is_traffic_greater_than_one():
 		role_by_player[peer_id] = Enums.Role.POLICE

@@ -2,6 +2,12 @@ extends PanelContainer
 
 class_name  RoleSelectionMenu
 
+var textures = [
+	Image.load_from_file("res://TestSprites/PLAYER_P1.png"),
+	Image.load_from_file("res://TestSprites/PLAYER_P2.png"),
+	Image.load_from_file("res://TestSprites/PLAYER_P3.png")
+]
+
 @onready var join_police: MainButton = %JoinPolice
 @onready var join_traffic: MainButton = %JoinTraffic
 @onready var play_btn: MainButton = %Play
@@ -29,7 +35,8 @@ func refresh_screen(roles_by_player: Dictionary, textures_by_player: Dictionary)
 	
 	for peer_id in roles_by_player:
 		var textureNode = TextureRect.new()
-		textureNode.texture = textures_by_player[peer_id]
+		#textureNode.texture = textures[textures_by_player[peer_id]]
+		textureNode.texture = ImageTexture.create_from_image(textures[textures_by_player[peer_id]])
 		var role = roles_by_player[peer_id]
 		
 		if role == Enums.Role.TRAFFIC:
