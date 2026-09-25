@@ -28,3 +28,6 @@ signal DisplayMenu(id: Enums.Menu)
 ## Emite una señal cuando cambia el ciclo de Día - Noche y retorna el estado actual
 signal daytime_changed(state: int)
 # Así es, aprendí a documentar jajaja
+
+## Emite una señal cuando cambia el clima y retorna el estado actual
+signal weather_changed(state: int)

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cnpp2h0qctejk"]
+
+[ext_resource type="Script" uid="uid://bpevjovpjpf71" path="res://Scenes/Managers/weather.gd" id="1_3bsrw"]
+
+[node name="WeatherManager" type="Node2D" unique_id=1725381040]
+script = ExtResource("1_3bsrw")
+
+[node name="WeatherTimer" type="Timer" parent="." unique_id=1033328176]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="WeatherTimer" to="." method="_on_weather_timer_timeout"]
