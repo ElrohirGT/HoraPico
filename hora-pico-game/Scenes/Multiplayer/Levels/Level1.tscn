@@ -153,6 +153,8 @@ func _ready() -> void:
 	EventBus.VehicleChanged.connect(_on_vehicle_changed)
 	EventBus.VehicleChanged.emit(0)
 	spawn_cooldown.timeout.connect(_on_spawn_cooldown_done)
+	combo_timer.timeout.connect(_on_combo_timer_timeout)
+	velocity_timer.timeout.connect(_on_velocity_timer_timeout)
 	random_gen()
 
 func _input(event: InputEvent) -> void:

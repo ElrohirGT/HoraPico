@@ -28,6 +28,13 @@ func game_ended(param: String):
 func daytime_changed(day_state: Enums.DayStates):
 	EventBus.daytime_changed.emit(day_state)
 
+@rpc("authority", "call_local")
+func speed_ended():
+	EventBus.SpeedEnded.emit()
+
+@rpc("authority", "call_local")
+func ability_invoked(peer_id: int, ability: Enums.Ability):
+	EventBus.AbilityInvoked.emit(peer_id, ability)
 
 # ===================================
 # Calls from the clients to the server
