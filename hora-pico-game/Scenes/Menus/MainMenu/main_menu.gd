@@ -13,6 +13,7 @@ func _ready() -> void:
 	# play_btn.text = "[%s] Play" % Utils.get_key_or_button_for_action("ui_accept")
 	# quit_btn.text = Utils.format_button_text("[%s] ", "Quit", "ui_select")
 	# quit_btn.text = "[%s] Quit" % Utils.get_key_or_button_for_action("ui_select")
+	AmbienceManager.day()
 
 func _hide_show_if_should(id: Enums.Menu):
 	if id == Enums.Menu.MainMenu:
