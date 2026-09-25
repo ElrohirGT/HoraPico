@@ -20,6 +20,7 @@ var selected_traffic_light: TrafficLight
 func _ready() -> void:
 	EventBus.AbilityInvoked.connect(_on_ability_invoked)
 	self.hide()
+	
 
 func _input(event: InputEvent) -> void:
 	if not event.is_pressed() or event.is_echo() or event.device != device_id:
@@ -32,16 +33,28 @@ func _input(event: InputEvent) -> void:
 	var expected = pattern[idx]
 
 	var dir: Directions
-	if event.is_action_pressed("light_up"):
-		dir = Directions.UP
-	elif event.is_action_pressed("light_down"):
-		dir = Directions.DOWN
-	elif event.is_action_pressed("light_left"):
-		dir = Directions.LEFT
-	elif event.is_action_pressed("light_right"):
-		dir = Directions.RIGHT
+	if Globals.is_multiplayer() and Globals.is_police():
+		if event.is_action_pressed("up_traffic"):
+			dir = Directions.UP
+		elif event.is_action_pressed("down_traffic"):
+			dir = Directions.DOWN
+		elif event.is_action_pressed("left_traffic"):
+			dir = Directions.LEFT
+		elif event.is_action_pressed("right_traffic"):
+			dir = Directions.RIGHT
+		else:
+			return
 	else:
-		return
+		if event.is_action_pressed("light_up"):
+			dir = Directions.UP
+		elif event.is_action_pressed("light_down"):
+			dir = Directions.DOWN
+		elif event.is_action_pressed("light_left"):
+			dir = Directions.LEFT
+		elif event.is_action_pressed("light_right"):
+			dir = Directions.RIGHT
+		else:
+			return
 
 	if dir != expected:
 		if mistake_timer.is_stopped():
@@ -62,11 +75,18 @@ func _on_pattern_complete():
 	self.hide()
 	done = []
 	if selected_traffic_light != null:
-		selected_traffic_light.unhack_traffic_light()
+		if Globals.is_multiplayer():
+			Globals.unhack_traffic_light.rpc_id(1, selected_traffic_light.id)
+		else:
+			EventBus.UnhackTrafficLight.emit(selected_traffic_light.id)
 
 func _on_ability_invoked(source_device_id: int, ability: Enums.Ability):
-	if ability != Enums.Ability.FIX_TRAFFIC_LIGHT or source_device_id != device_id:
+	if ability != Enums.Ability.FIX_TRAFFIC_LIGHT or (not Globals.is_multiplayer() && source_device_id != device_id):
 		print("Ignoring ability: %d - src: %d - own: %d" % [ability, source_device_id, device_id])
+		return
+	
+	if Globals.is_multiplayer() and source_device_id != multiplayer.get_unique_id():
+		print("Ignoring traffic light fix because %d != %d" % [source_device_id, multiplayer.get_unique_id()])
 		return
 
 	display_audio_player.play()

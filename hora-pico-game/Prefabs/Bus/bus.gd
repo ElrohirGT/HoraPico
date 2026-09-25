@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name Bus
 
+@onready var multiplayer_synchronizer: MultiplayerSynchronizer = %MultiplayerSynchronizer
+
 @export var original_movement_speed: float = 60.0
 @export var turbo_speed: float = 100.0
 @export var turn_rate: float = 2.5
@@ -27,7 +29,7 @@ func _ready():
 	EventBus.SpeedEnded.connect(_on_speed_ended)
 	EventBus.daytime_changed.connect(_on_daytime_changed)
 	
-	toggle_lights(Daytime.current_state)
+	toggle_lights(Globals.day_state)
 	
 	var sp = find_children("Bus*", "Sprite2D").map(func(el): return (el as Sprite2D))
 	sprites.assign(sp)
@@ -42,6 +44,9 @@ func _ready():
 
 	# Make sure to not await during _ready.
 	actor_setup.call_deferred()
+	
+	if len(multiplayer.get_peers()) == 0:
+		multiplayer_synchronizer.queue_free.call_deferred()
 
 func _process(delta: float) -> void:
 	if is_waiting:

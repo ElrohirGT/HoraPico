@@ -25,6 +25,11 @@ signal ChangedRole(device: int, role: Enums.Role)
 
 signal DisplayMenu(id: Enums.Menu)
 
+signal UnhackTrafficLight(id: int)
+
+## Multiplayer
+signal RefreshRoleScreen(roles_by_player: Dictionary, textures_by_player: Dictionary)
+
 ## Emite una señal cuando cambia el ciclo de Día - Noche y retorna el estado actual
 signal daytime_changed(state: int)
 # Así es, aprendí a documentar jajaja

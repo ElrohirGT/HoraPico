@@ -72,6 +72,14 @@ size = Vector2(34, 78)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b4had"]
 size = Vector2(34, 62)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_b4had"]
+properties/0/path = NodePath(".:state")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("Hacked:frame")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="Traffic Light" type="StaticBody2D" unique_id=414423625]
 z_index = 10
 input_pickable = true
@@ -109,6 +117,10 @@ debug_color = Color(0.6484775, 0.5210381, 0, 0.41960785)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea" unique_id=117690559]
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_b4had")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=2043024302]
+unique_name_in_owner = true
+replication_config = SubResource("SceneReplicationConfig_b4had")
 
 [connection signal="body_entered" from="WarningArea" to="." method="_on_warning_area_body_entered"]
 [connection signal="body_exited" from="WarningArea" to="." method="_on_warning_area_body_exited"]

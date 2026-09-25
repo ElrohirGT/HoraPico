@@ -1,9 +1,9 @@
 extends Control
 
-class_name PlayerPointer
+class_name PolicePlayerPointer
 
 @export var moveMagnitude: float
-@export var texture: Texture2D
+@export var texture : Texture2D
 
 @onready var pointer: TextureRect = $Pointer
 @onready var menu: Control = $SummonMenu
@@ -18,6 +18,10 @@ class_name PlayerPointer
 var selected: PlayerPointerButton = null
 var device_id: int
 
+func _enter_tree() -> void:
+	if Globals.is_multiplayer():
+		set_multiplayer_authority(int(name))
+
 func _ready() -> void:
 	police_radius.hide()
 	pointer.texture = texture
@@ -25,13 +29,22 @@ func _ready() -> void:
 	
 	print("Creating pointer with id: %d" % device_id)
 	
+	if Globals.is_multiplayer() and not is_multiplayer_authority():
+		set_process(false)
+		set_process_input(false)
+		return
+	
 func _input(event: InputEvent):
 	if event.device != device_id:
 		return
 	
 	if selected != null && event.is_action_pressed("spend_elixir"):
-		print("Emitting ability %d - src %d" % [selected.ability, device_id])
-		EventBus.InvokeAbility.emit(device_id, selected.ability, selected.cost)
+		if Globals.is_multiplayer():
+			print("Emitting ability %d - src %d" % [selected.ability, multiplayer.get_unique_id()])
+			Globals.invoke_ability.rpc_id(1, multiplayer.get_unique_id(), selected.ability, selected.cost)
+		else:
+			print("Emitting ability %d - src %d" % [selected.ability, device_id])
+			EventBus.InvokeAbility.emit(device_id, selected.ability, selected.cost)
 	
 
 func _process(delta: float) -> void:

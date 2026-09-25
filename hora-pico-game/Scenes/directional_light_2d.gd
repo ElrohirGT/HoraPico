@@ -12,43 +12,40 @@ class_name Daytime
 
 @onready var day_night_timer: Timer = $"../DayNight"
 
-enum DayStates {
-	## Alba
-	DAWN,
-	## Día
-	DAY,
-	## Ocaso
-	DUSK,
-	## Noche
-	NIGHT
-}
-
 ## xdd
-static var current_state: DayStates = DayStates.DAY
+var day_state: Enums.DayStates = Enums.DayStates.DAY
 
 func _ready() -> void:
+	day_night_timer.timeout.connect(_on_day_night_timeout)
 	day_night_timer.wait_time = cycle_duration
 
+func _process(delta: float) -> void:
+	Globals.day_state = day_state
+
 func _on_day_night_timeout() -> void:
-	current_state = (current_state + 1) % 4
+	day_state = (day_state + 1) % 4
 	
 	var target_color: Color
 	
-	if current_state == DayStates.DAWN:
+	if day_state == Enums.DayStates.DAWN:
 		target_color = dawn_color
 		
-	elif current_state == DayStates.DAY:
+	elif day_state == Enums.DayStates.DAY:
 		target_color = day_color
 		
-	elif current_state == DayStates.DUSK:
+	elif day_state == Enums.DayStates.DUSK:
 		target_color = dusk_color
 		
-	elif current_state == DayStates.NIGHT:
+	elif day_state == Enums.DayStates.NIGHT:
 		target_color = night_color
 	
 	var tween := create_tween()
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(self, "color", target_color, fade_duration)
-
-	EventBus.daytime_changed.emit(current_state)
+	
+	print("%d: Changing daytime to: %s" % [day_state, multiplayer.get_unique_id()])
+	if Globals.is_multiplayer() and multiplayer.is_server():
+		Globals.daytime_changed.rpc(day_state)
+	else:
+		EventBus.daytime_changed.emit(day_state)

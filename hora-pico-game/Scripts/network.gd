@@ -1,87 +1,114 @@
 extends Node
 
-# const PLAYER = preload("uid://sex8t1i3v61q")
-# const TUBE_CONTEXT = preload("uid://bskf36keh38p7")
+const PLAYER = preload("uid://c0pj4kpj0xop")
+const TUBE_CONTEXT = preload("uid://dbr6ei2y17wsm")
 
-var enet_peer = ENetMultiplayerPeer.new()
-var tube_client = TubeClient.new()
+var enet_peer := ENetMultiplayerPeer.new()
+var tube_client := TubeClient.new()
+
 var tube_enabled = true
 
-@export var PORT = 6969
-@export var IP_ADDRESS = "127.0.0.1"
+var PORT = 9999
+var IP_ADDRESS = '127.0.0.1'
+
+@export var root_by_player = {}
+@export var role_by_player = {}
+@export var texture_by_player = {}
+
+var textures = [
+	Image.load_from_file("res://TestSprites/PLAYER_P1.png"),
+	Image.load_from_file("res://TestSprites/PLAYER_P2.png"),
+	Image.load_from_file("res://TestSprites/PLAYER_P3.png")
+]
+
 
 func _ready() -> void:
 	if tube_enabled:
+		EventBus.ChangeRole.connect(_on_player_change_role)
 		tube_client.context = TUBE_CONTEXT
 		get_tree().root.add_child.call_deferred(tube_client)
-	
+
 func tube_create():
-	multiplayer.peer_connected.connect(on_peer_connected)
-	multiplayer.peer_disconnected.connect(on_peer_disconnected)
+	multiplayer.peer_connected.connect(add_player)
+	multiplayer.peer_disconnected.connect(remove_player)
 	tube_client.create_session()
-	on_peer_connected(1) # Peer for hosting the server
+	add_player.call_deferred(1)
 
 func tube_join(session_id: String):
-	multiplayer.peer_connected.connect(on_peer_connected)
-	multiplayer.peer_disconnected.connect(on_peer_disconnected)
+	multiplayer.peer_connected.connect(add_player)
+	multiplayer.peer_disconnected.connect(remove_player)
 	multiplayer.connected_to_server.connect(on_connected_to_server)
 	tube_client.join_session(session_id)
-
-func start_server():
-	multiplayer.peer_connected.connect(on_peer_connected)
-	multiplayer.peer_disconnected.connect(on_peer_disconnected)
-	
-	enet_peer.create_server(PORT)
-	multiplayer.multiplayer_peer = enet_peer
-
-func add_player(peer_id: int):
-	if peer_id == 1 and multiplayer.multiplayer_peer is ENetMultiplayerPeer:
-		return
-	
-	var new_player = PLAYER.instantiate()
-	new_player.name = str(peer_id)
-	if peer_id == multiplayer.get_unique_id():
-		Global.player = new_player
-	get_tree().current_scene.add_child(new_player, true)
-
-func on_peer_connected(peer_id: int):
-	add_player(peer_id)
-	
-func join_server():
-	multiplayer.peer_connected.connect(on_peer_connected)
-	multiplayer.peer_disconnected.connect(on_peer_disconnected)
-	multiplayer.connected_to_server.connect(on_connected_to_server)
-	enet_peer.create_client(IP_ADDRESS, PORT)
-	multiplayer.multiplayer_peer = enet_peer
-
-func on_peer_disconnected(peer_id: int):
-	if peer_id == 1:
-		leave_server()
-	
-	var players: Array[Node] = get_tree().get_nodes_in_group("Players")
-	var players_to_remove = players.find_custom(func(item): return item.name == str(peer_id))
-	if players_to_remove != -1:
-		players[players_to_remove].queue_free()
 
 func on_connected_to_server():
 	add_player(multiplayer.get_unique_id())
 
+func add_player(peer_id: int):
+	print("Trying to add the player %d to the scene!" % peer_id)
+	if peer_id == 1 and multiplayer.multiplayer_peer is ENetMultiplayerPeer:
+		return
+	
+	texture_by_player[peer_id] = len(role_by_player) % len(textures)
+	role_by_player[peer_id] = Enums.Role.TRAFFIC
+	if is_traffic_greater_than_one():
+		role_by_player[peer_id] = Enums.Role.POLICE
+	
+	var new_player = PLAYER.instantiate()
+	new_player.name = str(peer_id)
+	
+	if get_tree().current_scene == null:
+		await get_tree().scene_changed
+	get_tree().current_scene.add_child(new_player, true)
+	root_by_player[peer_id] = new_player
+	
+	print("%d: Added new player %d as %s" % [multiplayer.get_unique_id(), peer_id, role_by_player[peer_id]])
+	if multiplayer.is_server():
+		# FIXME: WHY THE FUCK DO WE NEED THIS FUCKING TIMEOUT
+		await get_tree().create_timer(0.3).timeout
+		print("%d: Sending role state udpate..." % multiplayer.get_unique_id())
+		refresh_ui.rpc(role_by_player, texture_by_player)
+
+func _on_player_change_role(peer_id: int, role: Enums.Role):
+	print("Changed role for %d into %s" % [peer_id, role])
+	role_by_player[peer_id] = role
+	if multiplayer.is_server():
+		print("I'M SERVER")
+		refresh_ui.rpc(role_by_player, texture_by_player)
+
+func remove_player(peer_id):
+	if peer_id == 1:
+		leave_server()
+	
+	var players: Array[Node] = get_tree().get_nodes_in_group('Players')
+	var player_to_remove = players.find_custom(func(item): return item.name == str(peer_id))
+	if player_to_remove != -1:
+		players[player_to_remove].queue_free()
+		
 func leave_server():
 	if tube_enabled:
 		tube_client.leave_session()
-		
+	
 	multiplayer.multiplayer_peer.close()
 	multiplayer.multiplayer_peer = null
 	clean_up_signals()
+	# get_tree().reload_current_scene()
 	
-	get_tree().reload_current_scene()
-
 func clean_up_signals():
-	multiplayer.peer_connected.disconnect(on_peer_connected)
-	multiplayer.peer_disconnected.disconnect(on_peer_disconnected)
+	multiplayer.peer_connected.disconnect(add_player) 
+	multiplayer.peer_disconnected.disconnect(remove_player)
 	multiplayer.connected_to_server.disconnect(on_connected_to_server)
-
 
 func _exit_tree() -> void:
 	if tube_enabled:
 		tube_client.leave_session()
+
+func is_traffic_greater_than_one() -> bool:
+	var count = 0
+	for peer_id in role_by_player:
+		if role_by_player[peer_id] == Enums.Role.TRAFFIC:
+			count+=1
+	return count > 1
+
+@rpc("authority", "call_local")
+func refresh_ui(roles, tex):
+	EventBus.RefreshRoleScreen.emit(roles, tex)
