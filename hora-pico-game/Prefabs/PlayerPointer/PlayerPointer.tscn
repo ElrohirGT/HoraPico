@@ -202,6 +202,7 @@ stream = ExtResource("5_5kpil")
 bus = &"Secondary Effects"
 
 [node name="TrafficLightCombo" type="Panel" parent="." unique_id=427411115]
+z_index = 5
 custom_minimum_size = Vector2(160, 20)
 layout_mode = 1
 anchors_preset = 8

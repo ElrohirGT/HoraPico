@@ -12,12 +12,12 @@
 [ext_resource type="AudioStream" uid="uid://cmbbb4m63j2uj" path="res://Audio/Effects/Vehicles/arrow.mp3" id="9_iedjn"]
 [ext_resource type="AudioStream" uid="uid://dcwu4etfeqgbs" path="res://Audio/Effects/Vehicles/miss.mp3" id="10_1yp5p"]
 [ext_resource type="Script" uid="uid://f84kojxa1npl" path="res://Scenes/Multiplayer/Levels/hide_if_police.gd" id="10_hrpg3"]
-[ext_resource type="PackedScene" uid="uid://omdt20d0fm26" path="res://Scenes/Multiplayer/Prefabs/TrafficLight.tscn" id="11_hrpg3"]
 [ext_resource type="AudioStream" uid="uid://cxqiwtsx1e2c2" path="res://Audio/Coconut Mall - Mario Kart Wii.mp3" id="11_mr7oa"]
 [ext_resource type="PackedScene" uid="uid://oj6ccm7k687i" path="res://Scenes/Multiplayer/Prefabs/PlayerJoiner.tscn" id="12_j0ad0"]
 [ext_resource type="AudioStream" uid="uid://cb62jc1yuoxy2" path="res://Audio/Finish Line (1st Place) - Mario Kart Wii (Soundtrack).mp3" id="12_ovrr1"]
 [ext_resource type="PackedScene" uid="uid://bh5788bq0q2sl" path="res://Prefabs/Bus/BusStop.tscn" id="13_savhp"]
 [ext_resource type="Script" uid="uid://c0ryqxevid1kl" path="res://Scenes/directional_light_2d.gd" id="14_aajms"]
+[ext_resource type="PackedScene" uid="uid://bfp488y4t37xr" path="res://Prefabs/TrafficLight/Traffic Light.tscn" id="18_hrpg3"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_1nv4t"]
 vertices = PackedVector2Array(502.0703, 425.8125, 504.90625, 803.4297, 469.95313, 801.52344, 468.04688, 425.1797)
@@ -742,15 +742,6 @@ custom_minimum_size = Vector2(0, 0)
 [node name="TextureRect" parent="CanvasLayer/HUD" index="6" unique_id=500436457]
 script = ExtResource("10_hrpg3")
 
-[node name="TrafficLight" parent="." unique_id=1884509406 instance=ExtResource("11_hrpg3")]
-position = Vector2(659, 284)
-
-[node name="TrafficLight2" parent="." unique_id=1011438159 instance=ExtResource("11_hrpg3")]
-position = Vector2(276, 531)
-
-[node name="TrafficLight3" parent="." unique_id=609558824 instance=ExtResource("11_hrpg3")]
-position = Vector2(562, 530)
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1315192611]
 stream = ExtResource("9_iedjn")
 
@@ -797,5 +788,17 @@ replication_config = SubResource("SceneReplicationConfig_17y2k")
 
 [node name="SpawnContainer" type="Node2D" parent="." unique_id=513972695]
 unique_name_in_owner = true
+
+[node name="Traffic Light" parent="." unique_id=414423625 instance=ExtResource("18_hrpg3")]
+position = Vector2(277, 525)
+id = 1
+
+[node name="Traffic Light2" parent="." unique_id=1648860358 instance=ExtResource("18_hrpg3")]
+position = Vector2(664, 280)
+id = 3
+
+[node name="Traffic Light3" parent="." unique_id=1808757758 instance=ExtResource("18_hrpg3")]
+position = Vector2(570, 533)
+id = 2
 
 [editable path="CanvasLayer/HUD"]

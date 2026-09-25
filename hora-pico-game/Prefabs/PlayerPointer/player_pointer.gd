@@ -29,15 +29,21 @@ func _ready() -> void:
 	
 	print("Creating pointer with id: %d" % device_id)
 	
+	if Globals.is_multiplayer() and not is_multiplayer_authority():
+		set_process(false)
+		set_process_input(false)
+		return
+	
 func _input(event: InputEvent):
 	if event.device != device_id:
 		return
 	
 	if selected != null && event.is_action_pressed("spend_elixir"):
-		print("Emitting ability %d - src %d" % [selected.ability, device_id])
 		if Globals.is_multiplayer():
-			Globals.invoke_ability.rpc_id(1, device_id, selected.ability, selected.cost)
+			print("Emitting ability %d - src %d" % [selected.ability, multiplayer.get_unique_id()])
+			Globals.invoke_ability.rpc_id(1, multiplayer.get_unique_id(), selected.ability, selected.cost)
 		else:
+			print("Emitting ability %d - src %d" % [selected.ability, device_id])
 			EventBus.InvokeAbility.emit(device_id, selected.ability, selected.cost)
 	
 

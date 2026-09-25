@@ -25,6 +25,8 @@ signal ChangedRole(device: int, role: Enums.Role)
 
 signal DisplayMenu(id: Enums.Menu)
 
+signal UnhackTrafficLight(id: int)
+
 ## Multiplayer
 signal RefreshRoleScreen(roles_by_player: Dictionary, textures_by_player: Dictionary)
 

@@ -17,6 +17,9 @@ func host_and_spawn():
 func is_multiplayer() -> bool:
 	return len(multiplayer.get_peers()) > 0
 
+func is_police() -> bool:
+	return Network.role_by_player[multiplayer.get_unique_id()] == Enums.Role.POLICE
+
 # ===================================
 # Calls from the server to clients
 # ===================================
@@ -36,6 +39,8 @@ func speed_ended():
 func ability_invoked(peer_id: int, ability: Enums.Ability):
 	EventBus.AbilityInvoked.emit(peer_id, ability)
 
+
+
 # ===================================
 # Calls from the clients to the server
 # ===================================
@@ -46,3 +51,7 @@ func change_role(peer_id: int, role: Enums.Role):
 @rpc("any_peer", "call_local")
 func invoke_ability(peer_id: int, ability: Enums.Ability, cost: float):
 	EventBus.InvokeAbility.emit(peer_id, ability, cost)
+
+@rpc("any_peer", "call_local")
+func unhack_traffic_light(light_id: int):
+	EventBus.UnhackTrafficLight.emit(light_id)
