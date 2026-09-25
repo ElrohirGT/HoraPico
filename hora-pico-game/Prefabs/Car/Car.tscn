@@ -16,6 +16,7 @@ polygon = PackedVector2Array(-40, -19, -40, -13, -43, -13, -43, 14, -40, 14, -40
 
 [node name="Car" type="CharacterBody2D" unique_id=1651818327]
 script = ExtResource("1_756hr")
+turn_rate = 4.0
 
 [node name="Vision" type="Area2D" parent="." unique_id=43982859]
 

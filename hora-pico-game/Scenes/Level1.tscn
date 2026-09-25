@@ -42,9 +42,9 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(780, 799, 779, -63, 844, -62, 848, 800)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_6ll4n"]
-vertices = PackedVector2Array(864, -130.14063, 864, 783.8281, 822.9297, 783.15625, 817.0625, -130.84375)
+vertices = PackedVector2Array(864.10156, 783.8281, 822.89844, 783.14844, 812.10156, -278, 874.89844, -278)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(813, 793, 874, 794, 874, -140, 807, -141)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(813, 793, 874, 794, 885, -288, 802, -288)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kylad"]
 vertices = PackedVector2Array(743.59375, 369.9297, 742.40625, 399.59375, 595.9531, 393.52344, 602.6172, 369.03906)
@@ -77,9 +77,9 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(102, 486, 101, 534, -155, 534, -152, 488)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ubfni"]
-vertices = PackedVector2Array(1305.4375, 349.02344, 973, 349.96875, 973, 263.82813, 1300.5313, 258.15625)
+vertices = PackedVector2Array(1665.0234, 350.97656, 973, 350.0078, 973, 263.97656, 1656.8828, 263.0078)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(1310, 248, 1316, 359, 963, 360, 963, 254)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1666, 253, 1676, 361, 963, 360, 963, 254)])
 
 [sub_resource type="GDScript" id="GDScript_2llne"]
 script/source = "extends Node2D
@@ -651,7 +651,7 @@ offset_right = 279.0
 offset_bottom = 23.0
 
 [node name="SpawnerE" type="Marker2D" parent="Spawners" unique_id=732001323]
-position = Vector2(755, -532)
+position = Vector2(865, -529)
 
 [node name="Alert" parent="Spawners/SpawnerE" unique_id=144513311 instance=ExtResource("7_ysn8j")]
 offset_left = -246.0
@@ -678,7 +678,7 @@ position = Vector2(458, 777)
 position = Vector2(18, -800)
 
 [node name="ObjectiveS" type="Marker2D" parent="Objectives" unique_id=1840739839]
-position = Vector2(303, 0)
+position = Vector2(355, -2)
 
 [node name="ObjectiveE" type="Marker2D" parent="Objectives" unique_id=21070087]
 position = Vector2(-520, -639)
