@@ -106,27 +106,6 @@ theme_override_constants/separation = 10
 layout_mode = 2
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UIBase/MenusContainer/RoleSelectionMenu/MarginContainer/VBoxContainer/HBoxContainer" unique_id=984375773]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UIBase/MenusContainer/RoleSelectionMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=846285496]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-texture = ExtResource("4_rby7r")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="JoinPolice" type="Button" parent="CanvasLayer/UIBase/MenusContainer/RoleSelectionMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=348892721]
-unique_name_in_owner = true
-layout_mode = 2
-text = "JOIN POLICE"
-script = ExtResource("5_dx2cy")
-metadata/_custom_type_script = "uid://cqtnikk1cdfts"
-
-[node name="PoliceContainer" type="HBoxContainer" parent="CanvasLayer/UIBase/MenusContainer/RoleSelectionMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1020063675]
-unique_name_in_owner = true
-layout_mode = 2
-
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/UIBase/MenusContainer/RoleSelectionMenu/MarginContainer/VBoxContainer/HBoxContainer" unique_id=899775548]
 layout_mode = 2
 
@@ -145,6 +124,27 @@ script = ExtResource("5_dx2cy")
 metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
 [node name="TrafficContainer" type="HBoxContainer" parent="CanvasLayer/UIBase/MenusContainer/RoleSelectionMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=724511394]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UIBase/MenusContainer/RoleSelectionMenu/MarginContainer/VBoxContainer/HBoxContainer" unique_id=984375773]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UIBase/MenusContainer/RoleSelectionMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=846285496]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("4_rby7r")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="JoinPolice" type="Button" parent="CanvasLayer/UIBase/MenusContainer/RoleSelectionMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=348892721]
+unique_name_in_owner = true
+layout_mode = 2
+text = "JOIN POLICE"
+script = ExtResource("5_dx2cy")
+metadata/_custom_type_script = "uid://cqtnikk1cdfts"
+
+[node name="PoliceContainer" type="HBoxContainer" parent="CanvasLayer/UIBase/MenusContainer/RoleSelectionMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1020063675]
 unique_name_in_owner = true
 layout_mode = 2
 
