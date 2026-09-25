@@ -19,7 +19,7 @@ var selected: PlayerPointerButton = null
 var device_id: int
 
 func _enter_tree() -> void:
-	if len(Network.role_by_player) > 0:
+	if Globals.is_multiplayer():
 		set_multiplayer_authority(int(name))
 
 func _ready() -> void:
@@ -35,7 +35,10 @@ func _input(event: InputEvent):
 	
 	if selected != null && event.is_action_pressed("spend_elixir"):
 		print("Emitting ability %d - src %d" % [selected.ability, device_id])
-		EventBus.InvokeAbility.emit(device_id, selected.ability, selected.cost)
+		if Globals.is_multiplayer():
+			Globals.invoke_ability.rpc_id(1, device_id, selected.ability, selected.cost)
+		else:
+			EventBus.InvokeAbility.emit(device_id, selected.ability, selected.cost)
 	
 
 func _process(delta: float) -> void:

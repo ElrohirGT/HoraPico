@@ -53,7 +53,10 @@ func _on_invoke_ability(source_device_id: int, ability: Enums.Ability, cost: flo
 		print("Failed to consume ability: %s" % ability)
 		return
 	print("Ability %s consumed by %d!" % [ability, source_device_id])
-	EventBus.AbilityInvoked.emit(source_device_id, ability)
+	if Globals.is_multiplayer():
+		ability_invoked.rpc_id(source_device_id, source_device_id, ability)
+	else:
+		EventBus.AbilityInvoked.emit(source_device_id, ability)
 
 func _on_ability_invoked(source_device_id: int, ability: Enums.Ability):
 	if ability != Enums.Ability.ELIXIR:
@@ -63,3 +66,7 @@ func _on_ability_invoked(source_device_id: int, ability: Enums.Ability):
 	elixir_plus_player.play()
 	maxElixir += 1
 	elixirBar.max_value = maxElixir
+
+@rpc("authority", "call_local")
+func ability_invoked(peer_id: int, ability: Enums.Ability):
+	EventBus.AbilityInvoked.emit(peer_id, ability)
