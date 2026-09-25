@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bghc41mskpb7r"]
 
+[ext_resource type="Script" uid="uid://c0n1ieog5tdhm" path="res://Scenes/Multiplayer/Prefabs/alert.gd" id="1_fwab5"]
 [ext_resource type="PackedScene" uid="uid://b414gvgep8n1r" path="res://Prefabs/Alert/Alert.tscn" id="1_yv08b"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fwab5"]
@@ -7,15 +8,17 @@ properties/0/path = NodePath("Alert:visible")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
-[node name="Alert" type="Control" unique_id=2016436109]
+[node name="Container" type="Control" unique_id=2016436109]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_fwab5")
 
 [node name="Alert" parent="." unique_id=1177339137 instance=ExtResource("1_yv08b")]
+unique_name_in_owner = true
 layout_mode = 0
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1746749871]

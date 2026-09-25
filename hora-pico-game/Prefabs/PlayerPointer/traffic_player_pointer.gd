@@ -1,6 +1,6 @@
 extends Control
 
-class_name MultiplayerTrafficPointer
+class_name TrafficPlayerPointer
 
 @export var moveMagnitude: float
 @export var texture: Texture2D
@@ -9,6 +9,10 @@ class_name MultiplayerTrafficPointer
 
 var selected: PlayerPointerButton = null
 var device_id: int
+
+func _enter_tree() -> void:
+	if len(Network.role_by_player) > 0:
+		set_multiplayer_authority(int(name))
 
 func _ready() -> void:
 	pointer.texture = texture

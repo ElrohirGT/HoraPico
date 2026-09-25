@@ -10,9 +10,9 @@ func _ready() -> void:
 	nivel_2.disabled = not multiplayer.is_server()
 	nivel_3.disabled = not multiplayer.is_server()
 	
-	nivel_1.pressed.connect(func (): load_level.rpc(0))
-	nivel_2.pressed.connect(func (): load_level.rpc(1))
-	nivel_3.pressed.connect(func (): load_level.rpc(2))
+	nivel_1.pressed.connect(func (): load_level.rpc(1))
+	nivel_2.pressed.connect(func (): load_level.rpc(2))
+	nivel_3.pressed.connect(func (): load_level.rpc(3))
 
 @rpc("authority", "call_local")
 func load_level(idx: int):

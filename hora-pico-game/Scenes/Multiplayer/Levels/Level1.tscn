@@ -84,8 +84,10 @@ script/source = "extends Node2D
 
 #sclass_name Spawn
 
-const CAR_SCENE = preload(\"res://Scenes/Multiplayer/Prefabs/Car.tscn\")
-const BUS_SCENE = preload(\"res://Scenes/Multiplayer/Prefabs/Bus.tscn\")
+@onready var spawn_container: Node2D = %SpawnContainer
+
+const CAR_SCENE = preload(\"res://Prefabs/Car/Car.tscn\")
+const BUS_SCENE = preload(\"res://Prefabs/Bus/Bus.tscn\")
 
 @export var destinies: Node2D # Le ponés el target al spawner 
 @export var ultimate_charges: int = 1
@@ -394,6 +396,9 @@ func cast_ultimate() -> void:
 	velocity_timer.timeout.emit()
 
 func vehicle_spawn(vehicleType: String, spawnPosition: String) -> void:
+	if not multiplayer.is_server():
+		return
+	
 	EventBus.VehicleSpawned.emit()
 	print(vehicleType, spawnPosition)
 	
@@ -419,7 +424,8 @@ func vehicle_spawn(vehicleType: String, spawnPosition: String) -> void:
 			print(\"No destino.\")
 			return
 		
-		get_tree().current_scene.add_child(new_vehicle)
+		spawn_container.add_child(new_vehicle, true)
+		# get_tree().current_scene.add_child(new_vehicle)
 		print(\"%s to: \" % vehicleType, new_vehicle.movement_target_position, \"with ID: \", new_vehicle.priority) # Está curioso el format string aquí xd
 		
 		last_combo = vehicleType
@@ -460,25 +466,25 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath("CanvasLayer/HUD/TopBar/ElixirBackground/ElixirContainer:maxElixir")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-properties/2/path = NodePath("CanvasLayer/HUD/TopBar/ElixirBackground/ElixirContainer:elixirQuantity")
+properties/2/path = NodePath("CanvasLayer/HUD/TopBar/TimerBackground/Label:text")
 properties/2/spawn = true
 properties/2/replication_mode = 1
-properties/3/path = NodePath("CanvasLayer/HUD/TopBar/TimerBackground/Label:text")
+properties/3/path = NodePath("CanvasLayer/HUD/TopBar/ProgressBar:value")
 properties/3/spawn = true
 properties/3/replication_mode = 1
-properties/4/path = NodePath("CanvasLayer/HUD/TopBar/ProgressBar:value")
+properties/4/path = NodePath("CanvasLayer/HUD/TopBar/ProgressBar/Info:text")
 properties/4/spawn = true
 properties/4/replication_mode = 1
-properties/5/path = NodePath("CanvasLayer/HUD/TopBar/ProgressBar/Info:text")
+properties/5/path = NodePath("CanvasLayer/HUD/TopBar/ProgressBar/ChaosDisplay:text")
 properties/5/spawn = true
 properties/5/replication_mode = 1
-properties/6/path = NodePath("CanvasLayer/HUD/TopBar/ProgressBar/ChaosDisplay:text")
+properties/6/path = NodePath("CanvasLayer/HUD/ColorRect/VelocityLabel:text")
 properties/6/spawn = true
 properties/6/replication_mode = 1
-properties/7/path = NodePath("CanvasLayer/HUD/ColorRect/VelocityLabel:text")
+properties/7/path = NodePath("CanvasLayer/HUD/ColorRect/UltimateCharges:text")
 properties/7/spawn = true
 properties/7/replication_mode = 1
-properties/8/path = NodePath("CanvasLayer/HUD/ColorRect/UltimateCharges:text")
+properties/8/path = NodePath("CanvasLayer/HUD/TopBar/ElixirBackground/ElixirContainer:elixir_quantity")
 properties/8/spawn = true
 properties/8/replication_mode = 1
 
@@ -779,11 +785,15 @@ autostart = true
 ignore_time_scale = true
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1855099156]
-spawn_path = NodePath("../Spawners")
+_spawnable_scenes = PackedStringArray("uid://df0wdlpqojsmy", "uid://dxtx0mstvmlkq")
+spawn_path = NodePath("../SpawnContainer")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1103533276]
 replication_config = SubResource("SceneReplicationConfig_17y2k")
 
 [node name="PlayerJoiner" parent="." unique_id=430135521 instance=ExtResource("12_j0ad0")]
+
+[node name="SpawnContainer" type="Node2D" parent="." unique_id=513972695]
+unique_name_in_owner = true
 
 [editable path="CanvasLayer/HUD"]

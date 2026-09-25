@@ -1,9 +1,9 @@
 extends Control
 
-class_name MultiplayerPolicePointer
+class_name PolicePlayerPointer
 
 @export var moveMagnitude: float
-@export var texture: Texture2D
+@export var texture : Texture2D
 
 @onready var pointer: TextureRect = $Pointer
 @onready var menu: Control = $SummonMenu
@@ -17,6 +17,10 @@ class_name MultiplayerPolicePointer
 
 var selected: PlayerPointerButton = null
 var device_id: int
+
+func _enter_tree() -> void:
+	if len(Network.role_by_player) > 0:
+		set_multiplayer_authority(int(name))
 
 func _ready() -> void:
 	police_radius.hide()

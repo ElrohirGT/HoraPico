@@ -11,7 +11,7 @@ class_name ElixirManager
 @onready var elixir_plus_player: RandomAudioPlayer = $ElixirPlusAudios
 @onready var elixir_alert: Alert = $"../Alert"
 
-@export var elixirQuantity: float
+@export var elixir_quantity: float
 var elixirTimer: Timer
 
 func _ready() -> void:
@@ -28,24 +28,24 @@ func _ready() -> void:
 	EventBus.InvokeAbility.connect(_on_invoke_ability)
 
 func generateElixir():
-	elixirQuantity = clampf(elixirQuantity+1, 0, maxElixir)
-	updateElixir(elixirQuantity)
+	elixir_quantity = clampf(elixir_quantity+1, 0, maxElixir)
+	updateElixir(elixir_quantity)
 
 func _process(delta: float) -> void:
-	Globals.elixir_quantity = elixirQuantity
+	Globals.elixir_quantity = elixir_quantity
 	var remaining = (elixirTimer.wait_time - elixirTimer.time_left) / elixirTimer.wait_time
-	updateElixir(clampf(elixirQuantity+remaining, 0, maxElixir))
+	updateElixir(clampf(elixir_quantity+remaining, 0, maxElixir))
 
 func updateElixir(quantity: float):
 	elixirBar.value = quantity
 	elixirLabel.text = "%d" % quantity
 
 func ConsumeElixir(quantity: float) -> bool:
-	if elixirQuantity-quantity < 0:
+	if elixir_quantity-quantity < 0:
 		return false
 
-	elixirQuantity -= quantity
-	EventBus.ElixirChanged.emit(elixirQuantity)
+	elixir_quantity -= quantity
+	EventBus.ElixirChanged.emit(elixir_quantity)
 	return true
 
 func _on_invoke_ability(source_device_id: int, ability: Enums.Ability, cost: float):

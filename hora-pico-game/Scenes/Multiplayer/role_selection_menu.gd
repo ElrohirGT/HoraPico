@@ -27,6 +27,9 @@ func refresh_screen(roles_by_player: Dictionary, textures_by_player: Dictionary)
 	for child in traffic_container.get_children():
 		child.queue_free()
 	
+	Network.role_by_player = roles_by_player
+	Network.texture_by_player = textures_by_player
+	
 	for peer_id in roles_by_player:
 		var textureNode = TextureRect.new()
 		# textureNode.texture = textures[textures_by_player[peer_id]]
