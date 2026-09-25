@@ -11,7 +11,7 @@ class_name ElixirManager
 @onready var elixir_plus_player: RandomAudioPlayer = $ElixirPlusAudios
 @onready var elixir_alert: Alert = $"../Alert"
 
-static var elixirQuantity: float
+@export var elixirQuantity: float
 var elixirTimer: Timer
 
 func _ready() -> void:
@@ -32,6 +32,7 @@ func generateElixir():
 	updateElixir(elixirQuantity)
 
 func _process(delta: float) -> void:
+	Globals.elixir_quantity = elixirQuantity
 	var remaining = (elixirTimer.wait_time - elixirTimer.time_left) / elixirTimer.wait_time
 	updateElixir(clampf(elixirQuantity+remaining, 0, maxElixir))
 

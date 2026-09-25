@@ -11,10 +11,20 @@ var tube_enabled = true
 var PORT = 9999
 var IP_ADDRESS = '127.0.0.1'
 
-var root_by_player = {}
+@export var root_by_player = {}
+@export var role_by_player = {}
+@export var texture_by_player = {}
+
+var textures = [
+	Image.load_from_file("res://TestSprites/PLAYER_P1.png"),
+	Image.load_from_file("res://TestSprites/PLAYER_P2.png"),
+	Image.load_from_file("res://TestSprites/PLAYER_P3.png")
+]
+
 
 func _ready() -> void:
 	if tube_enabled:
+		EventBus.ChangeRole.connect(_on_player_change_role)
 		tube_client.context = TUBE_CONTEXT
 		get_tree().root.add_child.call_deferred(tube_client)
 
@@ -34,10 +44,14 @@ func on_connected_to_server():
 	add_player(multiplayer.get_unique_id())
 
 func add_player(peer_id: int):
-	EventBus.PlayerJoining.emit(peer_id)
 	print("Trying to add the player %d to the scene!" % peer_id)
 	if peer_id == 1 and multiplayer.multiplayer_peer is ENetMultiplayerPeer:
 		return
+	
+	texture_by_player[peer_id] = len(role_by_player) % len(textures)
+	role_by_player[peer_id] = Enums.Role.TRAFFIC
+	if is_traffic_greater_than_one():
+		role_by_player[peer_id] = Enums.Role.POLICE
 	
 	var new_player = PLAYER.instantiate()
 	new_player.name = str(peer_id)
@@ -46,8 +60,17 @@ func add_player(peer_id: int):
 		await get_tree().scene_changed
 	get_tree().current_scene.add_child(new_player, true)
 	root_by_player[peer_id] = new_player
-	print("Added player %d!" % peer_id)
-	EventBus.PlayerJoined.emit(peer_id)
+	
+	print("Added new player %d as %s" % [peer_id, role_by_player[peer_id]])
+	if multiplayer.is_server():
+		refresh_ui.rpc(role_by_player, texture_by_player)
+
+func _on_player_change_role(peer_id: int, role: Enums.Role):
+	print("Changed role for %d into %s" % [peer_id, role])
+	role_by_player[peer_id] = role
+	if multiplayer.is_server():
+		print("I'M SERVER")
+		refresh_ui.rpc(role_by_player, texture_by_player)
 
 func remove_player(peer_id):
 	if peer_id == 1:
@@ -75,3 +98,14 @@ func clean_up_signals():
 func _exit_tree() -> void:
 	if tube_enabled:
 		tube_client.leave_session()
+
+func is_traffic_greater_than_one() -> bool:
+	var count = 0
+	for peer_id in role_by_player:
+		if role_by_player[peer_id] == Enums.Role.TRAFFIC:
+			count+=1
+	return count > 1
+
+@rpc("authority", "call_local")
+func refresh_ui(roles, tex):
+	EventBus.RefreshRoleScreen.emit(roles, tex)

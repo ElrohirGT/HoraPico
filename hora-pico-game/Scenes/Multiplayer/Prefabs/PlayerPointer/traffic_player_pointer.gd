@@ -1,6 +1,6 @@
 extends Control
 
-class_name MultiplayerTrafficPointer
+class_name TrafficPlayerPointer
 
 @export var moveMagnitude: float
 @export var texture: Texture2D

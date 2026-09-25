@@ -26,8 +26,7 @@ signal ChangedRole(device: int, role: Enums.Role)
 signal DisplayMenu(id: Enums.Menu)
 
 ## Multiplayer
-signal PlayerJoining(peer_id: int)
-signal PlayerJoined(peer_id: int)
+signal RefreshRoleScreen(roles_by_player: Dictionary, textures_by_player: Dictionary)
 
 ## Emite una señal cuando cambia el ciclo de Día - Noche y retorna el estado actual
 signal daytime_changed(state: int)

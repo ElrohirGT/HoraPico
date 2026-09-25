@@ -1,6 +1,6 @@
 extends Control
 
-class_name MultiplayerPolicePointer
+class_name PlayerPointer
 
 @export var moveMagnitude: float
 @export var texture: Texture2D

@@ -1,6 +1,7 @@
 extends Node
 
 var username: String
+var elixir_quantity: float
 
 func add_world():
 	get_tree().change_scene_to_file("res://Scenes/Multiplayer/Lobby.tscn")

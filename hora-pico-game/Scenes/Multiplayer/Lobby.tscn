@@ -13,12 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://isb4tom7ft5l" path="res://Assets/Level2.png" id="9_dx2cy"]
 [ext_resource type="Texture2D" uid="uid://fussdq8d8nco" path="res://TestSprites/LVL3.png" id="10_cfejx"]
 
-[sub_resource type="Texture2D" id="Texture2D_oiwv2"]
-resource_local_to_scene = false
-resource_name = ""
-script = ExtResource("7_7s8xi")
-path = "ui_select"
-metadata/_custom_type_script = "uid://dy7yv0j0cxehr"
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7s8xi"]
+bg_color = Color(0.6, 0.6, 0.6, 0.39215687)
 
 [sub_resource type="Texture2D" id="Texture2D_5kyfg"]
 resource_local_to_scene = false
@@ -96,6 +92,7 @@ offset_right = 162.5
 offset_bottom = 141.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7s8xi")
 script = ExtResource("4_oiwv2")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UIBase/MenusContainer/RoleSelectionMenu" unique_id=274598834]
@@ -126,7 +123,7 @@ text = "JOIN POLICE"
 script = ExtResource("5_dx2cy")
 metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
-[node name="PoliceContainer" type="HFlowContainer" parent="CanvasLayer/UIBase/MenusContainer/RoleSelectionMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=541036927]
+[node name="PoliceContainer" type="HBoxContainer" parent="CanvasLayer/UIBase/MenusContainer/RoleSelectionMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1020063675]
 unique_name_in_owner = true
 layout_mode = 2
 
@@ -147,21 +144,9 @@ text = "JOIN TRAFFIC"
 script = ExtResource("5_dx2cy")
 metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
-[node name="TrafficContainer" type="HFlowContainer" parent="CanvasLayer/UIBase/MenusContainer/RoleSelectionMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=78499242]
+[node name="TrafficContainer" type="HBoxContainer" parent="CanvasLayer/UIBase/MenusContainer/RoleSelectionMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=724511394]
 unique_name_in_owner = true
 layout_mode = 2
-
-[node name="Ready" type="Button" parent="CanvasLayer/UIBase/MenusContainer/RoleSelectionMenu/MarginContainer/VBoxContainer" unique_id=1015300458]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 0)
-custom_maximum_size = Vector2(-1, 100)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Ready"
-icon = SubResource("Texture2D_oiwv2")
-expand_icon = true
-script = ExtResource("5_dx2cy")
-metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
 [node name="Play" type="Button" parent="CanvasLayer/UIBase/MenusContainer/RoleSelectionMenu/MarginContainer/VBoxContainer" unique_id=2121703313]
 unique_name_in_owner = true
@@ -176,6 +161,7 @@ script = ExtResource("5_dx2cy")
 metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
 [node name="LevelSelectorMenu" type="PanelContainer" parent="CanvasLayer/UIBase/MenusContainer" unique_id=1166318971]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -240,9 +226,11 @@ script = ExtResource("5_dx2cy")
 metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
 [node name="VSeparator" type="VSeparator" parent="CanvasLayer/UIBase/MenusContainer/LevelSelectorMenu/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1815883598]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/UIBase/MenusContainer/LevelSelectorMenu/MarginContainer/VBoxContainer/HBoxContainer" unique_id=694696187]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/UIBase/MenusContainer/LevelSelectorMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=838823267]
@@ -266,9 +254,11 @@ script = ExtResource("5_dx2cy")
 metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
 [node name="VSeparator2" type="VSeparator" parent="CanvasLayer/UIBase/MenusContainer/LevelSelectorMenu/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1146194008]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/UIBase/MenusContainer/LevelSelectorMenu/MarginContainer/VBoxContainer/HBoxContainer" unique_id=46875982]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/UIBase/MenusContainer/LevelSelectorMenu/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3" unique_id=860683963]
