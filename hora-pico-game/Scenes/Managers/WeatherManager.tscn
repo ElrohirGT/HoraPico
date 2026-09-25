@@ -6,7 +6,7 @@
 script = ExtResource("1_3bsrw")
 
 [node name="WeatherTimer" type="Timer" parent="." unique_id=1033328176]
-wait_time = 5.0
+wait_time = 20.0
 autostart = true
 
 [connection signal="timeout" from="WeatherTimer" to="." method="_on_weather_timer_timeout"]

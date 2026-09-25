@@ -2,6 +2,8 @@ extends Node
 
 @onready var particles: GPUParticles2D = $GPUParticles2D
 
+
+
 func _ready() -> void:
 	EventBus.weather_changed.connect(_on_weather_changed)
 	_on_weather_changed(WeatherManager.current_weather)
