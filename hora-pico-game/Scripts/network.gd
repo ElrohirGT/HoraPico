@@ -61,8 +61,11 @@ func add_player(peer_id: int):
 	get_tree().current_scene.add_child(new_player, true)
 	root_by_player[peer_id] = new_player
 	
-	print("Added new player %d as %s" % [peer_id, role_by_player[peer_id]])
+	print("%d: Added new player %d as %s" % [multiplayer.get_unique_id(), peer_id, role_by_player[peer_id]])
 	if multiplayer.is_server():
+		# FIXME: WHY THE FUCK DO WE NEED THIS FUCKING TIMEOUT
+		await get_tree().create_timer(0.3).timeout
+		print("%d: Sending role state udpate..." % multiplayer.get_unique_id())
 		refresh_ui.rpc(role_by_player, texture_by_player)
 
 func _on_player_change_role(peer_id: int, role: Enums.Role):
