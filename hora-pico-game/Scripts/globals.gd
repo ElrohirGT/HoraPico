@@ -3,6 +3,8 @@ extends Node
 var username: String
 var elixir_quantity: float
 
+var day_state: int
+
 func add_world():
 	get_tree().change_scene_to_file("res://Scenes/Multiplayer/Lobby.tscn")
 
@@ -14,6 +16,18 @@ func host_and_spawn():
 
 func is_multiplayer() -> bool:
 	return len(multiplayer.get_peers()) > 0
+
+# ===================================
+# Calls from the server to clients
+# ===================================
+@rpc("authority", "call_local")
+func game_ended(param: String):
+	EventBus.GameEnded.emit(param)
+
+@rpc("authority", "call_local")
+func daytime_changed(day_state: Enums.DayStates):
+	EventBus.daytime_changed.emit(day_state)
+
 
 # ===================================
 # Calls from the clients to the server

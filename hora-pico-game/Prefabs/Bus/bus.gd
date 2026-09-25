@@ -29,7 +29,7 @@ func _ready():
 	EventBus.SpeedEnded.connect(_on_speed_ended)
 	EventBus.daytime_changed.connect(_on_daytime_changed)
 	
-	toggle_lights(Daytime.current_state)
+	toggle_lights(Globals.day_state)
 	
 	var sp = find_children("Bus*", "Sprite2D").map(func(el): return (el as Sprite2D))
 	sprites.assign(sp)

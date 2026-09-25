@@ -460,31 +460,31 @@ func _on_mistake_display_timer_timeout() -> void:
 "
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_17y2k"]
-properties/0/path = NodePath("DayNight:wait_time")
+properties/0/path = NodePath("CanvasLayer/HUD/TopBar/ElixirBackground/ElixirContainer:maxElixir")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-properties/1/path = NodePath("CanvasLayer/HUD/TopBar/ElixirBackground/ElixirContainer:maxElixir")
+properties/1/path = NodePath("CanvasLayer/HUD/TopBar/TimerBackground/Label:text")
 properties/1/spawn = true
 properties/1/replication_mode = 1
-properties/2/path = NodePath("CanvasLayer/HUD/TopBar/TimerBackground/Label:text")
+properties/2/path = NodePath("CanvasLayer/HUD/TopBar/ProgressBar:value")
 properties/2/spawn = true
 properties/2/replication_mode = 1
-properties/3/path = NodePath("CanvasLayer/HUD/TopBar/ProgressBar:value")
+properties/3/path = NodePath("CanvasLayer/HUD/TopBar/ProgressBar/Info:text")
 properties/3/spawn = true
 properties/3/replication_mode = 1
-properties/4/path = NodePath("CanvasLayer/HUD/TopBar/ProgressBar/Info:text")
+properties/4/path = NodePath("CanvasLayer/HUD/TopBar/ProgressBar/ChaosDisplay:text")
 properties/4/spawn = true
 properties/4/replication_mode = 1
-properties/5/path = NodePath("CanvasLayer/HUD/TopBar/ProgressBar/ChaosDisplay:text")
+properties/5/path = NodePath("CanvasLayer/HUD/ColorRect/VelocityLabel:text")
 properties/5/spawn = true
 properties/5/replication_mode = 1
-properties/6/path = NodePath("CanvasLayer/HUD/ColorRect/VelocityLabel:text")
+properties/6/path = NodePath("CanvasLayer/HUD/ColorRect/UltimateCharges:text")
 properties/6/spawn = true
 properties/6/replication_mode = 1
-properties/7/path = NodePath("CanvasLayer/HUD/ColorRect/UltimateCharges:text")
+properties/7/path = NodePath("CanvasLayer/HUD/TopBar/ElixirBackground/ElixirContainer:elixir_quantity")
 properties/7/spawn = true
 properties/7/replication_mode = 1
-properties/8/path = NodePath("CanvasLayer/HUD/TopBar/ElixirBackground/ElixirContainer:elixir_quantity")
+properties/8/path = NodePath("DirectionalLight2D:color")
 properties/8/spawn = true
 properties/8/replication_mode = 1
 
@@ -778,7 +778,7 @@ dawn_color = Color(0.9999998, 0.5220484, 0.18189535, 1)
 day_color = Color(1, 1, 1, 1)
 dusk_color = Color(0.42467305, 0.4168996, 1, 1)
 night_color = Color(0, 9.62615e-08, 0.3218994, 1)
-fade_duration = 50.0
+fade_duration = 1.0
 
 [node name="DayNight" type="Timer" parent="." unique_id=1224530443]
 autostart = true
