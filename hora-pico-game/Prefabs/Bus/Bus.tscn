@@ -14,17 +14,9 @@ size = Vector2(147, 50)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nk70u"]
 polygon = PackedVector2Array(75, -24, 75, 29, -82, 28, -82, -23)
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nk70u"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:rotation")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-
 [node name="Bus" type="CharacterBody2D" unique_id=1651818327]
 script = ExtResource("1_tvseh")
-turn_rate = 1.0
+turn_rate = 4.0
 
 [node name="Area2D" type="Area2D" parent="." unique_id=43982859]
 
@@ -88,10 +80,6 @@ texture_scale = 0.35
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=2137940262]
 visible = false
 occluder = SubResource("OccluderPolygon2D_nk70u")
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1549762661]
-unique_name_in_owner = true
-replication_config = SubResource("SceneReplicationConfig_nk70u")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

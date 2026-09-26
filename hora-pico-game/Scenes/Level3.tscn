@@ -15,7 +15,8 @@
 [ext_resource type="AudioStream" uid="uid://dcwu4etfeqgbs" path="res://Audio/Effects/Vehicles/miss.mp3" id="15_ghpjo"]
 [ext_resource type="AudioStream" uid="uid://cxqiwtsx1e2c2" path="res://Audio/Coconut Mall - Mario Kart Wii.mp3" id="16_g2r38"]
 [ext_resource type="AudioStream" uid="uid://cb62jc1yuoxy2" path="res://Audio/Finish Line (1st Place) - Mario Kart Wii (Soundtrack).mp3" id="17_0redk"]
-[ext_resource type="Script" uid="uid://c0ryqxevid1kl" path="res://Scenes/directional_light_2d.gd" id="17_ktnig"]
+[ext_resource type="Script" uid="uid://c0ryqxevid1kl" path="res://Scenes/light_controller.gd" id="17_ktnig"]
+[ext_resource type="PackedScene" uid="uid://dqksfd0jvsbts" path="res://Prefabs/RainSimulation.tscn" id="18_nfsas"]
 [ext_resource type="PackedScene" uid="uid://bh5788bq0q2sl" path="res://Prefabs/Bus/BusStop.tscn" id="18_nnfg0"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ktnig"]
@@ -806,6 +807,8 @@ fade_duration = 50.0
 [node name="DayNight" type="Timer" parent="." unique_id=2011098463]
 autostart = true
 ignore_time_scale = true
+
+[node name="RainSimulator" parent="." unique_id=1869263339 instance=ExtResource("18_nfsas")]
 
 [connection signal="timeout" from="Combo_Timer" to="Spawners" method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="Velocity_Timer" to="Spawners" method="_on_velocity_timer_timeout"]

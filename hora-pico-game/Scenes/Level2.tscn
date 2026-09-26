@@ -18,7 +18,8 @@
 [ext_resource type="AudioStream" uid="uid://cxqiwtsx1e2c2" path="res://Audio/Coconut Mall - Mario Kart Wii.mp3" id="16_uelq8"]
 [ext_resource type="AudioStream" uid="uid://cb62jc1yuoxy2" path="res://Audio/Finish Line (1st Place) - Mario Kart Wii (Soundtrack).mp3" id="17_1gnxd"]
 [ext_resource type="PackedScene" uid="uid://bh5788bq0q2sl" path="res://Prefabs/Bus/BusStop.tscn" id="18_ubjqm"]
-[ext_resource type="Script" uid="uid://c0ryqxevid1kl" path="res://Scenes/directional_light_2d.gd" id="19_8wk15"]
+[ext_resource type="Script" uid="uid://c0ryqxevid1kl" path="res://Scenes/light_controller.gd" id="19_8wk15"]
+[ext_resource type="PackedScene" uid="uid://dqksfd0jvsbts" path="res://Prefabs/RainSimulation.tscn" id="20_bgqvi"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jghel"]
 vertices = PackedVector2Array(611.1797, 437.85938, 497.39844, 482.15625, 471.22656, 420.57813, 595.0078, 372.4375)
@@ -611,17 +612,14 @@ custom_minimum_size = Vector2(0, 0)
 [node name="Traffic Light" parent="." unique_id=1400643141 instance=ExtResource("13_dgfc6")]
 position = Vector2(86, 466)
 rotation = -0.5131268
-id = 1
 
 [node name="Traffic Light2" parent="." unique_id=316218899 instance=ExtResource("13_dgfc6")]
 position = Vector2(511, 263)
-id = 2
 
 [node name="Traffic Light3" parent="." unique_id=929433336 instance=ExtResource("13_dgfc6")]
 position = Vector2(897, 224)
 rotation = -0.42760566
 disable_mode = 1
-id = 3
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2070370597]
 stream = ExtResource("14_5fn7l")
@@ -653,6 +651,8 @@ fade_duration = 50.0
 [node name="DayNight" type="Timer" parent="." unique_id=1647804804]
 autostart = true
 ignore_time_scale = true
+
+[node name="RainSimulator" parent="." unique_id=1869263339 instance=ExtResource("20_bgqvi")]
 
 [connection signal="timeout" from="Combo_Timer" to="Spawners" method="_on_combo_timer_timeout"]
 [connection signal="timeout" from="Velocity_Timer" to="Spawners" method="_on_velocity_timer_timeout"]

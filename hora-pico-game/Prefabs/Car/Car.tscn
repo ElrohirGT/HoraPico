@@ -14,16 +14,9 @@ size = Vector2(85, 40)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7xxgp"]
 polygon = PackedVector2Array(-40, -19, -40, -13, -43, -13, -43, 14, -40, 14, -40, 18, 32, 18, 32, -20)
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_l017f"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:rotation")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-
 [node name="Car" type="CharacterBody2D" unique_id=1651818327]
 script = ExtResource("1_756hr")
+turn_rate = 4.0
 
 [node name="Vision" type="Area2D" parent="." unique_id=43982859]
 
@@ -95,10 +88,6 @@ shadow_enabled = true
 texture = ExtResource("4_l017f")
 offset = Vector2(1.235, 0)
 texture_scale = 0.01
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1635128715]
-unique_name_in_owner = true
-replication_config = SubResource("SceneReplicationConfig_l017f")
 
 [connection signal="area_entered" from="Vision" to="." method="_on_vision_area_entered"]
 [connection signal="body_entered" from="Vision" to="." method="_on_area_2d_body_entered"]

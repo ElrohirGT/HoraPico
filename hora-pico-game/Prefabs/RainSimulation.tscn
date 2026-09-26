@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://dqksfd0jvsbts"]
+
+[ext_resource type="Script" uid="uid://dvcyuoks5bmpe" path="res://Scenes/rain_system.gd" id="1_685uc"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kmf2w"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_ni41j"]
+_limits = [0.0, 2.3, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 9.655869, 0, 0, Vector2(0.49049425, 2.3), 0.0, 0.0, 0, 0, Vector2(1, 0), -11.224937, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_bhaf5"]
+curve = SubResource("Curve_ni41j")
+
+[sub_resource type="Gradient" id="Gradient_n6mvs"]
+colors = PackedColorArray(1, 1, 1, 0.078431375, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_384de"]
+gradient = SubResource("Gradient_n6mvs")
+
+[sub_resource type="Curve" id="Curve_xqjt0"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_uqmrp"]
+_limits = [0.0, 30.0, 0.0, 1.0]
+_data = [Vector2(0, 13.917524), 0.0, 0.0, 0, 0, Vector2(0.24714828, 29.69072), 0.0, 0.0, 0, 0, Vector2(0.99999994, 29.381441), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_hcrou"]
+_limits = [0.0, 3.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_03od6"]
+curve_x = SubResource("Curve_xqjt0")
+curve_y = SubResource("Curve_uqmrp")
+curve_z = SubResource("Curve_hcrou")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ijy28"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(600, -100, 1)
+gravity = Vector3(0, 3000, 0)
+scale_min = 0.19999999
+scale_over_velocity_curve = SubResource("CurveXYZTexture_03od6")
+color_initial_ramp = SubResource("GradientTexture1D_384de")
+alpha_curve = SubResource("CurveTexture_bhaf5")
+
+[node name="RainSimulator" type="Node2D" unique_id=1869263339]
+script = ExtResource("1_685uc")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1027021481]
+z_index = 1000
+material = SubResource("CanvasItemMaterial_kmf2w")
+position = Vector2(566, 48)
+emitting = false
+amount = 1000
+lifetime = 0.6
+preprocess = 0.5
+randomness = 1.0
+visibility_rect = Rect2(-600, -200, 1200, 800)
+process_material = SubResource("ParticleProcessMaterial_ijy28")

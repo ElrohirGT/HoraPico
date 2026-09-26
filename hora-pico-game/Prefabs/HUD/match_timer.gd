@@ -15,7 +15,4 @@ func _process(delta: float) -> void:
 		self.text = "%ds" % seconds
 
 func _on_match_timer_timeout() -> void:
-	if Globals.is_multiplayer():
-		Globals.game_ended.rpc("city")
-	else:
-		EventBus.GameEnded.emit("City")
+	EventBus.GameEnded.emit("City")

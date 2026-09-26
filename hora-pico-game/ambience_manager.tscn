@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bj8mik80a3ldy"]
+
+[ext_resource type="Script" uid="uid://cwnwyqmjohmll" path="res://Scenes/Managers/ambience_manager.gd" id="1_4d5ch"]
+
+[node name="AmbienceManager" type="Node" unique_id=1281095309]
+script = ExtResource("1_4d5ch")
+
+[node name="AmbiencePlayer" type="AudioStreamPlayer" parent="." unique_id=703775491]
+
+[node name="WeatherPlayer" type="AudioStreamPlayer" parent="." unique_id=518601112]
+volume_db = -13.988
+
+[connection signal="finished" from="AmbiencePlayer" to="." method="_on_audio_stream_player_finished"]

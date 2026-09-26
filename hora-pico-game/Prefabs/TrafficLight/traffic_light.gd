@@ -10,13 +10,10 @@ enum TrafficLightState{RED, YELLOW, GREEN, HACKED}
 @onready var Hacked: AnimatedSprite2D = $Hacked
 @onready var Collider: CollisionShape2D = $CollisionBoundary
 
-@onready var multiplayer_synchronizer: MultiplayerSynchronizer = %MultiplayerSynchronizer
-
 @export var cycleDuration: float
 @export var yellowPercentage: float
 @export var state: TrafficLightState
 @export var bodiesColliding: int
-@export var id: int
 
 var timer: Timer
 var is_cursor_hovering: bool = false
@@ -47,14 +44,6 @@ func _ready() -> void:
 	add_child(timer)
 	
 	timer.start()
-	
-	EventBus.UnhackTrafficLight.connect(_on_unhack_traffic_light)
-	if not Globals.is_multiplayer():
-		multiplayer_synchronizer.queue_free.call_deferred()
-
-func _on_unhack_traffic_light(light_id: int):
-	if light_id == id:
-		unhack_traffic_light()
 
 func _on_timer_timeout() -> void:
 	if state == TrafficLightState.RED:

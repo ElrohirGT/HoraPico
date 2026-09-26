@@ -10,17 +10,8 @@ class_name TrafficPlayerPointer
 var selected: PlayerPointerButton = null
 var device_id: int
 
-func _enter_tree() -> void:
-	if Globals.is_multiplayer():
-		set_multiplayer_authority(int(name))
-
 func _ready() -> void:
 	pointer.texture = texture
-	
-	if Globals.is_multiplayer() and not is_multiplayer_authority():
-		set_process(false)
-		set_process_input(false)
-		return
 	
 func _input(event: InputEvent):
 	if event.device != device_id:
