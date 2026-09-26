@@ -612,14 +612,17 @@ custom_minimum_size = Vector2(0, 0)
 [node name="Traffic Light" parent="." unique_id=1400643141 instance=ExtResource("13_dgfc6")]
 position = Vector2(86, 466)
 rotation = -0.5131268
+id = 1
 
 [node name="Traffic Light2" parent="." unique_id=316218899 instance=ExtResource("13_dgfc6")]
 position = Vector2(511, 263)
+id = 2
 
 [node name="Traffic Light3" parent="." unique_id=929433336 instance=ExtResource("13_dgfc6")]
 position = Vector2(897, 224)
 rotation = -0.42760566
 disable_mode = 1
+id = 3
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2070370597]
 stream = ExtResource("14_5fn7l")

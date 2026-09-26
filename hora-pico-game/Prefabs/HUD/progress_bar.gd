@@ -52,4 +52,7 @@ func _on_refresh_progress_bar():
 	spawned_vehicles = 0
 
 func _on_chaos_timer_timeout() -> void:
-	EventBus.GameEnded.emit("Traffic")
+	if Globals.is_multiplayer():
+		Globals.game_ended.rpc("Traffic")
+	else:
+		EventBus.GameEnded.emit("Traffic")

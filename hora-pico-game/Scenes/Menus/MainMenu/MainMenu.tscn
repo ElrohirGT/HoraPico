@@ -257,6 +257,10 @@ grow_vertical = 1
 visible = false
 layout_mode = 1
 
+[node name="OnlineMenu" parent="MainMenu/CanvasLayer/UIBase" unique_id=470100254 instance=ExtResource("15_42bec")]
+visible = false
+layout_mode = 1
+
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="MainMenu" unique_id=332148075]
 position = Vector2(0, 8)
 blend_mode = 2

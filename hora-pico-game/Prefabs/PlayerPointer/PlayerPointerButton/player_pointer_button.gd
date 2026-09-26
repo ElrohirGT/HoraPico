@@ -20,7 +20,7 @@ func _ready() -> void:
 	texture = unavailableBackground
 
 func _process(delta: float) -> void:
-	var canBuy = ElixirManager.elixirQuantity >= cost
+	var canBuy = Globals.elixir_quantity >= cost
 	if selected && canBuy:
 		texture = selectedBackground
 	elif !canBuy:
