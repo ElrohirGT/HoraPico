@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://tyy2rc6t5msh"]
 
+[ext_resource type="Texture2D" uid="uid://b24mfrjbjetan" path="res://Assets/20260525_171245.png" id="1_q12u6"]
 [ext_resource type="PackedScene" uid="uid://cqcnrpfy4ruk5" path="res://Prefabs/HUD/HUD.tscn" id="2_q12u6"]
 [ext_resource type="Texture2D" uid="uid://krvf5mo54mae" path="res://Assets/BackgroundCity.png" id="3_t3or0"]
 [ext_resource type="Texture2D" uid="uid://cndf2vyalj7g2" path="res://TestSprites/COMBO_ARROW_Neutral.png" id="5_rpty4"]
@@ -467,6 +468,13 @@ offset_top = 3.0
 offset_right = 1154.0
 offset_bottom = 647.0
 texture = ExtResource("3_t3or0")
+
+[node name="20260525171245" type="Sprite2D" parent="." unique_id=1504462470]
+visible = false
+position = Vector2(487, 302)
+rotation = -0.16580628
+scale = Vector2(1.795, 1.795)
+texture = ExtResource("1_q12u6")
 
 [node name="NavigationRegions" type="Node2D" parent="." unique_id=721595883]
 

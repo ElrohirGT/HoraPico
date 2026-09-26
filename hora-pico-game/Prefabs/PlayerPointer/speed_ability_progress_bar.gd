@@ -20,7 +20,4 @@ func _on_ability_invoked(source_device_id: int, ability: Enums.Ability):
 
 func _on_speed_ability_timer_timeout() -> void:
 	self.hide()
-	if Globals.is_multiplayer() and multiplayer.is_server():
-		Globals.speed_ended.rpc()
-	else:
-		EventBus.SpeedEnded.emit()
+	EventBus.SpeedEnded.emit()

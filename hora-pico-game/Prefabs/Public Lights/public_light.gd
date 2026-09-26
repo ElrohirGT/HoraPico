@@ -6,7 +6,7 @@ extends Node2D
 func _ready() -> void:
 	EventBus.daytime_changed.connect(_on_daytime_changed)
 	
-	toggle_lights(Globals.day_state)
+	toggle_lights(Daytime.current_state)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

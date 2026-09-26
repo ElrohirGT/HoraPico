@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://oj6ccm7k687i"]
-
-[ext_resource type="Script" uid="uid://b7nbch0sb68m" path="res://Scenes/Multiplayer/Prefabs/player_joiner.gd" id="1_gg4ab"]
-
-[node name="PlayerJoiner" type="Node2D" unique_id=430135521]
-script = ExtResource("1_gg4ab")
