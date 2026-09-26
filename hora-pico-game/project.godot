@@ -24,6 +24,8 @@ Utils="*uid://mdm54ixtp4m1"
 InputManager="*uid://b1gjqiqy20xgn"
 ProjectFeatures="*uid://0nypp3ptopmn"
 ControllerIcons="*uid://bwdm8ia542k1u"
+WeatherManager="*uid://cnpp2h0qctejk"
+AmbienceManager="*uid://bmjusgpouqj1w"
 
 [display]
 
