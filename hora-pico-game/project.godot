@@ -14,7 +14,7 @@ config/name="Hora Pico"
 config/version="0.1"
 run/main_scene="uid://cwkveb2a4y2e0"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="uid://c5bbi0fu7svoc"
+config/icon="uid://e6421bs03t30"
 
 [autoload]
 
