@@ -10,11 +10,11 @@ config_version=5
 
 [application]
 
-config/name="HoraPicoGame"
+config/name="Hora Pico"
 config/version="0.1"
 run/main_scene="uid://cwkveb2a4y2e0"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="uid://tqitr77siidt"
+config/icon="uid://c5bbi0fu7svoc"
 
 [autoload]
 
