@@ -220,12 +220,12 @@ expand_icon = true
 script = ExtResource("10_knd3v")
 metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
-[node name="Online" type="Button" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/MarginContainer/HBoxContainer" unique_id=321038741]
+[node name="Tutorial" type="Button" parent="MainMenu/CanvasLayer/UIBase/BottomMenu/MarginContainer/HBoxContainer" unique_id=321038741]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(150, 0)
 custom_maximum_size = Vector2(-1, 100)
 layout_mode = 2
-text = "Online"
+text = "Tutorial"
 icon = SubResource("Texture2D_punrg")
 expand_icon = true
 script = ExtResource("10_knd3v")

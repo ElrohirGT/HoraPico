@@ -45,3 +45,7 @@ texture_scale = 0.01
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1735155699]
 occluder = SubResource("OccluderPolygon2D_t5wjh")
+
+[node name="EventTimer" type="Timer" parent="." unique_id=703442067]
+unique_name_in_owner = true
+wait_time = 2.0

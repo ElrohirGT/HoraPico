@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://bvpg6e6y7esu5"]
+
+[ext_resource type="Theme" uid="uid://bfmc47373h4sf" path="res://Themes/desktop.tres" id="1_3xe21"]
+[ext_resource type="Script" uid="uid://cpu5ahs4dxyio" path="res://Prefabs/UI/ui_base.gd" id="2_ldt4q"]
+
+[node name="TutorialMenu" type="Control" unique_id=1916191890]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_3xe21")
+script = ExtResource("2_ldt4q")
+assume_theme = ExtResource("1_3xe21")
+metadata/_custom_type_script = "uid://cpu5ahs4dxyio"
+
+[node name="Control" type="Control" parent="." unique_id=1673262971]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=1057177787]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -342.875
+offset_top = -210.75
+offset_right = 342.875
+offset_bottom = 210.75
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer" unique_id=1669620790]
+layout_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="Control/PanelContainer/MarginContainer" unique_id=16051461]
+visible = false
+layout_mode = 2
+current_tab = 0
+
+[node name="Welcome" type="Control" parent="Control/PanelContainer/MarginContainer/TabContainer" unique_id=1962674354]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Traffic" type="Control" parent="Control/PanelContainer/MarginContainer/TabContainer" unique_id=1783015552]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Police" type="Control" parent="Control/PanelContainer/MarginContainer/TabContainer" unique_id=2009573767]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="End" type="Control" parent="Control/PanelContainer/MarginContainer/TabContainer" unique_id=953601487]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Control/PanelContainer/MarginContainer" unique_id=1101831923]
+layout_mode = 2
+expand = true
