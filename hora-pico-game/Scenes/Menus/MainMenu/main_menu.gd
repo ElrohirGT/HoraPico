@@ -2,6 +2,7 @@ extends Control
 
 @onready var play_btn: MainButton = %Play
 @onready var quit_btn: MainButton = %Quit
+@onready var tutorial: MainButton = %Tutorial
 
 @onready var initial_menu: Panel = %BottomMenu
 
@@ -9,6 +10,8 @@ func _ready() -> void:
 	EventBus.DisplayMenu.connect(_hide_show_if_should)
 	play_btn.pressed.connect(_on_play_pressed)
 	quit_btn.pressed.connect(_on_quit_pressed)
+	tutorial.pressed.connect(_on_tutorial_pressed)
+	
 	# play_btn.text = Utils.format_button_text("[%s] ", "Play", "ui_accept")
 	# play_btn.text = "[%s] Play" % Utils.get_key_or_button_for_action("ui_accept")
 	# quit_btn.text = Utils.format_button_text("[%s] ", "Quit", "ui_select")
@@ -31,6 +34,9 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
 		get_tree().get_root().set_input_as_handled()
 		_on_play_pressed()
+
+func _on_tutorial_pressed() -> void:
+	EventBus.DisplayMenu.emit(Enums.Menu.TutorialMenu)
 
 func _on_play_pressed() -> void:
 	EventBus.DisplayMenu.emit(Enums.Menu.RoleMenu)
