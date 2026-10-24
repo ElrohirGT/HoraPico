@@ -42,6 +42,7 @@ func _input(event: InputEvent) -> void:
 
 func _on_tutorial_pressed() -> void:
 	MusicManager.adjust_volume(-10.0)
+	AmbienceManager.adjust_volume(-10.0)
 	EventBus.DisplayMenu.emit(Enums.Menu.TutorialMenu)
 
 func _on_play_pressed() -> void:
