@@ -42,12 +42,15 @@ func _input(event: InputEvent) -> void:
 		_on_quit_button_pressed()
 
 func _on_level_1_button_pressed() -> void:
+	MusicManager.stop()
 	get_tree().change_scene_to_file("res://Scenes/Level1.tscn")
 
 func _on_level_2_button_pressed() -> void:
+	MusicManager.stop()
 	get_tree().change_scene_to_file("res://Scenes/Level2.tscn")
 
 func _on_level_3_button_pressed() -> void:
+	MusicManager.stop()
 	get_tree().change_scene_to_file("res://Scenes/Level3.tscn")
 
 func _on_quit_button_pressed() -> void:
