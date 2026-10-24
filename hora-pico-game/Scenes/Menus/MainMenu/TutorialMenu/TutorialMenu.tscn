@@ -60,6 +60,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 stream = ExtResource("3_3xe21")
+volume_db = 11.32
 expand = true
 
 [node name="Back" type="Button" parent="Control/PanelContainer/MarginContainer/VBoxContainer" unique_id=1008255651]

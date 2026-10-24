@@ -16,6 +16,8 @@ func _ready() -> void:
 	# play_btn.text = "[%s] Play" % Utils.get_key_or_button_for_action("ui_accept")
 	# quit_btn.text = Utils.format_button_text("[%s] ", "Quit", "ui_select")
 	# quit_btn.text = "[%s] Quit" % Utils.get_key_or_button_for_action("ui_select")
+	
+	MusicManager.play()
 
 func _hide_show_if_should(id: Enums.Menu):
 	if id == Enums.Menu.MainMenu:
@@ -39,6 +41,7 @@ func _input(event: InputEvent) -> void:
 		_on_tutorial_pressed()
 
 func _on_tutorial_pressed() -> void:
+	MusicManager.adjust_volume(-10.0)
 	EventBus.DisplayMenu.emit(Enums.Menu.TutorialMenu)
 
 func _on_play_pressed() -> void:

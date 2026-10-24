@@ -26,4 +26,5 @@ func _hide_show_if_should(id: Enums.Menu):
 		initial_menu.hide()
 
 func _on_back_pressed():
+	MusicManager.adjust_volume(0.0)
 	EventBus.DisplayMenu.emit(Enums.Menu.MainMenu)
