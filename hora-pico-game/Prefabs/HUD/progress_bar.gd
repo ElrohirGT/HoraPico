@@ -2,6 +2,7 @@ extends TextureProgressBar
 
 @export var drain_speed: float
 @export var max_bonus: float
+@export var car_despawn_value: float = 2
 
 @onready var refresh_progress_bar_timer: Timer = $ProgressBarRefresh
 @onready var bar_label: Label = $Info
@@ -10,6 +11,8 @@ extends TextureProgressBar
 
 var despawned_vehicles: int = 0
 var spawned_vehicles: int = 0
+
+var congestion: float = 50
 
 func _ready() -> void:
 	EventBus.VehicleDespawned.connect(_on_vehicle_despawned)
@@ -29,20 +32,23 @@ func _process(delta: float) -> void:
 		bar_delta += (alive_vehicles - 2) * delta
 	
 	bar_label.text = "S: %d - D: %d - T: %.2f" % [spawned_vehicles, despawned_vehicles, bar_delta]
-	self.value += bar_delta
+	self.congestion += bar_delta
 	
-	if self.value >= self.max_value and chaos_timer.is_stopped():
+	if self.congestion >= self.max_value and chaos_timer.is_stopped():
 		chaos_timer.start()
 		chaos_display.show()
-	if self.value < self.max_value:
+	if self.congestion < self.max_value:
 		chaos_timer.stop()
 		chaos_display.hide()
 	
 	if not chaos_timer.is_stopped():
 		chaos_display.text = "%.2fs" % chaos_timer.time_left
+	
+	self.value = self.congestion
 
 func _on_vehicle_despawned():
 	despawned_vehicles += 1
+	self.congestion -= car_despawn_value
 	
 func _on_vehicle_spawned():
 	spawned_vehicles += 1
