@@ -53,7 +53,7 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_otvol")
-moveMagnitude = 3.0
+moveMagnitude = 6.0
 texture = ExtResource("3_pmt1u")
 
 [node name="Pointer" type="TextureRect" parent="." unique_id=256892620]
