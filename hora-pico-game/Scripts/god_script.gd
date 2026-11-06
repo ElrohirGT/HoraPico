@@ -173,6 +173,8 @@ func _on_pattern_mistake():
 		for child in container.get_children():
 			child.queue_free()
 	
+	currentVelocity = Velocity.F
+	velocity_label.text = Velocity.keys()[currentVelocity]
 	refresh_combo_display()
 
 func _on_combo_fail_timer_start(is_failed: bool):
@@ -284,6 +286,7 @@ func random_gen() -> void:
 	generate_combo()
 
 var index: int
+
 func _on_spawn_cooldown_done():
 	if index >= ultimate_charges:
 		index = 0
