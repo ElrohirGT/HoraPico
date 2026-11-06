@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cl14fhrvsgqor"]
 
+[ext_resource type="Script" uid="uid://bx8txgar82ty0" path="res://Prefabs/SummonMenu/summon_menu.gd" id="1_0ppin"]
 [ext_resource type="PackedScene" uid="uid://d1wb0cucy1ahu" path="res://Prefabs/PlayerPointer/PlayerPointerButton/PlayerPointerButton.tscn" id="1_u0n7v"]
 [ext_resource type="Texture2D" uid="uid://dgcspri4fvk2f" path="res://TestSprites/POLICE_Cap.png" id="2_0ppin"]
 [ext_resource type="Texture2D" uid="uid://ddovh220mo17s" path="res://TestSprites/HACK_TrafficLight.png" id="3_nyeok"]
@@ -25,6 +26,7 @@ offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 columns = 3
+script = ExtResource("1_0ppin")
 
 [node name="Control" type="Control" parent="." unique_id=471967887]
 layout_mode = 2

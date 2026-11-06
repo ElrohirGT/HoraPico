@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://dpqxobk6bgho3"]
 
 [ext_resource type="Script" uid="uid://pj45ofkpukvk" path="res://Prefabs/PlayerPointer/player_pointer.gd" id="1_otvol"]
-[ext_resource type="PackedScene" uid="uid://cl14fhrvsgqor" path="res://Prefabs/SummonMenu/summon_menu.tscn" id="3_ohk7v"]
 [ext_resource type="Texture2D" uid="uid://bpah4lo7q0ce1" path="res://TestSprites/PLAYER_P3.png" id="3_pmt1u"]
 [ext_resource type="AudioStream" uid="uid://14k8y0xvrty6" path="res://Audio/Effects/Police/metal_whistle_1.mp3" id="5_5kpil"]
 [ext_resource type="Texture2D" uid="uid://beawlp4xeuwjl" path="res://TestSprites/POLICE_Radius.png" id="6_iv0pp"]
@@ -67,10 +66,6 @@ position = Vector2(-91, -78)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pointer/Area2D" unique_id=1141820556]
 position = Vector2(123, 110)
 shape = SubResource("RectangleShape2D_b6qr5")
-
-[node name="SummonMenu" parent="." unique_id=2062582113 instance=ExtResource("3_ohk7v")]
-layout_mode = 0
-anchors_preset = 0
 
 [node name="PoliceRadius" type="TextureRect" parent="." unique_id=790336966]
 layout_mode = 1
