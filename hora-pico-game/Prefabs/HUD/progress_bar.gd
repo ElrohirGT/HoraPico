@@ -44,7 +44,7 @@ func _process(delta: float) -> void:
 	if not chaos_timer.is_stopped():
 		chaos_display.text = "%.2fs" % chaos_timer.time_left
 	
-	self.value = self.congestion
+	self.value = max(0, self.congestion)
 
 func _on_vehicle_despawned():
 	despawned_vehicles += 1
