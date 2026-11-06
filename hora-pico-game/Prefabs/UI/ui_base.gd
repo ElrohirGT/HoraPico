@@ -12,9 +12,11 @@ const MOBILE = preload("uid://ddtv8ntjqwl0a")
 const WEB = preload("uid://dpdjhl4yqpu08")
 const DESKTOP = preload("uid://bfmc47373h4sf")
 
+@onready var fail_timer: Timer = $TrafficBackground/FailTimer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	EventBus.ComboFail.connect(_on_fail_combo)
 	if Engine.is_editor_hint():
 		self.theme = assume_theme
 		return
@@ -32,3 +34,11 @@ func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		self.theme = assume_theme
 		return
+
+func _on_fail_combo(is_failed: bool) -> void:
+	if is_failed:
+		fail_timer.start()
+
+func _on_fail_timer_timeout() -> void:
+	print("HJASUHNjsuia")
+	EventBus.ComboFail.emit(false)

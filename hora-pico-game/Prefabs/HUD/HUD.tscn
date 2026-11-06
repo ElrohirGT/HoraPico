@@ -60,6 +60,7 @@ theme_override_constants/separation = 25
 alignment = 1
 
 [node name="FailTimer" type="Timer" parent="TrafficBackground" unique_id=1801903783]
+one_shot = true
 
 [node name="TrafficBackground2" type="ColorRect" parent="." unique_id=1881621810]
 visible = false
@@ -383,5 +384,6 @@ grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("17_5q26g")
 
+[connection signal="timeout" from="TrafficBackground/FailTimer" to="." method="_on_fail_timer_timeout"]
 [connection signal="timeout" from="TopBar/ProgressBar/ChaosTimer" to="TopBar/ProgressBar" method="_on_chaos_timer_timeout"]
 [connection signal="timeout" from="TopBar/TimerBackground/Label/MatchTimer" to="TopBar/TimerBackground/Label" method="_on_match_timer_timeout"]

@@ -20,8 +20,10 @@ var car_pattern: Array[Directions]
 var bus_pattern: Array[Directions]
 
 var selected_pattern: int = 0
+var kgada: bool = false
 
 var vehicleType: String
+var is_waiting_fail: bool = false
 
 enum Velocity{ F, E, D, C, B, A, S }
 @export var currentVelocity = Velocity.F
@@ -38,8 +40,6 @@ enum Velocity{ F, E, D, C, B, A, S }
 
 @onready var audio_player: AudioStreamPlayer2D = $"../AudioStreamPlayer2D"
 @onready var failure_audio_player: AudioStreamPlayer2D = $"../AudioStreamPlayer2D2"
-
-@onready var fail_timer: Timer
 
 @onready var spawners: Dictionary = {
 	"N": $SpawnerN,
@@ -66,13 +66,13 @@ static var last_direction: String = ""
 @onready var spawn_cooldown: Timer = $Timer
 
 func _ready() -> void:
-	#EventBus.VehicleChanged.connect(_on_vehicle_changed)
-	#EventBus.VehicleChanged.emit(0)
+	EventBus.ComboFail.connect(_on_combo_fail_timer_start)
+	
 	spawn_cooldown.timeout.connect(_on_spawn_cooldown_done)
 	random_gen()
 
 func _input(event: InputEvent) -> void:
-	if not event.is_pressed() or event.is_echo():
+	if not event.is_pressed() or event.is_echo() or is_waiting_fail:
 		return
 		
 	if waiting_for_direction:
@@ -138,7 +138,7 @@ func _input(event: InputEvent) -> void:
 		failure_audio_player.play()
 		call_deferred("_on_pattern_mistake")
 		combo_timer.start()
-
+		
 	if combo == expected :
 		done.append(combo)
 		
@@ -161,6 +161,8 @@ func refresh_combo_display():
 	generate_combo()
 
 func _on_pattern_mistake():
+	EventBus.ComboFail.emit(true)
+	
 	done = []
 	
 	combo_timer.start()
@@ -172,6 +174,15 @@ func _on_pattern_mistake():
 			child.queue_free()
 	
 	refresh_combo_display()
+
+func _on_combo_fail_timer_start(is_failed: bool):
+	if is_failed:
+		is_waiting_fail = true
+		car_combo_container.modulate.a = 0.2
+	
+	else:
+		is_waiting_fail = false
+		car_combo_container.modulate.a = 1
 
 func lock_traffic_spawn() -> void:
 	pass
