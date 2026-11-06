@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://cl14fhrvsgqor"]
+
+[ext_resource type="Script" uid="uid://bx8txgar82ty0" path="res://Prefabs/SummonMenu/summon_menu.gd" id="1_0ppin"]
+[ext_resource type="PackedScene" uid="uid://d1wb0cucy1ahu" path="res://Prefabs/PlayerPointer/PlayerPointerButton/PlayerPointerButton.tscn" id="1_u0n7v"]
+[ext_resource type="Texture2D" uid="uid://dgcspri4fvk2f" path="res://TestSprites/POLICE_Cap.png" id="2_0ppin"]
+[ext_resource type="Texture2D" uid="uid://ddovh220mo17s" path="res://TestSprites/HACK_TrafficLight.png" id="3_nyeok"]
+[ext_resource type="Texture2D" uid="uid://cchu7tgx70p61" path="res://TestSprites/ELIXIR_Plus.png" id="4_f44jp"]
+[ext_resource type="Texture2D" uid="uid://c1duugq2duywa" path="res://TestSprites/SPEED_Symbol.png" id="5_588nk"]
+[ext_resource type="Texture2D" uid="uid://ogr5v8il7gcq" path="res://TestSprites/RADIAL_PBAR_Over.png" id="6_tew5w"]
+[ext_resource type="Texture2D" uid="uid://dwdieynpvsky5" path="res://TestSprites/RADIAL_PBAR_Progress.png" id="7_mhcvx"]
+[ext_resource type="Script" uid="uid://beboeud1rjkrq" path="res://Prefabs/PlayerPointer/speed_ability_progress_bar.gd" id="8_sr10k"]
+[ext_resource type="Script" uid="uid://d2jiyp4v25x4h" path="res://Prefabs/RandomAudioPlayer/random_audio_player.gd" id="9_swi2n"]
+[ext_resource type="AudioStream" uid="uid://c4jwvrr2ch4nd" path="res://Audio/Effects/Police/speed_1.mp3" id="10_cnrcx"]
+[ext_resource type="AudioStream" uid="uid://bqqpdo5sgauun" path="res://Audio/Effects/Police/speed_2.mp3" id="11_g60hi"]
+
+[node name="SummonMenu" type="GridContainer" unique_id=2062582113]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+script = ExtResource("1_0ppin")
+
+[node name="Control" type="Control" parent="." unique_id=471967887]
+layout_mode = 2
+
+[node name="Top" parent="." unique_id=300668207 instance=ExtResource("1_u0n7v")]
+layout_mode = 2
+cost = 3.0
+actionTexture = ExtResource("2_0ppin")
+
+[node name="Control2" type="Control" parent="." unique_id=988364194]
+layout_mode = 2
+
+[node name="Left" parent="." unique_id=2045086057 instance=ExtResource("1_u0n7v")]
+layout_mode = 2
+cost = 2.0
+actionTexture = ExtResource("3_nyeok")
+ability = 2
+
+[node name="Control3" type="Control" parent="." unique_id=603811049]
+layout_mode = 2
+
+[node name="Right" parent="." unique_id=228122121 instance=ExtResource("1_u0n7v")]
+layout_mode = 2
+cost = 6.0
+actionTexture = ExtResource("4_f44jp")
+ability = 3
+
+[node name="Control4" type="Control" parent="." unique_id=1694993414]
+layout_mode = 2
+
+[node name="Bottom" parent="." unique_id=1092311650 instance=ExtResource("1_u0n7v")]
+layout_mode = 2
+cost = 8.0
+actionTexture = ExtResource("5_588nk")
+ability = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Bottom" unique_id=2132706419]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.0
+value = 1.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_over = ExtResource("6_tew5w")
+texture_progress = ExtResource("7_mhcvx")
+script = ExtResource("8_sr10k")
+
+[node name="SpeedAbilityTimer" type="Timer" parent="Bottom/TextureProgressBar" unique_id=556678853]
+wait_time = 5.0
+one_shot = true
+
+[node name="SpeedSounds" type="Node2D" parent="Bottom/TextureProgressBar" unique_id=91677365]
+script = ExtResource("9_swi2n")
+metadata/_custom_type_script = "uid://d2jiyp4v25x4h"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Bottom/TextureProgressBar/SpeedSounds" unique_id=221883630]
+stream = ExtResource("10_cnrcx")
+bus = &"Secondary Effects"
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="Bottom/TextureProgressBar/SpeedSounds" unique_id=1221735427]
+stream = ExtResource("11_g60hi")
+bus = &"Secondary Effects"
+
+[connection signal="timeout" from="Bottom/TextureProgressBar/SpeedAbilityTimer" to="Bottom/TextureProgressBar" method="_on_speed_ability_timer_timeout"]

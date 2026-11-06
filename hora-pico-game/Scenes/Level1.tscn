@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dxpg6ynwd7tik" path="res://Assets/BusCut.png" id="9_6jj8j"]
 [ext_resource type="Texture2D" uid="uid://c1duugq2duywa" path="res://TestSprites/SPEED_Symbol.png" id="10_0wsr5"]
 [ext_resource type="AudioStream" uid="uid://cmbbb4m63j2uj" path="res://Audio/Effects/Vehicles/arrow.mp3" id="14_06um6"]
+[ext_resource type="PackedScene" uid="uid://cl14fhrvsgqor" path="res://Prefabs/SummonMenu/summon_menu.tscn" id="14_fh0sh"]
 [ext_resource type="AudioStream" uid="uid://dcwu4etfeqgbs" path="res://Audio/Effects/Vehicles/miss.mp3" id="15_ubfni"]
 [ext_resource type="AudioStream" uid="uid://cxqiwtsx1e2c2" path="res://Audio/Coconut Mall - Mario Kart Wii.mp3" id="16_ug0sv"]
 [ext_resource type="AudioStream" uid="uid://cb62jc1yuoxy2" path="res://Audio/Finish Line (1st Place) - Mario Kart Wii (Soundtrack).mp3" id="17_0wsr5"]
@@ -358,6 +359,32 @@ offset_bottom = 77.66501
 
 [node name="VelocityLabel" parent="CanvasLayer/HUD/ColorRect" index="0" unique_id=1123354540]
 custom_minimum_size = Vector2(0, 0)
+
+[node name="Panel" type="Panel" parent="CanvasLayer/HUD" unique_id=2055758516]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -240.0
+offset_right = 252.0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HUD/Panel" unique_id=1898561440]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SummonMenu" parent="CanvasLayer/HUD/Panel/MarginContainer" unique_id=2062582113 instance=ExtResource("14_fh0sh")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Traffic Light" parent="." unique_id=1400643141 instance=ExtResource("5_t3or0")]
 position = Vector2(656, 290)

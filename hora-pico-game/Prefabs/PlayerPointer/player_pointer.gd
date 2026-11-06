@@ -6,7 +6,6 @@ class_name PlayerPointer
 @export var texture: Texture2D
 
 @onready var pointer: TextureRect = $Pointer
-@onready var menu: Control = $SummonMenu
 
 @onready var top: PlayerPointerButton = $SummonMenu/Top
 @onready var left: PlayerPointerButton = $SummonMenu/Left
@@ -21,7 +20,6 @@ var device_id: int
 func _ready() -> void:
 	police_radius.hide()
 	pointer.texture = texture
-	menu.hide()
 	
 	print("Creating pointer with id: %d" % device_id)
 	
@@ -42,32 +40,6 @@ func _process(delta: float) -> void:
 	).limit_length(1.0)
 	if velocity.length() > 0.2:
 		set_position(position + velocity * moveMagnitude)
-	
-	var selection_vel := Vector2(
-		Input.get_joy_axis(device_id, JOY_AXIS_RIGHT_X),
-		Input.get_joy_axis(device_id, JOY_AXIS_RIGHT_Y),
-	).limit_length(1.0)
-	if selection_vel.length() < 0.2:
-		menu.hide()
-	else:
-		selected = null
-		right.selected = false
-		left.selected = false
-		top.selected = false
-		bottom.selected = false
-		
-		var angle = selection_vel.angle()
-		if is_between(angle, -PI/4, PI/4):
-			selected = right
-		elif is_between(angle, -3*PI/4, -PI/4):
-			selected = top
-			police_radius.show()
-		elif is_between(angle, PI/4, 3*PI/4):
-			selected = bottom
-		else:
-			selected = left
-		selected.selected = true
-		menu.show()
 
 func is_between(val: float, min_val: float, max_val: float) -> bool:
 	return val >= min_val and val <= max_val
