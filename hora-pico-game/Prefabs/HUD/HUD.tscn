@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://cpu5ahs4dxyio" path="res://Prefabs/UI/ui_base.gd" id="1_f62wt"]
 [ext_resource type="Texture2D" uid="uid://bhlg4p5y0g7w8" path="res://TestSprites/ELIXIR_Over.png" id="1_kg4qw"]
 [ext_resource type="Theme" uid="uid://ddtv8ntjqwl0a" path="res://Themes/mobile.tres" id="1_qxswg"]
-[ext_resource type="Texture2D" uid="uid://dga7rck3xr3sr" path="res://Assets/CarCut.png" id="1_rbya7"]
 [ext_resource type="Texture2D" uid="uid://dxpg6ynwd7tik" path="res://Assets/BusCut.png" id="2_5jdsq"]
 [ext_resource type="Texture2D" uid="uid://bnwj31ja0dvw0" path="res://TestSprites/ELIXIR_Symbol.png" id="2_jr6l7"]
 [ext_resource type="PackedScene" uid="uid://c0f0fih2ds64h" path="res://Prefabs/RandomAudioPlayer/RandomAudioPlayer.tscn" id="8_5q26g"]
@@ -34,18 +33,23 @@ assume_theme = ExtResource("1_qxswg")
 metadata/_custom_type_script = "uid://cpu5ahs4dxyio"
 
 [node name="TrafficBackground" type="ColorRect" parent="." unique_id=1237301669]
-custom_minimum_size = Vector2(500, 75)
+custom_minimum_size = Vector2(500, 100)
+custom_maximum_size = Vector2(500, -1)
 layout_mode = 1
-anchors_preset = 2
+anchors_preset = 3
+anchor_left = 1.0
 anchor_top = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -75.0
-offset_right = 500.0
+offset_left = -500.0
+offset_top = -100.0
+grow_horizontal = 0
 grow_vertical = 0
 color = Color(0.13333334, 0.1254902, 0.20392157, 0.6156863)
 
 [node name="CarComboQueue" type="HBoxContainer" parent="TrafficBackground" unique_id=992683722]
-clip_contents = true
+custom_maximum_size = Vector2(500, -1)
+propagate_maximum_size = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -55,19 +59,10 @@ grow_vertical = 2
 theme_override_constants/separation = 25
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="TrafficBackground" unique_id=1424480744]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -30.0
-offset_top = -25.0
-offset_right = 27.0
-offset_bottom = 15.0
-grow_horizontal = 2
-texture = ExtResource("1_rbya7")
+[node name="FailTimer" type="Timer" parent="TrafficBackground" unique_id=1801903783]
 
 [node name="TrafficBackground2" type="ColorRect" parent="." unique_id=1881621810]
+visible = false
 custom_minimum_size = Vector2(500, 75)
 layout_mode = 1
 anchors_preset = 3
@@ -276,18 +271,12 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "[UpArrow] Continue"
 script = ExtResource("18_k2a72")
-prefix_format = "[%s] "
-button_text = "Continue"
-action = "pause_game"
 metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
 [node name="Quit" type="Button" parent="PauseMenu/VBoxContainer" unique_id=216053539]
 layout_mode = 2
 text = "[DownArrow] Continue"
 script = ExtResource("18_k2a72")
-prefix_format = "[%s] "
-button_text = "Quit"
-action = "ui_accept"
 metadata/_custom_type_script = "uid://cqtnikk1cdfts"
 
 [node name="EndMenu" type="PanelContainer" parent="." unique_id=607257382]
@@ -379,6 +368,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=500436457]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
